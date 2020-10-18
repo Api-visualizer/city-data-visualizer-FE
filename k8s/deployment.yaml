@@ -1,0 +1,29 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: api-visualizer
+  namespace: sachs
+  labels:
+    app: api-visualizer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-visualizer
+  template:
+    metadata:
+      labels:
+        app: api-visualizer
+    spec:
+      containers:
+      - name: api-visualizer
+        image: registry.datexis.com/ksachs/api-visualizer:latest
+        ports:
+        - name: client-port
+          containerPort: 8090
+        envFrom:
+          - configMapRef:
+              name: api-visualizer-config
+      imagePullSecrets:
+      - name: private-registry-auth
+      schedulerName: default-scheduler

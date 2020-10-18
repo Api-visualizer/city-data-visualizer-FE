@@ -1,0 +1,11 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: api-visualizer-service
+  namespace: sachs
+spec:
+  ports:
+  - protocol: TCP
+    port: 8090
+  selector:
+    app: api-visualizer
