@@ -18,5 +18,5 @@ spec:
     http:
       paths:
       - backend:
-          serviceName: api-visualizer-FE-service
+          serviceName: api-visualizer-service
           servicePort: 8090
