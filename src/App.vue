@@ -2,7 +2,6 @@
   <div id="app">
     <Header />
     <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
     <div style="min-height:100vh;" class="HeaderHeight">
       <router-view />
     </div>  
@@ -13,12 +12,11 @@
 <script>
 import Header from './components/Main/Header.vue'
 import Footer from './components/Main/Footer.vue'
-import HelloWorld from './components/HelloWorld.vue'
 import GeneralClasses from "./assets/GeneralClasses.js";
 
 export default {
   name: 'App',
-  components: { Header, Footer, HelloWorld },
+  components: { Header, Footer },
   data() {
     return {
       GeneralClasses: GeneralClasses,
@@ -40,6 +38,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  padding: 15px;
 }
 </style>

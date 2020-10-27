@@ -1,21 +1,12 @@
-import axios from "axios";
 import Dictionary from "../assets/Dictionary.json";
 
 var FinalWord = "";
 
 export default {
+    GETAPI:function() { return "https://pthr.uber.space/padp"; },
     ValueLanguage:function() { return "tduAjTngKL"; },     
     LSLanguage:function() { return localStorage.getItem(this.ValueLanguage()); }, 
 
-    ApplyREST: function (Method, URL, Data) {
-        return axios(URL, {
-            method: Method,
-            headers: {
-                "Content-Type": "application/json",
-            },
-            data: Data
-        }).then(Response => Response).catch(Error => Error);
-    },
     GetWord: function (String) 
     {
         try 

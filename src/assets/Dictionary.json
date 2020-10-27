@@ -4,6 +4,11 @@
             "Value": "example",
             "EN": "Example",
             "DE": "Beispiel"
+        },
+        {
+            "Value": "example2",
+            "EN": "Example",
+            "DE": "Beispiel"
         }
     ]
 }
