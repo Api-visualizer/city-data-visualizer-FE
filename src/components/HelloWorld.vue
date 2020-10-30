@@ -1,5 +1,6 @@
 <template>
   <div class="hello">
+    <h1>HELLO</h1>
     <h1>{{ msg }}</h1>
     <l-map style="height: 500px" :zoom="zoom" :center="center">
       <l-tile-layer :url="url"></l-tile-layer>

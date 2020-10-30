@@ -12,11 +12,11 @@ spec:
   tls:
   - hosts:
       - api-visualizer.app.datexis.com
-    secretName: api-visualizer-FE-ingress-tls
+    secretName: api-visualizer-ingress-tls
   rules:
   - host: api-visualizer.app.datexis.com
     http:
       paths:
       - backend:
-          serviceName: api-visualizer-FE-service
+          serviceName: api-visualizer-service
           servicePort: 8090

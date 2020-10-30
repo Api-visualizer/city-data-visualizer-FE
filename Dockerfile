@@ -1,7 +1,5 @@
 FROM node:12.18.3-alpine
 
-FROM node:lts-alpine
-
 # install simple http server for serving static content
 RUN npm install -g http-server
 
@@ -18,5 +16,5 @@ COPY . .
 RUN npm run build
 
 EXPOSE 8090
-CMD [ "http-server", "dist" ]
+CMD [ "http-server", "dist", "-a", "0.0.0.0", "-p", "8090"]
 
