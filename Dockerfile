@@ -1,7 +1,5 @@
 FROM node:12.18.3-alpine
 
-FROM node:lts-alpine
-
 # install simple http server for serving static content
 RUN npm install -g http-server
 
