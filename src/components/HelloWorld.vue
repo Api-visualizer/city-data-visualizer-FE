@@ -1,10 +1,5 @@
 <template>
-<<<<<<< HEAD
   <div>
-=======
-  <div class="hello">
-    <h1>HELLO</h1>
->>>>>>> daf18ac15028d05d59f5486cf63eca5b8d8090ea
     <h1>{{ msg }}</h1>
     <div id="demo" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
