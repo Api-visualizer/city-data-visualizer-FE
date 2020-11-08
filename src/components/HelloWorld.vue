@@ -50,6 +50,7 @@
           v-for="(item, index) in Markers"
           :key="'marker-' + index"
           :lat-lng="[item.lat, item.long]"
+          :icon="icon"
         />
       </l-map>
       <hr />
@@ -76,6 +77,7 @@
 <script>
 import GeneralClasses from "../assets/GeneralClasses";
 import { LMap, LTileLayer, LMarker } from "vue2-leaflet";
+import { icon } from "leaflet";
 import "leaflet/dist/leaflet.css";
 
 export default {
@@ -90,6 +92,9 @@ export default {
   },
   data() {
     return {
+      icon: icon({
+        iconUrl: "/images/marker-icon.png",
+      }),
       Type: "area",
       chartOptions: {},
       series: [],
