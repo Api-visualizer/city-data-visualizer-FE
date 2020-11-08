@@ -12,6 +12,11 @@ import 'vue-good-table/dist/vue-good-table.css'
 import { VueGoodTable } from 'vue-good-table';
 Vue.component('VueGoodTable', VueGoodTable);
 
+import VueApexCharts from 'vue-apexcharts'
+Vue.use(VueApexCharts)
+
+Vue.component('apexchart', VueApexCharts)
+
 Vue.config.productionTip = false
 
 new Vue({

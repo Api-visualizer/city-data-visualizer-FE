@@ -1,22 +1,19 @@
 <template>
-  <div id="app">
+  <div id="app" class="p-0">
     <Header />
-    <img alt="Vue logo" src="./assets/logo.png">
-    <div style="min-height:100vh;" class="HeaderHeight">
+    <div style="min-height:100vh;" class="">
       <router-view />
     </div>  
-    <Footer />  
   </div>
 </template>
 
 <script>
 import Header from './components/Main/Header.vue'
-import Footer from './components/Main/Footer.vue'
 import GeneralClasses from "./assets/GeneralClasses.js";
 
 export default {
   name: 'App',
-  components: { Header, Footer },
+  components: { Header },
   data() {
     return {
       GeneralClasses: GeneralClasses,
