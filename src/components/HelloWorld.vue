@@ -31,32 +31,7 @@
       </a>
     </div>
     <hr />
-    <l-map style="height: 500px" :zoom="zoom" :center="center">
-      <l-tile-layer :url="url"></l-tile-layer>
-      <l-marker
-        v-for="(item, index) in Markers"
-        :key="'marker-' + index"
-        :lat-lng="[item.lat, item.long]"
-      />
-    </l-map>
-    <hr />
-      <select class="TextField F100" v-model="Type">
-        <option value="area" selected>Area Chart</option>
-        <option value="line">Line Chart</option>
-        <option value="bar">Bar Chart</option>
-      </select>    
-    <hr />
-    <center>
-      <apexchart
-        width="100%"
-        :type="Type"
-        height="400px"
-        :options="chartOptions"
-        :series="series"
-      ></apexchart>
-      <hr>
-    </center>
-    <hr />
+    <div style="padding: 50px">    
     <vue-good-table
       :columns="columns"
       :rows="Markers"
@@ -66,6 +41,35 @@
         perPageDropdown: [12, 24],
       }"
     />
+    </div>
+    <hr />
+    <div style="padding: 50px">
+      <l-map style="height: 500px" :zoom="zoom" :center="center">
+        <l-tile-layer :url="url"></l-tile-layer>
+        <l-marker
+          v-for="(item, index) in Markers"
+          :key="'marker-' + index"
+          :lat-lng="[item.lat, item.long]"
+        />
+      </l-map>
+      <hr />
+      <select class="TextField F100" v-model="Type">
+        <option value="area" selected>Area Chart</option>
+        <option value="line">Line Chart</option>
+        <option value="bar">Bar Chart</option>
+      </select>
+      <hr />
+      <center>
+        <apexchart
+          width="100%"
+          :type="Type"
+          height="400px"
+          :options="chartOptions"
+          :series="series"
+        ></apexchart>
+        <hr />
+      </center>
+    </div>
   </div>
 </template>
 
@@ -86,12 +90,12 @@ export default {
   },
   data() {
     return {
-      Type:"area",
+      Type: "area",
       chartOptions: {},
       series: [],
 
       chartOptions2: {},
-      series2: [],      
+      series2: [],
       url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
       zoom: 11,
       Markers: [],
@@ -151,7 +155,7 @@ export default {
     },
     APIResult: function () {
       this.$http.get(GeneralClasses.GETAPI()).then((Result) => {
-        this.Markers = Result.data.index;
+        this.Markers = Result.data[0].index;
 
         var CitiesCollection = [];
         for (let i = 0; i < this.Markers.length; i++) {
@@ -184,7 +188,7 @@ export default {
             name: "series-1",
             data: Data,
           },
-        ];      
+        ];
       });
     },
   },

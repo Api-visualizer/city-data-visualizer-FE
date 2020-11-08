@@ -3,7 +3,8 @@ import Dictionary from "../assets/Dictionary.json";
 var FinalWord = "";
 
 export default {
-    GETAPI:function() { return "https://pthr.uber.space/padp"; },
+    // GETAPI:function() { return "https://pthr.uber.space/padp"; },
+    GETAPI:function() { return "https://cdv-backend.api.datexis.com/api/v1/berlin-verschenken"; },    
     ValueLanguage:function() { return "tduAjTngKL"; },     
     LSLanguage:function() { return localStorage.getItem(this.ValueLanguage()); }, 
 
