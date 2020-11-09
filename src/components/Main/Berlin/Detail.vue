@@ -1,87 +1,75 @@
 <template>
   <div>
-    <div class="container p-3">
-      <div class="row">
-        <img src="/images/berlin.jpg" class="w-100 headerimage" alt="Los Angeles" />
-      </div>
-    </div>
+    <h1>{{ msg }}</h1>
+    <div id="demo" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ul class="carousel-indicators">
+        <li data-target="#demo" data-slide-to="0" class="active"></li>
+        <li data-target="#demo" data-slide-to="1"></li>
+        <li data-target="#demo" data-slide-to="2"></li>
+      </ul>
 
-    <h1>Berlin</h1>
+      <!-- The slideshow -->
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="/images/berlin.jpg" class="img-fluid" alt="Los Angeles" />
+        </div>
+        <div class="carousel-item">
+          <img src="/images/hamburg.jpg" class="img-fluid" alt="Chicago" />
+        </div>
+        <div class="carousel-item">
+          <img src="/images/munich.jpg" class="img-fluid" alt="New York" />
+        </div>
+      </div>
 
-    <div class="container pb-4">
-      <div class="row">
-        <div class="col">
-          <div class="p-1">
-            <l-map style="height: 500px; border-radius: 3rem" :zoom="zoom" :center="center">
-              <l-tile-layer :url="url"></l-tile-layer>
-              <l-marker
-                      v-for="(item, index) in Markers"
-                      :key="'marker-' + index"
-                      :lat-lng="[item.lat, item.long]"
-                      :icon="icon"
-              />
-            </l-map>
-          </div>
-        </div>
-      </div>
+      <!-- Left and right controls -->
+      <a class="carousel-control-prev" href="#demo" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </a>
+      <a class="carousel-control-next" href="#demo" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </a>
     </div>
-    <div class="container p-3">
-      <div class="row">
-        <div class="col">
-          <select class="TextField F100" v-model="Type">
-            <option value="area" selected>Area Chart</option>
-            <option value="line">Line Chart</option>
-            <option value="bar">Bar Chart</option>
-          </select>
-          <hr />
-          <center>
-            <apexchart
-                    width="100%"
-                    :type="Type"
-                    height="400px"
-                    :options="chartOptions"
-                    :series="series"
-            ></apexchart>
-            <hr />
-          </center>
-        </div>
-        <div class="col">
-          <select class="TextField F100" v-model="Type">
-            <option value="area">Area Chart</option>
-            <option value="line" selected>Line Chart</option>
-            <option value="bar">Bar Chart</option>
-          </select>
-          <hr />
-          <center>
-            <apexchart
-                    width="100%"
-                    :type="Type"
-                    height="400px"
-                    :options="chartOptions"
-                    :series="series"
-            ></apexchart>
-            <hr />
-          </center>
-        </div>
-        <div class="col">
-          <select class="TextField F100" v-model="Type">
-            <option value="area">Area Chart</option>
-            <option value="line">Line Chart</option>
-            <option value="bar" selected>Bar Chart</option>
-          </select>
-          <hr />
-          <center>
-            <apexchart
-                    width="100%"
-                    :type="Type"
-                    height="400px"
-                    :options="chartOptions"
-                    :series="series"
-            ></apexchart>
-            <hr />
-          </center>
-        </div>
-      </div>
+    <hr />
+    <div style="padding: 50px">    
+    <vue-good-table
+      :columns="columns"
+      :rows="Markers"
+      :pagination-options="{
+        enabled: true,
+        perPage: 12,
+        perPageDropdown: [12, 24],
+      }"
+    />
+    </div>
+    <hr />
+    <div style="padding: 50px">
+      <l-map style="height: 500px" :zoom="zoom" :center="center">
+        <l-tile-layer :url="url"></l-tile-layer>
+        <l-marker
+          v-for="(item, index) in Markers"
+          :key="'marker-' + index"
+          :lat-lng="[item.lat, item.long]"
+          :icon="icon"
+        />
+      </l-map>
+      <hr />
+      <select class="TextField F100" v-model="Type">
+        <option value="area" selected>Area Chart</option>
+        <option value="line">Line Chart</option>
+        <option value="bar">Bar Chart</option>
+      </select>
+      <hr />
+      <center>
+        <apexchart
+          width="100%"
+          :type="Type"
+          height="400px"
+          :options="chartOptions"
+          :series="series"
+        ></apexchart>
+        <hr />
+      </center>
     </div>
   </div>
 </template>
@@ -93,7 +81,7 @@ import { icon } from "leaflet";
 import "leaflet/dist/leaflet.css";
 
 export default {
-  name: "Main",
+  name: "HelloWorld",
   props: {
     msg: String,
   },
@@ -217,9 +205,4 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  .headerimage{
-    max-height: 6rem;
-    border-radius: 3rem;
-    object-fit: cover;
-  }
 </style>
