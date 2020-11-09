@@ -2,14 +2,24 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
-import Home from '../src/components/HelloWorld';
+import LandingPage from '../src/components/Main/LandingPage';
+
+// Berlin
+import Main from '../src/components/Main/Berlin/Main';
+import KarteCorona from '../src/components/Main/Berlin/KarteCorona';
+
+// Hamburg
+
+// Munich
 
 const routes = [
     {
         path :'*',
         redirect: '/'
     },    
-    { path: '/', component: Home },
+    { path: '/', component: LandingPage },
+    { path: '/berlin', component: Main },    
+    { path: '/berlin/karte/corona', component: KarteCorona },        
 ];
 const router = new VueRouter({
     mode: 'history',

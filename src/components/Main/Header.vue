@@ -1,7 +1,7 @@
 <template>
   <div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="/">
         <img src="/images/logodark.png" class="mh-100" />
       </a>
       <button
@@ -18,12 +18,9 @@
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#"
+            <a class="nav-link" href="/"
               >Home <span class="sr-only">(current)</span></a
             >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Cities</a>
           </li>
         </ul>
         <span class="navbar-text">
