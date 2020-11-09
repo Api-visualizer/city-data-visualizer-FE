@@ -75,7 +75,7 @@
 </template>
 
 <script>
-import GeneralClasses from "../assets/GeneralClasses";
+import GeneralClasses from "../../../assets/GeneralClasses";
 import { LMap, LTileLayer, LMarker } from "vue2-leaflet";
 import { icon } from "leaflet";
 import "leaflet/dist/leaflet.css";

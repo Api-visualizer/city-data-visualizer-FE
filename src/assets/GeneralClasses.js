@@ -4,7 +4,10 @@ var FinalWord = "";
 
 export default {
     // GETAPI:function() { return "https://pthr.uber.space/padp"; },
-    GETAPI:function() { return "https://cdv-backend.api.datexis.com/api/v1/berlin-verschenken"; },    
+    GETAPIberlincoviddistrict:function() { return "https://cdv-backend.api.datexis.com/api/v1/berlin-covid-district"; },    
+    GETAPIberlinshapesdistrict:function() { return "https://cdv-backend.api.datexis.com/api/v1/berlin-shapes-district"; },    
+    GETAPIberlinverschenken:function() { return "https://cdv-backend.api.datexis.com//api/v1/berlin-verschenken"; },    
+        
     ValueLanguage:function() { return "tduAjTngKL"; },     
     LSLanguage:function() { return localStorage.getItem(this.ValueLanguage()); }, 
 
