@@ -21,6 +21,7 @@
                       :icon="icon"
               />
             </l-map>
+            <h2><a href="/berlin/karte/corona">Detailansicht</a></h2>
           </div>
         </div>
       </div>

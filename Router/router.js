@@ -16,10 +16,10 @@ const routes = [
     {
         path :'*',
         redirect: '/'
-    },    
+    },
     { path: '/', component: LandingPage },
-    { path: '/berlin', component: Main },    
-    { path: '/berlin/karte/corona', component: KarteCorona },        
+    { path: '/berlin', component: Main },
+    { path: '/berlin/karte/corona', component: KarteCorona },
 ];
 const router = new VueRouter({
     mode: 'history',
