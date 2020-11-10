@@ -29,7 +29,7 @@
               <a class="nav-link" href="#">Abouts</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Team</a>
+              <a class="nav-link" href="/team">Team</a>
             </li>
           </ul>
         </span>
@@ -41,6 +41,7 @@
 <script>
 export default {
   name: "Header",
+
 };
 </script>
 
