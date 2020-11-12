@@ -86,7 +86,7 @@ export default {
 
     featureStyle: function (feature) {
       const cases_per = feature.properties.cases_per_100k;
-      const scale = this.scale(cases_per, this.min_cases_per, this.max_cases_per, 0.2, 1.0);
+      const scale = this.scale(cases_per, this.min_cases_per, this.max_cases_per, 0.2, 0.9);
 			
       return {
         color: "white",
