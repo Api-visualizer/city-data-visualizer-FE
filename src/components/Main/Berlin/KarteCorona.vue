@@ -61,6 +61,7 @@ export default {
     onEachFeature: function (feature, layer) {
       const polygon = L.polygon(feature.geometry.coordinates);
       const center = polygon.getBounds().getCenter();
+      console.log(center)
       const map = this.map;
 
       layer.on("click", function () {
@@ -78,7 +79,8 @@ export default {
           feature.properties.deaths +
           "</p>";
         layer.bindPopup(popupInfo);
-        map.panTo([center.lng, center.lat]);
+        //map.panTo([center.lng, center.lat]);
+        map.setView([center.lng, center.lat],12)
       });
     },
 
@@ -98,7 +100,9 @@ export default {
     setupLeafletMap: function () {
       this.map = L.map("mapContainer", {
         center: [52.52, 13.405],
-        zoom: 10,
+        zoom: 11,
+        maxZoom: 13,
+        minZoom: 10
       });
 
       L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
