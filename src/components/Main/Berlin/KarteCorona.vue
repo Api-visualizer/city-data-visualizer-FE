@@ -61,6 +61,7 @@ export default {
     onEachFeature: function (feature, layer) {
       const polygon = L.polygon(feature.geometry.coordinates);
       const center = polygon.getBounds().getCenter();
+      console.log(center)
       const map = this.map;
 
       layer.on("click", function () {
@@ -78,13 +79,14 @@ export default {
           feature.properties.deaths +
           "</p>";
         layer.bindPopup(popupInfo);
-        map.panTo([center.lng, center.lat]);
+        //map.panTo([center.lng, center.lat]);
+        map.setView([center.lng, center.lat],12)
       });
     },
 
     featureStyle: function (feature) {
       const cases_per = feature.properties.cases_per_100k;
-      const scale = this.scale(cases_per, this.min_cases_per, this.max_cases_per, 0.2, 1.0);
+      const scale = this.scale(cases_per, this.min_cases_per, this.max_cases_per, 0.2, 0.9);
 			
       return {
         color: "white",
@@ -98,7 +100,9 @@ export default {
     setupLeafletMap: function () {
       this.map = L.map("mapContainer", {
         center: [52.52, 13.405],
-        zoom: 10,
+        zoom: 11,
+        maxZoom: 13,
+        minZoom: 10
       });
 
       L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
