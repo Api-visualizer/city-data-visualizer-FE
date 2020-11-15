@@ -12,7 +12,7 @@
       <div class="row">
         <div class="col">
           <div class="p-1">
-            <l-map style="height: 500px; border-radius: 3rem" :zoom="zoom" :center="center">
+            <l-map style="height: 500px; border-radius: 3rem" :zoom="zoom" :minZoom="minZoom" :maxZoom="maxZoom" :center="center">
               <l-tile-layer :url="url"></l-tile-layer>
               <l-marker
                       v-for="(item, index) in Markers"
@@ -21,6 +21,7 @@
                       :icon="icon"
               />
             </l-map>
+            <h2><a href="/berlin/karte/corona">Detailansicht</a></h2>
           </div>
         </div>
       </div>
@@ -115,6 +116,8 @@ export default {
       series2: [],
       url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
       zoom: 11,
+      minZoom: 8,
+      maxZoom: 16,
       Markers: [],
       center: [0, 0],
       columns: [

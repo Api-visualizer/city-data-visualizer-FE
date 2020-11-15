@@ -14,8 +14,12 @@ import KarteCorona from '../src/components/Main/Berlin/KarteCorona';
 // Munich
 
 const routes = [
+    {
+        path :'*',
+        redirect: '/'
+    },
     { path: '/', component: LandingPage },
-    { path: '/berlin', component: Main },    
+    { path: '/berlin', component: Main },
     { path: '/berlin/karte/corona', component: KarteCorona },
     { path: '/team', component: Team }
 ];
@@ -23,5 +27,4 @@ const router = new VueRouter({
     mode: 'history',
     routes
 });
-
 export default router;

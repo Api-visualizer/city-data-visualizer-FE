@@ -1,208 +1,137 @@
 <template>
-  <div>
-    <h1>{{ msg }}</h1>
-    <div id="demo" class="carousel slide" data-ride="carousel">
-      <!-- Indicators -->
-      <ul class="carousel-indicators">
-        <li data-target="#demo" data-slide-to="0" class="active"></li>
-        <li data-target="#demo" data-slide-to="1"></li>
-        <li data-target="#demo" data-slide-to="2"></li>
-      </ul>
-
-      <!-- The slideshow -->
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img src="/images/berlin.jpg" class="img-fluid" alt="Los Angeles" />
-        </div>
-        <div class="carousel-item">
-          <img src="/images/hamburg.jpg" class="img-fluid" alt="Chicago" />
-        </div>
-        <div class="carousel-item">
-          <img src="/images/munich.jpg" class="img-fluid" alt="New York" />
-        </div>
-      </div>
-
-      <!-- Left and right controls -->
-      <a class="carousel-control-prev" href="#demo" data-slide="prev">
-        <span class="carousel-control-prev-icon"></span>
-      </a>
-      <a class="carousel-control-next" href="#demo" data-slide="next">
-        <span class="carousel-control-next-icon"></span>
-      </a>
-    </div>
-    <hr />
-    <div style="padding: 50px">    
-    <vue-good-table
-      :columns="columns"
-      :rows="Markers"
-      :pagination-options="{
-        enabled: true,
-        perPage: 12,
-        perPageDropdown: [12, 24],
-      }"
-    />
-    </div>
-    <hr />
-    <div style="padding: 50px">
-      <l-map style="height: 500px" :zoom="zoom" :center="center">
-        <l-tile-layer :url="url"></l-tile-layer>
-        <l-marker
-          v-for="(item, index) in Markers"
-          :key="'marker-' + index"
-          :lat-lng="[item.lat, item.long]"
-          :icon="icon"
-        />
-      </l-map>
-      <hr />
-      <select class="TextField F100" v-model="Type">
-        <option value="area" selected>Area Chart</option>
-        <option value="line">Line Chart</option>
-        <option value="bar">Bar Chart</option>
-      </select>
-      <hr />
-      <center>
-        <apexchart
-          width="100%"
-          :type="Type"
-          height="400px"
-          :options="chartOptions"
-          :series="series"
-        ></apexchart>
-        <hr />
-      </center>
-    </div>
+  <div id="container">
+    <div id="mapContainer"></div>
   </div>
 </template>
 
 <script>
 import GeneralClasses from "../../../assets/GeneralClasses";
-import { LMap, LTileLayer, LMarker } from "vue2-leaflet";
-import { icon } from "leaflet";
+import L from "leaflet";
 import "leaflet/dist/leaflet.css";
+import moment from "moment";
 
 export default {
-  name: "HelloWorld",
+  name: "KarteCorona",
+
   props: {
     msg: String,
   },
-  components: {
-    LMap,
-    LTileLayer,
-    LMarker,
-  },
+
   data() {
     return {
-      icon: icon({
-        iconUrl: "/images/marker-icon.png",
-      }),
-      Type: "area",
-      chartOptions: {},
-      series: [],
-
-      chartOptions2: {},
-      series2: [],
-      url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-      zoom: 11,
-      Markers: [],
-      center: [0, 0],
-      columns: [
-        {
-          label: "ID",
-          field: "id",
-          type: "number",
-          width: "50px",
-        },
-        {
-          label: "Name",
-          field: "name",
-        },
-        {
-          label: "Adresse",
-          field: "adresse",
-        },
-        {
-          label: "Plz",
-          field: "plz",
-          type: "number",
-          width: "125px",
-        },
-        {
-          label: "Bezirk",
-          field: "bezirk",
-        },
-        {
-          label: "Lat",
-          field: "lat",
-          sortable: false,
-        },
-        {
-          label: "Long",
-          field: "long",
-          sortable: false,
-        },
-      ],
+      map: {},
+      min_cases_per: 100000,
+      max_cases_per: 0,
     };
   },
+
   methods: {
-    GetUnique: function (arr, comp) {
-      const unique = arr
-        .map((e) => e[comp])
-        .map((e, i, final) => final.indexOf(e) === i && i)
-        .filter((e) => arr[e])
-        .map((e) => arr[e]);
-      return unique;
+    fetchGeoShapes: function () {
+      this.$http
+        .get(GeneralClasses.GETAPIberlinshapesdistrict())
+        .then((res) => this.APIResult(res.data));
     },
-    CountValues: function (arr) {
-      return arr.reduce(
-        (prev, curr) => ((prev[curr] = ++prev[curr] || 1), prev),
-        {}
-      );
+
+    APIResult: function (shapes) {
+      this.$http
+        .get(GeneralClasses.GETAPIberlincoviddistrict())
+        .then((res) =>
+          res.data.filter((data) => data.date === this.todaysDate())
+        )
+        .then((data) => {
+          data = data[0].data; // TODO rename
+          data.features.forEach((feature) => {
+            const shape = shapes.filter(
+              (shape) => shape.district === feature.properties.GEN
+						)[0];						
+            feature.geometry = shape.geometry;
+            if (feature.properties.cases_per_100k < this.min_cases_per)
+              this.min_cases_per = feature.properties.cases_per_100k;
+            if (feature.properties.cases_per_100k > this.max_cases_per)
+              this.max_cases_per = feature.properties.cases_per_100k;
+					});
+					
+          L.geoJSON(data, {
+            onEachFeature: this.onEachFeature,
+            style: this.featureStyle,
+          }).addTo(this.map);
+        });
     },
-    APIResult: function () {
-      this.$http.get(GeneralClasses.GETAPIberlinverschenken()).then((Result) => {
-        this.Markers = Result.data[0].index;
 
-        var CitiesCollection = [];
-        for (let i = 0; i < this.Markers.length; i++) {
-          CitiesCollection[i] = this.Markers[i].bezirk;
-        }
+    onEachFeature: function (feature, layer) {
+      const polygon = L.polygon(feature.geometry.coordinates);
+      const center = polygon.getBounds().getCenter();
+      console.log(center)
+      const map = this.map;
 
-        console.log();
-        var UniqueCollection = this.GetUnique(this.Markers, "bezirk");
-
-        this.center = [52.5373, 13.3603];
-        var Collection = [];
-        var Data = [];
-        for (let i = 0; i < UniqueCollection.length; i++) {
-          Collection[i] = UniqueCollection[i].bezirk;
-          Data[i] = this.CountValues(CitiesCollection)[
-            UniqueCollection[i].bezirk
-          ];
-        }
-        // console.log(Collection);
-        // console.log(Data);
-
-        this.chartOptions = {
-          chart: { id: "vuechart-example" },
-          xaxis: {
-            categories: Collection,
-          },
-        };
-        this.series = [
-          {
-            name: "series-1",
-            data: Data,
-          },
-        ];
+      layer.on("click", function () {
+        const popupInfo =
+          "<b>" +
+          feature.properties.GEN +
+          "</b>" +
+          "<p>Total cases: " +
+          feature.properties.cases +
+          "</p>" +
+          "<p>Cases per 100k: " +
+          Math.round(feature.properties.cases_per_100k) +
+          "</p>" +
+          "<p>Total deaths: " +
+          feature.properties.deaths +
+          "</p>";
+        layer.bindPopup(popupInfo);
+        //map.panTo([center.lng, center.lat]);
+        map.setView([center.lng, center.lat],12)
       });
     },
+
+    featureStyle: function (feature) {
+      const cases_per = feature.properties.cases_per_100k;
+      const scale = this.scale(cases_per, this.min_cases_per, this.max_cases_per, 0.2, 0.9);
+			
+      return {
+        color: "white",
+        opacity: "1",
+        weight: "1",
+        fillColor: "red",
+        fillOpacity: scale,
+      }
+    },
+
+    setupLeafletMap: function () {
+      this.map = L.map("mapContainer", {
+        center: [52.52, 13.405],
+        zoom: 11,
+        maxZoom: 13,
+        minZoom: 10
+      });
+
+      L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
+        attribution:
+          '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+      }).addTo(this.map)
+    },
+
+    todaysDate: function () {
+      return moment().format("DD.MM.YYYY")
+    },
+
+    scale: function (num, in_min, in_max, out_min, out_max) {
+      return (
+        ((num - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min
+      );
+    },
   },
+
   mounted() {
-    this.APIResult();
+    this.setupLeafletMap();
+    this.fetchGeoShapes();
   },
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+#mapContainer {
+  width: 100vw;
+  height: 100vh;
+}
 </style>
