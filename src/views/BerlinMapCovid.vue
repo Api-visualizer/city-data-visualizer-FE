@@ -5,13 +5,13 @@
 </template>
 
 <script>
-import GeneralClasses from "../../../assets/GeneralClasses";
+import GeneralClasses from "../assets/GeneralClasses";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import moment from "moment";
 
 export default {
-  name: "KarteCorona",
+  name: "BerlinMapCovid",
 
   props: {
     msg: String,
@@ -43,14 +43,14 @@ export default {
           data.features.forEach((feature) => {
             const shape = shapes.filter(
               (shape) => shape.district === feature.properties.GEN
-						)[0];						
+						)[0];
             feature.geometry = shape.geometry;
             if (feature.properties.cases_per_100k < this.min_cases_per)
               this.min_cases_per = feature.properties.cases_per_100k;
             if (feature.properties.cases_per_100k > this.max_cases_per)
               this.max_cases_per = feature.properties.cases_per_100k;
 					});
-					
+
           L.geoJSON(data, {
             onEachFeature: this.onEachFeature,
             style: this.featureStyle,
@@ -87,7 +87,7 @@ export default {
     featureStyle: function (feature) {
       const cases_per = feature.properties.cases_per_100k;
       const scale = this.scale(cases_per, this.min_cases_per, this.max_cases_per, 0.2, 0.9);
-			
+
       return {
         color: "white",
         opacity: "1",

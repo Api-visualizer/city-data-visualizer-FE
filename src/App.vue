@@ -3,12 +3,12 @@
     <Header />
     <div style="min-height:100vh;" class="">
       <router-view />
-    </div>  
+    </div>
   </div>
 </template>
 
 <script>
-import Header from './components/Main/Header.vue'
+import Header from './components/Header.vue'
 import GeneralClasses from "./assets/GeneralClasses.js";
 
 export default {
@@ -19,9 +19,9 @@ export default {
       GeneralClasses: GeneralClasses,
     };
   },
-  mounted() {  
-    if (localStorage.getItem(this.GeneralClasses.ValueLanguage()) == null) 
-    {    
+  mounted() {
+    if (localStorage.getItem(this.GeneralClasses.ValueLanguage()) == null)
+    {
       localStorage.setItem(this.GeneralClasses.ValueLanguage(), "DE");
     }
   },

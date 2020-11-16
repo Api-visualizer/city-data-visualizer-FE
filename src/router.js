@@ -2,12 +2,12 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
-import LandingPage from '../src/components/Main/LandingPage';
-import Team from '../src/components/Team'
+import LandingPage from './views/LandingPage';
+import Team from './views/Team'
 
 // Berlin
-import Main from '../src/components/Main/Berlin/Main';
-import KarteCorona from '../src/components/Main/Berlin/KarteCorona';
+import BerlinOverview from './views/BerlinOverview';
+import BerlinMapCovid from './views/BerlinMapCovid';
 
 // Hamburg
 
@@ -19,8 +19,8 @@ const routes = [
         redirect: '/'
     },
     { path: '/', component: LandingPage },
-    { path: '/berlin', component: Main },
-    { path: '/berlin/karte/corona', component: KarteCorona },
+    { path: '/berlin', component: BerlinOverview },
+    { path: '/berlin/karte/corona', component: BerlinMapCovid },
     { path: '/team', component: Team }
 ];
 const router = new VueRouter({
