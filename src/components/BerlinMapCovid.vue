@@ -14,54 +14,86 @@ export default {
   name: "BerlinMapCovid",
 
   props: {
-    msg: String,
+    selectedDay: {
+      default: "29.10.2020",
+      type: String
+    }
   },
 
   data() {
     return {
+      dataResult: [],
+      shapes: [],
       map: {},
+      mapLayer: {},
       min_cases_per: 100000,
       max_cases_per: 0,
+      SelectedDayNew: "29.10.2020",
     };
   },
 
   methods: {
+
     fetchGeoShapes: function () {
       this.$http
         .get(GeneralClasses.GETAPIberlinshapesdistrict())
-        .then((res) => this.APIResult(res.data));
+        .then((res) => {
+        this.fetchCovidResultsAndFilter(res.data)
+        });
     },
 
-    APIResult: function (shapes) {
+    fetchCovidResultsAndFilter: function (shapes) {
+      this.shapes = [];
+      this.dataResult = [];
       this.$http
         .get(GeneralClasses.GETAPIberlincoviddistrict())
-        .then((res) =>
-          res.data.filter((data) => data.date === this.todaysDate())
-        )
         .then((data) => {
-          data = data[0].data; // TODO rename
-          data.features.forEach((feature) => {
-            const shape = shapes.filter(
-              (shape) => shape.district === feature.properties.GEN
-						)[0];
-            feature.geometry = shape.geometry;
-            if (feature.properties.cases_per_100k < this.min_cases_per)
-              this.min_cases_per = feature.properties.cases_per_100k;
-            if (feature.properties.cases_per_100k > this.max_cases_per)
-              this.max_cases_per = feature.properties.cases_per_100k;
-					});
-
-          L.geoJSON(data, {
-            onEachFeature: this.onEachFeature,
-            style: this.featureStyle,
-          }).addTo(this.map);
+          data.data.forEach(d => {
+            this.dataResult.push(d);
+          });
+          shapes.forEach(s => {
+            this.shapes.push(s);
+          })
+          this.getDataOfSpecificDateToDisplay()
         });
+    },
+
+    getDataOfSpecificDateToDisplay: function () {
+      let dataOfSpecificDay = [];
+      dataOfSpecificDay = this.dataResult.filter((data) => data.date === this.SelectedDayNew);
+      //console.log(dataOfSpecificDay)
+      this.displayDataOfSpecificDate(dataOfSpecificDay, this.shapes);
+    },
+
+    displayDataOfSpecificDate: function(data, shapes) {
+      console.log(data[0].data.features.length)
+      console.log(this.shapes.length)
+
+      this.mapLayer.clearLayers();
+
+      data[0].data.features.forEach((feature) => {
+        const shape = shapes.filter(
+          (shape) => shape.district === feature.properties.GEN)[0];						
+        feature.geometry = shape.geometry;
+
+        if (feature.properties.cases_per_100k < this.min_cases_per)
+          this.min_cases_per = feature.properties.cases_per_100k;
+        if (feature.properties.cases_per_100k > this.max_cases_per)
+          this.max_cases_per = feature.properties.cases_per_100k;
+      });
+      
+      this.mapLayer.addData(data[0].data)
+    },
+
+    update: function() {
+      this.min_cases_per = 100000,
+      this.max_cases_per = 0,
+      this.getDataOfSpecificDateToDisplay()
     },
 
     onEachFeature: function (feature, layer) {
       const polygon = L.polygon(feature.geometry.coordinates);
       const center = polygon.getBounds().getCenter();
-      console.log(center)
       const map = this.map;
 
       layer.on("click", function () {
@@ -79,7 +111,6 @@ export default {
           feature.properties.deaths +
           "</p>";
         layer.bindPopup(popupInfo);
-        //map.panTo([center.lng, center.lat]);
         map.setView([center.lng, center.lat],12)
       });
     },
@@ -108,7 +139,12 @@ export default {
       L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
         attribution:
           '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-      }).addTo(this.map)
+      }).addTo(this.map);
+
+      this.mapLayer = L.geoJSON(false, {
+      onEachFeature: this.onEachFeature,
+      style: this.featureStyle,
+      }).addTo(this.map);
     },
 
     todaysDate: function () {
@@ -125,6 +161,14 @@ export default {
   mounted() {
     this.setupLeafletMap();
     this.fetchGeoShapes();
+    this.bus.$on('new-date', (newDate) => {
+      this.SelectedDayNew = newDate;
+      console.log(newDate);
+
+    this.update();
+    })
+    //this.fetchCovidResults();
+    //this.getDataOfSpecificDateToDisplay();
   },
 };
 </script>
