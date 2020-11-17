@@ -29,11 +29,11 @@ export default {
       min_cases_per: 100000,
       max_cases_per: 0,
       SelectedDayNew: "29.10.2020",
+      info: {},
     };
   },
 
   methods: {
-
     fetchGeoShapes: function () {
       this.$http
         .get(GeneralClasses.GETAPIberlinshapesdistrict())
@@ -61,14 +61,10 @@ export default {
     getDataOfSpecificDateToDisplay: function () {
       let dataOfSpecificDay = [];
       dataOfSpecificDay = this.dataResult.filter((data) => data.date === this.SelectedDayNew);
-      //console.log(dataOfSpecificDay)
       this.displayDataOfSpecificDate(dataOfSpecificDay, this.shapes);
     },
 
     displayDataOfSpecificDate: function(data, shapes) {
-      console.log(data[0].data.features.length)
-      console.log(this.shapes.length)
-
       this.mapLayer.clearLayers();
 
       data[0].data.features.forEach((feature) => {
@@ -76,16 +72,14 @@ export default {
           (shape) => shape.district === feature.properties.GEN)[0];						
         feature.geometry = shape.geometry;
 
-        if (feature.properties.cases_per_100k < this.min_cases_per)
-          this.min_cases_per = feature.properties.cases_per_100k;
-        if (feature.properties.cases_per_100k > this.max_cases_per)
-          this.max_cases_per = feature.properties.cases_per_100k;
+        this.min_cases_per = Math.min(this.min_cases_per, feature.properties.cases_per_100k);
+        this.max_cases_per = Math.max(this.max_cases_per, feature.properties.cases_per_100k);        
       });
       
       this.mapLayer.addData(data[0].data)
     },
 
-    update: function() {
+    updateProps: function() {
       this.min_cases_per = 100000,
       this.max_cases_per = 0,
       this.getDataOfSpecificDateToDisplay()
@@ -96,22 +90,14 @@ export default {
       const center = polygon.getBounds().getCenter();
       const map = this.map;
 
-      layer.on("click", function () {
-        const popupInfo =
-          "<b>" +
-          feature.properties.GEN +
-          "</b>" +
-          "<p>Total cases: " +
-          feature.properties.cases +
-          "</p>" +
-          "<p>Cases per 100k: " +
-          Math.round(feature.properties.cases_per_100k) +
-          "</p>" +
-          "<p>Total deaths: " +
-          feature.properties.deaths +
-          "</p>";
-        layer.bindPopup(popupInfo);
-        map.setView([center.lng, center.lat],12)
+      layer.on({
+        mouseover: () => {
+          this.info.update(layer.feature.properties);          
+        },
+        mouseout: () => {
+          this.info.reset();
+        },
+        click: () => map.setView([center.lng, center.lat], 12)        
       });
     },
 
@@ -136,15 +122,39 @@ export default {
         minZoom: 10
       });
 
+      let map = this.map;
+
       L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
         attribution:
           '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
       }).addTo(this.map);
 
       this.mapLayer = L.geoJSON(false, {
-      onEachFeature: this.onEachFeature,
-      style: this.featureStyle,
+        onEachFeature: this.onEachFeature,
+        style: this.featureStyle,
       }).addTo(this.map);
+
+      let info = L.control();
+      info.onAdd = function (map) {
+        this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+        this.reset();
+        return this._div;
+      }
+      
+      info.update = function (props) {        
+        this._div.innerHTML = `<p><b>${props.GEN}</b></p>` +
+          `<p>Total cases: ${props.cases}</p>` +
+          `<p>Total deaths: ${props.deaths}</p>` +  
+          `<p>Cases per 100k: ${Math.round(props.cases_per_100k)}</p>`         
+      };
+
+      info.reset = function () {
+        this._div.innerHTML = "<b>Hover over a district</b><br>" +
+          "<b>to get data</b>";
+      }
+
+      info.addTo(map);      
+      this.info = info;
     },
 
     todaysDate: function () {
@@ -163,12 +173,8 @@ export default {
     this.fetchGeoShapes();
     this.bus.$on('new-date', (newDate) => {
       this.SelectedDayNew = newDate;
-      console.log(newDate);
-
-    this.update();
+      this.updateProps();
     })
-    //this.fetchCovidResults();
-    //this.getDataOfSpecificDateToDisplay();
   },
 };
 </script>
