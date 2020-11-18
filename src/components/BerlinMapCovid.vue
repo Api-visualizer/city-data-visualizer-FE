@@ -135,7 +135,7 @@ export default {
       }).addTo(this.map);
 
       let info = L.control();
-      info.onAdd = function (map) {
+      info.onAdd = function () {
         this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
         this.reset();
         return this._div;
