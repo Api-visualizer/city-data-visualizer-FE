@@ -176,7 +176,11 @@ export default {
         this._div.innerHTML = `<p><b>${props.GEN}</b></p>` +
           `<p>Total cases: ${props.cases}</p>` +
           `<p>Total deaths: ${props.deaths}</p>` +  
-          `<p>Cases per 100k: ${Math.round(props.cases_per_100k)}</p>`         
+          `<p>Cases per 100k: ${Math.round(props.cases_per_100k)}</p>`
+        
+        if (props.total_recovered && props.new_recovered) {
+          this._div.innerHTML += `<p>Total recovered: ${props.total_recovered}, ${props.new_recovered} new`
+        } 
       };
 
       info.reset = function () {
@@ -193,25 +197,26 @@ export default {
       let legend = L.control({ position: 'topleft' });        
       legend.onAdd = function () {
         this.getColor= function (d) {
-            return d > 1000 ? '#ff0000' :
-                  d > 800 ? '#b0091f' :
-                  d > 700 ? '#e63030' :
-                  d > 600 ? '#ff4800' :
-                  d > 500 ? '#e3661e' :
-                  d > 400 ? '#fc7e2a' :
-                  d > 300 ? '#ffc72e' :
-                  d > 200 ? '#f0de56' :
-                  d > 100 ? '#fff67d' :
-                            '#9eff4a';
-              }
+          return d > 1000 ? '#ff0000' :
+                d > 800 ? '#b0091f' :
+                d > 700 ? '#e63030' :
+                d > 600 ? '#ff4800' :
+                d > 500 ? '#e3661e' :
+                d > 400 ? '#fc7e2a' :
+                d > 300 ? '#ffc72e' :
+                d > 200 ? '#f0de56' :
+                d > 100 ? '#fff67d' :
+                          '#9eff4a';
+        }
+        
         let div = L.DomUtil.create('div', 'info legend'),
-            grades = [0, 100, 200, 300, 400, 500, 600, 700, 800, 1000];
-            div.set
+        grades = [0, 100, 200, 300, 400, 500, 600, 700, 800, 1000];
+        
         for (var i = 0; i < grades.length; i++) {
-            div.innerHTML += '<i class ="info" style="background:' + 
-                              this.getColor(grades[i] + 1) + '"></i> ' +
-                              grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
-          }
+          div.innerHTML += '<i class ="info" style="background:' + 
+                            this.getColor(grades[i] + 1) + '"></i> ' +
+                            grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
+        }
         return div;
       };
       return legend;
@@ -255,7 +260,7 @@ export default {
 <style scoped>
 #mapContainer {
   width: 100vw;
-  height: 100vh;
+  height: 80vh;
 }
 
 .info {
