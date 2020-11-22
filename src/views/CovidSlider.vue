@@ -9,7 +9,7 @@
             <v-slider
               v-model="selectedDate"
               :tick-labels="ticksLabels"
-              :min="ticksLabels.length-14"
+              :min="ticksLabels.length-19"
               :max="ticksLabels.length-1"
               v-on:change="emitNewDate(ticksLabels[selectedDate])"
               step="1"
