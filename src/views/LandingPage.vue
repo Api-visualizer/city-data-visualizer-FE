@@ -1,19 +1,24 @@
 <template>
-  <div class="container-fluid">
+  <div class="">
+
     <div id="demo" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
       <ul class="carousel-indicators">
         <li data-target="#demo" data-slide-to="0" class="active"></li>
         <li data-target="#demo" data-slide-to="1"></li>
+        <li data-target="#demo" data-slide-to="2"></li>
       </ul>
 
       <!-- The slideshow -->
       <div class="carousel-inner">
         <div class="carousel-item active">
-            <img src="/images/berlin-alex.jpg" class="img-fluid" alt="Alexanderplatz" />
+          <img src="/images/berlin1.jpg" class="img-fluid" alt="Alexanderplatz" />
         </div>
         <div class="carousel-item">
-            <img src="/images/berlin-brandenburger_tor.jpg" class="img-fluid" alt="Brandenburger Tor" />
+          <img src="/images/berlin2.jpg" class="img-fluid" alt="Brandenburger Tor" />
+        </div>
+        <div class="carousel-item">
+          <img src="/images/berlin3.jpg" class="img-fluid" alt="Brandenburger Tor" />
         </div>
       </div>
     </div>
@@ -24,14 +29,13 @@
       </div>
     </div>
 
-    <div class="jumbotron">
+    <div class="jumbotron text-center">
       <h1 class="display-4">City Data Visualizer</h1>
       <p class="lead">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</p>
       <hr class="my-4">
       <p>Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. </p>
       <a class="btn btn-primary btn-lg" href="/berlin" role="button">Start</a>
     </div>
-
 
   </div>
 </template>
@@ -56,14 +60,30 @@ export default {
   .container-fluid{
     padding: 0;
   }
-  .main-text
-  {
+
+  .main-text{
       position: absolute;
-      top: 91.5px;
+      top: 236px;
       width: 100%;
       color: #FFF;
   }
-  .jumbotron{
-    background-color: #FFF
+
+  .col-md-12 {
+    padding: 0;
+  }
+
+  .jumbotron {
+    background-color: #FFF;
+  }
+
+  .jumbotron>p {
+    padding: 0 15% 0 15%;
+    text-align: left;
+  }
+
+  .carousel-item .img-fluid {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
   }
 </style>

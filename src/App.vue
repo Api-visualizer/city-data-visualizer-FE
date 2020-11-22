@@ -8,12 +8,12 @@
 </template>
 
 <script>
-//import Header from './components/Header.vue'
+import Header from './components/Header.vue'
 import GeneralClasses from "./assets/GeneralClasses.js";
 
 export default {
   name: 'App',
-  //components: { Header },
+  components: { Header },
   data() {
     return {
       GeneralClasses: GeneralClasses,
