@@ -74,6 +74,8 @@ export default {
 
   .jumbotron {
     background-color: #FFF;
+    position: relative;
+    bottom: 200px;
   }
 
   .jumbotron>p {
