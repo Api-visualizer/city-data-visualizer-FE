@@ -148,7 +148,7 @@ export default {
       this.map = L.map("mapContainer", {
         center: [52.52, 13.405],
         zoom: 11,
-        maxZoom: 13,
+        maxZoom: 12,
         minZoom: 10
       });
 
@@ -177,10 +177,10 @@ export default {
           `<p>Total cases: ${props.cases}</p>` +
           `<p>Total deaths: ${props.deaths}</p>` +  
           `<p>Cases per 100k: ${Math.round(props.cases_per_100k)}</p>`
-        
-        if (props.total_recovered && props.new_recovered) {
-          this._div.innerHTML += `<p>Total recovered: ${props.total_recovered}, <mark>${props.new_recovered} new</mark>`
-        } 
+
+        props.total_recovered = !props.total_recovered ? props.total_recovered = 0 : props.total_recovered
+        props.new_recovered = !props.new_recovered ? props.new_recovered = 0 : props.new_recovered
+        this._div.innerHTML += `<p>Total recovered: ${props.total_recovered}, <mark>${props.new_recovered} new</mark>`
       };
 
       info.reset = function () {
@@ -196,27 +196,34 @@ export default {
     customLegendControl: function () {
       let legend = L.control({ position: 'topleft' });        
       legend.onAdd = function () {
+
         this.getColor= function (d) {
-          return d > 1000 ? '#ff0000' :
-                d > 800 ? '#b0091f' :
-                d > 700 ? '#e63030' :
-                d > 600 ? '#ff4800' :
-                d > 500 ? '#e3661e' :
-                d > 400 ? '#fc7e2a' :
-                d > 300 ? '#ffc72e' :
-                d > 200 ? '#f0de56' :
-                d > 100 ? '#fff67d' :
+
+          return d > 2000 ? '#b0091f' :
+                d > 1800 ? '#ff0000' :
+                d > 1600 ? '#e63030' :
+                d > 1400? '#ff4800' :
+                d > 1200 ? '#e3661e' :
+                d > 1000 ? '#fc7e2a' :
+                d > 800 ? '#ffc72e' :
+                d > 600 ? '#f0de56' :
+                d > 400 ? '#fff67d' :
                           '#9eff4a';
         }
         
         let div = L.DomUtil.create('div', 'info legend'),
-        grades = [0, 100, 200, 300, 400, 500, 600, 700, 800, 1000];
-        
+
+        grades = [0, 400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000];
+        let label = '<div><br><strong> Cases per 100k </strong><br><br></div>'
+
+        div.innerHTML += label
+
         for (var i = 0; i < grades.length; i++) {
           div.innerHTML += '<i class ="info" style="background:' + 
                             this.getColor(grades[i] + 1) + '"></i> ' +
                             grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
         }
+        div.innerHTML += '<div><br><br></div>'
         return div;
       };
       return legend;
@@ -227,15 +234,15 @@ export default {
     },
 
     getColor: function (d) {
-      return d > 1000 ? '#ff0000' :
-            d > 800 ? '#b0091f' :
-            d > 700 ? '#e63030' :
-            d > 600 ? '#ff4800' :
-            d > 500 ? '#e3661e' :
-            d > 400 ? '#fc7e2a' :
-            d > 300 ? '#ffc72e' :
-            d > 200 ? '#f0de56' :
-            d > 100 ? '#fff67d' :
+      return d > 2000 ? '#b0091f' :
+            d > 1800 ? '#ff0000' :
+            d > 1600 ? '#e63030' :
+            d > 1400 ? '#ff4800' :
+            d > 1200 ? '#e3661e' :
+            d > 1000 ? '#fc7e2a' :
+            d > 800 ? '#ffc72e' :
+            d > 600 ? '#f0de56' :
+            d > 400 ? '#fff67d' :
                       '#9eff4a';
   },
 
