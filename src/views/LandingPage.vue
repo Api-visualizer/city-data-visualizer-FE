@@ -23,7 +23,7 @@
       <p class="lead">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</p>
       <hr class="my-4">
       <p>Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. </p>
-      <a class="btn btn-primary btn-lg" href="/berlin/karte/corona" role="button">Start</a>
+      <a class="btn btn-primary btn-lg" href="/berlin" role="button">Start</a>
     </div>
 
 

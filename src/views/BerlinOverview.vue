@@ -1,87 +1,28 @@
 <template>
   <div>
-    <div class="container p-3">
+    <div class="container-fluid">
       <div class="row">
-        <img src="/images/berlin.jpg" class="w-100 headerimage" alt="Los Angeles" />
+        <div class="col">
+          <h1 class="display-4">Berlin</h1>
+          <img src="/images/berlin-alex.jpg" class="w-100 headerimage" alt="Los Angeles" />
+        </div>
       </div>
     </div>
 
-    <h1>Berlin</h1>
-
-    <div class="container pb-4">
+    <div class="container-fluid m-4">
       <div class="row">
-        <div class="col">
-          <div class="p-1">
-            <l-map style="height: 500px; border-radius: 3rem" :zoom="zoom" :minZoom="minZoom" :maxZoom="maxZoom" :center="center">
-              <l-tile-layer :url="url"></l-tile-layer>
-              <l-marker
-                      v-for="(item, index) in Markers"
-                      :key="'marker-' + index"
-                      :lat-lng="[item.lat, item.long]"
-                      :icon="icon"
-              />
-            </l-map>
-            <h2><a href="/berlin/karte/corona">Detailansicht</a></h2>
+            <div class="col">
+              <v-data-table :headers=this.headers :items=this.data_table_data :items-per-page="15" class="elevation-1"></v-data-table>
+            </div>
+          <div class="col">
+            <apexchart width="800" type="bar" :options="options" :series="series"></apexchart>
+            <div class="image-div">
+              <a href="/berlin/karte/corona">
+                <img class="image" src="/images/map.png" width="750px" alt="Map" />
+                <p>show map</p>
+              </a>
+            </div>
           </div>
-        </div>
-      </div>
-    </div>
-    <div class="container p-3">
-      <div class="row">
-        <div class="col">
-          <select class="TextField F100" v-model="Type">
-            <option value="area" selected>Area Chart</option>
-            <option value="line">Line Chart</option>
-            <option value="bar">Bar Chart</option>
-          </select>
-          <hr />
-          <center>
-            <apexchart
-                    width="100%"
-                    :type="Type"
-                    height="400px"
-                    :options="chartOptions"
-                    :series="series"
-            ></apexchart>
-            <hr />
-          </center>
-        </div>
-        <div class="col">
-          <select class="TextField F100" v-model="Type">
-            <option value="area">Area Chart</option>
-            <option value="line" selected>Line Chart</option>
-            <option value="bar">Bar Chart</option>
-          </select>
-          <hr />
-          <center>
-            <apexchart
-                    width="100%"
-                    :type="Type"
-                    height="400px"
-                    :options="chartOptions"
-                    :series="series"
-            ></apexchart>
-            <hr />
-          </center>
-        </div>
-        <div class="col">
-          <select class="TextField F100" v-model="Type">
-            <option value="area">Area Chart</option>
-            <option value="line">Line Chart</option>
-            <option value="bar" selected>Bar Chart</option>
-          </select>
-          <hr />
-          <center>
-            <apexchart
-                    width="100%"
-                    :type="Type"
-                    height="400px"
-                    :options="chartOptions"
-                    :series="series"
-            ></apexchart>
-            <hr />
-          </center>
-        </div>
       </div>
     </div>
   </div>
@@ -89,8 +30,6 @@
 
 <script>
 import GeneralClasses from "../assets/GeneralClasses";
-import { LMap, LTileLayer, LMarker } from "vue2-leaflet";
-import { icon } from "leaflet";
 import "leaflet/dist/leaflet.css";
 
 export default {
@@ -98,122 +37,90 @@ export default {
   props: {
     msg: String,
   },
-  components: {
-    LMap,
-    LTileLayer,
-    LMarker,
-  },
-  data() {
+  data () {
     return {
-      icon: icon({
-        iconUrl: "/images/marker-icon.png",
-      }),
-      Type: "area",
-      chartOptions: {},
-      series: [],
-
-      chartOptions2: {},
-      series2: [],
-      url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-      zoom: 11,
-      minZoom: 8,
-      maxZoom: 16,
-      Markers: [],
-      center: [0, 0],
-      columns: [
+      data_table_data: [],
+      headers: [
         {
-          label: "ID",
-          field: "id",
-          type: "number",
-          width: "50px",
-        },
-        {
-          label: "Name",
-          field: "name",
-        },
-        {
-          label: "Adresse",
-          field: "adresse",
-        },
-        {
-          label: "Plz",
-          field: "plz",
-          type: "number",
-          width: "125px",
-        },
-        {
-          label: "Bezirk",
-          field: "bezirk",
-        },
-        {
-          label: "Lat",
-          field: "lat",
+          align: 'start',
           sortable: false,
+          value: 'data',
         },
-        {
-          label: "Long",
-          field: "long",
-          sortable: false,
-        },
+        { text: 'ID', value: 'id' },
+        { text: 'Altersgruppe', value: 'altersgruppe' },
+        { text: 'Fallzahl', value: 'fallzahl' },
+        { text: 'Differenz', value: 'differenz' },
+        { text: 'Inzidenz', value: 'inzidenz' },
       ],
-    };
+      options: {
+        chart: {
+          id: 'vuechart-example'
+        },
+        xaxis: {
+          categories: ['<9', '10-14', '15-19', '20-24', '25-29',
+          '30-39', '40-49', '50-59', '60-69', '70-79', '80+', ' unbekannt'],
+        }
+      },
+      series: [{
+        name: 'number of covid19 cases',
+        data: [12,13,14,15,15, 16, 15, 14, 13, 15, 13]
+      }],
+      Type: ''
+    }
   },
   methods: {
-    GetUnique: function (arr, comp) {
-      const unique = arr
-        .map((e) => e[comp])
-        .map((e, i, final) => final.indexOf(e) === i && i)
-        .filter((e) => arr[e])
-        .map((e) => arr[e]);
-      return unique;
-    },
-    CountValues: function (arr) {
-      return arr.reduce(
-        (prev, curr) => ((prev[curr] = ++prev[curr] || 1), prev),
-        {}
-      );
-    },
-    APIResult: function () {
-      this.$http.get(GeneralClasses.GETAPIberlinverschenken()).then((Result) => {
-        this.Markers = Result.data[0].index;
 
-        var CitiesCollection = [];
-        for (let i = 0; i < this.Markers.length; i++) {
-          CitiesCollection[i] = this.Markers[i].bezirk;
+     APIResult: function () {
+      this.$http.get(GeneralClasses.GETAPIberlincovidage()).then((Result) => {
+        let data = Result.data[0][0]['data']
+        let chart_data = []
+        let value = 0
+        let temp = 0
+        for(let dat of data) {
+          if(dat['altersgruppe'] === ' Summe') {
+            delete data[dat]
+          } else {
+            console.log(dat['altersgruppe'])
+            value = parseInt(dat['fallzahl'])
+
+            if(dat['altersgruppe'] === ' 0-4') {
+              temp = value
+              continue
+            }
+            if(dat['altersgruppe'] === ' 5-9') {
+              value = value + temp
+              temp = 0
+              chart_data.push(value)
+              continue
+            }
+            if(dat['altersgruppe'] === ' 80-89') {
+              temp = value
+              continue
+            }
+            if(dat['altersgruppe'] === ' 90+') {
+              value = value + temp
+              temp = 0
+              chart_data.push(value)
+              continue
+            }
+            chart_data.push(value)
+          }
         }
-
-        console.log();
-        var UniqueCollection = this.GetUnique(this.Markers, "bezirk");
-
-        this.center = [52.5373, 13.3603];
-        var Collection = [];
-        var Data = [];
-        for (let i = 0; i < UniqueCollection.length; i++) {
-          Collection[i] = UniqueCollection[i].bezirk;
-          Data[i] = this.CountValues(CitiesCollection)[
-            UniqueCollection[i].bezirk
-          ];
-        }
-        // console.log(Collection);
-        // console.log(Data);
-
-        this.chartOptions = {
-          chart: { id: "vuechart-example" },
-          xaxis: {
-            categories: Collection,
-          },
-        };
-        this.series = [
-          {
-            name: "series-1",
-            data: Data,
-          },
-        ];
-      });
+        this.data_table_data = data
+        this.updateChart(chart_data)
+      })
     },
+    updateChart(chart_data) {
+      console.log(chart_data)
+      this.series = [{
+        name: 'number of covid19 cases',
+        data: chart_data
+      }]
+    }
   },
   mounted() {
     this.APIResult();
+    //this.updateChart()
   },
 };
 </script>
@@ -225,4 +132,22 @@ export default {
     border-radius: 3rem;
     object-fit: cover;
   }
+  .image-div {
+    transition: 0.2s;
+  }
+  .image-div {
+    opacity: 0.7;
+  }
+  .image-div:hover {
+    opacity: 1;
+    transform: scale(1.03);
+  }
+  .display-4 {
+    font-weight: bold;
+  }
+  a {
+    color: black;
+    font-size: larger;
+  }
+
 </style>
