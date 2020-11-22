@@ -62,8 +62,8 @@ export default {
   }
 
   .main-text{
-      position: absolute;
-      top: 236px;
+      position: relative;
+      bottom: 350px;
       width: 100%;
       color: #FFF;
   }
