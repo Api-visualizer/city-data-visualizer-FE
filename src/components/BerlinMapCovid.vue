@@ -179,7 +179,7 @@ export default {
           `<p>Cases per 100k: ${Math.round(props.cases_per_100k)}</p>`
         
         if (props.total_recovered && props.new_recovered) {
-          this._div.innerHTML += `<p>Total recovered: ${props.total_recovered}, ${props.new_recovered} new`
+          this._div.innerHTML += `<p>Total recovered: ${props.total_recovered}, <mark>${props.new_recovered} new</mark>`
         } 
       };
 
