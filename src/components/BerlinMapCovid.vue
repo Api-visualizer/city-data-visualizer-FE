@@ -89,29 +89,59 @@ export default {
       const polygon = L.polygon(feature.geometry.coordinates);
       const center = polygon.getBounds().getCenter();
       const map = this.map;
-
+      layer.on({
+        mouseover: this.highlightFeature,
+        mouseout: this.resetHighlight,
+        click: this.zoomToFeature
+      })
       layer.on({
         mouseover: () => {
           this.info.update(layer.feature.properties);          
         },
         mouseout: () => {
+          this.resetHighlight;
           this.info.reset();
         },
-        click: () => map.setView([center.lng, center.lat], 12)        
+        click: () => {
+            this.zoomToFeature;
+            map.setView([center.lng, center.lat], 12);
+           }        
       });
     },
 
     featureStyle: function (feature) {
-      const cases_per = feature.properties.cases_per_100k;
-      const scale = this.scale(cases_per, this.min_cases_per, this.max_cases_per, 0.2, 0.9);
-
+      // const cases_per = feature.properties.cases_per_100k;
+      // const scale = this.scale(cases_per, this.min_cases_per, this.max_cases_per, 0.2, 0.9);  Ist Scale WICHTIG ?
       return {
         color: "white",
         opacity: "1",
-        weight: "1",
-        fillColor: "red",
-        fillOpacity: scale,
+        weight: "2",
+        fillColor: this.getColor(feature.properties.cases_per_100k),
+        dashArray: '3',
+        fillOpacity: 0.7,
       }
+    },
+
+    highlightFeature: function (e) {
+      var layer = e.target;
+      layer.setStyle({
+          weight: 5,
+          color: '#666',
+          dashArray: '',
+          fillOpacity: 0.7
+      });
+
+      if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+          layer.bringToFront();
+      }
+    },
+
+    resetHighlight: function (e) {
+        this.mapLayer.resetStyle(e.target);
+    },
+
+    zoomToFeature: function (e) {
+      this.map.fitBounds(e.target.getBounds());
     },
 
     setupLeafletMap: function () {
@@ -127,6 +157,8 @@ export default {
       L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
         attribution:
           '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+          tileSize: 512,
+          zoomOffset: -1
       }).addTo(this.map);
 
       this.mapLayer = L.geoJSON(false, {
@@ -152,14 +184,56 @@ export default {
         this._div.innerHTML = "<b>Hover over a district</b><br>" +
           "<b>to get data</b>";
       }
-
+      let legend = this.customLegendControl();
+      legend.addTo(map);
       info.addTo(map);      
       this.info = info;
+    },
+
+    customLegendControl: function () {
+      let legend = L.control({position: 'topleft'});        
+      legend.onAdd = function () {
+        this.getColor= function (d) {
+            return d > 1000 ? '#ff0000' :
+                  d > 800  ? '#b0091f' :
+                  d > 700  ? '#e63030' :
+                  d > 600  ? '#ff4800' :
+                  d > 500  ? '#e3661e' :
+                  d > 400  ? '#fc7e2a' :
+                  d > 300   ? '#ffc72e' :
+                  d > 200   ? '#f0de56' :
+                  d > 100   ? '#fff67d' :
+                              '#9eff4a';
+              }
+        let div = L.DomUtil.create('div', 'info legend myclass'),
+            grades = [0,100,200, 300, 400, 500, 600, 700, 800, 1000];
+            div.set
+        for (var i = 0; i < grades.length; i++) {
+            div.innerHTML +=
+            '<i class ="info" style="background:' + this.getColor(grades[i] + 1) + '"></i> ' +
+            grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
+          }
+        return div;
+      };
+      return legend;
     },
 
     todaysDate: function () {
       return moment().format("DD.MM.YYYY")
     },
+
+    getColor: function (d) {
+      return d > 1000 ? '#ff0000' :
+            d > 800  ? '#b0091f' :
+            d > 700  ? '#e63030' :
+            d > 600  ? '#ff4800' :
+            d > 500  ? '#e3661e' :
+            d > 400  ? '#fc7e2a' :
+            d > 300   ? '#ffc72e' :
+            d > 200   ? '#f0de56' :
+            d > 100   ? '#fff67d' :
+                        '#9eff4a';
+  },
 
     scale: function (num, in_min, in_max, out_min, out_max) {
       return (
@@ -184,4 +258,29 @@ export default {
   width: 100vw;
   height: 100vh;
 }
+
+.info {
+    padding: 6px 8px;
+    font: 14px/16px Arial, Helvetica, sans-serif;
+    background: white;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+}
+.info h4 {
+    margin: 0 0 5px;
+    color: #777;
+}
+
+.legend {
+    line-height: 18px;
+    color: #555;
+}
+.legend i {
+    width: 18px;
+    height: 18px;
+    float: left;
+    opacity: 0.7;
+}
+
 </style>
