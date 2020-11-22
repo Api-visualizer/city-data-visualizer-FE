@@ -1,6 +1,18 @@
 <template>
   <div>
-    <h1>Berlin</h1>
+    <div class="header">
+      <img src="/images/berlin1.jpg" alt="Berlin" style="width:100vw; height:160px; object-fit:cover;">
+      <h1 class="centered display-4">Übersicht</h1>
+    </div>
+
+
+    <div class="card" style="width: 18rem;">
+      <img class="card-img-top" src="/images/berlin1.jpg" alt="Card image cap">
+      <div class="card-body">
+        <p class="card-text"></p>
+      </div>
+    </div>
+
     <div class="container pb-4">
       <div class="row">
         <div class="col">
@@ -14,16 +26,23 @@
 </template>
 
 <script>
-import "leaflet/dist/leaflet.css";
-
 export default {
-  name: "BerlinOverview",
-  props: {
-    msg: String,
-  }  
+  name: "BerlinOverview"  
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>  
+.header {
+  position: relative;
+  text-align: center;
+  color: #FFF;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 </style>
