@@ -7,7 +7,7 @@
     <div class="container">
       <div class="row">
         <div class="col-sm">
-          <div class="card" style="width: 18rem;">
+          <div class="card" style="width: 22rem;">
             <img class="card-img-top" src="/images/covid_map.png" alt="covid map overview">      
             <div class="card-body text-left">
               <h5 class="card-title">COVID-19</h5>
@@ -18,7 +18,7 @@
           </div>
         </div>
         <div class="col-sm">
-          <div class="card" style="width: 18rem;">
+          <div class="card" style="width: 22rem;">
             <img class="card-img-top" src="/images/covid_map.png" alt="covid map overview">      
             <div class="card-body text-left">
               <h5 class="card-title">COVID-19</h5>
@@ -29,7 +29,7 @@
           </div>
         </div>
         <div class="col-sm">
-          <div class="card" style="width: 18rem;">
+          <div class="card" style="width: 22rem;">
             <img class="card-img-top" src="/images/covid_map.png" alt="covid map overview">      
             <div class="card-body text-left">
               <h5 class="card-title">COVID-19</h5>
