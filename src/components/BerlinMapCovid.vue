@@ -196,6 +196,7 @@ export default {
     customLegendControl: function () {
       let legend = L.control({ position: 'topleft' });        
       legend.onAdd = function () {
+
         this.getColor= function (d) {
 
           return d > 2000 ? '#b0091f' :
@@ -211,13 +212,18 @@ export default {
         }
         
         let div = L.DomUtil.create('div', 'info legend'),
+
         grades = [0, 400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000];
-        
+        let label = '<div><br><strong> Cases per 100k </strong><br><br></div>'
+
+        div.innerHTML += label
+
         for (var i = 0; i < grades.length; i++) {
           div.innerHTML += '<i class ="info" style="background:' + 
                             this.getColor(grades[i] + 1) + '"></i> ' +
                             grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
         }
+        div.innerHTML += '<div><br><br></div>'
         return div;
       };
       return legend;
