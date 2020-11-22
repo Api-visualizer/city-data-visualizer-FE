@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="container p-3">
+    <div class="container-fluid p-3">
       <div class="row">
-        <img src="/images/berlin.jpg" class="w-100 headerimage" alt="Los Angeles" />
+        <img src="/images/berlin-brandenburger_tor.jpg" class="w-100 headerimage" alt="Brandenburger Tor" />
       </div>
     </div>
 
@@ -221,8 +221,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   .headerimage{
-    max-height: 6rem;
-    border-radius: 3rem;
+    max-height: 20rem;
     object-fit: cover;
   }
 </style>
