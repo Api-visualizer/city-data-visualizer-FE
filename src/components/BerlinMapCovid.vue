@@ -190,27 +190,27 @@ export default {
     },
 
     customLegendControl: function () {
-      let legend = L.control({position: 'topleft'});        
+      let legend = L.control({ position: 'topleft' });        
       legend.onAdd = function () {
         this.getColor= function (d) {
             return d > 1000 ? '#ff0000' :
-                  d > 800  ? '#b0091f' :
-                  d > 700  ? '#e63030' :
-                  d > 600  ? '#ff4800' :
-                  d > 500  ? '#e3661e' :
-                  d > 400  ? '#fc7e2a' :
-                  d > 300   ? '#ffc72e' :
-                  d > 200   ? '#f0de56' :
-                  d > 100   ? '#fff67d' :
-                              '#9eff4a';
+                  d > 800 ? '#b0091f' :
+                  d > 700 ? '#e63030' :
+                  d > 600 ? '#ff4800' :
+                  d > 500 ? '#e3661e' :
+                  d > 400 ? '#fc7e2a' :
+                  d > 300 ? '#ffc72e' :
+                  d > 200 ? '#f0de56' :
+                  d > 100 ? '#fff67d' :
+                            '#9eff4a';
               }
-        let div = L.DomUtil.create('div', 'info legend myclass'),
-            grades = [0,100,200, 300, 400, 500, 600, 700, 800, 1000];
+        let div = L.DomUtil.create('div', 'info legend'),
+            grades = [0, 100, 200, 300, 400, 500, 600, 700, 800, 1000];
             div.set
         for (var i = 0; i < grades.length; i++) {
-            div.innerHTML +=
-            '<i class ="info" style="background:' + this.getColor(grades[i] + 1) + '"></i> ' +
-            grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
+            div.innerHTML += '<i class ="info" style="background:' + 
+                              this.getColor(grades[i] + 1) + '"></i> ' +
+                              grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
           }
         return div;
       };
@@ -223,15 +223,15 @@ export default {
 
     getColor: function (d) {
       return d > 1000 ? '#ff0000' :
-            d > 800  ? '#b0091f' :
-            d > 700  ? '#e63030' :
-            d > 600  ? '#ff4800' :
-            d > 500  ? '#e3661e' :
-            d > 400  ? '#fc7e2a' :
-            d > 300   ? '#ffc72e' :
-            d > 200   ? '#f0de56' :
-            d > 100   ? '#fff67d' :
-                        '#9eff4a';
+            d > 800 ? '#b0091f' :
+            d > 700 ? '#e63030' :
+            d > 600 ? '#ff4800' :
+            d > 500 ? '#e3661e' :
+            d > 400 ? '#fc7e2a' :
+            d > 300 ? '#ffc72e' :
+            d > 200 ? '#f0de56' :
+            d > 100 ? '#fff67d' :
+                      '#9eff4a';
   },
 
     scale: function (num, in_min, in_max, out_min, out_max) {
