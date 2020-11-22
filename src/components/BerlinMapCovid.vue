@@ -155,7 +155,7 @@ export default {
       let map = this.map;
 
       L.tileLayer(
-      "http://{s}.tiles.wmflabs.org/osm-no-labels/{z}/{x}/{y}.png", {
+        "https://{s}.basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}.png", {
         attribution:
           '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',          
       }).addTo(this.map);
