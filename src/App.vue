@@ -36,6 +36,7 @@ export default {
   text-align: center;
   color: #2c3e50;
   padding: 15px;
+  max-height: 100%;
 }
 
 .info {
