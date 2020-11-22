@@ -3,26 +3,21 @@
     <div id="map">
       <BerlinMapCovid />
     </div>
-    <div id="covidslider">
-      <v-app>
-        <v-card>
+        <v-card id="card">
+          <v-card-text>
+            <div id="covidslider" >
+            <v-slider
+              v-model="selectedDate"
+              :tick-labels="ticksLabels"
+              :min="ticksLabels.length-14"
+              :max="ticksLabels.length-1"
+              v-on:change="emitNewDate(ticksLabels[selectedDate])"
+              step="1"
+              tick-size="1"
+            ></v-slider>
+            </div>
+          </v-card-text>
         </v-card>
-        <v-card>
-        <v-card-text>
-        <v-slider
-          v-model="selectedDate"
-          :tick-labels="ticksLabels"
-          :min="ticksLabels.length-14"
-          :max="ticksLabels.length-1"
-          v-on:change="emitNewDate(ticksLabels[selectedDate])"
-          step="1"
-          ticks="always"
-          tick-size="1"
-        ></v-slider>
-      </v-card-text>
-        </v-card>
-      </v-app>
-    </div>
   </div>
 </template>
 
@@ -76,18 +71,19 @@ export default {
 <style scoped>
 
   #container {
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
+    max-width: 100%;
+    max-height: 90%;
   }
   #map {
     width: 100%;
     height: 60%;
-    margin-bottom: 5vh;
   }
-  #slider {
-    width: 100%;
+  #covidslider {
+    width: 95%;
     height: 30%;
   }
+  #card {
+    width: 100%;
+  }
+
 </style>
