@@ -31,9 +31,9 @@
 
     <div class="jumbotron text-center">
       <h1 class="display-4">City Data Visualizer</h1>
-      <p class="lead">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</p>
+      <p class="lead pt-4">City Data Visualizer provides helpful visualizations for complex health data. With the help of open data, we hope to give both Berlin's administration and scientists a better understanding of current health risks or positive impacts that are occurring in the city.</p>
       <hr class="my-4">
-      <p>Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. </p>
+      <p>Explore open data now</p>
       <a class="btn btn-primary btn-lg" href="/berlin" role="button">Start</a>
     </div>
 
