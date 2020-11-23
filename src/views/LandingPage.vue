@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div>
     <div id="demo" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
       <ul class="carousel-indicators">
@@ -28,14 +28,15 @@
       </div>
     </div>
 
-    <div class="jumbotron text-center">
+    <div class="jumbotron">
       <h1 class="display-4">City Data Visualizer</h1>
       <p class="lead pt-4">City Data Visualizer provides helpful visualizations for complex health data. With the help of open data, we hope to give both Berlin's administration and scientists a better understanding of current health risks or positive impacts that are occurring in the city.</p>
-      <hr class="my-4">
-      <p>Explore open data now</p>
-      <a class="btn btn-primary btn-lg" href="/berlin" role="button">Start</a>
+      <p class="text-center">See for yourself and explore open data right now by clicking the button.</p>
+      <a class="btn btn-primary btn-lg" href="/berlin" role="button">Explore</a>
     </div>
 
+    <hr>
+    
   </div>
 </template>
 
@@ -64,7 +65,7 @@ export default {
       position: relative;
       bottom: 350px;
       width: 100%;
-      color: #FFF;
+      color: white;
   }
 
   .col-md-12 {
@@ -80,6 +81,10 @@ export default {
   .jumbotron>p {
     padding: 0 15% 0 15%;
     text-align: left;
+  }
+
+  .jumbotron>a {
+    color: white;
   }
 
   .carousel-item .img-fluid {
