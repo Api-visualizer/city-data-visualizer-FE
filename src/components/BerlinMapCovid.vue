@@ -178,7 +178,9 @@ export default {
 
         if (props.total_recovered && props.new_recovered != null) {
           this._div.innerHTML += `<p>Total recovered: ${props.total_recovered}, <mark>${props.new_recovered} new</mark>`
-        }                
+        }
+
+        this._div.innerHTML += `<br><p><small>Last updated: ${props.last_update}</small></p>`
       };
 
       info.reset = function () {
