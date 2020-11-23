@@ -4,16 +4,18 @@
     <div style="min-height:100vh;" class="">
       <router-view />
     </div>
+    <Footer />
   </div>
 </template>
 
 <script>
-import Header from './components/Header.vue'
+import Header from './components/Header.vue';
+import Footer from './components/Footer.vue';
 import GeneralClasses from "./assets/GeneralClasses.js";
 
 export default {
   name: 'App',
-  components: { Header },
+  components: { Header, Footer},
   data() {
     return {
       GeneralClasses: GeneralClasses,
