@@ -8,7 +8,6 @@
 import GeneralClasses from "../assets/GeneralClasses";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import moment from "moment";
 
 export default {
   name: "BerlinMapCovid",
@@ -25,9 +24,7 @@ export default {
       dataResult: [],
       shapes: [],
       map: {},
-      mapLayer: {},
-      min_cases_per: 100000,
-      max_cases_per: 0,
+      mapLayer: {},      
       selectedDayNew: "29.10.2020",
       info: {},
     };
@@ -46,13 +43,9 @@ export default {
       fetch(GeneralClasses.GETAPIberlincoviddistrict())
         .then(response => response.json())
         .then(data => {
-          data.forEach(d => {
-            this.dataResult.push(d);
-          });
-          shapes.forEach(s => {
-            this.shapes.push(s);
-          })
-          this.getDataOfSpecificDateToDisplay()
+          data.forEach(d => this.dataResult.push(d));
+          shapes.forEach(s => this.shapes.push(s));
+          this.getDataOfSpecificDateToDisplay();
         })          
     },
 
@@ -66,20 +59,14 @@ export default {
       this.mapLayer.clearLayers();      
       
       data[0].data.features.forEach((feature) => {
-        const shape = shapes.filter(
-          (shape) => shape.district === feature.properties.GEN)[0];						
-        feature.geometry = shape.geometry;
-
-        this.min_cases_per = Math.min(this.min_cases_per, feature.properties.cases_per_100k);
-        this.max_cases_per = Math.max(this.max_cases_per, feature.properties.cases_per_100k);        
+        const shape = shapes.filter(shape => shape.district === feature.properties.GEN)[0];						
+        feature.geometry = shape.geometry;      
       });
       
       this.mapLayer.addData(data[0].data)
     },
 
     updateProps: function() {
-      this.min_cases_per = 100000,
-      this.max_cases_per = 0,
       this.getDataOfSpecificDateToDisplay()
     },
 
@@ -88,33 +75,28 @@ export default {
       const center = polygon.getBounds().getCenter();
       const map = this.map;
       layer.on({
-        mouseover: this.highlightFeature,
-        mouseout: this.resetHighlight,
-        click: this.zoomToFeature
-      })
-      layer.on({
-        mouseover: () => {
+        mouseover: (e) => {
+          this.highlightFeature(e);
           this.info.update(layer.feature.properties);          
         },
-        mouseout: () => {
-          this.resetHighlight;
+        mouseout: (e) => {
+          this.resetHighlight(e);
           this.info.reset();
         },
-        click: () => {
-            this.zoomToFeature;
-            map.setView([center.lng, center.lat], 12);
-           }        
+        click: (e) => {
+          this.zoomToFeature(e);
+          map.setView([center.lng, center.lat], 12);
+        }        
       });
     },
 
     featureStyle: function (feature) {
-      // const cases_per = feature.properties.cases_per_100k;
-      // const scale = this.scale(cases_per, this.min_cases_per, this.max_cases_per, 0.2, 0.9);  Ist Scale WICHTIG ?
+      const cases_per = feature.properties.cases_per_100k;
       return {
         color: "white",
         opacity: "1",
         weight: "2",
-        fillColor: this.getColor(feature.properties.cases_per_100k),
+        fillColor: this.getColor(cases_per),
         dashArray: '3',
         fillOpacity: 0.7,
       }
@@ -135,7 +117,7 @@ export default {
     },
 
     resetHighlight: function (e) {
-        this.mapLayer.resetStyle(e.target);
+      this.mapLayer.resetStyle(e.target);
     },
 
     zoomToFeature: function (e) {
@@ -156,12 +138,12 @@ export default {
         "https://{s}.basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}.png", {
         attribution:
           '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',          
-      }).addTo(this.map);
+      }).addTo(map);
 
       this.mapLayer = L.geoJSON(false, {
         onEachFeature: this.onEachFeature,
         style: this.featureStyle,
-      }).addTo(this.map);
+      }).addTo(map);
 
       let info = L.control();
       info.onAdd = function () {
@@ -187,6 +169,7 @@ export default {
         this._div.innerHTML = "<b>Hover over a district</b><br>" +
           "<b>to get data</b>";
       }
+
       let legend = this.customLegendControl();
       legend.addTo(map);
       info.addTo(map);      
@@ -198,7 +181,6 @@ export default {
       legend.onAdd = function () {
 
         this.getColor= function (d) {
-
           return d > 2000 ? '#b0091f' :
                 d > 1800 ? '#ff0000' :
                 d > 1600 ? '#e63030' :
@@ -212,15 +194,13 @@ export default {
         }
         
         let div = L.DomUtil.create('div', 'info legend'),
-
         grades = [0, 400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000];
-        let label = '<div><br><strong> Cases per 100k </strong><br><br></div>'
-
+        let label = '<div><br><strong>Cases per 100k</strong><br><br></div>'
         div.innerHTML += label
 
         for (var i = 0; i < grades.length; i++) {
           div.innerHTML += '<i class ="info" style="background:' + 
-                            this.getColor(grades[i] + 1) + '"></i> ' +
+                            this.getColor(grades[i] + 1) + '"></i>' +
                             grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
         }
         div.innerHTML += '<div><br><br></div>'
@@ -240,12 +220,6 @@ export default {
             d > 600 ? '#f0de56' :
             d > 400 ? '#fff67d' :
                       '#9eff4a';
-    },
-
-    scale: function (num, in_min, in_max, out_min, out_max) {
-      return (
-        ((num - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min
-      );
     },
   },
 
