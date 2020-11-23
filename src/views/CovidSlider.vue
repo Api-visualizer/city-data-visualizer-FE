@@ -22,10 +22,9 @@
 </template>
 
 <script>
-
 import GeneralClasses from "../assets/GeneralClasses";
 import BerlinMapCovid from "../components/BerlinMapCovid"
-import moment from "moment";
+
 export default {
   name: "CovidSlider",
   
@@ -42,9 +41,6 @@ export default {
   },
 
   methods: {
-    todaysDate: function () {
-      return moment().format("DD.MM.YYYY")
-    },
     emitNewDate: function (newDate) {
       this.bus.$emit('new-date', newDate);
     }
