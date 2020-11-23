@@ -3,21 +3,21 @@
     <div id="map">
       <BerlinMapCovid />
     </div>
-        <v-card id="card">
-          <v-card-text>
-            <div id="covidslider" >
-            <v-slider
-              v-model="selectedDate"
-              :tick-labels="ticksLabels"
-              :min="ticksLabels.length-19"
-              :max="ticksLabels.length-1"
-              v-on:change="emitNewDate(ticksLabels[selectedDate])"
-              step="1"
-              tick-size="1"
-            ></v-slider>
-            </div>
-          </v-card-text>
-        </v-card>
+    <v-card id="card">
+      <v-card-text>
+        <div id="covidslider" >
+        <v-slider
+          v-model="selectedDate"
+          :tick-labels="ticksLabels"
+          :min="ticksLabels.length-19"
+          :max="ticksLabels.length-1"
+          v-on:change="emitNewDate(ticksLabels[selectedDate])"
+          step="1"
+          tick-size="1"
+        ></v-slider>
+        </div>
+      </v-card-text>
+    </v-card>
   </div>
 </template>
 
@@ -28,15 +28,13 @@ import BerlinMapCovid from "../components/BerlinMapCovid"
 import moment from "moment";
 export default {
   name: "CovidSlider",
+  
   components: {
     BerlinMapCovid
   },
-  props: {
-    msg: String,
-  },
 
   data() {
-    return {
+    return {      
       value: 0,
       selectedDate: 0,
       ticksLabels: [],
@@ -53,17 +51,17 @@ export default {
   },
 
   mounted() {
-    this.$http
-        .get(GeneralClasses.GETAPIberlincoviddistrict())
-        .then((res) => {
-          res.data.forEach((d) => this.ticksLabels.push(d.date));
+    fetch(GeneralClasses.GETAPIberlincoviddistrict())
+      .then(response => response.json())
+      .then(data => {               
+        data[0].forEach((d) => this.ticksLabels.push(d.date));
 
-          this.ticksLabels.sort(function(a,b) {
-            a = a.split('.').reverse().join('');
-            b = b.split('.').reverse().join('');
-            return a > b ? 1 : a < b ? -1 : 0;
-          });
-        })        
+        this.ticksLabels.sort(function(a,b) {
+          a = a.split('.').reverse().join('');
+          b = b.split('.').reverse().join('');
+          return a > b ? 1 : a < b ? -1 : 0;
+        });
+      })        
   },
 };
 </script>
