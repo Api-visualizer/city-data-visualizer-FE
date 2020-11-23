@@ -176,9 +176,9 @@ export default {
           `<p>Total deaths: ${props.deaths}</p>` +  
           `<p>Cases per 100k: ${Math.round(props.cases_per_100k)}</p>`
 
-        props.total_recovered = !props.total_recovered ? props.total_recovered = 0 : props.total_recovered
-        props.new_recovered = !props.new_recovered ? props.new_recovered = 0 : props.new_recovered
-        this._div.innerHTML += `<p>Total recovered: ${props.total_recovered}, <mark>${props.new_recovered} new</mark>`
+        if (props.total_recovered && props.new_recovered != null) {
+          this._div.innerHTML += `<p>Total recovered: ${props.total_recovered}, <mark>${props.new_recovered} new</mark>`
+        }                
       };
 
       info.reset = function () {
