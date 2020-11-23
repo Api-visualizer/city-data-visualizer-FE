@@ -1,6 +1,8 @@
 <template>
   <div id="app" class="p-0">
-    <Header />
+    <div v-if="isNotHomeView()">
+      <Header />
+    </div>        
     <div style="min-height:100vh;" class="">
       <router-view />
     </div>
@@ -16,7 +18,7 @@ export default {
   components: { Header },
   data() {
     return {
-      GeneralClasses: GeneralClasses,
+      GeneralClasses: GeneralClasses,      
     };
   },
   mounted() {
@@ -25,7 +27,13 @@ export default {
       localStorage.setItem(this.GeneralClasses.ValueLanguage(), "DE");
     }
   },
-}
+
+  methods: {
+    isNotHomeView: function () {
+      return this.$route.fullPath !== "/";
+    }
+  }
+ }
 </script>
 
 <style>
