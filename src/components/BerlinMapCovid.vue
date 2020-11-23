@@ -227,10 +227,6 @@ export default {
       return legend;
     },
 
-    todaysDate: function () {
-      return moment().format("DD.MM.YYYY")
-    },
-
     getColor: function (d) {
       return d > 2000 ? '#b0091f' :
             d > 1800 ? '#ff0000' :
