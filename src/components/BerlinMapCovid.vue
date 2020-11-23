@@ -28,45 +28,46 @@ export default {
       mapLayer: {},
       min_cases_per: 100000,
       max_cases_per: 0,
-      SelectedDayNew: "29.10.2020",
+      selectedDayNew: "29.10.2020",
       info: {},
     };
   },
 
   methods: {
     fetchGeoShapes: function () {
-      this.$http
-        .get(GeneralClasses.GETAPIberlinshapesdistrict())
-        .then((res) => {
-        this.fetchCovidResultsAndFilter(res.data)
-        });
+      fetch(GeneralClasses.GETAPIberlinshapesdistrict())
+        .then(response => response.json())
+        .then(data => this.fetchCovidResultsAndFilter(data))
     },
 
     fetchCovidResultsAndFilter: function (shapes) {
       this.shapes = [];
       this.dataResult = [];
-      this.$http
-        .get(GeneralClasses.GETAPIberlincoviddistrict())
-        .then((data) => {
-          data.data.forEach(d => {
+      fetch(GeneralClasses.GETAPIberlincoviddistrict())
+        .then(response => response.json())
+        .then(data => {
+          data.forEach(d => {
             this.dataResult.push(d);
           });
           shapes.forEach(s => {
             this.shapes.push(s);
           })
           this.getDataOfSpecificDateToDisplay()
-        });
+        })          
     },
 
     getDataOfSpecificDateToDisplay: function () {
-      let dataOfSpecificDay = [];
-      dataOfSpecificDay = this.dataResult.filter((data) => data.date === this.SelectedDayNew);
-      this.displayDataOfSpecificDate(dataOfSpecificDay, this.shapes);
+      let dataOfSpecificDay = [];      
+      dataOfSpecificDay = this.dataResult[0].filter((data) => data.date === this.selectedDayNew);
+      
+      this.dataResult[0].forEach(e => console.log(e.date, this.selectedDayNew))
+      
+      this.displayDataOfSpecificDate(dataOfSpecificDay, this.shapes[0]);
     },
 
     displayDataOfSpecificDate: function(data, shapes) {
-      this.mapLayer.clearLayers();
-
+      this.mapLayer.clearLayers();      
+      
       data[0].data.features.forEach((feature) => {
         const shape = shapes.filter(
           (shape) => shape.district === feature.properties.GEN)[0];						
@@ -244,7 +245,7 @@ export default {
             d > 600 ? '#f0de56' :
             d > 400 ? '#fff67d' :
                       '#9eff4a';
-  },
+    },
 
     scale: function (num, in_min, in_max, out_min, out_max) {
       return (
@@ -257,7 +258,7 @@ export default {
     this.setupLeafletMap();
     this.fetchGeoShapes();
     this.bus.$on('new-date', (newDate) => {
-      this.SelectedDayNew = newDate;
+      this.selectedDayNew = newDate;      
       this.updateProps();
     })
   },
