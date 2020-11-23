@@ -26,7 +26,7 @@ export default {
   data() {
     return {
       marker: icon({
-        iconUrl: "/assets/marker-icon.png",
+        iconUrl: "/images/marker-icon.png",
       }),
       value: 0,
       map: {},
