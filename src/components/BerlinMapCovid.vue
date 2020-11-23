@@ -17,7 +17,7 @@ export default {
     selectedDay: {
       default: "29.10.2020",
       type: String
-    }
+    }  
   },
 
   data() {
@@ -58,10 +58,7 @@ export default {
 
     getDataOfSpecificDateToDisplay: function () {
       let dataOfSpecificDay = [];      
-      dataOfSpecificDay = this.dataResult[0].filter((data) => data.date === this.selectedDayNew);
-      
-      this.dataResult[0].forEach(e => console.log(e.date, this.selectedDayNew))
-      
+      dataOfSpecificDay = this.dataResult[0].filter((data) => data.date === this.selectedDayNew);          
       this.displayDataOfSpecificDate(dataOfSpecificDay, this.shapes[0]);
     },
 
