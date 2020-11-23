@@ -8,9 +8,9 @@
         <div id="covidslider" >
         <v-slider
           v-model="selectedDate"
-          :tick-labels="ticksLabels"
-          :min="ticksLabels.length-19"
-          :max="ticksLabels.length-1"
+          :tick-labels="this.ticksLabels"
+          :min="this.ticksLabels.length-14"
+          :max="this.ticksLabels.length-1"
           v-on:change="emitNewDate(ticksLabels[selectedDate])"
           step="1"
           tick-size="1"
@@ -53,12 +53,13 @@ export default {
       .then(data => {               
         data[0].forEach((d) => this.ticksLabels.push(d.date));
 
-        this.ticksLabels.sort(function(a,b) {
-          a = a.split('.').reverse().join('');
-          b = b.split('.').reverse().join('');
-          return a > b ? 1 : a < b ? -1 : 0;
-        });
-      })        
+          this.ticksLabels.sort(function(a,b) {
+            a = a.split('.').reverse().join('');
+            b = b.split('.').reverse().join('');
+            return a > b ? 1 : a < b ? -1 : 0;
+          });
+          this.ticksLabels = this.ticksLabels.slice(this.ticksLabels.length-14);
+        })        
   },
 };
 </script>
