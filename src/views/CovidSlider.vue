@@ -11,9 +11,9 @@
         <v-card-text>
         <v-slider
           v-model="selectedDate"
-          :tick-labels="ticksLabels"
-          :min="ticksLabels.length-14"
-          :max="ticksLabels.length-1"
+          :tick-labels="this.ticksLabels"
+          :min="this.ticksLabels.length-14"
+          :max="this.ticksLabels.length-1"
           v-on:change="emitNewDate(ticksLabels[selectedDate])"
           step="1"
           ticks="always"
@@ -53,6 +53,7 @@ export default {
       return moment().format("DD.MM.YYYY")
     },
     emitNewDate: function (newDate) {
+      console.log(newDate)
       this.bus.$emit('new-date', newDate);
     }
   },
@@ -68,6 +69,7 @@ export default {
             b = b.split('.').reverse().join('');
             return a > b ? 1 : a < b ? -1 : 0;
           });
+          this.ticksLabels = this.ticksLabels.slice(this.ticksLabels.length-14);
         })        
   },
 };
