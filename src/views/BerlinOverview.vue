@@ -127,27 +127,26 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  .headerimage{
-    max-height: 6rem;
-    border-radius: 3rem;
-    object-fit: cover;
-  }
-  .image-div {
-    transition: 0.2s;
-  }
-  .image-div {
-    opacity: 0.7;
-  }
-  .image-div:hover {
-    opacity: 1;
-    transform: scale(1.03);
-  }
-  .display-4 {
-    font-weight: bold;
-  }
-  a {
-    color: black;
-    font-size: larger;
-  }
-
+.headerimage{
+  max-height: 6rem;
+  border-radius: 3rem;
+  object-fit: cover;
+}
+.image-div {
+  transition: 0.2s;
+}
+.image-div {
+  opacity: 0.7;
+}
+.image-div:hover {
+  opacity: 1;
+  transform: scale(1.03);
+}
+.display-4 {
+  font-weight: bold;
+}
+a {
+  color: black;
+  font-size: larger;
+}
 </style>
