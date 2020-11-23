@@ -1,8 +1,8 @@
 <template>
   <div>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <a class="navbar-brand" href="/">
-        <img src="/images/logodark.png" class="mh-100" />
+        <img src="/images/logo_colored.png" class="mh-100" />
       </a>
       <button
         class="navbar-toggler"
@@ -41,7 +41,6 @@
 <script>
 export default {
   name: "Header",
-
 };
 </script>
 

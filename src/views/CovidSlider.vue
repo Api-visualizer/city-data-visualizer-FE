@@ -3,45 +3,37 @@
     <div id="map">
       <BerlinMapCovid />
     </div>
-    <div id="covidslider">
-      <v-app>
-        <v-card>
-        </v-card>
-        <v-card>
-        <v-card-text>
+    <v-card id="card">
+      <v-card-text>
+        <div id="covidslider" >
         <v-slider
           v-model="selectedDate"
-          :tick-labels="this.ticksLabels"
-          :min="this.ticksLabels.length-14"
-          :max="this.ticksLabels.length-1"
+          :tick-labels="ticksLabels"
+          :min="ticksLabels.length-19"
+          :max="ticksLabels.length-1"
           v-on:change="emitNewDate(ticksLabels[selectedDate])"
           step="1"
-          ticks="always"
           tick-size="1"
         ></v-slider>
+        </div>
       </v-card-text>
-        </v-card>
-      </v-app>
-    </div>
+    </v-card>
   </div>
 </template>
 
 <script>
-
 import GeneralClasses from "../assets/GeneralClasses";
 import BerlinMapCovid from "../components/BerlinMapCovid"
-import moment from "moment";
+
 export default {
   name: "CovidSlider",
+  
   components: {
     BerlinMapCovid
   },
-  props: {
-    msg: String,
-  },
 
   data() {
-    return {
+    return {      
       value: 0,
       selectedDate: 0,
       ticksLabels: [],
@@ -49,9 +41,6 @@ export default {
   },
 
   methods: {
-    todaysDate: function () {
-      return moment().format("DD.MM.YYYY")
-    },
     emitNewDate: function (newDate) {
       console.log(newDate)
       this.bus.$emit('new-date', newDate);
@@ -59,18 +48,17 @@ export default {
   },
 
   mounted() {
-    this.$http
-        .get(GeneralClasses.GETAPIberlincoviddistrict())
-        .then((res) => {
-          res.data.forEach((d) => this.ticksLabels.push(d.date));
+    fetch(GeneralClasses.GETAPIberlincoviddistrict())
+      .then(response => response.json())
+      .then(data => {               
+        data[0].forEach((d) => this.ticksLabels.push(d.date));
 
-          this.ticksLabels.sort(function(a,b) {
-            a = a.split('.').reverse().join('');
-            b = b.split('.').reverse().join('');
-            return a > b ? 1 : a < b ? -1 : 0;
-          });
-          this.ticksLabels = this.ticksLabels.slice(this.ticksLabels.length-14);
-        })        
+        this.ticksLabels.sort(function(a,b) {
+          a = a.split('.').reverse().join('');
+          b = b.split('.').reverse().join('');
+          return a > b ? 1 : a < b ? -1 : 0;
+        });
+      })        
   },
 };
 </script>
@@ -78,18 +66,19 @@ export default {
 <style scoped>
 
   #container {
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
+    max-width: 100%;
+    max-height: 90%;
   }
   #map {
     width: 100%;
     height: 60%;
-    margin-bottom: 5vh;
   }
-  #slider {
-    width: 100%;
+  #covidslider {
+    width: 95%;
     height: 30%;
   }
+  #card {
+    width: 100%;
+  }
+
 </style>

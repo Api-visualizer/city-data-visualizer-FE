@@ -1,22 +1,26 @@
 <template>
   <div id="app" class="p-0">
-    <Header />
+    <div v-if="isNotHomeView()">
+      <Header />
+    </div>        
     <div style="min-height:100vh;" class="">
       <router-view />
     </div>
+    <Footer />
   </div>
 </template>
 
 <script>
-import Header from './components/Header.vue'
+import Header from './components/Header.vue';
+import Footer from './components/Footer.vue';
 import GeneralClasses from "./assets/GeneralClasses.js";
 
 export default {
   name: 'App',
-  components: { Header },
+  components: { Header, Footer},
   data() {
     return {
-      GeneralClasses: GeneralClasses,
+      GeneralClasses: GeneralClasses,      
     };
   },
   mounted() {
@@ -25,7 +29,13 @@ export default {
       localStorage.setItem(this.GeneralClasses.ValueLanguage(), "DE");
     }
   },
-}
+
+  methods: {
+    isNotHomeView: function () {
+      return this.$route.fullPath !== "/";
+    }
+  }
+ }
 </script>
 
 <style>
@@ -36,6 +46,7 @@ export default {
   text-align: center;
   color: #2c3e50;
   padding: 15px;
+  max-height: 100%;
 }
 
 .info {
