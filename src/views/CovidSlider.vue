@@ -42,6 +42,7 @@ export default {
 
   methods: {
     emitNewDate: function (newDate) {
+      console.log(newDate)
       this.bus.$emit('new-date', newDate);
     }
   },
@@ -51,13 +52,13 @@ export default {
       .then(response => response.json())
       .then(data => {               
         data[0].forEach((d) => this.ticksLabels.push(d.date));
-
-        this.ticksLabels.sort(function(a,b) {
-          a = a.split('.').reverse().join('');
-          b = b.split('.').reverse().join('');
-          return a > b ? 1 : a < b ? -1 : 0;
-        });
-      })        
+          this.ticksLabels.sort(function(a,b) {
+            a = a.split('.').reverse().join('');
+            b = b.split('.').reverse().join('');
+            return a > b ? 1 : a < b ? -1 : 0;
+          });
+          this.ticksLabels = this.ticksLabels.slice(this.ticksLabels.length-14);
+        })        
   },
 };
 </script>

@@ -12,15 +12,15 @@
 
 <script>
 import Header from './components/Header.vue';
-import GeneralClasses from './assets/GeneralClasses.js';
 import Footer from './components/Footer.vue';
+import GeneralClasses from "./assets/GeneralClasses.js";
 
 export default {
   name: 'App',
-  components: { Header, Footer },
+  components: { Header, Footer},
   data() {
     return {
-      GeneralClasses: GeneralClasses,
+      GeneralClasses: GeneralClasses,      
     };
   },
   mounted() {
@@ -30,10 +30,10 @@ export default {
   },
   methods: {
     isNotHomeView: function () {
-      return this.$route.fullPath !== '/';
-    },
-  },
-};
+      return this.$route.fullPath !== "/";
+    }
+  }
+ }
 </script>
 
 <style>

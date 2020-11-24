@@ -24,6 +24,14 @@
             </div>
           </div>
       </div>
+      <div class="row">
+            <div class="image-div">
+              <a href="/berlin/karte/accidents">
+                <img class="image" src="/images/map_accident.png" height="80%" alt="Map" />
+                <p>show map</p>
+              </a>
+            </div>
+          </div>
     </div>
   </div>
 </template>
