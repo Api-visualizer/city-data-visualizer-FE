@@ -38,7 +38,7 @@ export default {
       mapLayerA: {},
       mapLayerB: {},
       d: [],
-      n: 400
+      n: 8000
     };
   },
 
@@ -59,6 +59,7 @@ export default {
 
     makeA: function (data) {
       let LL = []
+      console.log(data[0][0].accidents.length)
       for (var i = 0; i < this.n; i++){
         let lat = data[0][0].accidents[i].lat.replace(/,/g, '.')
         let long = data[0][0].accidents[i].long.replace(/,/g, '.')
@@ -82,7 +83,7 @@ export default {
       this.map = L.map("mapContainer", {
         center: [52.52, 13.405],
         zoom: 11,
-        maxZoom: 13,
+        maxZoom: 17,
         minZoom: 10
       });
 
@@ -124,12 +125,16 @@ export default {
   }
   #mapContainer {
   width: 100vw;
-  height: 80vh;
+  height: 85vh;
   }
   #choice{
     font-size: 1.4em;
   }
   li{
     display: inline;
+  }
+  li>input{
+    width: 40px;
+    height: 40px;
   }
 </style>
