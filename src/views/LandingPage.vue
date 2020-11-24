@@ -42,7 +42,7 @@
               <div class="card-body">
                 <h5 class="card-title">Covid-19</h5>
                 <h6 class="card-subtitle mb-2 text-muted">Charts/Graphs</h6>
-                <p class="card-text text-left">Various charts and graphs allow you to get a deep understanding on the development of the COVID-19 virus.</p>
+                <p class="card-text">Various charts and graphs allow you to get a deep understanding on the development of the COVID-19 virus.</p>
               </div>
               <div class="card-footer">
                 <a class="btn btn-primary" href="/berlin" role="button">Here</a>
@@ -54,7 +54,7 @@
               <div class="card-body">
                 <h5 class="card-title">Covid-19</h5>
                 <h6 class="card-subtitle mb-2 text-muted">Heatmap</h6>
-                <p class="card-text text-left">The Heatmap can give you a quick overview of the actual numbers of infections per district.</p>
+                <p class="card-text">The Heatmap can give you a quick overview of the actual numbers of infections per district.</p>
               </div>
               <div class="card-footer">
                 <a class="btn btn-primary" href="/berlin/karte/corona" role="button">Here</a>
