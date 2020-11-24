@@ -11,16 +11,13 @@
         data-target="#navbarText"
         aria-controls="navbarText"
         aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
+        aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="/"
-              >Home <span class="sr-only">(current)</span></a
-            >
+            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
           </li>
         </ul>
         <span class="navbar-text">

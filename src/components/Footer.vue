@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="footer">
         <hr>
         <p>City Data Visualizer</p>
     </div>
