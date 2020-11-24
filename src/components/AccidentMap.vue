@@ -23,7 +23,7 @@ import "leaflet/dist/leaflet.css";
 import "leaflet.heat/dist/leaflet-heat";
 
 export default {
-  name: "MapTest",
+  name: "AccidentMap",
   props: {
     msg: String,
   },
