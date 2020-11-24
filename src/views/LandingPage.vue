@@ -28,15 +28,49 @@
       </div>
     </div>
 
-    <div class="jumbotron">
-      <h1 class="display-4">City Data Visualizer</h1>
-      <p class="lead pt-4">City Data Visualizer provides helpful visualizations for complex health data. With the help of open data, we hope to give both Berlin's administration and scientists a better understanding of current health risks or positive impacts that are occurring in the city.</p>
-      <p class="text-center">See for yourself and explore open data right now by clicking the button.</p>
-      <a class="btn btn-primary btn-lg" href="/berlin" role="button">Explore</a>
-    </div>
+    <div id="content">
+      <div class="jumbotron">
+        <h1 class="display-4">City Data Visualizer</h1>
+        <p class="lead pt-4" style="padding-bottom: 24px;">City Data Visualizer provides helpful visualizations for complex health data. With the help of open data, we hope to give both Berlin's administration, scientists and residents a better understanding of current health risks or positive impacts that are occurring in the city.</p>
+        <p class="text-center"></p>
+      </div>
 
-    <hr>
-    
+      <div class="jumbotron">
+        <div class="row">
+          <div class="col-sm-6 d-flex align-items-stretch">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Covid-19</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Charts/Graphs</h6>
+                <p class="card-text text-left">Various charts and graphs allow you to get a deep understanding on the development of the COVID-19 virus.</p>
+              </div>
+              <div class="card-footer">
+                <a class="btn btn-primary" href="/berlin" role="button">Here</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 d-flex align-items-stretch">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Covid-19</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Heatmap</h6>
+                <p class="card-text text-left">The Heatmap can give you a quick overview of the actual numbers of infections per district.</p>
+              </div>
+              <div class="card-footer">
+                <a class="btn btn-primary" href="/berlin/karte/corona" role="button">Here</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="jumbotron">
+        <h1 class="display-4">Lorem Ipsum</h1>
+        <p class="lead pt-4" style="padding-bottom: 24px;">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren</p>
+        <p class="text-center"></p>
+      </div>
+
+    </div>
   </div>
 </template>
 
@@ -62,10 +96,18 @@ export default {
   }
 
   .main-text{
-      position: relative;
-      bottom: 350px;
-      width: 100%;
-      color: white;
+      z-index: 1;
+      position: absolute;
+      left: 50%;
+      top: 250px;
+      transform: translate(-50%, -50%);
+  }
+
+  .main-text{
+      #position: relative;
+      #bottom: 350px;
+      #width: 100%;
+      #color: white;
   }
 
   .col-md-12 {
@@ -73,17 +115,29 @@ export default {
   }
 
   .jumbotron {
+    margin: 0;
+  }
+
+  .jumbotron:nth-child(odd) {
     background-color: #FFF;
-    position: relative;
-    bottom: 200px;
   }
 
   .jumbotron>p {
-    padding: 0 15% 0 15%;
-    text-align: left;
+    padding: 0 20% 0 20%;
   }
 
-  .jumbotron>a {
+  .row {
+    padding: 0 20% 0 20%;
+  }
+
+  .card>p {
+  }
+
+  .card-footer{
+    background-color: white;
+  }
+
+  .btn-primary {
     color: white;
   }
 

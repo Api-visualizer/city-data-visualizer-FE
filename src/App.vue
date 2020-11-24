@@ -3,7 +3,7 @@
     <div v-if="isNotHomeView()">
       <Header />
     </div>        
-    <div style="min-height:100vh;" class="">
+    <div style="" class="">
       <router-view />
     </div>
     <Footer />
