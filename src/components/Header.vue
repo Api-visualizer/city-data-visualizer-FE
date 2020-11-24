@@ -7,13 +7,13 @@
         direction="left"
         :opacity="0.15"
         :links="[
-          { id: 1, text: 'Link 1', url: 'https://github.com' },
-          { id: 2, text: 'Link 2', url: 'https://github.com' },
-        ]"
+          { id: 1, text: 'Home', url: '/' },
+          { id: 2, text: 'Berlin', url: '/berlin' },
+        ]" 
       ></slider>
-
+      <nav class="navbar navbar-expand-lg navbar-light">
       <a class="navbar-brand" href="/">
-        <img src="/images/logodark.png" class="mh-100" />
+        <img src="/images/logo_color_m.png" class="w-50" />
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -36,16 +36,26 @@
         </span>
       </div>
     </nav>
+    </nav>
   </div>
 </template>
 
 <script>
 import Slider from '@jeremyhamm/vue-slider';
 export default {
-  name: 'Header',
+name: 'Header',
   components: { Slider },
+  data() {
+    return {
+      customStyles: {'navMenu': {'background-color': 'black'}, 'navIcon': {'color': 'blue'}},
+    };
+  },
 };
 </script>
 
 <style>
+.navMenu[data-v-7f183654]
+{
+  background-color: #343a40!important;
+}
 </style>
