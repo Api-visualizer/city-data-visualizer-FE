@@ -3,7 +3,7 @@
     <div v-if="isNotHomeView()">
       <Header />
     </div>
-    <div style="min-height: 100vh">
+    <div>
       <router-view />
     </div>
     <Footer />
@@ -44,7 +44,7 @@ export default {
   text-align: center;
   color: #2c3e50;
   padding: 15px;
-  max-height: 100%;
+  max-height: 100vh;
 }
 
 .info {

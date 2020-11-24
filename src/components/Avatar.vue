@@ -1,8 +1,6 @@
 <template>
     <div>
-      <v-avatar>
         <img alt="Avatar" class="img-fluid" :src="require(`@/assets/${filename}`)">
-      </v-avatar>
       <h4> {{ name }}</h4>
     </div>
 </template>
@@ -26,7 +24,7 @@ export default {
 <style scoped>
 img {
   border-radius: 53%;
-  max-width: 10rem;
+  max-width: 15em;
 }
 h4 {
   font-size: medium;
