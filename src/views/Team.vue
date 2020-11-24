@@ -50,7 +50,7 @@ export default {
 <style scoped>
 img {
   border-radius: 53%;
-  max-width: 10rem;
+  min-width: 40rem;
 }
 .col-sm-3 {
   margin-top: 3vh;
@@ -58,5 +58,8 @@ img {
 p {
   font-size: large;
   font-weight: bold;
+}
+row {
+  height: 40vw;
 }
 </style>
