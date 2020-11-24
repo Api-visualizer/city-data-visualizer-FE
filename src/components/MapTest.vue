@@ -20,6 +20,7 @@ import GeneralClasses from "../assets/GeneralClasses";
 import L from "leaflet";
 import { icon } from "leaflet";
 import "leaflet/dist/leaflet.css";
+import "leaflet.heat/dist/leaflet-heat";
 
 export default {
   name: "MapTest",
@@ -57,20 +58,24 @@ export default {
     },
 
     makeA: function (data) {
+      let LL = []
       for (var i = 0; i < this.n; i++){
         let lat = data[0][0].accidents[i].lat.replace(/,/g, '.')
         let long = data[0][0].accidents[i].long.replace(/,/g, '.')
-        this.mapLayerA.addLayer(L.marker([lat, long], {icon: this.marker}));
+        LL.push(L.latLng(lat, long));
       } 
+      this.mapLayerA.setLatLngs(LL); 
       this.mapLayerA.addTo(this.map)
     },
 
     makeB: function (data) {
+      let LL = []
       for (var i = 0; i < this.n; i++){
         let lat = data[0][1].accidents[i].lat.replace(/,/g, '.')
         let long = data[0][1].accidents[i].long.replace(/,/g, '.')
-        this.mapLayerB.addLayer(L.marker([lat, long], {icon: this.marker}));
+        LL.push(L.latLng(lat, long));
       } 
+      this.mapLayerB.setLatLngs(LL);
     },
 
     setupLeafletMap: function () {
@@ -86,9 +91,8 @@ export default {
           '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
       }).addTo(this.map);
     
-      this.mapLayerA = L.layerGroup(false);
-      this.mapLayerB = L.layerGroup(false);
-      //this.mapLayerB = L.heatLayer(false);
+      this.mapLayerA = L.heatLayer(false);
+      this.mapLayerB = L.heatLayer(false);
 
     },
 
