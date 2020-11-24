@@ -24,7 +24,7 @@
 
     <div class="main-text hidden-xs">
       <div class="col-md-12 text-center">
-          <img src="/images/logo_color_m.png" class="img-fluid" alt="Brandenburger Tor" />
+        <img src="/images/logo_color_m.png" class="img-fluid" alt="Brandenburger Tor" />
       </div>
     </div>
 
@@ -91,59 +91,59 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  .container-fluid{
-    padding: 0;
-  }
+.container-fluid{
+  padding: 0;
+}
 
-  .main-text{
-      z-index: 1;
-      position: absolute;
-      left: 50%;
-      top: 250px;
-      transform: translate(-50%, -50%);
-  }
+.main-text{
+  z-index: 1;
+  position: absolute;
+  left: 50%;
+  top: 250px;
+  transform: translate(-50%, -50%);
+}
 
-  .main-text{
-      #position: relative;
-      #bottom: 350px;
-      #width: 100%;
-      #color: white;
-  }
+.main-text{
+  #position: relative;
+  #bottom: 350px;
+  #width: 100%;
+  #color: white;
+}
 
-  .col-md-12 {
-    padding: 0;
-  }
+.col-md-12 {
+  padding: 0;
+}
 
-  .jumbotron {
-    margin: 0;
-  }
+.jumbotron {
+  margin: 0;
+}
 
-  .jumbotron:nth-child(odd) {
-    background-color: #FFF;
-  }
+.jumbotron:nth-child(odd) {
+  background-color: #FFF;
+}
 
-  .jumbotron>p {
-    padding: 0 20% 0 20%;
-  }
+.jumbotron>p {
+  padding: 0 20% 0 20%;
+}
 
-  .row {
-    padding: 0 20% 0 20%;
-  }
+.row {
+  padding: 0 20% 0 20%;
+}
 
-  .card>p {
-  }
+.card>p {
+}
 
-  .card-footer{
-    background-color: white;
-  }
+.card-footer{
+  background-color: white;
+}
 
-  .btn-primary {
-    color: white;
-  }
+.btn-primary {
+  color: white;
+}
 
-  .carousel-item .img-fluid {
-    width: 100%;
-    height: 500px;
-    object-fit: cover;
-  }
+.carousel-item .img-fluid {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+}
 </style>

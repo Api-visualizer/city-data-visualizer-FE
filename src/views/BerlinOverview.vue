@@ -27,7 +27,7 @@
       <div class="row">
             <div class="image-div">
               <a href="/berlin/karte/accidents">
-                <img class="image" src="/images/map_accident.png" height="80%" alt="Map" />
+                <img class="image" src="/images/map_accident.PNG" height="80%" alt="Map" />
                 <p>show map</p>
               </a>
             </div>

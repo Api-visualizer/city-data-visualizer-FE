@@ -1,17 +1,21 @@
 <template>
   <div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <slider
+        :width="300"
+        format="push"
+        direction="left"
+        :opacity="0.15"
+        :links="[
+          { id: 1, text: 'Home', url: '/' },
+          { id: 2, text: 'Berlin', url: '/berlin' },
+        ]" 
+      ></slider>
+      <nav class="navbar navbar-expand-lg navbar-light">
       <a class="navbar-brand" href="/">
-        <img src="/images/logo_colored.png" class="mh-100" />
+        <img src="/images/logo_color_m.png" class="w-50" />
       </a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarText"
-        aria-controls="navbarText"
-        aria-expanded="false"
-        aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarText">
@@ -32,14 +36,26 @@
         </span>
       </div>
     </nav>
+    </nav>
   </div>
 </template>
 
 <script>
+import Slider from '@jeremyhamm/vue-slider';
 export default {
-  name: "Header",
+name: 'Header',
+  components: { Slider },
+  data() {
+    return {
+      customStyles: {'navMenu': {'background-color': 'black'}, 'navIcon': {'color': 'blue'}},
+    };
+  },
 };
 </script>
 
 <style>
+.navMenu[data-v-7f183654]
+{
+  background-color: #343a40!important;
+}
 </style>

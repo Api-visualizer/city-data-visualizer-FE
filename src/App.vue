@@ -2,8 +2,8 @@
   <div id="app" class="p-0">
     <div v-if="isNotHomeView()">
       <Header />
-    </div>        
-    <div style="" class="">
+    </div>
+    <div style="min-height: 100vh">
       <router-view />
     </div>
     <Footer />
@@ -24,12 +24,10 @@ export default {
     };
   },
   mounted() {
-    if (localStorage.getItem(this.GeneralClasses.ValueLanguage()) == null)
-    {
-      localStorage.setItem(this.GeneralClasses.ValueLanguage(), "DE");
+    if (localStorage.getItem(this.GeneralClasses.ValueLanguage()) == null) {
+      localStorage.setItem(this.GeneralClasses.ValueLanguage(), 'DE');
     }
   },
-
   methods: {
     isNotHomeView: function () {
       return this.$route.fullPath !== "/";
@@ -50,13 +48,13 @@ export default {
 }
 
 .info {
-    margin: 18px;
-    padding: 10px 12px;
-    font: 16px Arial, Helvetica, sans-serif;
-    background: white;
-    background: rgba(255,255,255,0.8);
-    box-shadow: 0 0 15px rgba(0,0,0,0.2);
-    border-radius: 5px;
+  margin: 18px;
+  padding: 10px 12px;
+  font: 16px Arial, Helvetica, sans-serif;
+  background: white;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
 }
 
 .info > p {
