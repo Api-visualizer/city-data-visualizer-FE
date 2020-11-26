@@ -195,15 +195,14 @@ export default {
         
         let div = L.DomUtil.create('div', 'info legend'),
         grades = [0, 400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000];
-        let label = '<div><br><strong>Cases per 100k</strong><br><br></div>'
+        let label = '<div class="mb-4"><strong>Cases per 100k</strong></div>'
         div.innerHTML += label
 
         for (var i = 0; i < grades.length; i++) {
-          div.innerHTML += '<i class ="info" style="background:' + 
+          div.innerHTML += '<h6 class="text-left"><i class ="info" style="background:' + 
                             this.getColor(grades[i] + 1) + '"></i>' +
-                            grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
+                            grades[i] + (grades[i + 1] ? ' - ' + grades[i + 1] + '<br>' : '+') + "</h6><hr/>";
         }
-        div.innerHTML += '<div><br><br></div>'
         return div;
       };
       return legend;
@@ -263,5 +262,8 @@ export default {
     float: left;
     opacity: 0.7;
 }
-
+.CasesContainer
+{
+  text-align: left;
+}
 </style>
