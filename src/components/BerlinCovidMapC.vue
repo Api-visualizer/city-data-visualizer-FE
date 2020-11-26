@@ -10,13 +10,13 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
 export default {
-  name: "BerlinMapCovid",
+  name: "BerlinCovidMapC",
 
   props: {
     selectedDay: {
       default: "29.10.2020",
       type: String
-    }  
+    }
   },
 
   data() {
@@ -24,7 +24,7 @@ export default {
       dataResult: [],
       shapes: [],
       map: {},
-      mapLayer: {},      
+      mapLayer: {},
       selectedDayNew: "29.10.2020",
       info: {},
     };
@@ -46,23 +46,23 @@ export default {
           data.forEach(d => this.dataResult.push(d));
           shapes.forEach(s => this.shapes.push(s));
           this.getDataOfSpecificDateToDisplay();
-        })          
+        })
     },
 
     getDataOfSpecificDateToDisplay: function () {
-      let dataOfSpecificDay = [];      
-      dataOfSpecificDay = this.dataResult[0].filter((data) => data.date === this.selectedDayNew);          
+      let dataOfSpecificDay = [];
+      dataOfSpecificDay = this.dataResult[0].filter((data) => data.date === this.selectedDayNew);
       this.displayDataOfSpecificDate(dataOfSpecificDay, this.shapes[0]);
     },
 
     displayDataOfSpecificDate: function(data, shapes) {
-      this.mapLayer.clearLayers();      
-      
+      this.mapLayer.clearLayers();
+
       data[0].data.features.forEach((feature) => {
-        const shape = shapes.filter(shape => shape.district === feature.properties.GEN)[0];						
-        feature.geometry = shape.geometry;      
+        const shape = shapes.filter(shape => shape.district === feature.properties.GEN)[0];
+        feature.geometry = shape.geometry;
       });
-      
+
       this.mapLayer.addData(data[0].data)
     },
 
@@ -77,7 +77,7 @@ export default {
       layer.on({
         mouseover: (e) => {
           this.highlightFeature(e);
-          this.info.update(layer.feature.properties);          
+          this.info.update(layer.feature.properties);
         },
         mouseout: (e) => {
           this.resetHighlight(e);
@@ -86,7 +86,7 @@ export default {
         click: (e) => {
           this.zoomToFeature(e);
           map.setView([center.lng, center.lat], 12);
-        }        
+        }
       });
     },
 
@@ -137,7 +137,7 @@ export default {
       L.tileLayer(
         "https://{s}.basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}.png", {
         attribution:
-          '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',          
+          '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
       }).addTo(map);
 
       this.mapLayer = L.geoJSON(false, {
@@ -151,11 +151,11 @@ export default {
         this.reset();
         return this._div;
       }
-      
-      info.update = function (props) {        
+
+      info.update = function (props) {
         this._div.innerHTML = `<p><b>${props.GEN}</b></p>` +
           `<p>Total cases: ${props.cases}</p>` +
-          `<p>Total deaths: ${props.deaths}</p>` +  
+          `<p>Total deaths: ${props.deaths}</p>` +
           `<p>Cases per 100k: ${Math.round(props.cases_per_100k)}</p>`
 
         if (props.total_recovered && props.new_recovered != null) {
@@ -172,12 +172,12 @@ export default {
 
       let legend = this.customLegendControl();
       legend.addTo(map);
-      info.addTo(map);      
+      info.addTo(map);
       this.info = info;
     },
 
     customLegendControl: function () {
-      let legend = L.control({ position: 'topleft' });        
+      let legend = L.control({ position: 'topleft' });
       legend.onAdd = function () {
 
         this.getColor= function (d) {
@@ -192,14 +192,14 @@ export default {
                 d > 400 ? '#fff67d' :
                           '#9eff4a';
         }
-        
+
         let div = L.DomUtil.create('div', 'info legend'),
         grades = [0, 400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000];
         let label = '<div><br><strong>Cases per 100k</strong><br><br></div>'
         div.innerHTML += label
 
         for (var i = 0; i < grades.length; i++) {
-          div.innerHTML += '<i class ="info" style="background:' + 
+          div.innerHTML += '<i class ="info" style="background:' +
                             this.getColor(grades[i] + 1) + '"></i>' +
                             grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
         }
@@ -227,7 +227,7 @@ export default {
     this.setupLeafletMap();
     this.fetchGeoShapes();
     this.bus.$on('new-date', (newDate) => {
-      this.selectedDayNew = newDate;      
+      this.selectedDayNew = newDate;
       this.updateProps();
     })
   },

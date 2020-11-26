@@ -1,0 +1,58 @@
+<template>
+    <div id="covidslider" >
+        <v-slider
+                v-model="selectedDate"
+                :tick-labels="ticksLabels"
+                :min="ticksLabels.length-19"
+                :max="ticksLabels.length-1"
+                v-on:change="emitNewDate(ticksLabels[selectedDate])"
+                step="1"
+                tick-size="1"
+        ></v-slider>
+    </div>
+</template>
+
+<script>
+    import GeneralClasses from "../assets/GeneralClasses";
+
+    export default {
+        name: "BerlinCovidMapV",
+
+        data() {
+            return {
+                value: 0,
+                selectedDate: 0,
+                ticksLabels: [],
+            };
+        },
+
+        methods: {
+            emitNewDate: function (newDate) {
+                console.log(newDate)
+                this.bus.$emit('new-date', newDate);
+            }
+        },
+        mounted() {
+            fetch(GeneralClasses.GETAPIberlincoviddistrict())
+                .then(response => response.json())
+                .then(data => {
+                    data[0].forEach((d) => this.ticksLabels.push(d.date));
+                    this.ticksLabels.sort(function(a,b) {
+                        a = a.split('.').reverse().join('');
+                        b = b.split('.').reverse().join('');
+                        return a > b ? 1 : a < b ? -1 : 0;
+                    });
+                    this.ticksLabels = this.ticksLabels.slice(this.ticksLabels.length-14);
+                })
+        }
+    };
+</script>
+
+<style scoped>
+
+    #covidslider {
+        width: 95%;
+        height: 30%;
+    }
+
+</style>

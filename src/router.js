@@ -8,7 +8,7 @@ import Team from './views/Team'
 // Berlin
 import BerlinOverview from './views/BerlinOverview';
 //import BerlinMapCovid from './views/BerlinMapCovid';
-import CovidSlider from './views/CovidSlider'
+import BerlinCovidMapV from './views/BerlinCovidMapV'
 import AccidentMap from './components/AccidentMap'
 
 // Hamburg
@@ -22,7 +22,7 @@ const routes = [
     },
     { path: '/', component: LandingPage },
     { path: '/berlin', component: BerlinOverview },
-    { path: '/berlin/karte/corona', component: CovidSlider },
+    { path: '/berlin/karte/corona', component: BerlinCovidMapV },
     { path: '/berlin/karte/accidents', component: AccidentMap},
     { path: '/team', component: Team }
 ];
