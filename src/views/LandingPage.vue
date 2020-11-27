@@ -33,6 +33,7 @@
         <h1 class="display-4">City Data Visualizer</h1>
         <p class="lead pt-4" style="padding-bottom: 24px;">City Data Visualizer provides helpful visualizations for complex health data. With the help of open data, we hope to give both Berlin's administration, scientists and residents a better understanding of current health risks or positive impacts that are occurring in the city.</p>
         <p class="text-center"></p>
+        <p><a href="/berlin"><ul><li>FAQ</li></ul></a></p>
       </div>
 
       <div class="jumbotron">
@@ -45,7 +46,7 @@
                 <p class="card-text">Various charts and graphs allow you to get a deep understanding on the development of the COVID-19 virus.</p>
               </div>
               <div class="card-footer">
-                <a class="btn btn-primary" href="/berlin" role="button">Here</a>
+                <a class="btn btn-primary" href="/berlin/charts" role="button">Here</a>
               </div>
             </div>
           </div>
@@ -145,5 +146,8 @@ export default {
   width: 100%;
   height: 500px;
   object-fit: cover;
+}
+ul.no-bullets {
+  list-style-type: none;
 }
 </style>
