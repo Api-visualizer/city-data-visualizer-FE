@@ -8,153 +8,49 @@
         </div>
       </div>
     </div>
-
-    <div class="container-fluid m-4">
-      <div class="row">
-            <div class="col">
-              <v-data-table :headers=this.headers :items=this.data_table_data :items-per-page="15" class="elevation-1"></v-data-table>
-            </div>
-          <div class="col">
-            <apexchart width="800" type="bar" :options="options" :series="series"></apexchart>
-            <div class="image-div">
-              <a href="/berlin/karte/corona">
-                <img class="image" src="/images/map.png" width="750px" alt="Map" />
-                <p>show map</p>
-              </a>
-            </div>
-          </div>
+      <div class="mt-10">
+        <v-expansion-panels class="w-75 mt-10 container-fluid ">
+          <v-expansion-panel v-for="item in FAQ" :key="item">
+            <v-expansion-panel-header class="align-center justify-start pl-5 pr-5">
+                <p>{{ item.question }}</p>
+            </v-expansion-panel-header>
+            <v-expansion-panel-content>
+              {{ item.answer }}
+              <a :href="item.link"><ul> see visual information</ul></a>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+        </v-expansion-panels>
       </div>
-      <div class="row">
-            <div class="image-div">
-              <a href="/berlin/karte/accidents">
-                <img class="image" src="/images/map_accident.PNG" height="80%" alt="Map" />
-                <p>show map</p>
-              </a>
-            </div>
-          </div>
-    </div>
   </div>
 </template>
 
 <script>
-import GeneralClasses from "../assets/GeneralClasses";
-import "leaflet/dist/leaflet.css";
 
 export default {
   name: "BerlinOverview",
-  props: {
-    msg: String,
-  },
+  props: {},
   data () {
     return {
-      data_table_data: [],
-      headers: [
-        {
-          align: 'start',
-          sortable: false,
-          value: 'data',
-        },
-        { text: 'ID', value: 'id' },
-        { text: 'Altersgruppe', value: 'altersgruppe' },
-        { text: 'Fallzahl', value: 'fallzahl' },
-        { text: 'Differenz', value: 'differenz' },
-        { text: 'Inzidenz', value: 'inzidenz' },
-      ],
-      options: {
-        chart: {
-          id: 'vuechart-example'
-        },
-        xaxis: {
-          categories: ['<9', '10-14', '15-19', '20-24', '25-29',
-          '30-39', '40-49', '50-59', '60-69', '70-79', '80+', ' unbekannt'],
-        }
-      },
-      series: [{
-        name: 'number of covid19 cases',
-        data: [12,13,14,15,15, 16, 15, 14, 13, 15, 13]
-      }],
-      Type: ''
+      FAQ: [{'question': 'I live in Kreuzberg, Berlin. I want to know how...', 'link': '/berlin/charts', 'answer': 'lorem ipsum explaining text. '},
+        {'question': 'I am governing mayor in Berlin. I want to know how...', 'link': '/berlin/charts', 'answer': 'lorem ipsum explaining text. ' },
+        {'question': 'I am scientist living in Berlin and I am interested in predictions in addition to information of current situation in order to give advices', 'link': '/berlin/charts', 'answer': 'lorem ipsum explaining text. '},
+        {'question': 'I would like to know how I can walk to my office in a safe way. Which crossroads are more dangerous than others?', 'link': '/berlin/karte/accidents', 'answer': 'lorem ipsum explaining text. '}]
     }
   },
-  methods: {
-
-     APIResult: function () {
-      this.$http.get(GeneralClasses.GETAPIberlincovidage()).then((Result) => {
-        let data = Result.data[0][0]['data']
-        let chart_data = []
-        let value = 0
-        let temp = 0
-        for(let dat of data) {
-          if(dat['altersgruppe'] === ' Summe') {
-            delete data[dat]
-          } else {
-            console.log(dat['altersgruppe'])
-            value = parseInt(dat['fallzahl'])
-
-            if(dat['altersgruppe'] === ' 0-4') {
-              temp = value
-              continue
-            }
-            if(dat['altersgruppe'] === ' 5-9') {
-              value = value + temp
-              temp = 0
-              chart_data.push(value)
-              continue
-            }
-            if(dat['altersgruppe'] === ' 80-89') {
-              temp = value
-              continue
-            }
-            if(dat['altersgruppe'] === ' 90+') {
-              value = value + temp
-              temp = 0
-              chart_data.push(value)
-              continue
-            }
-            chart_data.push(value)
-          }
-        }
-        this.data_table_data = data
-        this.updateChart(chart_data)
-      })
-    },
-    updateChart(chart_data) {
-      console.log(chart_data)
-      this.series = [{
-        name: 'number of covid19 cases',
-        data: chart_data
-      }]
-    }
-  },
-  mounted() {
-    this.APIResult();
-    //this.updateChart()
-  },
+  methods: {},
+  mounted() {},
 };
-</script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+</script>
 <style scoped>
 .headerimage{
   max-height: 6rem;
   border-radius: 3rem;
   object-fit: cover;
 }
-.image-div {
-  transition: 0.2s;
-}
-.image-div {
-  opacity: 0.7;
-}
-.image-div:hover {
-  opacity: 1;
-  transform: scale(1.03);
-}
-.display-4 {
+
+p {
+  font-size: large;
   font-weight: bold;
-}
-a {
-  color: black;
-  font-size: larger;
 }
 </style>

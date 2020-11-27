@@ -10,6 +10,7 @@ import BerlinOverview from './views/BerlinOverview';
 //import BerlinMapCovid from './views/BerlinMapCovid';
 import CovidSlider from './views/CovidSlider'
 import AccidentMap from './components/AccidentMap'
+import BerlinCharts from "@/views/BerlinCharts";
 
 // Hamburg
 
@@ -22,6 +23,7 @@ const routes = [
     },
     { path: '/', component: LandingPage },
     { path: '/berlin', component: BerlinOverview },
+    { path: '/berlin/charts', component: BerlinCharts },
     { path: '/berlin/karte/corona', component: CovidSlider },
     { path: '/berlin/karte/accidents', component: AccidentMap},
     { path: '/team', component: Team }
