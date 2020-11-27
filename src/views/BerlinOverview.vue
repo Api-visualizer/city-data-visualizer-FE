@@ -32,7 +32,7 @@ export default {
   data () {
     return {
       FAQ: [{'question': 'I live in Kreuzberg, Berlin. I want to know how...', 'link': '/berlin/charts', 'answer': 'lorem ipsum explaining text. '},
-        {'question': 'I am governing mayor in Berlin. I want to know how...', 'link': '/berlin/charts', 'answer': 'lorem ipsum explaining text. ' },
+        {'question': 'I am governing mayor in Berlin. I want to know how...', 'link': '/berlin/karte/corona', 'answer': 'lorem ipsum explaining text. ' },
         {'question': 'I am scientist living in Berlin and I am interested in predictions in addition to information of current situation in order to give advices', 'link': '/berlin/charts', 'answer': 'lorem ipsum explaining text. '},
         {'question': 'I would like to know how I can walk to my office in a safe way. Which crossroads are more dangerous than others?', 'link': '/berlin/karte/accidents', 'answer': 'lorem ipsum explaining text. '}]
     }
