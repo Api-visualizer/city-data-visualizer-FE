@@ -12,20 +12,13 @@ import "leaflet/dist/leaflet.css";
 export default {
   name: "BerlinMapCovid",
 
-  props: {
-    selectedDay: {
-      default: "29.10.2020",
-      type: String
-    }  
-  },
-
   data() {
     return {
       dataResult: [],
       shapes: [],
       map: {},
       mapLayer: {},      
-      selectedDayNew: "29.10.2020",
+      selectedDayNew: "",
       info: {},
     };
   },
@@ -220,10 +213,20 @@ export default {
             d > 400 ? '#fff67d' :
                       '#9eff4a';
     },
+
+    getDate: function () {
+      let today = new Date();
+      let dd = String(today.getDate()).padStart(2, '0');
+      let mm = String(today.getMonth() + 1).padStart(2, '0');
+      let yyyy = today.getFullYear();
+      today = dd + '.' + mm + '.' + yyyy;
+      this.selectedDayNew = today;
+    }
   },
 
   mounted() {
     this.setupLeafletMap();
+    this.getDate();
     this.fetchGeoShapes();
     this.bus.$on('new-date', (newDate) => {
       this.selectedDayNew = newDate;      

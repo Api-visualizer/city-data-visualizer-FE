@@ -9,11 +9,10 @@
         <v-slider
           v-model="selectedDate"
           :tick-labels="ticksLabels"
-          :min="ticksLabels.length-14"
           :max="ticksLabels.length-1"
           v-on:change="emitNewDate(ticksLabels[selectedDate])"
           step="1"
-          tick-size="1"
+          tick-size="4"
         ></v-slider>
         </div>
       </v-card-text>
@@ -42,7 +41,7 @@ export default {
 
   methods: {
     emitNewDate: function (newDate) {
-      console.log(newDate)
+      //console.log(newDate)
       this.bus.$emit('new-date', newDate);
     }
   },
@@ -58,6 +57,7 @@ export default {
             return a > b ? 1 : a < b ? -1 : 0;
           });
           this.ticksLabels = this.ticksLabels.slice(this.ticksLabels.length-14);
+          this.selectedDate = this.ticksLabels.length-1
         })        
   },
 };
