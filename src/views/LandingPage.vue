@@ -38,7 +38,7 @@
 
       <div class="jumbotron">
         <div class="row">
-          <div class="col-sm-6 d-flex align-items-stretch">
+          <div class="col-sm-4 d-flex align-items-stretch">
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">Covid-19</h5>
@@ -50,7 +50,7 @@
               </div>
             </div>
           </div>
-          <div class="col-sm-6 d-flex align-items-stretch">
+          <div class="col-sm-4 d-flex align-items-stretch">
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">Covid-19</h5>
@@ -59,6 +59,18 @@
               </div>
               <div class="card-footer">
                 <a class="btn btn-primary" href="/berlin/karte/corona" role="button">Here</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4 d-flex align-items-stretch">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Accidents</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Heatmap</h6>
+                <p class="card-text">The Heatmap gives you an overview of dangerous crossroads in Berlin. Stay safe!</p>
+              </div>
+              <div class="card-footer">
+                <a class="btn btn-primary" href="/berlin/karte/accidents" role="button">Here</a>
               </div>
             </div>
           </div>

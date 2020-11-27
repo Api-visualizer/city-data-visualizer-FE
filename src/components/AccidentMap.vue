@@ -121,14 +121,15 @@ export default {
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100%;
+    max-height: 90%;
   }
   #mapContainer {
   width: 100vw;
-  height: 85vh;
+  height: 80vh;
   }
   #choice{
     font-size: 1.4em;
+    margin-top: 1rem;
   }
   li{
     display: inline;
