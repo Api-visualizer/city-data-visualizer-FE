@@ -253,8 +253,6 @@ export default {
     this.fetchGeoShapes();
     this.getCovidData();
     this.bus.$on('new-date', (newDate) => {
-      console.log(newDate)
-      console.log('new date')
       this.selectedDayNew = newDate
       this.updateProps();
     })
