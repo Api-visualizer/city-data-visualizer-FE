@@ -56,7 +56,6 @@ export default {
           .then((data) =>{
             let districts = data[0]
             for(let district of districts) {
-              console.log(district)
               L.geoJSON(district.geometry).addTo(this.map)
             }
           })
@@ -65,14 +64,22 @@ export default {
     fetchData: function () {
       this.$http.get(GeneralClasses.GETAPIberlinHospitals()).then((response) => {
         let hospitals = response.data[0].features
+
         for(let hospital of hospitals) {
           let coordinates = hospital.geometry.coordinates
+          console.log(hospital)
           if(hospital.properties.status.statusHighCare === 'VERFUEGBAR') {
-            L.marker([coordinates[1], coordinates[0]],{icon: this.greenIcon}).addTo(this.map);
+            L.marker([coordinates[1], coordinates[0]],{icon: this.greenIcon}).addTo(this.map)
+                .bindPopup('<div><br><b>'+ hospital.properties.name +'</b></div><br>' +
+                    'last update: ' + hospital.properties.last_update)
           } else if (hospital.properties.status.statusHighCare === 'KEINE_ANGABE' ){
-            L.marker([coordinates[1], coordinates[0]],{icon: this.defaultIcon}).addTo(this.map);
+            L.marker([coordinates[1], coordinates[0]],{icon: this.defaultIcon}).addTo(this.map)
+                .bindPopup('<div><br><b>'+ hospital.properties.name +'</b></div><br>' +
+                    'last update: ' + hospital.properties.last_update)
           } else if (hospital.properties.status.statusHighCare === 'BEGRENZT' ){
-            L.marker([coordinates[1], coordinates[0]],{icon: this.redIcon}).addTo(this.map);
+            L.marker([coordinates[1], coordinates[0]],{icon: this.redIcon}).addTo(this.map)
+                .bindPopup('<div><br><b>'+ hospital.properties.name +'</b></div><br>' +
+                    'last update: ' + hospital.properties.last_update)
           }
         }
       })},
