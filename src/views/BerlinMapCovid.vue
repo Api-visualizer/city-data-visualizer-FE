@@ -1,16 +1,21 @@
 <template>
-  <div id="container">
-    <div id="mapContainer"></div>
+  <div>
+    <div id="container">
+      <div id="mapContainer"></div>
+    </div>
+    <Timeslider v-model="selectedDate" :ticksLabels=this.ticksLabels :value=value />
   </div>
 </template>
 
 <script>
-import GeneralClasses from "../assets/GeneralClasses";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
+import GeneralClasses from "../assets/GeneralClasses";
+import Timeslider from "@/components/Timeslider";
 
 export default {
   name: "BerlinMapCovid",
+  components: { Timeslider },
 
   data() {
     return {
@@ -20,6 +25,9 @@ export default {
       mapLayer: {},      
       selectedDayNew: "",
       info: {},
+      ticksLabels: [],
+      value: '',
+      selectedDate: '',
     };
   },
 
@@ -221,15 +229,33 @@ export default {
       let yyyy = today.getFullYear();
       today = dd + '.' + mm + '.' + yyyy;
       this.selectedDayNew = today;
-    }
+    },
+    getCovidData() {
+      fetch(GeneralClasses.GETAPIberlincoviddistrict())
+          .then(response => response.json())
+          .then(data => {
+            data[0].forEach((d) => this.ticksLabels.push(d.date));
+            this.ticksLabels.sort(function(a,b) {
+              a = a.split('.').reverse().join('');
+              b = b.split('.').reverse().join('');
+              return a > b ? 1 : a < b ? -1 : 0;
+            });
+            this.ticksLabels = this.ticksLabels.slice(this.ticksLabels.length-14);
+            this.selectedDate = this.ticksLabels.length-1
+          })
+    },
+
   },
 
   mounted() {
     this.setupLeafletMap();
     this.getDate();
     this.fetchGeoShapes();
+    this.getCovidData();
     this.bus.$on('new-date', (newDate) => {
-      this.selectedDayNew = newDate;      
+      console.log(newDate)
+      console.log('new date')
+      this.selectedDayNew = newDate
       this.updateProps();
     })
   },
