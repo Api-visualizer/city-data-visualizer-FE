@@ -22,7 +22,7 @@
 
 <script>
 import GeneralClasses from "../assets/GeneralClasses";
-import BerlinMapCovid from "../components/BerlinMapCovid"
+import BerlinMapCovid from "./BerlinMapCovid"
 
 export default {
   name: "CovidSlider",

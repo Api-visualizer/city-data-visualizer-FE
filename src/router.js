@@ -9,8 +9,9 @@ import Team from './views/Team'
 import BerlinOverview from './views/BerlinOverview';
 //import BerlinMapCovid from './views/BerlinMapCovid';
 import CovidSlider from './views/CovidSlider'
-import AccidentMap from './components/AccidentMap'
+import AccidentMap from './views/AccidentMap'
 import BerlinCharts from "@/views/BerlinCharts";
+import HospitalMap from "@/views/HospitalMap";
 
 // Hamburg
 
@@ -26,6 +27,7 @@ const routes = [
     { path: '/berlin/charts', component: BerlinCharts },
     { path: '/berlin/karte/corona', component: CovidSlider },
     { path: '/berlin/karte/accidents', component: AccidentMap},
+    { path: '/berlin/karte/hospitals', component: HospitalMap },
     { path: '/team', component: Team }
 ];
 const router = new VueRouter({
