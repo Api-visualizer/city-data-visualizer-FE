@@ -77,10 +77,6 @@ export default {
         }
       })},
 
-    zoomToFeature: function (e) {
-      this.map.fitBounds(e.target.getBounds());
-    },
-
     setupLeafletMap: function () {
       this.map = L.map("mapContainer", {
         center: [52.52, 13.405],
@@ -96,7 +92,30 @@ export default {
             attribution:
                 '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
           }).addTo(map);
-    }
+
+      let legend = this.customLegendControl();
+      legend.addTo(map);
+    },
+    customLegendControl: function () {
+      let legend = L.control({ position: 'topleft' });
+      legend.onAdd = function () {
+
+      let colors = ['#008000', '#FF0000', '#808080']
+
+        let div = L.DomUtil.create('div', 'info legend'),
+            grades = ['Available', 'Limited', 'Not specified'];
+        let label = '<div class="mb-4"><strong>Capacities</strong></div>'
+        div.innerHTML += label
+
+        for (let i = 0; i < grades.length; i++) {
+          div.innerHTML +=
+              '<h6 class="text-left">' +
+              '<i class ="info" style="background:' + colors[i] +'">' + '</i>' + grades[i] + "</h6><hr/>";
+        }
+        return div;
+      };
+      return legend;
+    },
   },
   mounted() {
     this.setupLeafletMap();
