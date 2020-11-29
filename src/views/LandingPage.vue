@@ -55,7 +55,7 @@
           <div class="col-sm-6 d-flex align-items-stretch">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">Covid-19</h5>
+                <h5 class="card-title">Infections</h5>
                 <h6 class="card-subtitle mb-2 text-muted">Heatmap</h6>
                 <p class="card-text">The Heatmap can give you a quick overview of the actual numbers of infections per district.</p>
               </div>
@@ -85,7 +85,7 @@
               <div class="card-body">
                 <h5 class="card-title">Hospitals</h5>
                 <h6 class="card-subtitle mb-2 text-muted">Map</h6>
-                <p class="card-text">The map shows hospitals and their capacities during covid19</p>
+                <p class="card-text">The map shows hospitals and their capacities during covid19 in berlin. </p>
               </div>
               <div class="card-footer">
                 <a class="btn btn-primary" href="/berlin/karte/hospitals" role="button">Here</a>
