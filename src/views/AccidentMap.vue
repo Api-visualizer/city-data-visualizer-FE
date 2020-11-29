@@ -3,11 +3,11 @@
     <div id="mapContainer"></div>
     <ul id="choice">
       <li>
-        <input type="radio" id="shop" name="map" value="1" v-on:change="showA()" checked>
+        <input type="radio" id="shop" name="map" value="1" v-on:change="showLayerA()" checked>
         <label for="shop">2018</label>
       </li>
       <li>
-        <input type="radio" id="two" name="map" value="2" v-on:change="showB()">
+        <input type="radio" id="two" name="map" value="2" v-on:change="showLayerB()">
         <label for="shop">2019</label>
       </li>
     </ul>
@@ -37,41 +37,53 @@ export default {
       map: {},
       mapLayerA: {},
       mapLayerB: {},
-      d: [],
-      n: 8000
+      dataResult: [],
     };
   },
 
   methods: {
 
     init: function () {
-      fetch(GeneralClasses.GETAPIberlinaccidents())
+      return fetch(GeneralClasses.GETAPIberlinaccidents())
       .then(response => response.json())
       .then(data => {
-        this.d = data
-        this.makeA(data)
-        this.makeB(data)
+        data[0].forEach(d => this.dataResult.push(d));
+        this.createLayerA(data)
+        this.createLayerB(data)
       })
       .catch(error => {
         console.log(error)
       })
     },
 
-    makeA: function (data) {
+    createLayerA: function (data) {
       let LL = []
-      console.log(data[0][0].accidents.length)
-      for (var i = 0; i < this.n; i++){
+
+      let count = 0
+      for ( let acc of Object.entries(data[0][0].accidents)){
+        acc.lat
+        count++
+      }
+
+      for (var i = 0; i < count; i++){
         let lat = data[0][0].accidents[i].lat.replace(/,/g, '.')
         let long = data[0][0].accidents[i].long.replace(/,/g, '.')
         LL.push(L.latLng(lat, long));
-      } 
+      }
       this.mapLayerA.setLatLngs(LL); 
       this.mapLayerA.addTo(this.map)
     },
 
-    makeB: function (data) {
+    createLayerB: function (data) {
       let LL = []
-      for (var i = 0; i < this.n; i++){
+
+      let count = 0
+      for ( let acc of Object.entries(data[0][1].accidents)){
+        acc.lat
+        count++
+      }
+
+      for (var i = 0; i < count; i++){
         let lat = data[0][1].accidents[i].lat.replace(/,/g, '.')
         let long = data[0][1].accidents[i].long.replace(/,/g, '.')
         LL.push(L.latLng(lat, long));
@@ -87,7 +99,8 @@ export default {
         minZoom: 10
       });
 
-      L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
+      L.tileLayer(
+        "https://{s}.basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}.png", {
         attribution:
           '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
       }).addTo(this.map);
@@ -97,12 +110,12 @@ export default {
 
     },
 
-    showA: function () {
+    showLayerA: function () {
       if(this.map.hasLayer(this.mapLayerB)) { this.map.removeLayer(this.mapLayerB)}
       this.mapLayerA.addTo(this.map)
     },
 
-    showB: function () {
+    showLayerB: function () {
       if(this.map.hasLayer(this.mapLayerA)) { this.map.removeLayer(this.mapLayerA)}
       this.mapLayerB.addTo(this.map)
     }
