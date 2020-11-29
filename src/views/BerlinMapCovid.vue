@@ -3,7 +3,7 @@
     <div id="container">
       <div id="mapContainer"></div>
     </div>
-    <Timeslider v-model="selectedDate" :ticksLabels=this.ticksLabels :value=value />
+    <Timeslider v-if='sliderStartIndex' :startIndex=this.sliderStartIndex :ticksLabels=this.ticksLabels :value=value />
   </div>
 </template>
 
@@ -27,7 +27,7 @@ export default {
       info: {},
       ticksLabels: [],
       value: '',
-      selectedDate: '',
+      sliderStartIndex: '',
     };
   },
 
@@ -241,7 +241,7 @@ export default {
               return a > b ? 1 : a < b ? -1 : 0;
             });
             this.ticksLabels = this.ticksLabels.slice(this.ticksLabels.length-14);
-            this.selectedDate = this.ticksLabels.length-1
+            this.sliderStartIndex = this.ticksLabels.length-1
           })
     },
 
