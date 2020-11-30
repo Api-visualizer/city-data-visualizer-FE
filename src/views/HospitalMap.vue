@@ -47,6 +47,14 @@ export default {
         popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
       });
     },
+    orangeIcon () {
+      return L.icon({
+        iconUrl:      'https://www.clker.com/cliparts/L/p/r/a/y/C/google-maps-marker-for-residencelamontagne.svg.hi.png',
+        iconSize:     [33, 45], // size of the icon
+        iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+        popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+      });
+    },
     defaultIcon () {
       return L.icon({
         iconUrl: 'https://www.pngkey.com/png/full/48-480344_maps-clipart-map-pin-grey-google-maps-marker.png',
@@ -89,22 +97,35 @@ export default {
     displayDataOfSpecificDate: function(dataOfSpecificDay) {
       this.mapLayer.clearLayers();
       let hospitals = dataOfSpecificDay[0].features
+      let counter = 0
       for(let hospital of hospitals) {
         let coordinates = hospital.geometry.coordinates
         if(hospital.properties.status.statusHighCare === 'VERFUEGBAR') {
+          counter = counter + 1
           this.mapLayer.addLayer(L.marker([coordinates[1], coordinates[0]],{icon: this.greenIcon})).addTo(this.map)
               .bindPopup('<div><br><b>'+ hospital.properties.name +'</b></div><br>' +
                   'last update: ' + hospital.properties.last_update)
         } else if (hospital.properties.status.statusHighCare === 'KEINE_ANGABE' ){
+          counter = counter + 1
           this.mapLayer.addLayer(L.marker([coordinates[1], coordinates[0]],{icon: this.defaultIcon})).addTo(this.map)
               .bindPopup('<div><br><b>'+ hospital.properties.name +'</b></div><br>' +
                   'last update: ' + hospital.properties.last_update)
         } else if (hospital.properties.status.statusHighCare === 'BEGRENZT' ){
+          counter = counter + 1
+          this.mapLayer.addLayer(L.marker([coordinates[1], coordinates[0]],{icon: this.orangeIcon})).addTo(this.map)
+              .bindPopup('<div><br><b>'+ hospital.properties.name +'</b></div><br>' +
+                  'last update: ' + hospital.properties.last_update)
+        } else if (hospital.properties.status.statusHighCare === 'NICHT_VERFUEGBAR' ){
+          counter = counter + 1
           this.mapLayer.addLayer(L.marker([coordinates[1], coordinates[0]],{icon: this.redIcon})).addTo(this.map)
               .bindPopup('<div><br><b>'+ hospital.properties.name +'</b></div><br>' +
                   'last update: ' + hospital.properties.last_update)
         }
       }
+      console.log()
+      console.log('hospitals found: ' + counter)
+      console.log(hospitals.length)
+
     },
 
     updateProps: function() {
@@ -147,10 +168,10 @@ export default {
       let legend = L.control({ position: 'topleft' });
       legend.onAdd = function () {
 
-      let colors = ['#008000', '#FF0000', '#808080']
+      let colors = ['#008000', '#ffa500', '#FF0000', '#808080']
 
         let div = L.DomUtil.create('div', 'info legend'),
-            grades = ['Available', 'Limited', 'Not specified'];
+            grades = ['capacities',  'Limited','no capacities', 'Not specified'];
         let label = '<div class="mb-4"><strong>Capacities</strong></div>'
         div.innerHTML += label
 
