@@ -240,7 +240,7 @@ export default {
               b = b.split('.').reverse().join('');
               return a > b ? 1 : a < b ? -1 : 0;
             });
-            this.ticksLabels = this.ticksLabels.slice(this.ticksLabels.length-14);
+            //this.ticksLabels = this.ticksLabels.slice(this.ticksLabels.length-14);
             this.sliderStartIndex = this.ticksLabels.length-1
           })
     },
