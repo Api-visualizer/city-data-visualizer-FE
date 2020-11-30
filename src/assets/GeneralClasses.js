@@ -8,7 +8,9 @@ export default {
     GETAPIberlinshapesdistrict:function() { return "https://cdv-backend.api.datexis.com/api/v1/berlin-shapes-district"; },    
     GETAPIberlincovidage:function() { return "https://cdv-backend.api.datexis.com//api/v1/berlin-covid-age"; },
     GETAPIberlinaccidents:function() { return "https://cdv-backend.api.datexis.com//api/v1/berlin-accidents";},
-        
+    GETAPIberlinHospitals:function() { return "https://cdv-backend.api.datexis.com//api/v1/berlin-covid-intensive-care";},
+
+
     ValueLanguage:function() { return "tduAjTngKL"; },     
     LSLanguage:function() { return localStorage.getItem(this.ValueLanguage()); }, 
 

@@ -7,9 +7,10 @@ import Team from './views/Team'
 
 // Berlin
 import BerlinOverview from './views/BerlinOverview';
-//import BerlinMapCovid from './views/BerlinMapCovid';
-import BerlinCovidMapV from './views/BerlinCovidMapV'
-import AccidentMap from './components/AccidentMap'
+import BerlinMapCovid from './views/BerlinMapCovid';
+import AccidentMap from './views/AccidentMap'
+import BerlinCharts from "@/views/BerlinCharts";
+import HospitalMap from "@/views/HospitalMap";
 
 // Hamburg
 
@@ -22,8 +23,10 @@ const routes = [
     },
     { path: '/', component: LandingPage },
     { path: '/berlin', component: BerlinOverview },
-    { path: '/berlin/karte/corona', component: BerlinCovidMapV },
+    { path: '/berlin/charts', component: BerlinCharts },
+    { path: '/berlin/karte/corona', component: BerlinMapCovid },
     { path: '/berlin/karte/accidents', component: AccidentMap},
+    { path: '/berlin/karte/hospitals', component: HospitalMap },
     { path: '/team', component: Team }
 ];
 const router = new VueRouter({

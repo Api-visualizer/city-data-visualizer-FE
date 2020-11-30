@@ -33,10 +33,12 @@
         <h1 class="display-4">City Data Visualizer</h1>
         <p class="lead pt-4" style="padding-bottom: 24px;">City Data Visualizer provides helpful visualizations for complex health data. With the help of open data, we hope to give both Berlin's administration, scientists and residents a better understanding of current health risks or positive impacts that are occurring in the city.</p>
         <p class="text-center"></p>
+        <p><a href="/berlin"><ul>FAQ</ul></a></p>
       </div>
 
       <div class="jumbotron">
         <div class="row">
+
           <div class="col-sm-6 d-flex align-items-stretch">
             <div class="card">
               <div class="card-body">
@@ -45,19 +47,48 @@
                 <p class="card-text">Various charts and graphs allow you to get a deep understanding on the development of the COVID-19 virus.</p>
               </div>
               <div class="card-footer">
-                <a class="btn btn-primary" href="/berlin" role="button">Here</a>
+                <a class="btn btn-primary" href="/berlin/charts" role="button">Here</a>
               </div>
             </div>
           </div>
+
           <div class="col-sm-6 d-flex align-items-stretch">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">Covid-19</h5>
+                <h5 class="card-title">Infections</h5>
                 <h6 class="card-subtitle mb-2 text-muted">Heatmap</h6>
                 <p class="card-text">The Heatmap can give you a quick overview of the actual numbers of infections per district.</p>
               </div>
               <div class="card-footer">
                 <a class="btn btn-primary" href="/berlin/karte/corona" role="button">Here</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-6 d-flex align-items-stretch">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Accidents</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Heatmap</h6>
+                <p class="card-text">The Heatmap gives you an overview of dangerous crossroads in Berlin. Stay safe!</p>
+              </div>
+              <div class="card-footer">
+                <a class="btn btn-primary" href="/berlin/karte/accidents" role="button">Here</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-6 d-flex align-items-stretch">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Hospitals</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Map</h6>
+                <p class="card-text">The map shows hospitals and their capacities during covid19 in berlin. </p>
+              </div>
+              <div class="card-footer">
+                <a class="btn btn-primary" href="/berlin/karte/hospitals" role="button">Here</a>
               </div>
             </div>
           </div>
@@ -145,5 +176,8 @@ export default {
   width: 100%;
   height: 500px;
   object-fit: cover;
+}
+ul.no-bullets {
+  list-style-type: none;
 }
 </style>
