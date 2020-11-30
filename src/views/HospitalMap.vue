@@ -1,6 +1,9 @@
 <template>
+  <div>
   <div id="container">
     <div id="mapContainer"></div>
+  </div>
+    <Timeslider v-if='sliderStartIndex' :startIndex=this.sliderStartIndex :ticksLabels=this.ticksLabels :value=value />
   </div>
 </template>
 
@@ -8,17 +11,22 @@
 import GeneralClasses from "../assets/GeneralClasses";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
+import Timeslider from "@/components/Timeslider";
 
 export default {
   name: "BerlinMapCovid",
-
+  components: {Timeslider},
   data() {
     return {
       dataResult: [],
+      value: '',
       map: {},
       mapLayer: {},
       selectedDayNew: "",
       info: {},
+      shapes: [],
+      sliderStartIndex: '',
+      ticksLabels: []
     };
   },
 
@@ -42,7 +50,7 @@ export default {
     defaultIcon () {
       return L.icon({
         iconUrl: 'https://www.pngkey.com/png/full/48-480344_maps-clipart-map-pin-grey-google-maps-marker.png',
-        iconSize:     [34, 45], // size of the icon
+        iconSize:     [30, 43], // size of the icon
         iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
         popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
       });
@@ -53,36 +61,64 @@ export default {
     fetchGeoShapes: function () {
       fetch(GeneralClasses.GETAPIberlinshapesdistrict())
           .then(response => response.json())
-          .then((data) =>{
+          .then((data) => {
             let districts = data[0]
-            for(let district of districts) {
+            for (let district of districts) {
               L.geoJSON(district.geometry).addTo(this.map)
             }
+            this.fetchHospitalResults(data)
+          })
+    },
+    fetchHospitalResults: function () {
+      this.dataResult = [];
+      fetch(GeneralClasses.GETAPIberlinHospitals())
+          .then(response => response.json())
+          .then(data => {
+            data[0].forEach(d => this.dataResult.push(d));
+            this.getDataOfSpecificDateToDisplay();
           })
     },
 
-    fetchData: function () {
-      this.$http.get(GeneralClasses.GETAPIberlinHospitals()).then((response) => {
-        let hospitals = response.data[0].features
+    getDataOfSpecificDateToDisplay: function () {
+      let dataOfSpecificDay = [];
+      dataOfSpecificDay = this.dataResult.filter((data) => data.date === this.selectedDayNew);
+      console.log(dataOfSpecificDay)
+      this.displayDataOfSpecificDate(dataOfSpecificDay);
+    },
 
-        for(let hospital of hospitals) {
-          let coordinates = hospital.geometry.coordinates
-          console.log(hospital)
-          if(hospital.properties.status.statusHighCare === 'VERFUEGBAR') {
-            L.marker([coordinates[1], coordinates[0]],{icon: this.greenIcon}).addTo(this.map)
-                .bindPopup('<div><br><b>'+ hospital.properties.name +'</b></div><br>' +
-                    'last update: ' + hospital.properties.last_update)
-          } else if (hospital.properties.status.statusHighCare === 'KEINE_ANGABE' ){
-            L.marker([coordinates[1], coordinates[0]],{icon: this.defaultIcon}).addTo(this.map)
-                .bindPopup('<div><br><b>'+ hospital.properties.name +'</b></div><br>' +
-                    'last update: ' + hospital.properties.last_update)
-          } else if (hospital.properties.status.statusHighCare === 'BEGRENZT' ){
-            L.marker([coordinates[1], coordinates[0]],{icon: this.redIcon}).addTo(this.map)
-                .bindPopup('<div><br><b>'+ hospital.properties.name +'</b></div><br>' +
-                    'last update: ' + hospital.properties.last_update)
-          }
+    displayDataOfSpecificDate: function(dataOfSpecificDay) {
+      this.mapLayer.clearLayers();
+      let hospitals = dataOfSpecificDay[0].features
+      for(let hospital of hospitals) {
+        let coordinates = hospital.geometry.coordinates
+        if(hospital.properties.status.statusHighCare === 'VERFUEGBAR') {
+          this.mapLayer.addLayer(L.marker([coordinates[1], coordinates[0]],{icon: this.greenIcon})).addTo(this.map)
+              .bindPopup('<div><br><b>'+ hospital.properties.name +'</b></div><br>' +
+                  'last update: ' + hospital.properties.last_update)
+        } else if (hospital.properties.status.statusHighCare === 'KEINE_ANGABE' ){
+          this.mapLayer.addLayer(L.marker([coordinates[1], coordinates[0]],{icon: this.defaultIcon})).addTo(this.map)
+              .bindPopup('<div><br><b>'+ hospital.properties.name +'</b></div><br>' +
+                  'last update: ' + hospital.properties.last_update)
+        } else if (hospital.properties.status.statusHighCare === 'BEGRENZT' ){
+          this.mapLayer.addLayer(L.marker([coordinates[1], coordinates[0]],{icon: this.redIcon})).addTo(this.map)
+              .bindPopup('<div><br><b>'+ hospital.properties.name +'</b></div><br>' +
+                  'last update: ' + hospital.properties.last_update)
         }
-      })},
+      }
+    },
+
+    updateProps: function() {
+      this.getDataOfSpecificDateToDisplay()
+    },
+
+    getDate: function () {
+      let today = new Date();
+      let dd = String(today.getDate()).padStart(2, '0');
+      let mm = String(today.getMonth() + 1).padStart(2, '0');
+      let yyyy = today.getFullYear();
+      today = dd + '.' + mm + '.' + yyyy;
+      this.selectedDayNew = today;
+    },
 
     setupLeafletMap: function () {
       this.map = L.map("mapContainer", {
@@ -102,7 +138,11 @@ export default {
 
       let legend = this.customLegendControl();
       legend.addTo(map);
+
+      this.mapLayer = L.layerGroup();
+      this.map.addLayer(this.mapLayer)
     },
+
     customLegendControl: function () {
       let legend = L.control({ position: 'topleft' });
       legend.onAdd = function () {
@@ -123,11 +163,30 @@ export default {
       };
       return legend;
     },
+    getCovidData() {
+      fetch(GeneralClasses.GETAPIberlinHospitals())
+          .then(response => response.json())
+          .then(data => {
+            data[0].forEach((d) => this.ticksLabels.push(d.date));
+            this.ticksLabels.sort(function(a,b) {
+              a = a.split('.').reverse().join('');
+              b = b.split('.').reverse().join('');
+              return a > b ? 1 : a < b ? -1 : 0;
+            });
+            this.ticksLabels = this.ticksLabels.slice(this.ticksLabels.length-14);
+            this.sliderStartIndex = this.ticksLabels.length-1
+          })
+    },
   },
   mounted() {
     this.setupLeafletMap();
+    this.getDate();
     this.fetchGeoShapes();
-    this.fetchData();
+    this.getCovidData();
+    this.bus.$on('new-date', (newDate) => {
+      this.selectedDayNew = newDate
+      this.updateProps();
+    })
   },
 };
 </script>
