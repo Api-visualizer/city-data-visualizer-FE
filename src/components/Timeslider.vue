@@ -26,7 +26,7 @@
           :items="months"
           item-text="name"
           item-value="id"
-          label="Standard"
+          label="Month"
           v-on:change="getDatesForMonth(mId)"
         ></v-select>
       </v-card-text> 
