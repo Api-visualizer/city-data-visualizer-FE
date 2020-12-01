@@ -6,8 +6,7 @@ import LandingPage from './views/LandingPage';
 import Team from './views/Team'
 
 import BerlinOverview from './views/BerlinOverview';
-//import BerlinMapCovid from './views/BerlinMapCovid';
-import CovidSlider from './views/CovidSlider'
+import BerlinMapCovid from './views/BerlinMapCovid';
 import AccidentMap from './views/AccidentMap'
 import BerlinCharts from "@/views/BerlinCharts";
 import HospitalMap from "@/views/HospitalMap";
@@ -18,7 +17,7 @@ const routes = [
     { path: '/', component: LandingPage },
     { path: '/berlin', component: BerlinOverview },
     { path: '/berlin/charts', component: BerlinCharts },
-    { path: '/berlin/karte/corona', component: CovidSlider },
+    { path: '/berlin/karte/corona', component: BerlinMapCovid },
     { path: '/berlin/karte/accidents', component: AccidentMap},
     { path: '/berlin/karte/hospitals', component: HospitalMap },
     { path: '/team', component: Team }

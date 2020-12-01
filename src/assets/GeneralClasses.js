@@ -3,7 +3,6 @@ import Dictionary from "../assets/Dictionary.json";
 let FinalWord = "";
 
 export default {
-	// GETAPI:function() { return "https://pthr.uber.space/padp"; },
 	GETAPIberlincoviddistrict: function () { return "https://cdv-backend.api.datexis.com/api/v1/berlin-covid-district"; },
 	GETAPIberlinshapesdistrict: function () { return "https://cdv-backend.api.datexis.com/api/v1/berlin-shapes-district"; },
 	GETAPIberlincovidage: function () { return "https://cdv-backend.api.datexis.com//api/v1/berlin-covid-age"; },
