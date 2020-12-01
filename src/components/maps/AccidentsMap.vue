@@ -16,17 +16,16 @@
 
 <script>
 
-import GeneralClasses from "../assets/GeneralClasses";
+import GeneralClasses from "@/assets/GeneralClasses";
 import L from "leaflet";
 import { icon } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "leaflet.heat/dist/leaflet-heat";
 
 export default {
-  name: "AccidentMap",
-  props: {
-    msg: String,
-  },
+  name: "AccidentsMap",
+
+  props: {},
 
   data() {
     return {
@@ -42,7 +41,6 @@ export default {
   },
 
   methods: {
-
     init: function () {
       return fetch(GeneralClasses.GETAPIberlinaccidents())
       .then(response => response.json())
@@ -107,7 +105,6 @@ export default {
     
       this.mapLayerA = L.heatLayer(false);
       this.mapLayerB = L.heatLayer(false);
-
     },
 
     showLayerA: function () {
@@ -129,26 +126,29 @@ export default {
 </script>
 
 <style scoped>
+#container {
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-height: 90%;
+}
 
-  #container {
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    max-height: 90%;
-  }
-  #mapContainer {
+#mapContainer {
   width: 100vw;
   height: 80vh;
-  }
-  #choice{
-    font-size: 1.4em;
-    margin-top: 1rem;
-  }
-  li{
-    display: inline;
-  }
-  li>input{
-    width: 40px;
-    height: 40px;
-  }
+}
+
+#choice {
+  font-size: 1.4em;
+  margin-top: 1rem;
+}
+
+li {
+  display: inline;
+}
+
+li>input {
+  width: 40px;
+  height: 40px;
+}
 </style>
