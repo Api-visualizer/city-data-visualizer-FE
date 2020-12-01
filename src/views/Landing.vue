@@ -137,13 +137,6 @@ export default {
   transform: translate(-50%, -50%);
 }
 
-.main-text{
-  position: relative;
-  bottom: 350px;
-  width: 100%;
-  color: white;
-}
-
 .col-md-12 {
   padding: 0;
 }
