@@ -5,7 +5,6 @@ Vue.use(VueRouter);
 import LandingPage from './views/LandingPage';
 import Team from './views/Team'
 
-// Berlin
 import BerlinOverview from './views/BerlinOverview';
 //import BerlinMapCovid from './views/BerlinMapCovid';
 import CovidSlider from './views/CovidSlider'
@@ -13,15 +12,9 @@ import AccidentMap from './views/AccidentMap'
 import BerlinCharts from "@/views/BerlinCharts";
 import HospitalMap from "@/views/HospitalMap";
 
-// Hamburg
-
-// Munich
 
 const routes = [
-    {
-        path :'*',
-        redirect: '/'
-    },
+    { path :'*', redirect: '/'},
     { path: '/', component: LandingPage },
     { path: '/berlin', component: BerlinOverview },
     { path: '/berlin/charts', component: BerlinCharts },
