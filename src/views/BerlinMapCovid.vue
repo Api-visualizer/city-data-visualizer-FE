@@ -263,7 +263,7 @@ export default {
 <style scoped>
 #mapContainer {
   width: 100vw;
-  height: 65vh;
+  height: 70vh;
 }
 
 .info {
