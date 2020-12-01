@@ -33,7 +33,7 @@
         <h1 class="display-4">City Data Visualizer</h1>
         <p class="lead pt-4" style="padding-bottom: 24px;">City Data Visualizer provides helpful visualizations for complex health data. With the help of open data, we hope to give both Berlin's administration, scientists and residents a better understanding of current health risks or positive impacts that are occurring in the city.</p>
         <p class="text-center"></p>
-        <p><a href="/berlin"><ul>FAQ</ul></a></p>
+        <p><a href="/faq"><ul>FAQ</ul></a></p>
       </div>
 
       <div class="jumbotron">
