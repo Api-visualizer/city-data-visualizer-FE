@@ -107,15 +107,18 @@
 
 <script>
 export default {
-  name: "LandingPage",
-  props: {
-    msg: String,
-  },
+  name: "Landing",
+  
+  props: {},
+  
   components: {},
+  
   data() {
     return {};
   },
+  
   methods: {},
+  
   mounted() {},
 };
 </script>
@@ -135,10 +138,10 @@ export default {
 }
 
 .main-text{
-  #position: relative;
-  #bottom: 350px;
-  #width: 100%;
-  #color: white;
+  position: relative;
+  bottom: 350px;
+  width: 100%;
+  color: white;
 }
 
 .col-md-12 {
@@ -159,9 +162,6 @@ export default {
 
 .row {
   padding: 0 20% 0 20%;
-}
-
-.card>p {
 }
 
 .card-footer{

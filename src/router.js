@@ -2,7 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
-import LandingPage from '@/views/LandingPage';
+import Landing from '@/views/Landing';
 import Team from '@/views/Team'
 import Faq from '@/views/Faq';
 import Main from '@/views/Main';
@@ -12,7 +12,7 @@ import Main from '@/views/Main';
 
 const routes = [
     { path :'*', redirect: '/'},
-    { path: '/', component: LandingPage },
+    { path: '/', component: Landing },
     { path: '/faq', component: Faq },
     { path: '/main', component: Main },
     { path: '/team', component: Team },
