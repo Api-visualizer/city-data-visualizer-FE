@@ -25,10 +25,13 @@
 </template>
 
 <script>
-
 export default {
-  name: "BerlinOverview",
+  name: "Faq",
+
   props: {},
+
+  components: {},
+  
   data () {
     return {
       FAQ: [{'question': 'I live in Kreuzberg, Berlin. I want to know how...', 'link': '/berlin/charts', 'answer': 'lorem ipsum explaining text. '},
@@ -37,11 +40,14 @@ export default {
         {'question': 'I would like to know how I can walk to my office in a safe way. Which crossroads are more dangerous than others?', 'link': '/berlin/karte/accidents', 'answer': 'lorem ipsum explaining text. '}]
     }
   },
+  
   methods: {},
+  
   mounted() {},
 };
 
 </script>
+
 <style scoped>
 .headerimage{
   max-height: 6rem;
