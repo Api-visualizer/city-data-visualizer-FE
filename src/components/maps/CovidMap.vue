@@ -5,12 +5,12 @@
 </template>
 
 <script>
-import GeneralClasses from "../assets/GeneralClasses";
+import GeneralClasses from "../../assets/GeneralClasses";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
 export default {
-  name: "BerlinCovidMapC",
+  name: "CovidMap",
 
   props: {
     selectedDay: {

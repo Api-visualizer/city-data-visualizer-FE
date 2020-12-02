@@ -60,7 +60,7 @@
                 <p class="card-text">The Heatmap can give you a quick overview of the actual numbers of infections per district.</p>
               </div>
               <div class="card-footer">
-                <a class="btn btn-primary" href="/berlin/karte/corona" role="button">Here</a>
+                <a class="btn btn-primary" href="/berlin/maps/covid" role="button">Here</a>
               </div>
             </div>
           </div>
@@ -75,7 +75,7 @@
                 <p class="card-text">The Heatmap gives you an overview of dangerous crossroads in Berlin. Stay safe!</p>
               </div>
               <div class="card-footer">
-                <a class="btn btn-primary" href="/berlin/karte/accidents" role="button">Here</a>
+                <a class="btn btn-primary" href="/berlin/maps/accidents" role="button">Here</a>
               </div>
             </div>
           </div>
@@ -88,7 +88,7 @@
                 <p class="card-text">The map shows hospitals and their capacities during covid19 in berlin. </p>
               </div>
               <div class="card-footer">
-                <a class="btn btn-primary" href="/berlin/karte/hospitals" role="button">Here</a>
+                <a class="btn btn-primary" href="/berlin/maps/hospitals" role="button">Here</a>
               </div>
             </div>
           </div>
@@ -108,17 +108,17 @@
 <script>
 export default {
   name: "Landing",
-  
+
   props: {},
-  
+
   components: {},
-  
+
   data() {
     return {};
   },
-  
+
   methods: {},
-  
+
   mounted() {},
 };
 </script>

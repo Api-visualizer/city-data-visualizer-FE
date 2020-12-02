@@ -8,14 +8,16 @@
 </template>
 
 <script>
-import GeneralClasses from "../assets/GeneralClasses";
+import GeneralClasses from "../../assets/GeneralClasses";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import Timeslider from "@/components/Timeslider";
 
 export default {
-  name: "BerlinMapCovid",
+  name: "HospitalMapView",
+
   components: {Timeslider},
+
   data() {
     return {
       dataResult: [],

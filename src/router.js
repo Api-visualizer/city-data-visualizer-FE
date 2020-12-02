@@ -5,10 +5,12 @@ Vue.use(VueRouter);
 import Landing from '@/views/Landing';
 import Team from '@/views/Team'
 import Faq from '@/views/Faq';
-import Main from '@/views/Main';
-// import BerlinMapCovid from '@/views/BerlinMapCovid';
-// import AccidentMap from '@/views/AccidentMap'
-// import HospitalMap from '@/views/HospitalMap';
+import Main from '@/views/Berlin/Main';
+import AccidentsMapView from '@/views/Berlin/AccidentsMapView';
+//import ChartsView from "./views/Berlin/ChartsView";
+import CovidMapView from "./views/Berlin/CovidMapView";
+import HospitalMapView from '@/views/Berlin/HospitalMapView';
+
 
 const routes = [
     { path :'*', redirect: '/'},
@@ -16,9 +18,10 @@ const routes = [
     { path: '/faq', component: Faq },
     { path: '/main', component: Main },
     { path: '/team', component: Team },
-    // { path: '/berlin/karte/corona', component: BerlinMapCovid },
-    // { path: '/berlin/karte/accidents', component: AccidentMap},
-    // { path: '/berlin/karte/hospitals', component: HospitalMap },
+   // { path: 'berlin/charts', component: ChartsView},
+    { path: '/berlin/maps/covid', component: CovidMapView },
+    { path: '/berlin/maps/accidents', component: AccidentsMapView},
+    { path: '/berlin/maps/hospitals', component: HospitalMapView },
 ];
 
 const router = new VueRouter({

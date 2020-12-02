@@ -8,13 +8,13 @@
 import GeneralClasses from "@/assets/GeneralClasses";
 
 export default {
-  name: "CovidLinechart",
-  
+  name: "CovidAgeBarchart",
+
   props: {
     width: Number,
     height: Number,
   },
-  
+
   data () {
     return {
       data: {},
@@ -62,7 +62,7 @@ export default {
             if (dat['altersgruppe'] === ' 90+') {
               value = value + temp
               temp = 0
-              chart_data.push(value)              
+              chart_data.push(value)
             }
             chart_data.push(value)
           }
