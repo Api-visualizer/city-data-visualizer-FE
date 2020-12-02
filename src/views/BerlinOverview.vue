@@ -4,11 +4,14 @@
       <div class="row">
         <div class="col">
           <h1 class="display-4">Berlin</h1>
-          <img src="/images/berlin-alex.jpg" class="w-100 headerimage" alt="Los Angeles" />
+          <img src="/images/berlin4.jpg" class="w-100 headerimage" alt="Berlin" />
         </div>
       </div>
     </div>
-      <div class="mt-10">
+
+    <div class="jumbotron">
+      <h1 class="display-4">FAQ</h1>
+        <div class="mt-10">
         <v-expansion-panels class="w-75 mt-10 container-fluid ">
           <v-expansion-panel v-for="item in FAQ" :key="item">
             <v-expansion-panel-header class="align-center justify-start pl-5 pr-5">
@@ -21,6 +24,8 @@
           </v-expansion-panel>
         </v-expansion-panels>
       </div>
+    </div>
+
   </div>
 </template>
 
@@ -52,5 +57,17 @@ export default {
 p {
   font-size: large;
   font-weight: bold;
+}
+
+.jumbotron {
+  margin: 0;
+}
+
+.jumbotron:nth-child(odd) {
+  background-color: #FFF;
+}
+
+.jumbotron>p {
+  padding: 0 20% 0 20%;
 }
 </style>
