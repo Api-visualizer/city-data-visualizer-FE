@@ -97,7 +97,7 @@
       <div class="jumbotron">
         <h1 class="display-4">FAQ</h1>
         <p class="lead pt-4" style="padding-bottom: 24px;">We have listed frequently asked questions under the FAQ section. If you cannot find the answer of your question there you may fill out the contact form. Please refer to the FAQ beforehand.</p>
-        <p><a href="/berlin/faq"><ul>FAQ</ul></a></p>
+        <a class="btn btn-primary" href="/berlin/faq" role="button">Here</a>
       </div>
 
     </div>
