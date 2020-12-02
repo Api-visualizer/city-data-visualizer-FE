@@ -33,7 +33,6 @@
         <h1 class="display-4">City Data Visualizer</h1>
         <p class="lead pt-4" style="padding-bottom: 24px;">City Data Visualizer provides helpful visualizations for complex health data. With the help of open data, we hope to give both Berlin's administration, scientists and residents a better understanding of current health risks or positive impacts that are occurring in the city.</p>
         <p class="text-center"></p>
-        <p><a href="/berlin"><ul>FAQ</ul></a></p>
       </div>
 
       <div class="jumbotron">
@@ -96,9 +95,9 @@
       </div>
 
       <div class="jumbotron">
-        <h1 class="display-4">Lorem Ipsum</h1>
-        <p class="lead pt-4" style="padding-bottom: 24px;">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren</p>
-        <p class="text-center"></p>
+        <h1 class="display-4">FAQ</h1>
+        <p class="lead pt-4" style="padding-bottom: 24px;">We have listed frequently asked questions under the FAQ section. If you cannot find the answer of your question there you may fill out the contact form. Please refer to the FAQ beforehand.</p>
+        <a class="btn btn-primary" href="/berlin/faq" role="button">Here</a>
       </div>
 
     </div>
