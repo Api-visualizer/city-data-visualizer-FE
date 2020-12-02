@@ -1,9 +1,9 @@
 <template>
   <div>
-  <div id="container">
-    <div id="mapContainer"></div>
-  </div>
-    <Timeslider v-if='sliderStartIndex' :startIndex=this.sliderStartIndex :ticksLabels=this.ticksLabels :value=value />
+    <div id="container">
+      <div id="hospitalMapContainer"></div>
+    </div>
+    <Timeslider v-if='sliderStartIndex' :id='this.$props.busId' :startIndex=this.sliderStartIndex :ticksLabels=this.ticksLabels :value=value />
   </div>
 </template>
 
@@ -17,6 +17,10 @@ export default {
   name: "HospitalsMap",
 
   components: { Timeslider },
+
+  props: {
+    busId: String
+  },
 
   data() {
     return {
@@ -138,7 +142,7 @@ export default {
     },
 
     setupLeafletMap: function () {
-      this.map = L.map("mapContainer", {
+      this.map = L.map("hospitalMapContainer", {
         center: [52.52, 13.405],
         zoom: 11,
         maxZoom: 13,
@@ -198,7 +202,7 @@ export default {
     this.setupLeafletMap();
     this.getDate();
     this.fetchGeoShapes();
-    this.bus.$on('new-date', (newDate) => {
+    this.bus.$on(this.$props.busId, (newDate) => {
       this.selectedDayNew = newDate
       this.updateProps();
     })
@@ -207,7 +211,7 @@ export default {
 </script>
 
 <style scoped>
-#mapContainer {
+#hospitalMapContainer {
   width: 100vw;
   height: 65vh;
 }

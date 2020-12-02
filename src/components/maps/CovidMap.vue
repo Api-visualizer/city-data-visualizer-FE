@@ -3,7 +3,7 @@
     <div id="container">
       <div id="mapContainer"></div>
     </div>
-    <Timeslider v-if='sliderStartIndex' :startIndex=this.sliderStartIndex :ticksLabels=this.ticksLabels :value=value />
+    <Timeslider v-if='sliderStartIndex' :id='this.$props.busId' :startIndex=this.sliderStartIndex :ticksLabels=this.ticksLabels :value=value />
   </div>
 </template>
 
@@ -15,7 +15,12 @@ import Timeslider from "@/components/Timeslider";
 
 export default {
   name: "CovidMap",
+
   components: { Timeslider },
+
+  props: {
+    busId: String
+  },
 
   data() {
     return {
@@ -253,7 +258,7 @@ export default {
     this.getDate();
     this.fetchGeoShapes();
     this.getCovidData();
-    this.bus.$on('new-date', (newDate) => {
+    this.bus.$on(this.$props.busId, (newDate) => {
       this.selectedDayNew = newDate
       this.updateProps();
     })
