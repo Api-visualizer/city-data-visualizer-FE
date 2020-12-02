@@ -37,22 +37,22 @@
 export default {
   name: "Timeslider",
 
-  props: ['startIndex','ticksLabels'],
+  props: ['startIndex','ticksLabels', 'id'],
 
   data(){
-    return{
-    index: 0,
-    allDates: [],
-    labels: [],
-    months: [{id:'0', name:'All'}],
-    mId: ''
+    return {
+      index: 0,
+      allDates: [],
+      labels: [],
+      months: [{id:'0', name:'All'}],
+      mId: ''
     }
   },
 
   methods: {
     emitNewDate: function (index) {
       let newDate = this.labels[index]
-      this.bus.$emit('new-date', newDate);
+      this.bus.$emit(this.$props.id, newDate);
     },
 
     getAllMonths: function () {
@@ -92,7 +92,7 @@ export default {
       this.index = 0
       let newDate = this.labels[0]
       console.log(newDate)
-      this.bus.$emit('new-date', newDate);
+      this.bus.$emit(this.$props.id, newDate);
     }
   },
 
@@ -107,8 +107,7 @@ export default {
 </script>
 
 <style scoped>
-
-#covidslider >>> .v-application--wrap {
+#covidslider > .v-application--wrap {
   min-height: 0;
 }
 
