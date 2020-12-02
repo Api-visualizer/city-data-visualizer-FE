@@ -3,8 +3,8 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col">
-          <h1 class="display-4">Berlin</h1>
-          <img src="/images/berlin-alex.jpg" class="w-100 headerimage" alt="Los Angeles" />
+          <h1 class="title display-4">Berlin</h1>
+          <img src="/images/berlin4.jpg" class="w-100 headerimage" alt="Berlin" />
         </div>
       </div>
     </div>
@@ -134,11 +134,26 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+.container-fluid .col {
+  margin: 0;
+  padding: 0;
+}
+
 .headerimage{
-  max-height: 6rem;
-  border-radius: 3rem;
+  max-height: 15rem;
   object-fit: cover;
 }
+
+.title {
+  z-index: 1;
+  position: absolute;
+  left: 50%;
+  top: 7.5rem;
+  color: white;
+  transform: translate(-50%, -50%);
+}
+
 .image-div {
   transition: 0.2s;
 }
@@ -149,9 +164,11 @@ export default {
   opacity: 1;
   transform: scale(1.03);
 }
+
 .display-4 {
   font-weight: bold;
 }
+
 a {
   color: black;
   font-size: larger;
