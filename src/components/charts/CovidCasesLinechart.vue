@@ -10,7 +10,7 @@ import "leaflet/dist/leaflet.css";
 import Moment from 'moment';
 
 export default {
-  name: "CovidLinechart",
+  name: "CovidCasesLinechart",
   
   props: {
     width: Number,
