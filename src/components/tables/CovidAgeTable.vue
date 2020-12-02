@@ -1,6 +1,7 @@
 <template>
-  <div id="table">
+  <div id="table">  
 		<v-data-table :headers=this.headers :items=this.table_data :items-per-page="15" class="elevation-1"></v-data-table>
+  </div>
 </template>
 
 <script>

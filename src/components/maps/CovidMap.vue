@@ -1,23 +1,21 @@
 <template>
-  <div id="container">
-    <div id="mapContainer"></div>
+  <div>
+    <div id="container">
+      <div id="mapContainer"></div>
+    </div>
+    <Timeslider v-if='sliderStartIndex' :startIndex=this.sliderStartIndex :ticksLabels=this.ticksLabels :value=value />
   </div>
 </template>
 
 <script>
-import GeneralClasses from "../../assets/GeneralClasses";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
+import GeneralClasses from "../../assets/GeneralClasses";
+import Timeslider from "@/components/Timeslider";
 
 export default {
   name: "CovidMap",
-
-  props: {
-    selectedDay: {
-      default: "29.10.2020",
-      type: String
-    }
-  },
+  components: { Timeslider },
 
   data() {
     return {
@@ -25,8 +23,11 @@ export default {
       shapes: [],
       map: {},
       mapLayer: {},
-      selectedDayNew: "29.10.2020",
+      selectedDayNew: "",
       info: {},
+      ticksLabels: [],
+      value: '',
+      sliderStartIndex: '',
     };
   },
 
@@ -195,15 +196,14 @@ export default {
 
         let div = L.DomUtil.create('div', 'info legend'),
         grades = [0, 400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000];
-        let label = '<div><br><strong>Cases per 100k</strong><br><br></div>'
+        let label = '<div class="mb-4"><strong>Cases per 100k</strong></div>'
         div.innerHTML += label
 
         for (var i = 0; i < grades.length; i++) {
-          div.innerHTML += '<i class ="info" style="background:' +
+          div.innerHTML += '<h6 class="text-left"><i class ="info" style="background:' +
                             this.getColor(grades[i] + 1) + '"></i>' +
-                            grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
+                            grades[i] + (grades[i + 1] ? ' - ' + grades[i + 1] + '<br>' : '+') + "</h6><hr/>";
         }
-        div.innerHTML += '<div><br><br></div>'
         return div;
       };
       return legend;
@@ -221,13 +221,40 @@ export default {
             d > 400 ? '#fff67d' :
                       '#9eff4a';
     },
+
+    getDate: function () {
+      let today = new Date();
+      let dd = String(today.getDate()).padStart(2, '0');
+      let mm = String(today.getMonth() + 1).padStart(2, '0');
+      let yyyy = today.getFullYear();
+      today = dd + '.' + mm + '.' + yyyy;
+      this.selectedDayNew = today;
+    },
+
+    getCovidData() {
+      fetch(GeneralClasses.GETAPIberlincoviddistrict())
+        .then(response => response.json())
+        .then(data => {
+          data[0].forEach((d) => this.ticksLabels.push(d.date));
+          this.ticksLabels.sort(function(a,b) {
+            a = a.split('.').reverse().join('');
+            b = b.split('.').reverse().join('');
+            return a > b ? 1 : a < b ? -1 : 0;
+          });
+          //this.ticksLabels = this.ticksLabels.slice(this.ticksLabels.length-14);
+          this.sliderStartIndex = this.ticksLabels.length-1
+        })
+    },
+
   },
 
   mounted() {
     this.setupLeafletMap();
+    this.getDate();
     this.fetchGeoShapes();
+    this.getCovidData();
     this.bus.$on('new-date', (newDate) => {
-      this.selectedDayNew = newDate;
+      this.selectedDayNew = newDate
       this.updateProps();
     })
   },
@@ -237,7 +264,7 @@ export default {
 <style scoped>
 #mapContainer {
   width: 100vw;
-  height: 80vh;
+  height: 70vh;
 }
 
 .info {
@@ -248,6 +275,7 @@ export default {
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
     border-radius: 5px;
 }
+
 .info h4 {
     margin: 0 0 5px;
     color: #777;
@@ -257,11 +285,11 @@ export default {
     line-height: 18px;
     color: #555;
 }
+
 .legend i {
     width: 18px;
     height: 18px;
     float: left;
     opacity: 0.7;
 }
-
 </style>
