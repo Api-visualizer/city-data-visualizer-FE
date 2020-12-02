@@ -1,6 +1,6 @@
 <template>
   <div id="container">
-    <div id="mapContainer"></div>
+    <div id="accidentsMapContainer"></div>
     <ul id="choice">
       <li>
         <input type="radio" id="shop" name="map" value="1" v-on:change="showLayerA()" checked>
@@ -90,7 +90,7 @@ export default {
     },
 
     setupLeafletMap: function () {
-      this.map = L.map("mapContainer", {
+      this.map = L.map("accidentsMapContainer", {
         center: [52.52, 13.405],
         zoom: 11,
         maxZoom: 17,
@@ -133,7 +133,7 @@ export default {
   max-height: 90%;
 }
 
-#mapContainer {
+#accidentsMapContainer {
   width: 100vw;
   height: 80vh;
 }
