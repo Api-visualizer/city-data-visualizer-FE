@@ -15,7 +15,7 @@
         <v-expansion-panels class="w-75 mt-10 container-fluid ">
           <v-expansion-panel v-for="item in FAQ" :key="item">
             <v-expansion-panel-header class="align-center justify-start pl-5 pr-5">
-                <p>{{ item.question }}</p>
+                <h5>{{ item.question }}</h5>
             </v-expansion-panel-header>
             <v-expansion-panel-content>
               {{ item.answer }}
@@ -74,7 +74,6 @@ export default {
 
 p {
   font-size: large;
-  font-weight: bold;
 }
 
 .jumbotron {
