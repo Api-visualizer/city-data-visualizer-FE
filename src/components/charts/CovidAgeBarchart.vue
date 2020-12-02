@@ -38,16 +38,16 @@ export default {
 
   methods: {
     APIResult: function () {
-      this.$http.get(GeneralClasses.GETAPIberlincovidage()).then((Result) => {
-        let chart_data = []
-        let value = 0
-        let temp = 0
-        for (let dat of data) {
-          if (dat['altersgruppe'] === ' Summe') {
-            delete data[dat]
-          } else {
-            value = parseInt(dat['fallzahl'])
+      this.$http.get(GeneralClasses.GETAPIberlincovidage())
+        .then(response => {
+          let unqiueDay = response.data[0][0].data
+          let chart_data = []
+          let value, temp = 0
 
+          for (let dat of unqiueDay) {
+            if (dat['altersgruppe'] === ' Summe') break          
+            
+            value = parseInt(dat['fallzahl'])
             if (dat['altersgruppe'] === ' 0-4') {
               temp = value
             }
@@ -65,10 +65,9 @@ export default {
               chart_data.push(value)
             }
             chart_data.push(value)
-          }
-        }
-        this.updateChart(chart_data)
-      })
+          }          
+          this.updateChart(chart_data)
+        })
     },
 
     updateChart(chart_data) {
