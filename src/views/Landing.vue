@@ -96,9 +96,9 @@
       </div>
 
       <div class="jumbotron">
-        <h1 class="display-4">Lorem Ipsum</h1>
-        <p class="lead pt-4" style="padding-bottom: 24px;">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren</p>
-        <p class="text-center"></p>
+        <h1 class="display-4">FAQ</h1>
+        <p class="lead pt-4" style="padding-bottom: 24px;">We have listed frequently asked questions under the FAQ section. If you cannot find the answer of your question there you may fill out the contact form. Please refer to the FAQ beforehand.</p>
+        <a class="btn btn-primary" href="/faq" role="button">Here</a>
       </div>
 
     </div>
