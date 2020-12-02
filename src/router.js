@@ -22,7 +22,7 @@ const routes = [
         redirect: '/'
     },
     { path: '/', component: LandingPage },
-    { path: '/berlin', component: BerlinOverview },
+    { path: '/berlin/faq', component: BerlinOverview },
     { path: '/berlin/charts', component: BerlinCharts },
     { path: '/berlin/karte/corona', component: BerlinMapCovid },
     { path: '/berlin/karte/accidents', component: AccidentMap},
