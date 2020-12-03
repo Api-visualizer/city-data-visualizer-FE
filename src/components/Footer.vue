@@ -1,6 +1,6 @@
 <template>
     <div id="footer">
-        <hr style="margin-top:0">
+        <hr>
         <p>City Data Visualizer</p>
     </div>
 </template>
@@ -12,5 +12,9 @@ export default {
 </script>
 
 <style scoped>
+
+hr {
+  margin-top:0;
+}
 
 </style>

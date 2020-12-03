@@ -10,7 +10,7 @@
     </div>
 
     <div class="jumbotron">
-      <h1 class="display-4">FAQ</h1>
+      <h2 class="display-4">FAQ</h2>
         <div class="mt-10">
         <v-expansion-panels class="w-75 mt-10 container-fluid ">
           <v-expansion-panel v-for="item in FAQ" :key="item">
@@ -66,10 +66,6 @@ export default {
   top: 7.5rem;
   color: white;
   transform: translate(-50%, -50%);
-}
-
-.display-4 {
-  font-weight: bold;
 }
 
 p {
