@@ -55,10 +55,15 @@ export default {
 
 <style scoped>
 
-.container-fluid .col {
+.container-fluid {
+  padding: 0;
+}
+
+.col {
   margin: 0;
   padding: 0;
 }
+
 
 .headerimage{
   max-height: 15rem;
