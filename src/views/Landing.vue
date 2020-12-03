@@ -33,6 +33,7 @@
         <h1 class="display-4">City Data Visualizer</h1>
         <p class="lead pt-4" style="padding-bottom: 24px;">City Data Visualizer provides helpful visualizations for complex health data. With the help of open data, we hope to give both Berlin's administration, scientists and residents a better understanding of current health risks or positive impacts that are occurring in the city.</p>
         <p class="text-center"></p>
+        <p><a href="/faq"><ul>FAQ</ul></a></p>
       </div>
 
       <div class="jumbotron">
@@ -59,7 +60,7 @@
                 <p class="card-text">The Heatmap can give you a quick overview of the actual numbers of infections per district.</p>
               </div>
               <div class="card-footer">
-                <a class="btn btn-primary" href="/berlin/karte/corona" role="button">Here</a>
+                <a class="btn btn-primary" href="/berlin/maps/covid" role="button">Here</a>
               </div>
             </div>
           </div>
@@ -74,7 +75,7 @@
                 <p class="card-text">The Heatmap gives you an overview of dangerous crossroads in Berlin. Stay safe!</p>
               </div>
               <div class="card-footer">
-                <a class="btn btn-primary" href="/berlin/karte/accidents" role="button">Here</a>
+                <a class="btn btn-primary" href="/berlin/maps/accidents" role="button">Here</a>
               </div>
             </div>
           </div>
@@ -87,7 +88,7 @@
                 <p class="card-text">The map shows hospitals and their capacities during covid19 in berlin. </p>
               </div>
               <div class="card-footer">
-                <a class="btn btn-primary" href="/berlin/karte/hospitals" role="button">Here</a>
+                <a class="btn btn-primary" href="/berlin/maps/hospitals" role="button">Here</a>
               </div>
             </div>
           </div>
@@ -97,7 +98,7 @@
       <div class="jumbotron">
         <h2 class="display-4">FAQ</h2>
         <p class="lead pt-4" style="padding-bottom: 24px;">We have listed frequently asked questions under the FAQ section. If you cannot find the answer of your question there you may fill out the contact form. Please refer to the FAQ beforehand.</p>
-        <a class="btn btn-primary" href="/berlin/faq" role="button">Here</a>
+        <a class="btn btn-primary" href="/faq" role="button">Here</a>
       </div>
 
     </div>
@@ -106,15 +107,18 @@
 
 <script>
 export default {
-  name: "LandingPage",
-  props: {
-    msg: String,
-  },
+  name: "Landing",
+
+  props: {},
+
   components: {},
+
   data() {
     return {};
   },
+
   methods: {},
+
   mounted() {},
 };
 </script>
@@ -131,13 +135,6 @@ export default {
   left: 50%;
   top: 250px;
   transform: translate(-50%, -50%);
-}
-
-.main-text{
-  #position: relative;
-  #bottom: 350px;
-  #width: 100%;
-  #color: white;
 }
 
 .col-md-12 {
@@ -158,9 +155,6 @@ export default {
 
 .row {
   padding: 0 20% 0 20%;
-}
-
-.card>p {
 }
 
 .card-footer{

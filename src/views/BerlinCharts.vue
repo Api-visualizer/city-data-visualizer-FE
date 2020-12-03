@@ -30,7 +30,7 @@
           <p>show map</p>
         </a>
       </div>
-    </div>
+    </div>          
   </div>
   </div>
 </template>
@@ -41,12 +41,12 @@ import "leaflet/dist/leaflet.css";
 
 export default {
   name: "BerlinCharts",
-  props: {
-    msg: String,
-  },
+  
+  props: {},
+  
   data () {
     return {
-      data_table_data: [],
+      data_table_data: [],      
       headers: [
         {
           align: 'start',
@@ -70,45 +70,40 @@ export default {
       },
       series: [{
         name: 'number of covid19 cases',
-        data: [12,13,14,15,15, 16, 15, 14, 13, 15, 13]
+        data: []
       }],
       Type: ''
     }
   },
-  methods: {
 
+  methods: {
     APIResult: function () {
       this.$http.get(GeneralClasses.GETAPIberlincovidage()).then((Result) => {
         let data = Result.data[0][0]['data']
         let chart_data = []
         let value = 0
         let temp = 0
-        for(let dat of data) {
-          if(dat['altersgruppe'] === ' Summe') {
+        for (let dat of data) {
+          if (dat['altersgruppe'] === ' Summe') {
             delete data[dat]
           } else {
-            console.log(dat['altersgruppe'])
             value = parseInt(dat['fallzahl'])
 
-            if(dat['altersgruppe'] === ' 0-4') {
+            if (dat['altersgruppe'] === ' 0-4') {
               temp = value
-              continue
             }
-            if(dat['altersgruppe'] === ' 5-9') {
+            if (dat['altersgruppe'] === ' 5-9') {
               value = value + temp
               temp = 0
               chart_data.push(value)
-              continue
             }
-            if(dat['altersgruppe'] === ' 80-89') {
+            if (dat['altersgruppe'] === ' 80-89') {
               temp = value
-              continue
             }
-            if(dat['altersgruppe'] === ' 90+') {
+            if (dat['altersgruppe'] === ' 90+') {
               value = value + temp
               temp = 0
-              chart_data.push(value)
-              continue
+              chart_data.push(value)              
             }
             chart_data.push(value)
           }
@@ -117,14 +112,15 @@ export default {
         this.updateChart(chart_data)
       })
     },
+
     updateChart(chart_data) {
-      console.log(chart_data)
       this.series = [{
         name: 'number of covid19 cases',
         data: chart_data
       }]
     }
   },
+
   mounted() {
     this.APIResult();
     //this.updateChart()

@@ -1,6 +1,6 @@
 <template>
   <div id="container">
-    <div id="mapContainer"></div>
+    <div id="accidentsMapContainer"></div>
     <ul id="choice">
       <li>
         <input type="radio" id="shop" name="map" value="1" v-on:change="showLayerA()" checked>
@@ -16,17 +16,16 @@
 
 <script>
 
-import GeneralClasses from "../assets/GeneralClasses";
+import GeneralClasses from "@/assets/GeneralClasses";
 import L from "leaflet";
 import { icon } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "leaflet.heat/dist/leaflet-heat";
 
 export default {
-  name: "AccidentMap",
-  props: {
-    msg: String,
-  },
+  name: "AccidentsMap",
+
+  props: {},
 
   data() {
     return {
@@ -42,7 +41,6 @@ export default {
   },
 
   methods: {
-
     init: function () {
       return fetch(GeneralClasses.GETAPIberlinaccidents())
       .then(response => response.json())
@@ -92,7 +90,7 @@ export default {
     },
 
     setupLeafletMap: function () {
-      this.map = L.map("mapContainer", {
+      this.map = L.map("accidentsMapContainer", {
         center: [52.52, 13.405],
         zoom: 11,
         maxZoom: 17,
@@ -107,7 +105,6 @@ export default {
     
       this.mapLayerA = L.heatLayer(false);
       this.mapLayerB = L.heatLayer(false);
-
     },
 
     showLayerA: function () {
@@ -129,26 +126,29 @@ export default {
 </script>
 
 <style scoped>
+#container {
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-height: 90%;
+}
 
-  #container {
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    max-height: 90%;
-  }
-  #mapContainer {
+#accidentsMapContainer {
   width: 100vw;
   height: 80vh;
-  }
-  #choice{
-    font-size: 1.4em;
-    margin-top: 1rem;
-  }
-  li{
-    display: inline;
-  }
-  li>input{
-    width: 40px;
-    height: 40px;
-  }
+}
+
+#choice {
+  font-size: 1.4em;
+  margin-top: 1rem;
+}
+
+li {
+  display: inline;
+}
+
+li>input {
+  width: 40px;
+  height: 40px;
+}
 </style>

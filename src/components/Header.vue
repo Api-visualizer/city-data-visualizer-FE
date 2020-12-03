@@ -7,35 +7,42 @@
         direction="left"
         :opacity="0.3"
         :links="[
-          { id: 1, text: 'Home', url: 'https://api-visualizer.app.datexis.com/' },
-          { id: 2, text: 'Berlin', url: 'https://api-visualizer.app.datexis.com/berlin' },
-        ]" 
+          { id: 1, text: 'Home', url: '/' },
+          { id: 2, text: 'Berlin', url: '/main' },
+        ]"
       ></slider>
       <div class="container-fluid justify-content-end">
         <nav class="navbar navbar-expand-lg navbar-light mr-0">
           <a class="navbar-brand" href="/">
             <img src="/images/logo_colored.png" class="mh-100" />
           </a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarText"
+            aria-controls="navbarText"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="container">
             <div class="collapse navbar-collapse" id="navbarText">
               <ul class="navbar-nav">
                 <li class="nav-item active">
-                  <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                  <a class="nav-link" href="/"
+                    >Home <span class="sr-only">(current)</span></a
+                  >
                 </li>
               </ul>
               <span class="navbar-text">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" href="#">Abouts</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/team">Team</a>
-            </li>
-          </ul>
-        </span>
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="/team">Team</a>
+                  </li>
+                </ul>
+              </span>
             </div>
           </div>
         </nav>
@@ -45,31 +52,36 @@
 </template>
 
 <script>
-import Slider from '@jeremyhamm/vue-slider';
+import Slider from "@jeremyhamm/vue-slider";
+
 export default {
-name: 'Header',
+  name: "Header",
+
   components: { Slider },
+
   data() {
     return {
-      customStyles: {'navMenu': {'background-color': 'black'}, 'navIcon': {'color': 'blue'}},
+      customStyles: {
+        navMenu: { "background-color": "black" },
+        navIcon: { color: "blue" },
+      },
     };
   },
 };
 </script>
 
 <style>
-.navMenu[data-v-7f183654]
-{
-  background-color: #343a40!important;
+.navMenu[data-v-7f183654] {
+  background-color: #343a40 !important;
 }
-.navMenu[data-v-7f183654]>a{
+.navMenu[data-v-7f183654] > a {
   margin-top: 1vh;
   width: 10px;
 }
 .logo {
-  width: 3vw
+  width: 3vw;
 }
 .navbar-expand-lg {
-  background-color:  #EEEEEE!important;
+  background-color: #eeeeee !important;
 }
 </style>

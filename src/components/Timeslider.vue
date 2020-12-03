@@ -37,22 +37,22 @@
 export default {
   name: "Timeslider",
 
-  props: ['startIndex','ticksLabels'],
+  props: ['startIndex','ticksLabels', 'id'],
 
   data(){
-    return{
-    index: 0,
-    allDates: [],
-    labels: [],
-    months: [],
-    mId: ''
+    return {
+      index: 0,
+      allDates: [],
+      labels: [],
+      months: [{id:'0', name:'All'}],
+      mId: ''
     }
   },
 
   methods: {
     emitNewDate: function (index) {
       let newDate = this.labels[index]
-      this.bus.$emit('new-date', newDate);
+      this.bus.$emit(this.$props.id, newDate);
     },
 
     getAllMonths: function () {
@@ -82,12 +82,17 @@ export default {
     },
 
     getDatesForMonth: function (month) {
+      if (month == 0) {
+        this.labels = this.allDates
+      }
+      else {
       let m = this.allDates.filter(date => date.split('.')[1]==month)
       this.labels = m
+      }
       this.index = 0
       let newDate = this.labels[0]
       console.log(newDate)
-      this.bus.$emit('new-date', newDate);
+      this.bus.$emit(this.$props.id, newDate);
     }
   },
 
@@ -102,12 +107,30 @@ export default {
 </script>
 
 <style scoped>
+#covidslider > .v-application--wrap {
+  min-height: 0;
+}
 
 #covidslider {
   width: 95%;
-  height: 100%;
   margin: auto;
-  margin-top: 4%;
+  margin-top: 3%;
 }
 
+.v-card__text{
+  display: flex;
+  justify-content: space-between;
+}
+
+.v-card__text > *{
+  padding: 1%;
+}
+
+.v-input__slider{
+  flex: 1 1 80%;
+}
+
+.v-select{
+  flex: 0 1 15%;
+}
 </style>

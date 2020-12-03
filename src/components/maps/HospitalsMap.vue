@@ -1,21 +1,27 @@
 <template>
   <div>
-  <div id="container">
-    <div id="mapContainer"></div>
-  </div>
-    <Timeslider v-if='sliderStartIndex' :startIndex=this.sliderStartIndex :ticksLabels=this.ticksLabels :value=value />
+    <div id="container">
+      <div id="hospitalMapContainer"></div>
+    </div>
+    <Timeslider v-if='sliderStartIndex' :id='this.$props.busId' :startIndex=this.sliderStartIndex :ticksLabels=this.ticksLabels :value=value />
   </div>
 </template>
 
 <script>
-import GeneralClasses from "../assets/GeneralClasses";
+import GeneralClasses from "../../assets/GeneralClasses";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import Timeslider from "@/components/Timeslider";
 
 export default {
-  name: "BerlinMapCovid",
-  components: {Timeslider},
+  name: "HospitalsMap",
+
+  components: { Timeslider },
+
+  props: {
+    busId: String
+  },
+
   data() {
     return {
       dataResult: [],
@@ -49,7 +55,7 @@ export default {
     },
     orangeIcon () {
       return L.icon({
-        iconUrl:      'https://www.clker.com/cliparts/L/p/r/a/y/C/google-maps-marker-for-residencelamontagne.svg.hi.png',
+        iconUrl: 'https://www.clker.com/cliparts/L/p/r/a/y/C/google-maps-marker-for-residencelamontagne.svg.hi.png',
         iconSize:     [33, 45], // size of the icon
         iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
         popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
@@ -68,23 +74,23 @@ export default {
   methods: {
     fetchGeoShapes: function () {
       fetch(GeneralClasses.GETAPIberlinshapesdistrict())
-          .then(response => response.json())
-          .then((data) => {
-            let districts = data[0]
-            for (let district of districts) {
-              L.geoJSON(district.geometry).addTo(this.map)
-            }
-            this.fetchHospitalResults(data)
-          })
+        .then(response => response.json())
+        .then((data) => {
+          let districts = data[0];
+          for (let district of districts) L.geoJSON(district.geometry).addTo(this.map);
+          this.fetchHospitalResults(data);
+        })
     },
+
     fetchHospitalResults: function () {
       this.dataResult = [];
       fetch(GeneralClasses.GETAPIberlinHospitals())
-          .then(response => response.json())
-          .then(data => {
-            data[0].forEach(d => this.dataResult.push(d));
-            this.getDataOfSpecificDateToDisplay();
-          })
+        .then(response => response.json())
+        .then(data => {          
+          data[0].forEach(d => this.dataResult.push(d));
+          this.getDataOfSpecificDateToDisplay();
+          this.setSliderTicks(data);
+        })
     },
 
     getDataOfSpecificDateToDisplay: function () {
@@ -120,10 +126,6 @@ export default {
         }
         this.mapLayer.addTo(this.map)
       }
-      console.log()
-      console.log('hospitals found: ' + counter)
-      console.log(hospitals.length)
-
     },
 
     updateProps: function() {
@@ -140,7 +142,7 @@ export default {
     },
 
     setupLeafletMap: function () {
-      this.map = L.map("mapContainer", {
+      this.map = L.map("hospitalMapContainer", {
         center: [52.52, 13.405],
         zoom: 11,
         maxZoom: 13,
@@ -165,11 +167,10 @@ export default {
     customLegendControl: function () {
       let legend = L.control({ position: 'topleft' });
       legend.onAdd = function () {
-
-      let colors = ['#008000', '#ffa500', '#FF0000', '#808080']
+        let colors = ['#008000', '#ffa500', '#FF0000', '#808080']
 
         let div = L.DomUtil.create('div', 'info legend'),
-            grades = ['capacities',  'Limited','no capacities', 'Not specified'];
+            grades = ['Capacities',  'Limited','No capacities', 'Not specified'];
         let label = '<div class="mb-4"><strong>Capacities</strong></div>'
         div.innerHTML += label
 
@@ -182,27 +183,26 @@ export default {
       };
       return legend;
     },
-    getCovidData() {
-      fetch(GeneralClasses.GETAPIberlinHospitals())
-          .then(response => response.json())
-          .then(data => {
-            data[0].forEach((d) => this.ticksLabels.push(d.date));
-            this.ticksLabels.sort(function(a,b) {
-              a = a.split('.').reverse().join('');
-              b = b.split('.').reverse().join('');
-              return a > b ? 1 : a < b ? -1 : 0;
-            });
-            this.ticksLabels = this.ticksLabels.slice(this.ticksLabels.length-14);
-            this.sliderStartIndex = this.ticksLabels.length-1
-          })
+
+    setSliderTicks: function (data) {
+      console.log(data)
+      data[0].forEach((d) => this.ticksLabels.push(d.date));
+      
+      this.ticksLabels.sort(function(a,b) {
+        a = a.split('.').reverse().join('');
+        b = b.split('.').reverse().join('');
+        return a > b ? 1 : a < b ? -1 : 0;
+      });
+      this.ticksLabels = this.ticksLabels.slice(this.ticksLabels.length-14);
+      this.sliderStartIndex = this.ticksLabels.length-1
     },
   },
+
   mounted() {
     this.setupLeafletMap();
     this.getDate();
     this.fetchGeoShapes();
-    this.getCovidData();
-    this.bus.$on('new-date', (newDate) => {
+    this.bus.$on(this.$props.busId, (newDate) => {
       this.selectedDayNew = newDate
       this.updateProps();
     })
@@ -211,7 +211,7 @@ export default {
 </script>
 
 <style scoped>
-#mapContainer {
+#hospitalMapContainer {
   width: 100vw;
   height: 65vh;
 }
@@ -224,6 +224,7 @@ export default {
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   border-radius: 5px;
 }
+
 .info h4 {
   margin: 0 0 5px;
   color: #777;
@@ -233,14 +234,11 @@ export default {
   line-height: 18px;
   color: #555;
 }
+
 .legend i {
   width: 18px;
   height: 18px;
   float: left;
   opacity: 0.7;
-}
-.CasesContainer
-{
-  text-align: left;
 }
 </style>
