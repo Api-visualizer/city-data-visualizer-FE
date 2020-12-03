@@ -10,7 +10,7 @@
     </div>
 
     <div class="jumbotron">
-      <h1 class="display-4">FAQ</h1>
+      <h2 class="display-4">FAQ</h2>
         <div class="mt-10">
         <v-expansion-panels class="w-75 mt-10 container-fluid ">
           <v-expansion-panel v-for="item in FAQ" :key="item">
@@ -55,10 +55,15 @@ export default {
 
 <style scoped>
 
-.container-fluid .col {
+.container-fluid {
+  padding: 0;
+}
+
+.col {
   margin: 0;
   padding: 0;
 }
+
 
 .headerimage{
   max-height: 15rem;
@@ -72,10 +77,6 @@ export default {
   top: 7.5rem;
   color: white;
   transform: translate(-50%, -50%);
-}
-
-.display-4 {
-  font-weight: bold;
 }
 
 p {
