@@ -33,7 +33,13 @@
         <h1 class="display-4">City Data Visualizer</h1>
         <p class="lead pt-4" style="padding-bottom: 24px;">City Data Visualizer provides helpful visualizations for complex health data. With the help of open data, we hope to give both Berlin's administration, scientists and residents a better understanding of current health risks or positive impacts that are occurring in the city.</p>
         <p class="text-center"></p>
-      </div>
+
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-double-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M1.646 6.646a.5.5 0 0 1 .708 0L8 12.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+          <path fill-rule="evenodd" d="M1.646 2.646a.5.5 0 0 1 .708 0L8 8.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+        </svg>
+
+    </div>
 
       <div class="jumbotron">
         <div class="row">
@@ -171,5 +177,19 @@ export default {
 }
 ul.no-bullets {
   list-style-type: none;
+}
+
+svg {
+  position: relative;
+  animation-name: move;
+  animation-duration: 2s;
+  animation-delay: 3s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes move {
+  0%   {top: 0px;}
+  50%  {top: 5px;}
+  100% {top: 0px;}
 }
 </style>
