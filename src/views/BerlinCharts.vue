@@ -15,22 +15,22 @@
       </div>
       <div class="col">
         <apexchart width="800" type="bar" :options="options" :series="series"></apexchart>
-        <div class="image-div">
+        <!-- <div class="image-div">
           <a href="/berlin/karte/corona">
             <img class="image" src="/images/map.png" width="750px" alt="Map" />
             <p>show map</p>
           </a>
-        </div>
+        </div> -->
       </div>
     </div>
-    <div class="row">
+    <!-- <div class="row">
       <div class="image-div">
         <a href="/berlin/karte/accidents">
           <img class="image" src="/images/map_accident.PNG" height="80%" alt="Map" />
           <p>show map</p>
         </a>
       </div>
-    </div>          
+    </div>-->
   </div>
   </div>
 </template>

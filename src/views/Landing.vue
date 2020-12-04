@@ -52,7 +52,7 @@
                 <p class="card-text">Various charts and graphs allow you to get a deep understanding on the development of the COVID-19 virus.</p>
               </div>
               <div class="card-footer">
-                <a class="btn btn-primary" href="/berlin/charts" role="button">Here</a>
+                <a class="btn btn-primary" href="/main/covid-graphs" role="button">Here</a>
               </div>
             </div>
           </div>
@@ -65,7 +65,7 @@
                 <p class="card-text">The Heatmap can give you a quick overview of the actual numbers of infections per district.</p>
               </div>
               <div class="card-footer">
-                <a class="btn btn-primary" href="/berlin/maps/covid" role="button">Here</a>
+                <a class="btn btn-primary" href="/main/infections" role="button">Here</a>
               </div>
             </div>
           </div>
@@ -80,7 +80,7 @@
                 <p class="card-text">The Heatmap gives you an overview of dangerous crossroads in Berlin. Stay safe!</p>
               </div>
               <div class="card-footer">
-                <a class="btn btn-primary" href="/berlin/maps/accidents" role="button">Here</a>
+                <a class="btn btn-primary" href="/main/accidents" role="button">Here</a>
               </div>
             </div>
           </div>
@@ -93,7 +93,7 @@
                 <p class="card-text">The map shows hospitals and their capacities during covid19 in berlin. </p>
               </div>
               <div class="card-footer">
-                <a class="btn btn-primary" href="/berlin/maps/hospitals" role="button">Here</a>
+                <a class="btn btn-primary" href="/main/hospitals" role="button">Here</a>
               </div>
             </div>
           </div>

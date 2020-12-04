@@ -16,10 +16,10 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Berlin</a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Covid-19</a>
-              <a class="dropdown-item" href="#">Infections</a>
-              <a class="dropdown-item" href="#">Accidents</a>
-              <a class="dropdown-item" href="#">Hospitals</a>
+              <a class="dropdown-item" href="/main/covid-graphs">Covid-19 Graphs</a>
+              <a class="dropdown-item" href="/main/infections">Infections</a>
+              <a class="dropdown-item" href="/main/accidents">Accidents</a>
+              <a class="dropdown-item" href="/main/hospitals">Hospitals</a>
             </div>
           </li>
         </ul>
