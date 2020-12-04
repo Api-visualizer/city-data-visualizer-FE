@@ -1,6 +1,6 @@
 <template>
   <v-app id="covidslider">
-    <v-card>
+    <v-card class="mt-10">
       <v-card-text>
         <v-slider
           v-model="index"
