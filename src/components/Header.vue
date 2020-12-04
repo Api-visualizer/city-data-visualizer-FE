@@ -1,71 +1,48 @@
 <template>
   <div>
-    <nav class="navbar navbar-expand-lg">
-      <slider
-        :width="160"
-        format="push"
-        direction="left"
-        :opacity="0.3"
-        :links="[
-          { id: 1, text: 'Home', url: '/' },
-          { id: 2, text: 'Berlin', url: '/main' },
-        ]"
-      ></slider>
-      <div class="container-fluid justify-content-end">
-        <nav class="navbar navbar-expand-lg navbar-light mr-0">
-          <a class="navbar-brand" href="/">
-            <img src="/images/logo_colored.png" class="mh-100" />
-          </a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarText"
-            aria-controls="navbarText"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="container">
-            <div class="collapse navbar-collapse" id="navbarText">
-              <ul class="navbar-nav">
-                <li class="nav-item active">
-                  <a class="nav-link" href="/"
-                    >Home <span class="sr-only">(current)</span></a
-                  >
-                </li>
-              </ul>
-              <span class="navbar-text">
-                <ul class="navbar-nav">
-                  <li class="nav-item">
-                    <a class="nav-link" href="/team">Team</a>
-                  </li>
-                </ul>
-              </span>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-info " style="border-width: 5px !important;">
+      <a class="navbar-brand" href="/">
+        <img src="/images/logo_white.png" />
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Berlin</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Covid-19</a>
+              <a class="dropdown-item" href="#">Infections</a>
+              <a class="dropdown-item" href="#">Accidents</a>
+              <a class="dropdown-item" href="#">Hospitals</a>
             </div>
-          </div>
-        </nav>
+          </li>
+        </ul>
+        <span class="form-inline my-2 my-lg-0">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="/team">Team</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/faq">FAQ</a>
+            </li>
+          </ul>
+        </span>
       </div>
     </nav>
   </div>
 </template>
 
 <script>
-import Slider from "@jeremyhamm/vue-slider";
-
 export default {
-  name: "Header",
-
-  components: { Slider },
-
+  name: 'Header',
   data() {
-    return {
-      customStyles: {
-        navMenu: { "background-color": "black" },
-        navIcon: { color: "blue" },
-      },
-    };
+    return {};
   },
 };
 </script>
