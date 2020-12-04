@@ -3,7 +3,7 @@
     <div id="container">
       <div id="mapContainer"></div>
     </div>
-    <Timeslider v-if='sliderStartIndex' :id='this.$props.busId' :startIndex=this.sliderStartIndex :ticksLabels=this.ticksLabels :value=value />
+    <Timeslider v-if='sliderStartIndex' :id='this.busKey' :startIndex=this.sliderStartIndex :ticksLabels=this.ticksLabels :value=value />
   </div>
 </template>
 
@@ -33,6 +33,7 @@ export default {
       ticksLabels: [],
       value: '',
       sliderStartIndex: '',
+      busKey: 'covid'
     };
   },
 
@@ -256,7 +257,10 @@ export default {
     this.getDate();
     this.fetchGeoShapes();
     this.getCovidData();
-    this.bus.$on(this.$props.busId, (newDate) => {
+    console.log(this.$props.busId)
+    if (this.$props.busId != undefined) this.busKey = this.$props.busId;
+    console.log(this.busKey)
+    this.bus.$on(this.busKey, (newDate) => {
       this.selectedDayNew = newDate
       this.updateProps();
     })
