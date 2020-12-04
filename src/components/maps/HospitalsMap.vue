@@ -3,7 +3,7 @@
     <div id="container">
       <div id="hospitalMapContainer"></div>
     </div>
-    <Timeslider v-if='sliderStartIndex' :id='this.$props.busId' :startIndex=this.sliderStartIndex :ticksLabels=this.ticksLabels :value=value />
+    <Timeslider v-if='sliderStartIndex' :id='this.busKey' :startIndex=this.sliderStartIndex :ticksLabels=this.ticksLabels :value=value />
   </div>
 </template>
 
@@ -32,7 +32,8 @@ export default {
       info: {},
       shapes: [],
       sliderStartIndex: '',
-      ticksLabels: []
+      ticksLabels: [],
+      busKey: 'hospitals'
     };
   },
 
@@ -96,7 +97,6 @@ export default {
     getDataOfSpecificDateToDisplay: function () {
       let dataOfSpecificDay = [];
       dataOfSpecificDay = this.dataResult.filter((data) => data.date === this.selectedDayNew);
-      console.log(dataOfSpecificDay)
       this.displayDataOfSpecificDate(dataOfSpecificDay);
     },
 
@@ -202,7 +202,8 @@ export default {
     this.setupLeafletMap();
     this.getDate();
     this.fetchGeoShapes();
-    this.bus.$on(this.$props.busId, (newDate) => {
+    if (this.$props.busId != undefined) this.busKey = this.$props.busId;
+    this.bus.$on(this.busKey, (newDate) => {
       this.selectedDayNew = newDate
       this.updateProps();
     })

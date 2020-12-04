@@ -257,9 +257,7 @@ export default {
     this.getDate();
     this.fetchGeoShapes();
     this.getCovidData();
-    console.log(this.$props.busId)
     if (this.$props.busId != undefined) this.busKey = this.$props.busId;
-    console.log(this.busKey)
     this.bus.$on(this.busKey, (newDate) => {
       this.selectedDayNew = newDate
       this.updateProps();
