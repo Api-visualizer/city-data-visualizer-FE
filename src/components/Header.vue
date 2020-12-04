@@ -23,7 +23,7 @@
             </div>
           </li>
         </ul>
-        <span class="form-inline my-2 my-lg-0">
+        <span class="my-2 my-lg-0">
           <ul class="navbar-nav">
             <li class="nav-item">
               <a class="nav-link" href="/team">Team</a>
