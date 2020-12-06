@@ -86,12 +86,11 @@ export default {
         this.labels = this.allDates
       }
       else {
-      let m = this.allDates.filter(date => date.split('.')[1]==month)
-      this.labels = m
+        let m = this.allDates.filter(date => date.split('.')[1]==month)
+        this.labels = m
       }
       this.index = 0
       let newDate = this.labels[0]
-      console.log(newDate)
       this.bus.$emit(this.$props.id, newDate);
     }
   },
@@ -101,6 +100,19 @@ export default {
     this.allDates = this.ticksLabels;
     this.labels = this.ticksLabels;
     this.getAllMonths()
+  },
+
+  created() {
+    setTimeout(() => {
+      let lastMonth = this.months[this.months.length-1].id;
+      this.mId = lastMonth;
+      this.getDatesForMonth(lastMonth)
+
+      let lastDate = this.labels[this.labels.length-1]
+      this.bus.$emit(this.$props.id, lastDate);
+
+      this.index = this.labels.length-1
+    }, 2000)
   }
 
 }
