@@ -82,6 +82,7 @@ export default {
       }
 
       for (var i = 0; i < count; i++){
+        console.log(data[0][1].accidents[i])
         let lat = data[0][1].accidents[i].lat.replace(/,/g, '.')
         let long = data[0][1].accidents[i].long.replace(/,/g, '.')
         LL.push(L.latLng(lat, long));
@@ -115,17 +116,17 @@ export default {
     customLegendControl: function () {
       let legend = L.control({ position: 'topleft' });
       legend.onAdd = function () {
-        let colors = ['#94f3ff', '#6ff765', '#fffc33', '#dea004', '#bd1806']
+        let colors = ['#956bff', '#94f3ff', '#6ff765', '#fffc33', '#dea004', '#bd1806']
 
         let div = L.DomUtil.create('div', 'info legend'),
-            grades = ['xxxxxxxx',  'xxxxxxxxx','xxxxxxxx', 'xxxxxxx', 'xxxxxxx'];
+            grades = ['min', '','','', '', 'max'];
         let label = '<div class="mb-4"><strong>Number of accidents </strong></div>'
         div.innerHTML += label
 
         for (let i = 0; i < grades.length; i++) {
           div.innerHTML +=
               '<h6 class="text-left">' +
-              '<i class ="info" style="background:' + colors[i] +'">' + '</i>' + grades[i] + "</h6><hr/>";
+              '<i class ="info" style="background:' + colors[i] +'">' + '</i>' + grades[i] + "</h6>";
         }
         return div;
       };
