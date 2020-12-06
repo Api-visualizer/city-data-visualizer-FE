@@ -103,23 +103,18 @@ export default {
     displayDataOfSpecificDate: function(dataOfSpecificDay) {
       this.mapLayer.clearLayers();
       let hospitals = dataOfSpecificDay[0].features
-      let counter = 0
       for(let hospital of hospitals) {
         let coordinates = hospital.geometry.coordinates
         if(hospital.properties.status.statusHighCare === 'VERFUEGBAR') {
-          counter = counter + 1
           this.mapLayer.addLayer(L.marker([coordinates[1], coordinates[0]],{icon: this.greenIcon}).bindPopup('<div><br><b>'+ hospital.properties.name +'</b></div><br>' +
                   'last update: ' + hospital.properties.last_update))
         } else if (hospital.properties.status.statusHighCare === 'KEINE_ANGABE' ){
-          counter = counter + 1
           this.mapLayer.addLayer(L.marker([coordinates[1], coordinates[0]],{icon: this.defaultIcon}).bindPopup('<div><br><b>'+ hospital.properties.name +'</b></div><br>' +
                   'last update: ' + hospital.properties.last_update))
         } else if (hospital.properties.status.statusHighCare === 'BEGRENZT' ){
-          counter = counter + 1
           this.mapLayer.addLayer(L.marker([coordinates[1], coordinates[0]],{icon: this.orangeIcon}).bindPopup('<div><br><b>'+ hospital.properties.name +'</b></div><br>' +
                   'last update: ' + hospital.properties.last_update))
         } else if (hospital.properties.status.statusHighCare === 'NICHT_VERFUEGBAR' ){
-          counter = counter + 1
           this.mapLayer.addLayer(L.marker([coordinates[1], coordinates[0]],{icon: this.redIcon}).addTo(this.map)
               .bindPopup('<div><br><b>'+ hospital.properties.name +'</b></div><br>' +
                   'last update: ' + hospital.properties.last_update))

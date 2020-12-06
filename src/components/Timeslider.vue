@@ -1,5 +1,6 @@
 <template>
-  <v-app id="covidslider">
+  <div class="covidslider">
+  <v-app >
     <v-card class="mt-10">
       <v-card-text>
         <v-slider
@@ -32,6 +33,7 @@
       </v-card-text> 
     </v-card>
   </v-app>
+  </div>
 </template>
 <script>
 export default {
@@ -107,14 +109,16 @@ export default {
 </script>
 
 <style scoped>
-#covidslider > .v-application--wrap {
-  min-height: 0;
+  /deep/ .v-application--wrap {
+  min-height: 0vh !important
 }
 
-#covidslider {
+.covidslider {
   width: 95%;
   margin: auto;
-  margin-top: 3%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  max-height: 30%;
 }
 
 .v-card__text{
