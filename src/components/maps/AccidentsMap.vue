@@ -82,7 +82,6 @@ export default {
       }
 
       for (var i = 0; i < count; i++){
-        console.log(data[0][1].accidents[i])
         let lat = data[0][1].accidents[i].lat.replace(/,/g, '.')
         let long = data[0][1].accidents[i].long.replace(/,/g, '.')
         LL.push(L.latLng(lat, long));
@@ -111,6 +110,18 @@ export default {
 
       this.mapLayer = L.layerGroup();
       this.map.addLayer(this.mapLayer)
+    },
+
+    setupEvents: function () {
+      this.map.on('zoomstart', L.bind(this.onMapZoom, null, this))
+    },
+
+    onMapZoom: function () {
+      console.log(this.map.getZoom())
+      if (this.map.getZoom()> 13){
+        if(this.map.hasLayer(this.mapLayerA)) { this.map.removeLayer(this.mapLayerA)}
+        if(this.map.hasLayer(this.mapLayerB)) { this.map.removeLayer(this.mapLayerB)}
+      }
     },
 
     customLegendControl: function () {
@@ -146,6 +157,7 @@ export default {
 
   mounted() {
     this.setupLeafletMap();
+    this.setupEvents();
     this.init();      
   },
 };
