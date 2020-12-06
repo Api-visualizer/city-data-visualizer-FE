@@ -144,12 +144,19 @@ export default {
         this.labels = this.allDates
       }
       else {
-      let m = this.allDates.filter(date => date.split('.')[1]==month)
-      this.labels = m
+        let m = this.allDates.filter(date => date.split('.')[1]==month)
+        this.labels = m
       }
+      this.dateLeft = this.labels[0].split('.').reverse().join('-')
+      this.dateRight = this.labels[this.labels.length-1].split('.').reverse().join('-')
+
+      let left = this.getDatesInRange(this.allDates[0].split('.').reverse().join('-'), this.dateRight)
+      this.allowedDatesLeft = this.getreverseLabels(left)
+      let right = this.getDatesInRange(this.dateLeft, this.allDates[this.allDates.length-1].split('.').reverse().join('-'))
+      this.allowedDatesRight = this.getreverseLabels(right)
+      
       this.index = 0
       let newDate = this.labels[0]
-      console.log(newDate)
       this.bus.$emit(this.$props.id, newDate);
     },
 
@@ -170,7 +177,6 @@ export default {
       this.labels = this.getDatesInRange(this.dateLeft, this.dateRight)
       let left = this.getDatesInRange(this.allDates[0].split('.').reverse().join('-'), this.dateRight)
       this.allowedDatesLeft = this.getreverseLabels(left)
-      console.log(this.allowedDatesLeft)
       let right = this.getDatesInRange(this.dateLeft, this.allDates[this.allDates.length-1].split('.').reverse().join('-'))
       this.allowedDatesRight = this.getreverseLabels(right)
       this.index = 0
@@ -207,12 +213,15 @@ export default {
   mounted() {
     this.index = this.startIndex;
     this.allDates = this.ticksLabels;
-    this.labels = this.ticksLabels;
+
+    this.getAllMonths();
+    this.mId = this.months[this.months.length-1].id
+    this.labels = this.allDates.filter(date => date.split('.')[1]==this.mId)
+
     this.allowedDatesLeft = this.getreverseLabels(this.labels);
     this.allowedDatesRight = this.getreverseLabels(this.labels);
     this.dateRight = this.labels[this.labels.length-1].split('.').reverse().join('-')
     this.dateLeft = this.labels[0].split('.').reverse().join('-')
-    this.getAllMonths();
   }
 
 }
