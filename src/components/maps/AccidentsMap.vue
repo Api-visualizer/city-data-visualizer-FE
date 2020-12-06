@@ -105,6 +105,31 @@ export default {
     
       this.mapLayerA = L.heatLayer(false);
       this.mapLayerB = L.heatLayer(false);
+      let legend = this.customLegendControl();
+      legend.addTo(this.map);
+
+      this.mapLayer = L.layerGroup();
+      this.map.addLayer(this.mapLayer)
+    },
+
+    customLegendControl: function () {
+      let legend = L.control({ position: 'topleft' });
+      legend.onAdd = function () {
+        let colors = ['#94f3ff', '#6ff765', '#fffc33', '#dea004', '#bd1806']
+
+        let div = L.DomUtil.create('div', 'info legend'),
+            grades = ['xxxxxxxx',  'xxxxxxxxx','xxxxxxxx', 'xxxxxxx', 'xxxxxxx'];
+        let label = '<div class="mb-4"><strong>Number of accidents </strong></div>'
+        div.innerHTML += label
+
+        for (let i = 0; i < grades.length; i++) {
+          div.innerHTML +=
+              '<h6 class="text-left">' +
+              '<i class ="info" style="background:' + colors[i] +'">' + '</i>' + grades[i] + "</h6><hr/>";
+        }
+        return div;
+      };
+      return legend;
     },
 
     showLayerA: function () {
