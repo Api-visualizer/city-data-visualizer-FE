@@ -16,10 +16,50 @@
             {{ labels[value] }}
           </template>
           <template v-slot:prepend>
-            <div>{{labels[0]}}</div>
+            <v-menu
+              v-model="menuLeft"
+              :close-on-content-click="false"
+            >
+              <template v-slot:activator="{ on, attrs }">
+                <v-text-field
+                  v-model="formatStart"
+                  readonly
+                  solo
+                  v-bind="attrs"
+                  v-on="on"
+                ></v-text-field>
+              </template>
+              <v-date-picker
+                v-model="dateLeft"
+                no-title
+                :allowed-dates="getAllowedDatesLeft"
+                @input="menu = false"
+                @change="newRange()"
+              ></v-date-picker>
+            </v-menu>
           </template>
           <template v-slot:append>
-            <div>{{labels[labels.length-1]}}</div>
+            <v-menu
+              v-model="menuRight"
+              :close-on-content-click="false"
+            >
+              <template v-slot:activator="{ on, attrs }">
+                <v-text-field
+                  v-model="formatEnd"
+                  readonly
+                  solo
+                  v-bind="attrs"
+                  v-on="on"
+                ></v-text-field>
+              </template>
+              <v-date-picker
+                v-model="dateRight"
+                no-title
+                :allowed-dates="getAllowedDatesRight"
+                @input="menu = false"
+                @change="newRange()"
+              ></v-date-picker>
+            </v-menu>
           </template>
         </v-slider>
         <v-select
@@ -43,11 +83,27 @@ export default {
 
   data(){
     return {
+      menuLeft: false, 
+      menuRight: false,
+      allowedDatesLeft: [],
+      allowedDatesRight: [],
+      dateLeft: '',
+      dateRight: '',
       index: 0,
       allDates: [],
       labels: [],
       months: [{id:'0', name:'All'}],
       mId: ''
+    }
+  },
+
+  computed: {
+    formatStart(){
+      return this.dateLeft.split('-').reverse().join('.');
+    },
+
+    formatEnd(){
+      return this.dateRight.split('-').reverse().join('.');
     }
   },
 
@@ -95,14 +151,68 @@ export default {
       let newDate = this.labels[0]
       console.log(newDate)
       this.bus.$emit(this.$props.id, newDate);
+    },
+
+    getDatesInRange(start, end) {
+      let s = start.split('-').join('');
+      let e = end.split('-').join('');
+
+      let temp = this.allDates.filter(function(date) {
+        return date.split('.').reverse().join('') >= s
+      })
+      temp = temp.filter(function(date) {
+        return date.split('.').reverse().join('') <= e
+      })
+      return temp
+    },
+
+    newRange: function () {
+      this.labels = this.getDatesInRange(this.dateLeft, this.dateRight)
+      let left = this.getDatesInRange(this.allDates[0].split('.').reverse().join('-'), this.dateRight)
+      this.allowedDatesLeft = this.getreverseLabels(left)
+      console.log(this.allowedDatesLeft)
+      let right = this.getDatesInRange(this.dateLeft, this.allDates[this.allDates.length-1].split('.').reverse().join('-'))
+      this.allowedDatesRight = this.getreverseLabels(right)
+      this.index = 0
+      let newDate = this.labels[0]
+      this.bus.$emit(this.$props.id, newDate);
+    },
+
+    getAllowedDatesLeft (val) {
+        if (this.allowedDatesLeft.indexOf(val) !== -1 && this.allowedDatesLeft.indexOf(val) < this.allowedDatesLeft.length-1) {
+          return true
+        } else {
+          return false
+        }
+    },
+
+    getAllowedDatesRight (val) {
+        if (this.allowedDatesRight.indexOf(val) !== -1 && this.allowedDatesRight.indexOf(val) > 0) {
+          return true
+        } else {
+          return false
+        }
+    },
+
+    getreverseLabels: function(data) {
+      let temp = []
+      data.forEach(function(el) {
+        temp.push(el.split('.').reverse().join('-'))
+      })
+      return temp
     }
+
   },
 
   mounted() {
     this.index = this.startIndex;
     this.allDates = this.ticksLabels;
     this.labels = this.ticksLabels;
-    this.getAllMonths()
+    this.allowedDatesLeft = this.getreverseLabels(this.labels);
+    this.allowedDatesRight = this.getreverseLabels(this.labels);
+    this.dateRight = this.labels[this.labels.length-1].split('.').reverse().join('-')
+    this.dateLeft = this.labels[0].split('.').reverse().join('-')
+    this.getAllMonths();
   }
 
 }

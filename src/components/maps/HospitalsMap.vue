@@ -87,7 +87,7 @@ export default {
       this.dataResult = [];
       fetch(GeneralClasses.GETAPIberlinHospitals())
         .then(response => response.json())
-        .then(data => {          
+        .then(data => {         
           data[0].forEach(d => this.dataResult.push(d));
           this.getDataOfSpecificDateToDisplay();
           this.setSliderTicks(data);
@@ -188,7 +188,6 @@ export default {
         b = b.split('.').reverse().join('');
         return a > b ? 1 : a < b ? -1 : 0;
       });
-      this.ticksLabels = this.ticksLabels.slice(this.ticksLabels.length-14);
       this.sliderStartIndex = this.ticksLabels.length-1
     },
   },
