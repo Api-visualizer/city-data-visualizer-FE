@@ -3,14 +3,23 @@
     <div id="accidentsMapContainer"></div>
     <ul id="choice">
       <li>
-        <input type="radio" id="shop" name="map" value="1" v-on:change="showLayerA()" checked>
+        <input type="radio" id="shop" name="map" value="2018" v-model="year" v-on:change="getDataOnChange(2018,accidentType)" checked>
         <label for="shop">2018</label>
       </li>
       <li>
-        <input type="radio" id="two" name="map" value="2" v-on:change="showLayerB()">
+        <input type="radio" id="two" name="map" value="2019" v-model="year" v-on:change="getDataOnChange(2019,accidentType)">
         <label for="shop">2019</label>
       </li>
     </ul>
+  <!-- </div> -->
+    <v-app>
+      <v-flex xs12 sm6 d-flex>
+        <v-select
+          :items="accidentTypes" v-model="accidentType" :dense="true" :menu-props="{ maxHeight: '150px'}"
+          label="Select an accident type" v-on:change="getDataOnChange(year,accidentType)">
+        </v-select>
+      </v-flex>
+    </v-app>
   </div>
 </template>
 
@@ -32,15 +41,32 @@ export default {
       marker: icon({
         iconUrl: "/images/marker-icon.png",
       }),
-      value: 0,
+      year: 2018,
       map: {},
+      filteredMapLayer: {},
       mapLayerA: {},
       mapLayerB: {},
       dataResult: [],
+      accidentTypes: ["All","Car", "Bike", "Motorcycle", "Truck", "Pedestrian", "Other"],
+      accidentType: 'All'
     };
   },
 
   methods: {
+    getDataOnChange: function(year, type) {
+      if(type == "All" && year == 2018) {
+        this.showLayerA();
+      } else if (type == "All" && year == 2019) {
+        this.showLayerB();
+      } else {
+        return fetch("https://cdv-backend.api.datexis.com/api/v1/berlin-accidents?year="+year+"&type="+type.toLowerCase())
+        .then(response => response.json())
+        .then(data => {
+          this.createLayer(data);
+        })
+      }
+    },
+
     init: function () {
       return fetch(GeneralClasses.GETAPIberlinaccidents())
       .then(response => response.json())
@@ -54,6 +80,23 @@ export default {
       })
     },
 
+    createLayer: function (data) {
+      let LL = []
+
+      let count = 0
+      for ( let acc of data){
+        acc[1].lat
+        count++
+      }
+      for (var i = 0; i < count; i++){
+        let lat = data[i][1].lat.replace(/,/g, '.')
+        let long = data[i][1].long.replace(/,/g, '.')
+        LL.push(L.latLng(lat, long));
+      }
+      this.filteredMapLayer.setLatLngs(LL); 
+      this.filteredMapLayer.addTo(this.map)
+      this.showLayer();
+    },
     createLayerA: function (data) {
       let LL = []
 
@@ -82,7 +125,6 @@ export default {
       }
 
       for (var i = 0; i < count; i++){
-        console.log(data[0][1].accidents[i])
         let lat = data[0][1].accidents[i].lat.replace(/,/g, '.')
         let long = data[0][1].accidents[i].long.replace(/,/g, '.')
         LL.push(L.latLng(lat, long));
@@ -106,6 +148,7 @@ export default {
     
       this.mapLayerA = L.heatLayer(false);
       this.mapLayerB = L.heatLayer(false);
+      this.filteredMapLayer = L.heatLayer(false);
       let legend = this.customLegendControl();
       legend.addTo(this.map);
 
@@ -131,6 +174,12 @@ export default {
         return div;
       };
       return legend;
+    },
+
+    showLayer: function() {
+      if(this.map.hasLayer(this.mapLayerB)) { this.map.removeLayer(this.mapLayerB)}
+      if(this.map.hasLayer(this.mapLayerA)) { this.map.removeLayer(this.mapLayerA)}
+      this.filteredMapLayer.addTo(this.map);
     },
 
     showLayerA: function () {
