@@ -3,10 +3,8 @@
     <div v-if="isNotHomeView()">
       <Header />
     </div>
-    <div>
       <router-view />
-    </div>
-    <Footer />
+      <Footer />
   </div>
 </template>
 
