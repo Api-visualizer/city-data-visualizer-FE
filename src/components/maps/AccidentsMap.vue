@@ -7,11 +7,11 @@
             <ul id="choice">
               <li>
                 <input type="radio" id="shop" name="map" value="2018" v-model="year" v-on:change="getDataOnChange(2018,accidentType)" checked>
-                <label for="shop">2018</label>
+                <label class="label" for="shop">2018</label>
               </li>
               <li>
                 <input type="radio" id="two" name="map" value="2019" v-model="year" v-on:change="getDataOnChange(2019,accidentType)">
-                <label for="shop">2019</label>
+                <label class="label"  for="shop">2019</label>
               </li>
             </ul>
           </div>
@@ -210,10 +210,10 @@ export default {
 /deep/ .v-application--wrap {
   min-height: 0vh !important;
   width: 30%;
-  margin-top: 0.5rem;
+  margin-top: 0rem;
 }
 .row {
-  height: 5rem;
+  height: 4rem;
 }
 
 #container {
@@ -230,7 +230,7 @@ export default {
 
 #choice {
   font-size: 1.2em;
-  margin-top: 1.4rem;
+  margin-top: 0.7rem;
 }
 
 li {
@@ -241,5 +241,8 @@ li {
 li>input {
   width: 20px;
   height: 20px;
+}
+label {
+  margin-left: 0.6rem;
 }
 </style>
