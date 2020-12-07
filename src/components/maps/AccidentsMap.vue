@@ -1,25 +1,31 @@
 <template>
   <div id="container">
     <div id="accidentsMapContainer"></div>
-    <ul id="choice">
-      <li>
-        <input type="radio" id="shop" name="map" value="2018" v-model="year" v-on:change="getDataOnChange(2018,accidentType)" checked>
-        <label for="shop">2018</label>
-      </li>
-      <li>
-        <input type="radio" id="two" name="map" value="2019" v-model="year" v-on:change="getDataOnChange(2019,accidentType)">
-        <label for="shop">2019</label>
-      </li>
-    </ul>
+      <div class="container">
+        <div class="row">
+          <div class="col-7">
+            <ul id="choice">
+              <li>
+                <input type="radio" id="shop" name="map" value="2018" v-model="year" v-on:change="getDataOnChange(2018,accidentType)" checked>
+                <label for="shop">2018</label>
+              </li>
+              <li>
+                <input type="radio" id="two" name="map" value="2019" v-model="year" v-on:change="getDataOnChange(2019,accidentType)">
+                <label for="shop">2019</label>
+              </li>
+            </ul>
+          </div>
   <!-- </div> -->
-    <v-app>
-      <v-flex xs12 sm6 d-flex>
-        <v-select
-          :items="accidentTypes" v-model="accidentType" :dense="true" :menu-props="{ maxHeight: '150px'}"
-          label="Select an accident type" v-on:change="getDataOnChange(year,accidentType)">
-        </v-select>
-      </v-flex>
-    </v-app>
+            <v-app>
+              <div class="col-7">
+                <v-select
+                  :items="accidentTypes" v-model="accidentType" :dense="true" :menu-props="{ maxHeight: '150px'}"
+                  label="Select an accident type" v-on:change="getDataOnChange(year,accidentType)">
+                </v-select>
+              </div>
+            </v-app>
+        </div>
+      </div>
   </div>
 </template>
 
@@ -201,29 +207,39 @@ export default {
 </script>
 
 <style scoped>
+/deep/ .v-application--wrap {
+  min-height: 0vh !important;
+  width: 30%;
+  margin-top: 0.5rem;
+}
+.row {
+  height: 5rem;
+}
+
 #container {
   justify-content: center;
   align-items: center;
   width: 100%;
-  max-height: 90%;
+  max-height: 80%;
 }
 
 #accidentsMapContainer {
   width: 100vw;
-  height: 80vh;
+  height: 75vh;
 }
 
 #choice {
-  font-size: 1.4em;
-  margin-top: 1rem;
+  font-size: 1.2em;
+  margin-top: 1.4rem;
 }
 
 li {
   display: inline;
+  margin-right: 2vw;
 }
 
 li>input {
-  width: 40px;
-  height: 40px;
+  width: 20px;
+  height: 20px;
 }
 </style>
