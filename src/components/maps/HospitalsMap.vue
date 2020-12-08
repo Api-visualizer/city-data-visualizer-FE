@@ -174,7 +174,7 @@ export default {
     customLegendControl: function () {
       let legend = L.control({ position: 'topleft' });
       legend.onAdd = function () {
-        let colors = ['#008000', '#ffa500', '#FF0000', '#808080']
+        let colors = ['#4fbe53', '#ff8146', '#ff4649', '#a2a2a2']
 
         let div = L.DomUtil.create('div', 'info legend'),
             grades = ['Capacities',  'Limited','No capacities', 'Not specified'];
