@@ -4,6 +4,16 @@
       <div id="mapContainer"></div>
     </div>
     <Timeslider v-if='sliderStartIndex' :id='this.busKey' :startIndex=this.sliderStartIndex :ticksLabels=this.ticksLabels :value=value />
+    <div class="col m-2">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">COVID-19</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Case numbers per district</h6>
+          <p class="card text p-2">This regional choropleth map is divided by Berlin’s large administrative districts, enabling you to see infection rates per 100 000 inhabitants for each separate area. As governmental policies hinge upon the regional incidence, this map is updated daily to support you in getting an idea of the risk of infection in your respective area, as well as in anticipating and understanding future regulations.
+          <br><br>Infection ranges are color coded according to the key on the right, allowing you to get an idea of city-wide infection rates at just a glance. Additionally, you can choose which month to display in a drop down menu and pick specific dates in the time slider at the bottom, making it easy to examine the chronological development of COVID-19 infections in Berlin. Hovering over each district will give you exact numbers regarding cases, deaths, recoveries and incidence.</p>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 

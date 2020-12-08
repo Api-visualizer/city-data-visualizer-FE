@@ -26,6 +26,18 @@
             </v-app>
         </div>
       </div>
+    <div class="col m-2">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Traffic Safety</h5>
+          <h6 class="card-subtitle mb-2 text-muted">City-Wide Accident Locations</h6>
+          <p class="card text p-2">
+            This heat map offers a bird’s eye view of Berlin’s accident hot spots. As indicated in the key to the left, the annual number of accidents is displayed on a smooth and continuous spectrum of color, making it accurate and easy to comprehend.
+            <br><br>By zooming in, you can determine whether a particular street or crossing is safe to use or on the more dangerous side, which may help in choosing your daily routes, be it for runs or for commutes. Depending on your preferred mode of transportation, you can choose to only display accidents for cars, motorcycles, trucks, pedestrians or other, and even compare accident rates per year.
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -99,7 +111,7 @@ export default {
         let long = data[i][1].long.replace(/,/g, '.')
         LL.push(L.latLng(lat, long));
       }
-      this.filteredMapLayer.setLatLngs(LL); 
+      this.filteredMapLayer.setLatLngs(LL);
       this.filteredMapLayer.addTo(this.map)
       this.showLayer();
     },
@@ -117,7 +129,7 @@ export default {
         let long = data[0][0].accidents[i].long.replace(/,/g, '.')
         LL.push(L.latLng(lat, long));
       }
-      this.mapLayerA.setLatLngs(LL); 
+      this.mapLayerA.setLatLngs(LL);
       this.mapLayerA.addTo(this.map)
     },
 
@@ -134,7 +146,7 @@ export default {
         let lat = data[0][1].accidents[i].lat.replace(/,/g, '.')
         let long = data[0][1].accidents[i].long.replace(/,/g, '.')
         LL.push(L.latLng(lat, long));
-      } 
+      }
       this.mapLayerB.setLatLngs(LL);
     },
 
@@ -151,7 +163,7 @@ export default {
         attribution:
           '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
       }).addTo(this.map);
-    
+
       this.mapLayerA = L.heatLayer(false);
       this.mapLayerB = L.heatLayer(false);
       this.filteredMapLayer = L.heatLayer(false);
@@ -201,7 +213,7 @@ export default {
 
   mounted() {
     this.setupLeafletMap();
-    this.init();      
+    this.init();
   },
 };
 </script>

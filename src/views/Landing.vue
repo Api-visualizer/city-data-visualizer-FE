@@ -47,9 +47,22 @@
           <div class="col-sm-6 d-flex align-items-stretch">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">Covid-19</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Charts/Graphs</h6>
-                <p class="card-text">Various charts and graphs allow you to get a deep understanding on the development of the COVID-19 virus.</p>
+                <h5 class="card-title">COVID-19</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Case numbers per district</h6>
+                <p class="card-text">This regional map lets you easily examine total and daily case numbers per district.</p>
+              </div>
+              <div class="card-footer">
+                <a class="btn btn-primary" href="/main/infections" role="button">Here</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-6 d-flex align-items-stretch">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">COVID-19</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Case numbers per age group</h6>
+                <p class="card-text">Corresponding charts and tables allow you to get a deeper understanding of the development of the COVID-19 virus in Berlin.</p>
               </div>
               <div class="card-footer">
                 <a class="btn btn-primary" href="/main/covid-graphs" role="button">Here</a>
@@ -57,27 +70,29 @@
             </div>
           </div>
 
-          <div class="col-sm-6 d-flex align-items-stretch">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Infections</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Heatmap</h6>
-                <p class="card-text">The Heatmap can give you a quick overview of the actual numbers of infections per district.</p>
-              </div>
-              <div class="card-footer">
-                <a class="btn btn-primary" href="/main/infections" role="button">Here</a>
-              </div>
-            </div>
-          </div>
         </div>
 
         <div class="row">
+
           <div class="col-sm-6 d-flex align-items-stretch">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">Accidents</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Heatmap</h6>
-                <p class="card-text">The Heatmap gives you an overview of dangerous crossroads in Berlin. Stay safe!</p>
+                <h5 class="card-title">COVID-19</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Hospital Capacities</h6>
+                <p class="card-text">This map shows hospital locations and capacities during COVID-19 in Berlin. </p>
+              </div>
+              <div class="card-footer">
+                <a class="btn btn-primary" href="/main/hospitals" role="button">Here</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-6 d-flex align-items-stretch">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Traffic Safety</h5>
+                <h6 class="card-subtitle mb-2 text-muted">City-wide Accident Locations</h6>
+                <p class="card-text">This heat map gives you an overview of dangerous crossroads in Berlin. Stay safe!</p>
               </div>
               <div class="card-footer">
                 <a class="btn btn-primary" href="/main/accidents" role="button">Here</a>
@@ -85,18 +100,6 @@
             </div>
           </div>
 
-          <div class="col-sm-6 d-flex align-items-stretch">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Hospitals</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Map</h6>
-                <p class="card-text">The map shows hospitals and their capacities during covid19 in berlin. </p>
-              </div>
-              <div class="card-footer">
-                <a class="btn btn-primary" href="/main/hospitals" role="button">Here</a>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
 

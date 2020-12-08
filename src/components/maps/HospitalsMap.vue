@@ -4,6 +4,18 @@
       <div id="hospitalMapContainer"></div>
     </div>
     <Timeslider v-if='sliderStartIndex' :id='this.busKey' :startIndex=this.sliderStartIndex :ticksLabels=this.ticksLabels :value=value />
+    <div class="col m-2">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">COVID-19</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Hospital Capacities</h6>
+          <p class="card text p-2">
+            This map displays all hospitals in Berlin as location markers on a map divided by administrative districts. Adhering to the key on the left side, each hospital is color coded to reflect its current capacity on a daily basis. As with the COVID-19 infection map, the time slider at the bottom allows you to choose which months and days to display.
+            <br><br>As COVID-19 cases are rising and hospitals are beginning to reach the limits of their capacity, this is a valuable resource to assess our position in the current pandemic and to understand the basis of policy changes.
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -87,7 +99,7 @@ export default {
       this.dataResult = [];
       fetch(GeneralClasses.GETAPIberlinHospitals())
         .then(response => response.json())
-        .then(data => {         
+        .then(data => {
           data[0].forEach(d => this.dataResult.push(d));
           this.getDataOfSpecificDateToDisplay();
           this.setSliderTicks(data);
@@ -182,7 +194,7 @@ export default {
     setSliderTicks: function (data) {
       console.log(data)
       data[0].forEach((d) => this.ticksLabels.push(d.date));
-      
+
       this.ticksLabels.sort(function(a,b) {
         a = a.split('.').reverse().join('');
         b = b.split('.').reverse().join('');
