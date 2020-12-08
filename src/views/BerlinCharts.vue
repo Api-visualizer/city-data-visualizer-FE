@@ -23,12 +23,12 @@
         </div> -->
       </div>
       <div class="col m-2">
-          <div class="card mr-4">
+          <div class="card">
             <div class="card-body">
               <h5 class="card-title">COVID-19</h5>
-              <h6 class="card-subtitle mb-2 text-muted">Case numbers by age group</h6>
-              <p class="card-text">Here you can easily determine the current distribution of COVID-19 cases in Berlin by age group. Age ranges are listed in the first and the corresponding number of COVID-19 cases in the second column. The third column shows you the difference in case numbers compared to the previous day, while the fourth column calculates the cumulative incidence per 100 000 inhabitants, which, among other things, is used to determine the current risk of infection as well as subsequent governmental policies.</p>
-              <p class="card-text"> The column chart makes the relative distribution of cases per age range even more transparent, revealing a fairly steady rise of cases peaking at ages 30-39 and dropping again towards the oldest and most vulnerable age groups.</p>
+              <h6 class="card-subtitle mb-2 text-muted">Case numbers per age group</h6>
+              <p class="card-text">Here you can easily determine the current distribution of COVID-19 cases in Berlin by age group. Age ranges are listed in the first and the corresponding number of COVID-19 cases in the second column. The third column shows you the difference in case numbers compared to the previous day, while the fourth column calculates the cumulative incidence per 100 000 inhabitants, which, among other things, is used to determine the current risk of infection as well as subsequent governmental policies.
+              <br><br>The column chart makes the relative distribution of cases per age range even more transparent, revealing a fairly steady rise of cases peaking at ages 30-39 and dropping again towards the oldest and most vulnerable age groups.</p>
             </div>
           </div>
       </div>
