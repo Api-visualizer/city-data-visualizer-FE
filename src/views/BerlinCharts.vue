@@ -41,23 +41,22 @@ import "leaflet/dist/leaflet.css";
 
 export default {
   name: "BerlinCharts",
-  
+
   props: {},
-  
+
   data () {
     return {
-      data_table_data: [],      
+      data_table_data: [],
       headers: [
         {
           align: 'start',
           sortable: false,
           value: 'data',
         },
-        { text: 'ID', value: 'id' },
-        { text: 'Altersgruppe', value: 'altersgruppe' },
-        { text: 'Fallzahl', value: 'fallzahl' },
-        { text: 'Differenz', value: 'differenz' },
-        { text: 'Inzidenz', value: 'inzidenz' },
+        { text: 'Age Group', value: 'altersgruppe' },
+        { text: 'Number of Cases', value: 'fallzahl' },
+        { text: 'Difference', value: 'differenz' },
+        { text: 'Incidence', value: 'inzidenz' },
       ],
       options: {
         chart: {
@@ -103,7 +102,7 @@ export default {
             if (dat['altersgruppe'] === ' 90+') {
               value = value + temp
               temp = 0
-              chart_data.push(value)              
+              chart_data.push(value)
             }
             chart_data.push(value)
           }
