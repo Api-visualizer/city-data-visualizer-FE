@@ -52,24 +52,24 @@ export default {
   computed: {
     redIcon() {
       return L.icon({
-        iconUrl: 'https://b.kisscc0.com/20180705/qoq/kisscc0-google-maps-pin-google-map-maker-computer-icons-map-pin-2-5b3dc69162bb64.0320443815307751854044.png',
-        iconSize:     [30, 44], // size of the icon
+        iconUrl: '/images/PIN-Red.png',
+        iconSize:     [30, 50], // size of the icon
         iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
         popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
       });
     },
     greenIcon () {
       return L.icon({
-        iconUrl: 'https://apprecs.org/gp/images/app-icons/300/8c/com.exlyo.mapmarker.jpg',
-        iconSize:     [60, 60], // size of the icon
+        iconUrl: '/images/PIN-Green.png',
+        iconSize:     [30, 50], // size of the icon
         iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
         popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
       });
     },
     orangeIcon () {
       return L.icon({
-        iconUrl: 'https://www.clker.com/cliparts/L/p/r/a/y/C/google-maps-marker-for-residencelamontagne.svg.hi.png',
-        iconSize:     [33, 45], // size of the icon
+        iconUrl: '/images/PIN-Orange.png',
+        iconSize:     [30, 50], // size of the icon
         iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
         popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
       });
