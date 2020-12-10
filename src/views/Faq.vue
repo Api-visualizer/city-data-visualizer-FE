@@ -1,13 +1,15 @@
 <template>
   <div>
-    <div class="container-fluid">
+     <div class="container-fluid border-bottom border-info" style="border-width: 5px !important;">
       <div class="row">
         <div class="col">
-          <h1 class="title display-4">Berlin</h1>
+          <div class="title display-4 pl-5 pr-5 pt-2 pb-2 bg-light text-dark rounded-pill" style="opacity: 0.9">
+            <span>Berlin</span>
+          </div>
           <img src="/images/berlin4.jpg" class="w-100 headerimage" alt="Berlin" />
         </div>
       </div>
-    </div>
+    </div>  
 
     <div class="jumbotron">
       <h2 class="display-4">FAQ</h2>
@@ -54,7 +56,27 @@ export default {
 </script>
 
 <style scoped>
+.container-fluid .col {
+  margin: 0;
+  padding: 0;
+}
 
+.headerimage {
+  max-height: 15rem;
+  object-fit: cover;
+}
+
+.title {
+  z-index: 1;
+  position: absolute;
+  left: 50%;
+  top: 7.5rem;
+  color: white;
+  transform: translate(-50%, -50%);
+}
+.display-4 {
+  font-weight: bold;
+}
 .container-fluid {
   padding: 0;
 }
