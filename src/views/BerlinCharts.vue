@@ -97,24 +97,26 @@ export default {
             delete data[dat]
           } else {
             value = parseInt(dat['fallzahl'])
-
             if (dat['altersgruppe'] === ' 0-4') {
               temp = value
+              delete data[value]
             }
             if (dat['altersgruppe'] === ' 5-9') {
               value = value + temp
               temp = 0
-              chart_data.push(value)
+              delete data[dat]
             }
             if (dat['altersgruppe'] === ' 80-89') {
               temp = value
+              delete data[dat]
             }
             if (dat['altersgruppe'] === ' 90+') {
               value = value + temp
               temp = 0
-              chart_data.push(value)
+              delete data[dat]
             }
             chart_data.push(value)
+            console.log(chart_data)
           }
         }
         this.data_table_data = data
