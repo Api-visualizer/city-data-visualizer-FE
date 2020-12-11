@@ -105,8 +105,33 @@
 
       <div class="jumbotron">
         <h2 class="display-4">FAQ</h2>
-        <p class="lead pt-4" style="padding-bottom: 24px;">We have listed frequently asked questions under the FAQ section. If you cannot find the answer of your question there you may fill out the contact form. Please refer to the FAQ beforehand.</p>
+        <p class="lead pt-4" style="padding-bottom: 24px;">We have listed frequently asked questions under the FAQ section. If you cannot find an proper answer to your question, use the form below to propose your request. We kindly ask you to refer the FAQ beforehand.</p>
         <a class="btn btn-primary" href="/faq" role="button">Here</a>
+      </div>
+
+      <div class="jumbotron">
+        <h2 class="display-4">Contact</h2>
+        <form class="form text-left">
+          <div class="row">
+            <div class="col">
+              <label for="first_name">First Name</label>
+              <input type="text" id="first_name" class="form-control" placeholder="" required>
+            </div>
+            <div class="col">
+              <label for="last_name">Last Name</label>
+              <input type="text" id="last_name" class="form-control" placeholder="" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email_field">Email address</label>
+            <input type="email" class="form-control" id="email_field" placeholder="" required>
+          </div>
+          <div class="form-group">
+            <label for="message_field">Message</label>
+            <textarea class="form-control" id="message_field" rows="3" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Send</button>
+        </form>
       </div>
 
     </div>
@@ -194,5 +219,14 @@ svg {
   0%   {top: 0px;}
   50%  {top: 5px;}
   100% {top: 0px;}
+}
+
+
+.form {
+  padding: 0 20% 0 20%;
+}
+
+.form .row {
+  padding: 0px;
 }
 </style>
