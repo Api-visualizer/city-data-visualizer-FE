@@ -165,7 +165,7 @@ export default {
         center: [52.52, 13.405],
         zoom: 11,
         maxZoom: 13,
-        minZoom: 11
+        minZoom: 10
       });
 
       let map = this.map;
