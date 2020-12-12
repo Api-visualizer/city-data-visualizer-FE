@@ -108,26 +108,26 @@
 
       <div class="jumbotron">
         <h2 class="display-4">Contact</h2>
-        <form class="form text-left">
+        <form name="contact_form" class="form text-left" @submit="sendForm" method="post">
           <div class="row">
             <div class="col">
               <label for="first_name">First Name</label>
-              <input type="text" id="first_name" class="form-control" placeholder="" required>
+              <input type="text" id="first_name" class="form-control" value="John" required>
             </div>
             <div class="col">
               <label for="last_name">Last Name</label>
-              <input type="text" id="last_name" class="form-control" placeholder="" required>
+              <input type="text" id="last_name" class="form-control" value="Doe" required>
             </div>
           </div>
           <div class="form-group">
             <label for="email_field">Email address</label>
-            <input type="email" class="form-control" id="email_field" placeholder="" required>
+            <input type="email" class="form-control" id="email_field" value="john@doe.org" required>
           </div>
           <div class="form-group">
             <label for="message_field">Message</label>
-            <textarea class="form-control" id="message_field" rows="3" required></textarea>
+            <textarea class="form-control" id="message_field" rows="3" value="Hello!" required></textarea>
           </div>
-          <button type="submit" class="btn btn-primary">Send</button>
+            <button type="submit" class="btn btn-primary">Send</button>
         </form>
       </div>
 
@@ -147,10 +147,44 @@ export default {
     return {};
   },
 
-  methods: {},
+  methods: {
+    sendForm:function(e) {
+      e.preventDefault();
+      // let first_name = document.forms["contact_form"]["first_name"].value;
+      const form_data = document.forms["contact_form"];
+      const first_name = form_data['first_name'].value;
+      const last_name = form_data['last_name'].value;
+      const user_mail = form_data['email_field'].value;
+      const message = form_data['message_field'].value;
+      const data_json = {subject: "NEW: City Data Visualizer", first_name, last_name, user_mail, message};
+      console.log(JSON.stringify(data_json));
+
+      const XHR = new XMLHttpRequest();
+      const URL = 'http://cl-svc-250.ris.beuth-hochschule.de:5000/mail'
+
+      
+      
+      // send data
+      XHR.open('POST', URL);
+      // XHR.addEventListener( 'load', function(event) {
+      //   alert( 'Yeah! Data sent and response loaded.' );
+      //   console.log(event);
+      // } );
+
+      XHR.setRequestHeader('Content-Type', 'application/json');
+
+      // cors
+      // XHR.setRequestHeader("Access-Control-Allow-Origin", "*");
+      // XHR.setRequestHeader("Access-Control-Allow-Headers", "*");
+      // XHR.setRequestHeader("Access-Control-Allow-Credentials", "true");
+      XHR.send(JSON.stringify(data_json));
+      console.log(XHR.getResponseHeader("Content-Type"));
+    }
+  },
 
   mounted() {},
 };
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
