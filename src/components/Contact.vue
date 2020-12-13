@@ -67,7 +67,7 @@ export default {
       console.log(JSON.stringify(data_json));
 
       const XHR = new XMLHttpRequest();
-      const URL = 'http://cl-svc-250.ris.beuth-hochschule.de:5000/mail'
+      const URL = 'https://cdv-mail.api.datexis.com/mail'
 
       // send data
       XHR.open('POST', URL);
