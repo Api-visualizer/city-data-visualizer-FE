@@ -26,8 +26,8 @@
         </div>
         <div class="col-9">
           <div class="d-inline-flex">
-            <i class="iconify fail align-content-end" data-icon="mdi:exclamation-thick" />
-            <p class="notsent">Oops. Something went wrong. Please contact us directly or try again.</p>
+            <i v-if="sent === false" class="iconify fail align-content-end" data-icon="mdi:exclamation-thick" />
+            <p v-if="sent === false" class="notsent">Oops. Something went wrong. Please contact us directly or try again.</p>
           </div>
           <div class="d-inline-flex align-content-end">
             <i v-if="sent === true" class="iconify success" data-icon="mdi:check" />
