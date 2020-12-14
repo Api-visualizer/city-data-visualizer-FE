@@ -97,33 +97,38 @@ export default {
         let value = 0;
         let temp = 0;
         for (let dat of data) {
+          /*  Received data is not formatted properly,
+              which is where ' Summe', ' 0-4' etc. originate from.
+              Please refer to covid age json file in CouchDB for API specification.
+          */
           if (dat['altersgruppe'] === ' Summe') {
             delete data[dat];
           } else {
-            value = parseInt(dat['fallzahl']);
-
+            value = parseInt(dat['fallzahl'])
             if (dat['altersgruppe'] === ' 0-4') {
-              temp = value;
+              temp = value
+              chart_data.pop()
             }
             if (dat['altersgruppe'] === ' 5-9') {
-              value = value + temp;
-              temp = 0;
-              chart_data.push(value);
+              value = value + temp
+              temp = 0
+              chart_data.pop()
             }
             if (dat['altersgruppe'] === ' 80-89') {
               temp = value;
             }
             if (dat['altersgruppe'] === ' 90+') {
-              value = value + temp;
-              temp = 0;
-              chart_data.push(value);
+              value = value + temp
+              temp = 0
+              chart_data.pop()
             }
-            chart_data.push(value);
+            chart_data.push(value)
+            console.log(chart_data)
           }
+          this.data_table_data = data
+          this.updateChart(chart_data)
         }
-        this.data_table_data = data;
-        this.updateChart(chart_data);
-      });
+      })
     },
 
     updateChart(chart_data) {
