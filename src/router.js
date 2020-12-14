@@ -10,6 +10,7 @@ import AccidentsMap from '@/components/maps/AccidentsMap';
 import HospitalsMap from '@/components/maps/HospitalsMap';
 import CovidMap from '@/components/maps/CovidMap';
 import BerlinCharts from '@/views/BerlinCharts';
+import CancerCasesBarchart from '@/components/charts/CancerCasesBarchart' 
 
 
 const routes = [
@@ -22,6 +23,7 @@ const routes = [
     { path: '/main/accidents', component: AccidentsMap },
     { path: '/main/hospitals', component: HospitalsMap },
     { path: '/team', component: Team },
+    { path: '/main/cancer', component: CancerCasesBarchart }
 ];
 
 const router = new VueRouter({

@@ -99,14 +99,30 @@
               </div>
             </div>
           </div>
+          <div class="col-sm-6 d-flex align-items-stretch">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Cancer </h5>
+                <h6 class="card-subtitle mb-2 text-muted">Case numbers per age group </h6>
+                <p class="card-text">Corresponding chart allows you to get a deeper understanding how the number of Cancer patients per year, age and gendre differentiates in Berlin.</p>
+              </div>
+              <div class="card-footer">
+                <a class="btn btn-primary" href="/main/cancer" role="button">Here</a>
+              </div>
+            </div>
+          </div>
 
         </div>
       </div>
 
       <div class="jumbotron">
         <h2 class="display-4">FAQ</h2>
-        <p class="lead pt-4" style="padding-bottom: 24px;">We have listed frequently asked questions under the FAQ section. If you cannot find the answer of your question there you may fill out the contact form. Please refer to the FAQ beforehand.</p>
+        <p class="lead pt-4" style="padding-bottom: 24px;">We have listed frequently asked questions under the FAQ section. If you cannot find an proper answer to your question, use the form below to propose your request. We kindly ask you to refer the FAQ beforehand.</p>
         <a class="btn btn-primary" href="/faq" role="button">Here</a>
+      </div>
+
+      <div class="jumbotron">
+       <Contact />
       </div>
 
     </div>
@@ -114,21 +130,22 @@
 </template>
 
 <script>
+import Contact from "@/components/Contact";
+
 export default {
   name: "Landing",
 
   props: {},
 
-  components: {},
+  components: {Contact},
 
   data() {
     return {};
   },
 
-  methods: {},
-
   mounted() {},
 };
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -195,4 +212,6 @@ svg {
   50%  {top: 5px;}
   100% {top: 0px;}
 }
+
+
 </style>

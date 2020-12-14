@@ -1,39 +1,42 @@
 <template>
   <div>
-    <div class="container-fluid">
+     <div class="container-fluid border-bottom border-info" style="border-width: 5px !important;">
       <div class="row">
         <div class="col">
-          <h1 class="title display-4">Berlin</h1>
+          <div class="title display-4 pl-5 pr-5 pt-2 pb-2 bg-light text-dark rounded-pill" style="opacity: 0.9">
+            <span>Berlin</span>
+            <br />
+            <span><h4>Covid-19 Graphs</h4></span>
+          </div>
           <img src="/images/berlin4.jpg" class="w-100 headerimage" alt="Berlin" />
         </div>
       </div>
     </div>
     <div class="container-fluid">
-    <div class="row">
-      <div class="col m-2">
-        <v-data-table :headers=this.headers :items=this.data_table_data :items-per-page="15" class="elevation-1"></v-data-table>
-      </div>
-      <div class="col m-2">
-        <apexchart width="800" type="bar" :options="options" :series="series"></apexchart>
-        <!-- <div class="image-div">
+      <div class="row">
+        <div class="col m-2">
+          <v-data-table :headers="this.headers" :items="this.data_table_data" :items-per-page="15" class="elevation-1"></v-data-table>
+        </div>
+        <div class="col m-2">
+          <apexchart width="800" type="bar" :options="options" :series="series"></apexchart>
+          <!-- <div class="image-div">
           <a href="/berlin/karte/corona">
             <img class="image" src="/images/map.png" width="750px" alt="Map" />
             <p>show map</p>
           </a>
         </div> -->
-      </div>
-      <div class="col m-2">
+        </div>
+        <div class="col m-2">
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">COVID-19</h5>
               <h6 class="card-subtitle mb-2 text-muted">Case numbers per age group</h6>
-              <p class="card-text">Here you can easily determine the current distribution of COVID-19 cases in Berlin by age group. Age ranges are listed in the first and the corresponding number of COVID-19 cases in the second column. The third column shows you the difference in case numbers compared to the previous day, while the fourth column calculates the cumulative incidence per 100 000 inhabitants, which, among other things, is used to determine the current risk of infection as well as subsequent governmental policies.
-              <br><br>The column chart makes the relative distribution of cases per age range even more transparent, revealing a fairly steady rise of cases peaking at ages 30-39 and dropping again towards the oldest and most vulnerable age groups.</p>
+              <p class="card-text">Here you can easily determine the current distribution of COVID-19 cases in Berlin by age group. Age ranges are listed in the first and the corresponding number of COVID-19 cases in the second column. The third column shows you the difference in case numbers compared to the previous day, while the fourth column calculates the cumulative incidence per 100 000 inhabitants, which, among other things, is used to determine the current risk of infection as well as subsequent governmental policies. <br /><br />The column chart makes the relative distribution of cases per age range even more transparent, revealing a fairly steady rise of cases peaking at ages 30-39 and dropping again towards the oldest and most vulnerable age groups.</p>
             </div>
           </div>
+        </div>
       </div>
-    </div>
-    <!-- <div class="row">
+      <!-- <div class="row">
       <div class="image-div">
         <a href="/berlin/karte/accidents">
           <img class="image" src="/images/map_accident.PNG" height="80%" alt="Map" />
@@ -41,20 +44,20 @@
         </a>
       </div>
     </div>-->
-  </div>
+    </div>
   </div>
 </template>
 
 <script>
-import GeneralClasses from "../assets/GeneralClasses";
-import "leaflet/dist/leaflet.css";
+import GeneralClasses from '../assets/GeneralClasses';
+import 'leaflet/dist/leaflet.css';
 
 export default {
-  name: "BerlinCharts",
+  name: 'BerlinCharts',
 
   props: {},
 
-  data () {
+  data() {
     return {
       data_table_data: [],
       headers: [
@@ -70,35 +73,36 @@ export default {
       ],
       options: {
         chart: {
-          id: 'vuechart-example'
+          id: 'vuechart-example',
         },
         xaxis: {
-          categories: ['<9', '10-14', '15-19', '20-24', '25-29',
-            '30-39', '40-49', '50-59', '60-69', '70-79', '80+', ' unbekannt'],
-        }
+          categories: ['<9', '10-14', '15-19', '20-24', '25-29', '30-39', '40-49', '50-59', '60-69', '70-79', '80+', ' unbekannt'],
+        },
       },
-      series: [{
-        name: 'number of covid19 cases',
-        data: []
-      }],
-      Type: ''
-    }
+      series: [
+        {
+          name: 'number of covid19 cases',
+          data: [],
+        },
+      ],
+      Type: '',
+    };
   },
 
   methods: {
     APIResult: function () {
       this.$http.get(GeneralClasses.GETAPIberlincovidage()).then((Result) => {
-        let data = Result.data[0][0]['data']
-        let chart_data = []
-        let value = 0
-        let temp = 0
+        let data = Result.data[0][0]['data'];
+        let chart_data = [];
+        let value = 0;
+        let temp = 0;
         for (let dat of data) {
           /*  Received data is not formatted properly,
               which is where ' Summe', ' 0-4' etc. originate from.
               Please refer to covid age json file in CouchDB for API specification.
           */
           if (dat['altersgruppe'] === ' Summe') {
-            delete data[dat]
+            delete data[dat];
           } else {
             value = parseInt(dat['fallzahl'])
             if (dat['altersgruppe'] === ' 0-4') {
@@ -111,7 +115,7 @@ export default {
               chart_data.pop()
             }
             if (dat['altersgruppe'] === ' 80-89') {
-              temp = value
+              temp = value;
             }
             if (dat['altersgruppe'] === ' 90+') {
               value = value + temp
@@ -128,11 +132,13 @@ export default {
     },
 
     updateChart(chart_data) {
-      this.series = [{
-        name: 'number of covid19 cases',
-        data: chart_data
-      }]
-    }
+      this.series = [
+        {
+          name: 'number of covid19 cases',
+          data: chart_data,
+        },
+      ];
+    },
   },
 
   mounted() {
@@ -144,13 +150,12 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
 .container-fluid .col {
   margin: 0;
   padding: 0;
 }
 
-.headerimage{
+.headerimage {
   max-height: 15rem;
   object-fit: cover;
 }
