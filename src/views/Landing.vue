@@ -99,6 +99,18 @@
               </div>
             </div>
           </div>
+          <div class="col-sm-6 d-flex align-items-stretch">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Cancer </h5>
+                <h6 class="card-subtitle mb-2 text-muted">Case numbers per age group </h6>
+                <p class="card-text">Corresponding chart allows you to get a deeper understanding how the number of Cancer patients per year, age and gendre differentiates in Berlin.</p>
+              </div>
+              <div class="card-footer">
+                <a class="btn btn-primary" href="/main/cancer" role="button">Here</a>
+              </div>
+            </div>
+          </div>
 
         </div>
       </div>

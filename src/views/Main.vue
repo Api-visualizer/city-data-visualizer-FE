@@ -6,6 +6,7 @@
     <CovidMap busId="covid" />
     <HospitalsMap busId="hospitals" />
     <AccidentsMap />
+    <CancerCasesBarchart />
   </div>
 </template>
 
@@ -16,6 +17,7 @@ import CovidAgeTable from '@/components/tables/CovidAgeTable';
 import HospitalsMap from '@/components/maps/HospitalsMap'; 
 import AccidentsMap from '@/components/maps/AccidentsMap';
 import CovidMap from '@/components/maps/CovidMap';
+import CancerCasesBarchart from '@/components/charts/CancerCasesBarchart';
 
 export default {
   name: "Main",
@@ -26,7 +28,8 @@ export default {
     CovidAgeTable,
     CovidMap,
     HospitalsMap,
-    AccidentsMap
+    AccidentsMap,
+    CancerCasesBarchart
   },
 
   props: {},
