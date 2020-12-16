@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2 class="display-4">Contact</h2>
+    <h2 class="display-4" id="contact">Contact</h2>
     <form name="contact_form" class="form text-left" @submit="sendForm" method="post">
     <div class="row">
       <div class="col">
