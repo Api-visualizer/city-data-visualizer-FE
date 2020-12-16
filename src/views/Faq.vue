@@ -9,23 +9,38 @@
           <img src="/images/berlin4.jpg" class="w-100 headerimage" alt="Berlin" />
         </div>
       </div>
-    </div>  
+    </div>
 
     <div class="jumbotron">
       <h2 class="display-4">FAQ</h2>
+      <p class="lead pt-4" style="padding-bottom: 24px;">Here you can find the answers to common questions we have received. Use the contact formular on the start page if you have a specific request which is not yet answered.</p>
+    </div>
+
+    <div class="jumbotron">
         <div class="mt-10">
         <v-expansion-panels class="w-75 mt-10 container-fluid ">
           <v-expansion-panel v-for="item in FAQ" :key="item">
             <v-expansion-panel-header class="align-center justify-start pl-5 pr-5">
-                <h5>{{ item.question }}</h5>
+                <p>{{ item.question }}</p>
             </v-expansion-panel-header>
             <v-expansion-panel-content>
-              {{ item.answer }}
-              <a :href="item.link"><ul> see visual information</ul></a>
+              <cite>{{ item.answer }}</cite>
+                <div v-if="item.link">
+                  <a :href="item.link"><ul>Here</ul></a>
+                </div>
             </v-expansion-panel-content>
           </v-expansion-panel>
         </v-expansion-panels>
       </div>
+    </div>
+
+     <div class="jumbotron">
+      <h2 class="display-4">Disclaimer</h2>
+      <p class="lead pt-4" style="padding-bottom: 24px;">This is a students project at the Beuth University of Applied Sciences Berlin.
+        We have created this website in behalf of the bachelor's degree program Media Informatics.
+        The project City Data Visualizer will end in february 2021. 
+        After february the website may be offline or not updated with new data.
+        If you have questions or want to get in touch with the team please use the contact formular on the start page.</p>
     </div>
 
   </div>
@@ -41,10 +56,10 @@ export default {
   
   data () {
     return {
-      FAQ: [{'question': 'I live in Kreuzberg, Berlin. I want to know how...', 'link': '/berlin/charts', 'answer': 'lorem ipsum explaining text. '},
-        {'question': 'I am governing mayor in Berlin. I want to know how...', 'link': '/berlin/karte/corona', 'answer': 'lorem ipsum explaining text. ' },
-        {'question': 'I am scientist living in Berlin and I am interested in predictions in addition to information of current situation in order to give advices', 'link': '/berlin/charts', 'answer': 'lorem ipsum explaining text. '},
-        {'question': 'I would like to know how I can walk to my office in a safe way. Which crossroads are more dangerous than others?', 'link': '/berlin/karte/accidents', 'answer': 'lorem ipsum explaining text. '}]
+      FAQ: [{'question': 'I want to know how many people are currently infected with COVID-19 in my district. ', 'link': 'main/infections', 'answer': 'You will find the answer with the help of our COVID-19 Map.'},
+        {'question': 'As a regular cyclist I am interested to know which streets are dangerous to take and should be avoided.', 'link': '/berlin/karte/corona', 'answer': 'On our Traffic Safety Map select the type "Bike" to see how many cyclists were involved in recent accidents.'},
+        {'question': 'As a scientist I study numbers of COVID-19 infections to find a trend. Are there any computational trends you derive from your numbers?', 'link': '', 'answer': 'We are working on algorithms to make infection trends possible. They will be soon available on this website.'},
+        {'question': 'Do you plan to visualize other public available data in the future?', 'link': '', 'answer': 'This is a students project which will end in february 2021. If the interest is hight, we may go on to continue this project and keep it regularly updated.'}]
     }
   },
   
