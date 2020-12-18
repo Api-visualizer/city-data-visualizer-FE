@@ -92,7 +92,7 @@ export default {
   methods: {
     APIResult: function () {
       this.$http.get(GeneralClasses.GETAPIberlincovidage()).then((Result) => {
-        let data = Result.data[0][0]['data'];
+        let data = Result.data.data[0].doc.data
         let chart_data = [];
         let value = 0;
         let temp = 0;
