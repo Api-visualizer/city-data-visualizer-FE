@@ -101,9 +101,9 @@ export default {
       fetch(GeneralClasses.GETAPIberlinshapesdistrict())
         .then(response => response.json())
         .then((data) => {
-          let districts = data[0];
+          let districts = data.data;
           for (let district of districts) L.geoJSON(district.geometry).addTo(this.map);
-          this.fetchHospitalResults(data);
+          this.fetchHospitalResults();
         })
     },
 
@@ -111,8 +111,9 @@ export default {
       this.dataResult = [];
       fetch(GeneralClasses.GETAPIberlinHospitals())
         .then(response => response.json())
-        .then(data => {
-          data[0].forEach(d => this.dataResult.push(d));
+        .then(dat => {
+          let data = dat.data
+          data.forEach(d => this.dataResult.push(d));
           this.getDataOfSpecificDateToDisplay();
           this.setSliderTicks(data);
         })
@@ -120,13 +121,13 @@ export default {
 
     getDataOfSpecificDateToDisplay: function () {
       let dataOfSpecificDay = [];
-      dataOfSpecificDay = this.dataResult.filter((data) => data.date === this.selectedDayNew);
+      dataOfSpecificDay = this.dataResult.filter((data) => data.doc.date === this.selectedDayNew);
       this.displayDataOfSpecificDate(dataOfSpecificDay);
     },
 
     displayDataOfSpecificDate: function(dataOfSpecificDay) {
       this.mapLayer.clearLayers();
-      let hospitals = dataOfSpecificDay[0].features
+      let hospitals = dataOfSpecificDay[0].doc.features
       for(let hospital of hospitals) {
         let coordinates = hospital.geometry.coordinates
         if(hospital.properties.status.statusHighCare === 'VERFUEGBAR') {
@@ -202,8 +203,7 @@ export default {
     },
 
     setSliderTicks: function (data) {
-      console.log(data)
-      data[0].forEach((d) => this.ticksLabels.push(d.date));
+      data.forEach((d) => this.ticksLabels.push(d.doc.date));
 
       this.ticksLabels.sort(function(a,b) {
         a = a.split('.').reverse().join('');

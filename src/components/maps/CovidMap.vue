@@ -63,7 +63,7 @@ export default {
     fetchGeoShapes: function () {
       fetch(GeneralClasses.GETAPIberlinshapesdistrict())
         .then(response => response.json())
-        .then(data => this.fetchCovidResultsAndFilter(data))
+        .then(data => this.fetchCovidResultsAndFilter(data.data))
     },
 
     fetchCovidResultsAndFilter: function (shapes) {
@@ -72,7 +72,7 @@ export default {
       fetch(GeneralClasses.GETAPIberlincoviddistrict())
         .then(response => response.json())
         .then(data => {
-          data.forEach(d => this.dataResult.push(d));
+          data.data.forEach(d => this.dataResult.push(d));
           shapes.forEach(s => this.shapes.push(s));
           this.getDataOfSpecificDateToDisplay();
         })
@@ -80,19 +80,21 @@ export default {
 
     getDataOfSpecificDateToDisplay: function () {
       let dataOfSpecificDay = [];
-      dataOfSpecificDay = this.dataResult[0].filter((data) => data.date === this.selectedDayNew);
-      this.displayDataOfSpecificDate(dataOfSpecificDay, this.shapes[0]);
+      dataOfSpecificDay = this.dataResult.filter((data) => data.doc.date === this.selectedDayNew);
+      console.log(dataOfSpecificDay)
+      this.displayDataOfSpecificDate(dataOfSpecificDay, this.shapes);
     },
 
     displayDataOfSpecificDate: function(data, shapes) {
       this.mapLayer.clearLayers();
-
-      data[0].data.features.forEach((feature) => {
-        const shape = shapes.filter(shape => shape.district === feature.properties.GEN)[0];
+      data[0].doc.data.features.forEach((feature) => {
+        console.log(feature)
+        const shape = shapes.filter(shape => shape.doc.district === feature.properties.GEN)[0];
         feature.geometry = shape.geometry;
       });
-
-      this.mapLayer.addData(data[0].data)
+      console.log('data')
+      console.log(data[0].doc.data)
+      this.mapLayer.addData(data[0].doc.data.features)
     },
 
     updateProps: function() {
@@ -261,7 +263,7 @@ export default {
       fetch(GeneralClasses.GETAPIberlincoviddistrict())
         .then(response => response.json())
         .then(data => {
-          data[0].forEach((d) => this.ticksLabels.push(d.date));
+          data.data.forEach((d) => this.ticksLabels.push(d.doc.date));
           this.ticksLabels.sort(function(a,b) {
             a = a.split('.').reverse().join('');
             b = b.split('.').reverse().join('');

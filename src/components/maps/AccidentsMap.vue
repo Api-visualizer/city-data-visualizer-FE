@@ -86,7 +86,7 @@ export default {
         return fetch('https://cdv-backend.api.datexis.com/api/v1/berlin-accidents?year=' + year + '&type=' + type.toLowerCase())
           .then((response) => response.json())
           .then((data) => {
-            this.createLayer(data);
+            this.createLayer(data.data);
           });
       }
     },
@@ -95,9 +95,10 @@ export default {
       return fetch(GeneralClasses.GETAPIberlinaccidents())
         .then((response) => response.json())
         .then((data) => {
-          data[0].forEach((d) => this.dataResult.push(d));
-          this.createLayerA(data);
-          this.createLayerB(data);
+          console.log(data.data)
+          data.data.forEach((d) => this.dataResult.push(d.doc));
+          this.createLayerA(data.data);
+          this.createLayerB(data.data);
         })
         .catch((error) => {
           console.log(error);
@@ -123,9 +124,8 @@ export default {
     },
     createLayerA: function (data) {
       let LL = [];
-
       let count = 0;
-      for (let acc of Object.entries(data[0][0].accidents)) {
+      for (let acc of Object.entries(data)) {
         acc.lat;
         count++;
       }
