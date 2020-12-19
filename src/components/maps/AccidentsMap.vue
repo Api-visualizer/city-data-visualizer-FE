@@ -83,7 +83,7 @@ export default {
       } else if (type == 'All' && year == 2019) {
         this.showLayerB();
       } else {
-        return fetch('https://cdv-backend.api.datexis.com/api/v1/berlin-accidents?year=' + year + '&type=' + type.toLowerCase())
+        return fetch('https://cdv-backend.api.datexis.com/api/v1/berlin-accidents-new?year=' + year + '&type=' + type.toLowerCase())
           .then((response) => response.json())
           .then((data) => {
             this.createLayer(data);
@@ -107,16 +107,12 @@ export default {
     createLayer: function (data) {
       let LL = [];
 
-      let count = 0;
       for (let acc of data) {
-        acc[1].lat;
-        count++;
+        let lat = acc[1].lat
+        let long = acc[1].long
+        LL.push(L.latLng(lat, long))
       }
-      for (var i = 0; i < count; i++) {
-        let lat = data[i][1].lat.replace(/,/g, '.');
-        let long = data[i][1].long.replace(/,/g, '.');
-        LL.push(L.latLng(lat, long));
-      }
+
       this.filteredMapLayer.setLatLngs(LL);
       this.filteredMapLayer.addTo(this.map);
       this.showLayer();
@@ -124,17 +120,16 @@ export default {
     createLayerA: function (data) {
       let LL = [];
 
-      let count = 0;
       for (let acc of Object.entries(data[0][0].accidents)) {
-        acc.lat;
-        count++;
+        let lat = acc[1].lat;
+        let long = acc[1].long
+        if (lat !== undefined && long !== undefined) {
+          LL.push(L.latLng(lat, long));
+        } else {
+          console.log('found undefined')
+        }
       }
 
-      for (var i = 0; i < count; i++) {
-        let lat = data[0][0].accidents[i].lat.replace(/,/g, '.');
-        let long = data[0][0].accidents[i].long.replace(/,/g, '.');
-        LL.push(L.latLng(lat, long));
-      }
       this.mapLayerA.setLatLngs(LL);
       this.mapLayerA.addTo(this.map);
     },
@@ -142,16 +137,14 @@ export default {
     createLayerB: function (data) {
       let LL = [];
 
-      let count = 0;
       for (let acc of Object.entries(data[0][1].accidents)) {
-        acc.lat;
-        count++;
-      }
-
-      for (var i = 0; i < count; i++) {
-        let lat = data[0][1].accidents[i].lat.replace(/,/g, '.');
-        let long = data[0][1].accidents[i].long.replace(/,/g, '.');
-        LL.push(L.latLng(lat, long));
+        let lat = acc[1].lat;
+        let long = acc[1].long
+        if (lat !== undefined && long !== undefined) {
+          LL.push(L.latLng(lat, long));
+        } else {
+          console.log('found undefined')
+        }
       }
       this.mapLayerB.setLatLngs(LL);
     },
