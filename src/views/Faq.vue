@@ -40,7 +40,8 @@
         We have created this website in behalf of the bachelor's degree program Media Informatics.
         The project City Data Visualizer will end in february 2021. 
         After february the website may be offline or not updated with new data.
-        If you have questions or want to get in touch with the team please use the <a href="/#contact">contact formular</a> on the start page.</p>
+        If you have questions or want to get in touch with the team please use the contact formular on the start page.</p>
+      <a class="btn btn-primary" href="/#contact" role="button">Contact</a>
     </div>
 
   </div>
@@ -130,5 +131,9 @@ p {
 
 .jumbotron>p {
   padding: 0 20% 0 20%;
+}
+
+.btn-primary {
+  color: white;
 }
 </style>

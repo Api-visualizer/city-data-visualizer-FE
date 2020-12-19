@@ -113,6 +113,7 @@ export default {
         let long = acc.geometry.coordinates[0]
         LL.push(L.latLng(lat, long));
       }
+
       this.filteredMapLayer.setLatLngs(LL);
       this.filteredMapLayer.addTo(this.map);
       this.showLayer();
