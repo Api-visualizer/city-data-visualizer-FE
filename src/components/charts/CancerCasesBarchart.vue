@@ -103,9 +103,9 @@ export default {
         fetch(GeneralClasses.GetAPIBerlinCancerCases())
         .then(response => response.json())
         .then(data => {
-          this.data = data;
-          this.initializeYears(data)
-          this.initializeAgeRanges(data)
+          this.data = data.data;
+          this.initializeYears(data.data)
+          this.initializeAgeRanges(data.data)
           })
       },
 
