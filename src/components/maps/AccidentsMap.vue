@@ -94,11 +94,11 @@ export default {
     init: function () {
       return fetch(GeneralClasses.GETAPIberlinaccidents())
         .then((response) => response.json())
-        .then((data) => {
-          console.log(data.data)
-          data.data.forEach((d) => this.dataResult.push(d.doc));
-          this.createLayerA(data.data);
-          this.createLayerB(data.data);
+        .then((dat) => {
+          let data = dat.data
+          data.forEach((d) => this.dataResult.push(d.doc));
+          this.createLayerA(data);
+          this.createLayerB(data);
         })
         .catch((error) => {
           console.log(error);
@@ -108,27 +108,22 @@ export default {
     createLayer: function (data) {
       let LL = [];
 
-      for (let acc of data) {
-        let lat = acc[1].lat
-        let long = acc[1].long
-        LL.push(L.latLng(lat, long))
+      for (let acc of data.accidents.features) {
+        let lat = acc.geometry.coordinates[1]
+        let long = acc.geometry.coordinates[0]
+        LL.push(L.latLng(lat, long));
       }
-
       this.filteredMapLayer.setLatLngs(LL);
       this.filteredMapLayer.addTo(this.map);
       this.showLayer();
     },
     createLayerA: function (data) {
       let LL = [];
-
-      for (let acc of Object.entries(data[0][0].accidents)) {
-        let lat = acc[1].lat;
-        let long = acc[1].long
-        if (lat !== undefined && long !== undefined) {
-          LL.push(L.latLng(lat, long));
-        } else {
-          console.log('found undefined')
-        }
+      let length = Object.entries(data[0].doc.accidents).length
+      for (var i = 0; i < length; i++) {
+        let lat = data[0].doc.accidents[i].lat
+        let long = data[0].doc.accidents[i].long
+        LL.push(L.latLng(lat, long));
       }
 
       this.mapLayerA.setLatLngs(LL);
@@ -138,14 +133,12 @@ export default {
     createLayerB: function (data) {
       let LL = [];
 
-      for (let acc of Object.entries(data[0][1].accidents)) {
-        let lat = acc[1].lat;
-        let long = acc[1].long
-        if (lat !== undefined && long !== undefined) {
-          LL.push(L.latLng(lat, long));
-        } else {
-          console.log('found undefined')
-        }
+      let length = Object.entries(data[1].doc.accidents).length
+
+      for (var i = 0; i < length; i++) {
+        let lat = data[1].doc.accidents[i].lat
+        let long = data[1].doc.accidents[i].long
+        LL.push(L.latLng(lat, long));
       }
       this.mapLayerB.setLatLngs(LL);
     },

@@ -71,8 +71,9 @@ export default {
       this.dataResult = [];
       fetch(GeneralClasses.GETAPIberlincoviddistrict())
         .then(response => response.json())
-        .then(data => {
-          data.data.forEach(d => this.dataResult.push(d));
+        .then(dat => {
+          let data = dat.data
+          data.forEach(d => this.dataResult.push(d));
           shapes.forEach(s => this.shapes.push(s));
           this.getDataOfSpecificDateToDisplay();
         })
@@ -81,19 +82,16 @@ export default {
     getDataOfSpecificDateToDisplay: function () {
       let dataOfSpecificDay = [];
       dataOfSpecificDay = this.dataResult.filter((data) => data.doc.date === this.selectedDayNew);
-      console.log(dataOfSpecificDay)
       this.displayDataOfSpecificDate(dataOfSpecificDay, this.shapes);
     },
 
     displayDataOfSpecificDate: function(data, shapes) {
       this.mapLayer.clearLayers();
       data[0].doc.data.features.forEach((feature) => {
-        console.log(feature)
-        const shape = shapes.filter(shape => shape.doc.district === feature.properties.GEN)[0];
-        feature.geometry = shape.geometry;
+        let shape = shapes.filter(shape => shape.doc.district === feature.properties.GEN);
+        feature.geometry = shape[0].doc.geometry;
       });
-      console.log('data')
-      console.log(data[0].doc.data)
+
       this.mapLayer.addData(data[0].doc.data.features)
     },
 
@@ -262,8 +260,9 @@ export default {
     getCovidData() {
       fetch(GeneralClasses.GETAPIberlincoviddistrict())
         .then(response => response.json())
-        .then(data => {
-          data.data.forEach((d) => this.ticksLabels.push(d.doc.date));
+        .then(dat => {
+          let data = dat.data
+          data.forEach((d) => this.ticksLabels.push(d.doc.date));
           this.ticksLabels.sort(function(a,b) {
             a = a.split('.').reverse().join('');
             b = b.split('.').reverse().join('');
