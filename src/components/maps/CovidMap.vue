@@ -290,7 +290,7 @@ export default {
         })
     },
     async getLegendInfo() {
-      await fetch('http://localhost:5000/api/v1/covid-legend')
+      await fetch('https://cdv-backend.api.datexis.com/api/v1/covid-legend')
           .then((response) => response.json())
           .then((data) => {
             let dat = data.legend
