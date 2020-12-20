@@ -53,7 +53,6 @@ export default {
     change_state(success) {
       this.sent = success
       this.indeterminate = false
-      console.log('this sent is ' + this.sent + 'and inde is ' + this.indeterminate)
     },
     sendForm:function(e) {
       this.indeterminate = true
@@ -74,14 +73,11 @@ export default {
 
       let loading = () => {
         if (XHR.status >= 200 && XHR.status < 300) {
-          console.log('inside loading')
-          console.log(XHR.responseText);
           this.change_state(true)
         } else {
           console.warn(XHR.statusText, XHR.responseText);
           this.change_state(false)
         }
-        console.log(event)
       }
       XHR.addEventListener( 'load', loading);
       XHR.setRequestHeader('Content-Type', 'application/json');
