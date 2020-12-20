@@ -63,7 +63,9 @@ export default {
   data() {
     return {
       marker: icon({
-        iconUrl: '/images/marker-icon.png',
+        iconUrl: '/images/PIN-Gray.png',
+        iconSize:     [30, 50],
+        iconAnchor:   [15, 50]
       }),
       year: 2018,
       map: {},
