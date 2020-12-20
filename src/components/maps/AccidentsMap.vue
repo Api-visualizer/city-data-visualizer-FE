@@ -67,40 +67,36 @@ export default {
         iconSize:     [30, 50],
         iconAnchor:   [15, 50]
       }),
-      year: 2018,
-      map: {},
+      map: {},   
       filteredMapLayer: {},
-      mapLayerA: {},
-      mapLayerB: {},
-      dataResult: [],
-      accidentTypes: ['All', 'Car', 'Bike', 'Motorcycle', 'Truck', 'Pedestrian', 'Other'],
+      year: 2018,
+      accidentTypes: ['Car', 'Bike', 'Motorcycle', 'Truck', 'Pedestrian', 'Other'],
       accidentType: 'All',
     };
   },
 
   methods: {
-    getDataOnChange: function (year, type) {
-      if (type == 'All' && year == 2018) {
-        this.showLayerA();
-      } else if (type == 'All' && year == 2019) {
-        this.showLayerB();
-      } else {
-        return fetch('https://cdv-backend.api.datexis.com/api/v1/berlin-accidents-new?year=' + year + '&type=' + type.toLowerCase())
-          .then((response) => response.json())
-          .then((data) => {
-            this.createLayer(data.data);
-          });
-      }
+    getUrlWithComponentParams: function () {
+      const baseURL = GeneralClasses.GETAPIberlinaccidents();
+      let params = `?year=${this.year}`;
+      if (this.accidentType != 'All') params = params + `&type=${this.accidentType.toLowerCase()}`;
+      return baseURL + params;
     },
 
-    init: function () {
-      return fetch(GeneralClasses.GETAPIberlinaccidents())
+    getDataOnChange: function (year, type) {
+      this.year = year;
+      this.type = type;
+
+      // Update map data
+      this.addDataToMap();
+    },
+
+    addDataToMap: function () {      
+      return fetch(this.getUrlWithComponentParams())
         .then((response) => response.json())
         .then((dat) => {
-          let data = dat.data
-          data.forEach((d) => this.dataResult.push(d.doc));
-          this.createLayerA(data);
-          this.createLayerB(data);
+          const data = dat.data;        
+          this.createLayer(data);
         })
         .catch((error) => {
           console.log(error);
@@ -110,40 +106,15 @@ export default {
     createLayer: function (data) {
       let LL = [];
 
-      for (let acc of data.accidents.features) {
-        let lat = acc.geometry.coordinates[1]
-        let long = acc.geometry.coordinates[0]
+      data.accidents.features.forEach(accident => {
+        let lat = accident.geometry.coordinates[1];
+        let long = accident.geometry.coordinates[0];
         LL.push(L.latLng(lat, long));
-      }
+      })
 
       this.filteredMapLayer.setLatLngs(LL);
       this.filteredMapLayer.addTo(this.map);
       this.showLayer();
-    },
-    createLayerA: function (data) {
-      let LL = [];
-      let length = Object.entries(data[0].doc.accidents).length
-      for (var i = 0; i < length; i++) {
-        let lat = data[0].doc.accidents[i].lat
-        let long = data[0].doc.accidents[i].long
-        LL.push(L.latLng(lat, long));
-      }
-
-      this.mapLayerA.setLatLngs(LL);
-      this.mapLayerA.addTo(this.map);
-    },
-
-    createLayerB: function (data) {
-      let LL = [];
-
-      let length = Object.entries(data[1].doc.accidents).length
-
-      for (var i = 0; i < length; i++) {
-        let lat = data[1].doc.accidents[i].lat
-        let long = data[1].doc.accidents[i].long
-        LL.push(L.latLng(lat, long));
-      }
-      this.mapLayerB.setLatLngs(LL);
     },
 
     setupLeafletMap: function () {
@@ -157,10 +128,9 @@ export default {
       L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
       }).addTo(this.map);
-
-      this.mapLayerA = L.heatLayer(false);
-      this.mapLayerB = L.heatLayer(false);
+          
       this.filteredMapLayer = L.heatLayer(false);
+      
       let legend = this.customLegendControl();
       legend.addTo(this.map);
 
@@ -187,33 +157,13 @@ export default {
     },
 
     showLayer: function () {
-      if (this.map.hasLayer(this.mapLayerB)) {
-        this.map.removeLayer(this.mapLayerB);
-      }
-      if (this.map.hasLayer(this.mapLayerA)) {
-        this.map.removeLayer(this.mapLayerA);
-      }
       this.filteredMapLayer.addTo(this.map);
-    },
-
-    showLayerA: function () {
-      if (this.map.hasLayer(this.mapLayerB)) {
-        this.map.removeLayer(this.mapLayerB);
-      }
-      this.mapLayerA.addTo(this.map);
-    },
-
-    showLayerB: function () {
-      if (this.map.hasLayer(this.mapLayerA)) {
-        this.map.removeLayer(this.mapLayerA);
-      }
-      this.mapLayerB.addTo(this.map);
     },
   },
 
   mounted() {
     this.setupLeafletMap();
-    this.init();
+    this.addDataToMap();
   },
 };
 </script>
