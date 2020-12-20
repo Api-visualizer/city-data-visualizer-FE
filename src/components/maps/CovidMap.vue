@@ -55,7 +55,7 @@ export default {
       ticksLabels: [],
       value: '',
       sliderStartIndex: '',
-      busKey: 'covid'
+      busKey: 'covid',
     };
   },
 
@@ -153,14 +153,13 @@ export default {
       this.map.fitBounds(e.target.getBounds());
     },
 
-    setupLeafletMap: function () {
+    async setupLeafletMap () {
       this.map = L.map("mapContainer", {
         center: [52.52, 13.405],
         zoom: 11,
         maxZoom: 12,
         minZoom: 10
       });
-
       let map = this.map;
 
       L.tileLayer(
@@ -204,49 +203,67 @@ export default {
       info.addTo(map);
       this.info = info;
     },
+    getColor: function (d) {
+      let grades = JSON.parse(localStorage.getItem('grades'))
+      return d > parseInt(grades[9]) ? '#b0091f' :
+          d > parseInt(grades[8]) ? '#ff0000' :
+          d > parseInt(grades[7]) ? '#e63030' :
+          d > parseInt(grades[6]) ? '#ff4800' :
+          d > parseInt(grades[5]) ? '#e3661e' :
+          d > parseInt(grades[4]) ? '#fc7e2a' :
+          d > parseInt(grades[3]) ? '#ffc72e' :
+          d > parseInt(grades[2]) ? '#f0de56' :
+          d > parseInt(grades[1]) ? '#fff67d' :
+          '#9eff4a';
+    },
 
     customLegendControl: function () {
       let legend = L.control({ position: 'topleft' });
       legend.onAdd = function () {
+        let legendinfo = JSON.parse(localStorage.getItem('legendinfo'))
 
         this.getColor= function (d) {
-          return d > 2000 ? '#b0091f' :
-                d > 1800 ? '#ff0000' :
-                d > 1600 ? '#e63030' :
-                d > 1400? '#ff4800' :
-                d > 1200 ? '#e3661e' :
-                d > 1000 ? '#fc7e2a' :
-                d > 800 ? '#ffc72e' :
-                d > 600 ? '#f0de56' :
-                d > 400 ? '#fff67d' :
-                          '#9eff4a';
+          let grades = JSON.parse(localStorage.getItem('grades'))
+
+          return d > parseInt(grades[9]) ? '#b0091f' :
+              d > parseInt(grades[8]) ? '#ff0000' :
+              d > parseInt(grades[7]) ? '#e63030' :
+              d > parseInt(grades[6]) ? '#ff4800' :
+              d > parseInt(grades[5]) ? '#e3661e' :
+              d > parseInt(grades[4]) ? '#fc7e2a' :
+              d > parseInt(grades[3]) ? '#ffc72e' :
+              d > parseInt(grades[2]) ? '#f0de56' :
+              d > parseInt(grades[1]) ? '#fff67d' :
+              '#9eff4a';
         }
 
-        let div = L.DomUtil.create('div', 'info legend'),
-        grades = [0, 400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000];
+        let div = L.DomUtil.create('div', 'info legend')
+
+        let grades = [0]
+
+        legendinfo.forEach((d) => grades.push(parseInt(Object.keys(d)[0])))
+        localStorage.setItem('grades', JSON.stringify(grades))
         let label = '<div class="mb-4"><strong>Cases per 100k</strong></div>'
         div.innerHTML += label
 
-        for (var i = 0; i < grades.length; i++) {
-          div.innerHTML += "<div class='text-left mt-2 mb-2'><div class='text-left text-dark rounded p-1 mr-2' style='display:inline; opacity:0.7; background:" + this.getColor(grades[i] + 1) + "'>&nbsp;&nbsp;</div><div style='display:inline;'>" + grades[i] + (grades[i + 1] ? ' - ' + grades[i + 1] + '<br>' : '+') + "</div></div><hr class='p-0 m-0'>";
+        for (var i = 0; i < grades.length-1; i++) {
+          div.innerHTML +=
+              "<div class='text-left mt-2 mb-2'>" +
+                "<div class='text-left text-dark rounded p-1 mr-2' style='display:inline; opacity:0.7; " +
+                      "background:" + this.getColor(parseInt(grades[i]) + 1) + "'>&nbsp;&nbsp;" +
+                "</div>" +
+                "<div style='display:inline;'>"
+              + parseInt(grades[i]+1) + (parseInt(grades[i + 2]) ? ' - ' + parseInt(grades[i + 1]) + '<br>' : '+') +
+              "</div>" +
+              "</div>" +
+              "<hr class='p-0 m-0'>";
         }
         return div;
       };
       return legend;
     },
 
-    getColor: function (d) {
-      return d > 2000 ? '#b0091f' :
-            d > 1800 ? '#ff0000' :
-            d > 1600 ? '#e63030' :
-            d > 1400 ? '#ff4800' :
-            d > 1200 ? '#e3661e' :
-            d > 1000 ? '#fc7e2a' :
-            d > 800 ? '#ffc72e' :
-            d > 600 ? '#f0de56' :
-            d > 400 ? '#fff67d' :
-                      '#9eff4a';
-    },
+
 
     getDate: function () {
       let today = new Date();
@@ -272,10 +289,18 @@ export default {
           this.sliderStartIndex = this.ticksLabels.length-1
         })
     },
-
+    async getLegendInfo() {
+      await fetch('https://cdv-backend.api.datexis.com/api/v1/covid-legend')
+          .then((response) => response.json())
+          .then((data) => {
+            let dat = data.legend
+            localStorage.setItem('legendinfo', JSON.stringify(dat))
+          });
+    }
   },
 
-  mounted() {
+  async mounted() {
+    await this.getLegendInfo()
     this.setupLeafletMap();
     this.getDate();
     this.fetchGeoShapes();
