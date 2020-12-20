@@ -66,7 +66,7 @@ export default {
       return L.icon({
         iconUrl: '/images/PIN-Red.png',
         iconSize:     [30, 50], // size of the icon
-        iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+        iconAnchor:   [15, 50], // point of the icon which will correspond to marker's location
         popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
       });
     },
@@ -74,7 +74,7 @@ export default {
       return L.icon({
         iconUrl: '/images/PIN-Green.png',
         iconSize:     [30, 50], // size of the icon
-        iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+        iconAnchor:   [15, 50], // point of the icon which will correspond to marker's location
         popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
       });
     },
@@ -82,7 +82,7 @@ export default {
       return L.icon({
         iconUrl: '/images/PIN-Orange.png',
         iconSize:     [30, 50], // size of the icon
-        iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+        iconAnchor:   [15, 50], // point of the icon which will correspond to marker's location
         popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
       });
     },
@@ -90,7 +90,7 @@ export default {
       return L.icon({
         iconUrl: 'https://www.pngkey.com/png/full/48-480344_maps-clipart-map-pin-grey-google-maps-marker.png',
         iconSize:     [30, 43], // size of the icon
-        iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+        iconAnchor:   [15, 43], // point of the icon which will correspond to marker's location
         popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
       });
     }
@@ -165,7 +165,7 @@ export default {
       this.map = L.map("hospitalMapContainer", {
         center: [52.52, 13.405],
         zoom: 11,
-        maxZoom: 13,
+        maxZoom: 14,
         minZoom: 10
       });
 
