@@ -72,6 +72,9 @@ export default {
       year: 2018,
       accidentTypes: ['Car', 'Bike', 'Motorcycle', 'Truck', 'Pedestrian', 'Other'],
       accidentType: 'All',
+      info: {},
+      weekDays: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+      months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
     };
   },
 
@@ -81,6 +84,18 @@ export default {
       let params = `?year=${this.year}`;
       if (this.accidentType != 'All') params = params + `&type=${this.accidentType.toLowerCase()}`;
       return baseURL + params;
+    },
+
+    arrayAvg: function (array) {
+      return Math.round(array.reduce((a,b) => a + b, 0) / array.length);
+    },
+
+    prettifyInfoBoxStrings: function (months, days, hours) {
+      return { 
+        avgMonth: this.months[this.arrayAvg(months)],
+        avgDay: this.weekDays[this.arrayAvg(days)],
+        avgHour: this.arrayAvg(hours)+":00"
+      }
     },
 
     getDataOnChange: function (year, type) {
@@ -105,16 +120,58 @@ export default {
 
     createLayer: function (data) {
       let LL = [];
+      
+      let totalAccidents = data.accidents.features.length;
+      let months = [];
+      let hours = [];
+      let days = [];
 
+      // Add data and push to stats
       data.accidents.features.forEach(accident => {
         let lat = accident.geometry.coordinates[1];
         let long = accident.geometry.coordinates[0];
         LL.push(L.latLng(lat, long));
+
+        months.push(accident.properties.meta.UMONAT);
+        hours.push(accident.properties.meta.USTUNDE);
+        days.push(accident.properties.meta.UWOCHENTAG);
       })
 
+      // Add infobox text
+      const { avgMonth, avgDay, avgHour } = this.prettifyInfoBoxStrings(months, days, hours);      
+      this.info.update({ totalAccidents, avgMonth, avgHour, avgDay });
+
+      // Add map layer
       this.filteredMapLayer.setLatLngs(LL);
-      this.filteredMapLayer.addTo(this.map);
+      this.filteredMapLayer.addTo(this.map);      
       this.showLayer();
+    },
+
+    createInfoBox: function () {
+      let info = L.control();
+
+      info.onAdd = function () {
+        this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+        this.reset();
+        return this._div;
+      }
+
+      info.update = function (stats) {
+        this.reset();
+
+        const { totalAccidents, avgMonth, avgHour, avgDay } = stats;        
+        this._div.innerHTML += `<br><br><p>Number of Accidents: ${totalAccidents}</p>` +
+          `<p>Average month: ${avgMonth}</p>` +
+          `<p>Average hour: ${avgHour}</p>` +
+          `<p>Average day: ${avgDay}` 
+      };
+
+      info.reset = function () {
+        this._div.innerHTML = '<b>Data statistics:</b>';          
+      }
+
+      this.info = info;
+      info.addTo(this.map);
     },
 
     setupLeafletMap: function () {
@@ -164,6 +221,7 @@ export default {
   mounted() {
     this.setupLeafletMap();
     this.addDataToMap();
+    this.createInfoBox();
   },
 };
 </script>
