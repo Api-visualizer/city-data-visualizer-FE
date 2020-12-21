@@ -42,11 +42,9 @@
         After february the website may be offline or not updated with new data.
         If you have questions or want to get in touch with the team please use the contact formular on the start page.</p>
       <a class="btn btn-primary" href="/#contact" role="button">Contact</a>
-    </div>
-
-    <div class="jumbotron ">
+      <br><br>
       <div class="card" style="width: 60%;">
-        <h2 class="display-4">Legal Disclosure</h2>
+        <p class="display-4 h2">Legal Disclosure</p>
         <div class="card-body ">
           <h5 class="card-title">Information in accordance with Section 5 TMG</h5>
             <br>
@@ -68,7 +66,9 @@
           <a href="#" class="card-link">Another link</a> -->
         </div>
       </div>        
+
     </div>
+
 
   </div>
 </template>
