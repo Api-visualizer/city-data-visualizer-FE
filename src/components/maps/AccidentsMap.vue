@@ -19,7 +19,11 @@
 
       <div class="container">
         <v-app>
-          <v-select :items="accidentTypes" v-model="accidentType" :dense="true" :menu-props="{ maxHeight: '150px' }" label="Select an accident type" v-on:change="getDataOnChange(year, accidentType)"> </v-select>
+        <v-row>
+          <v-col>
+            <v-select :items="accidentTypes" v-model="accidentType" :dense="true" :menu-props="{ maxHeight: '150px' }" label="Select an accident type" v-on:change="getDataOnChange(year, accidentType)"> </v-select>
+          </v-col>
+        </v-row>
         </v-app>
         <ul id="choice">
           <li>
@@ -67,7 +71,7 @@ export default {
         iconSize:     [30, 50],
         iconAnchor:   [15, 50]
       }),
-      map: {},   
+      map: {},
       filteredMapLayer: {},
       year: 2018,
       accidentTypes: ['Car', 'Bike', 'Motorcycle', 'Truck', 'Pedestrian', 'Other'],
@@ -91,7 +95,7 @@ export default {
     },
 
     prettifyInfoBoxStrings: function (months, days, hours) {
-      return { 
+      return {
         avgMonth: this.months[this.arrayAvg(months)],
         avgDay: this.weekDays[this.arrayAvg(days)],
         avgHour: this.arrayAvg(hours)+":00"
@@ -106,11 +110,11 @@ export default {
       this.addDataToMap();
     },
 
-    addDataToMap: function () {      
+    addDataToMap: function () {
       return fetch(this.getUrlWithComponentParams())
         .then((response) => response.json())
         .then((dat) => {
-          const data = dat.data;        
+          const data = dat.data;
           this.createLayer(data);
         })
         .catch((error) => {
@@ -120,7 +124,7 @@ export default {
 
     createLayer: function (data) {
       let LL = [];
-      
+
       let totalAccidents = data.accidents.features.length;
       let months = [];
       let hours = [];
@@ -138,12 +142,12 @@ export default {
       })
 
       // Add infobox text
-      const { avgMonth, avgDay, avgHour } = this.prettifyInfoBoxStrings(months, days, hours);      
+      const { avgMonth, avgDay, avgHour } = this.prettifyInfoBoxStrings(months, days, hours);
       this.info.update({ totalAccidents, avgMonth, avgHour, avgDay });
 
       // Add map layer
       this.filteredMapLayer.setLatLngs(LL);
-      this.filteredMapLayer.addTo(this.map);      
+      this.filteredMapLayer.addTo(this.map);
       this.showLayer();
     },
 
@@ -159,15 +163,15 @@ export default {
       info.update = function (stats) {
         this.reset();
 
-        const { totalAccidents, avgMonth, avgHour, avgDay } = stats;        
+        const { totalAccidents, avgMonth, avgHour, avgDay } = stats;
         this._div.innerHTML += `<br><br><p>Number of Accidents: ${totalAccidents}</p>` +
           `<p>Average month: ${avgMonth}</p>` +
           `<p>Average hour: ${avgHour}</p>` +
-          `<p>Average day: ${avgDay}` 
+          `<p>Average day: ${avgDay}`
       };
 
       info.reset = function () {
-        this._div.innerHTML = '<b>Data statistics:</b>';          
+        this._div.innerHTML = '<b>Data statistics:</b>';
       }
 
       this.info = info;
@@ -185,9 +189,9 @@ export default {
       L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
       }).addTo(this.map);
-          
+
       this.filteredMapLayer = L.heatLayer(false);
-      
+
       let legend = this.customLegendControl();
       legend.addTo(this.map);
 

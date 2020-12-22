@@ -10,11 +10,11 @@ import AccidentsMap from '@/components/maps/AccidentsMap';
 import HospitalsMap from '@/components/maps/HospitalsMap';
 import CovidMap from '@/components/maps/CovidMap';
 import BerlinCharts from '@/views/BerlinCharts';
-import CancerCasesBarchart from '@/components/charts/CancerCasesBarchart' 
+import CancerCasesBarchart from '@/components/charts/CancerCasesBarchart'
 
 
 const routes = [
-    { path :'*', redirect: '/'},
+    { path:'*', redirect: '/'},
     { path: '/', component: Landing },
     { path: '/faq', component: Faq },
     { path: '/main', component: Main },
