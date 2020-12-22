@@ -150,10 +150,7 @@ export default {
       this.dateLeft = this.labels[0].split('.').reverse().join('-')
       this.dateRight = this.labels[this.labels.length-1].split('.').reverse().join('-')
 
-      let left = this.getDatesInRange(this.allDates[0].split('.').reverse().join('-'), this.dateRight)
-      this.allowedDatesLeft = this.getreverseLabels(left)
-      let right = this.getDatesInRange(this.dateLeft, this.allDates[this.allDates.length-1].split('.').reverse().join('-'))
-      this.allowedDatesRight = this.getreverseLabels(right)
+      this.updateAllowedDates()
       
       this.index = 0
       let newDate = this.labels[0]
@@ -175,10 +172,9 @@ export default {
 
     newRange: function () {
       this.labels = this.getDatesInRange(this.dateLeft, this.dateRight)
-      let left = this.getDatesInRange(this.allDates[0].split('.').reverse().join('-'), this.dateRight)
-      this.allowedDatesLeft = this.getreverseLabels(left)
-      let right = this.getDatesInRange(this.dateLeft, this.allDates[this.allDates.length-1].split('.').reverse().join('-'))
-      this.allowedDatesRight = this.getreverseLabels(right)
+
+      this.updateAllowedDates()
+
       this.index = 0
       let newDate = this.labels[0]
       this.bus.$emit(this.$props.id, newDate);
@@ -206,6 +202,13 @@ export default {
         temp.push(el.split('.').reverse().join('-'))
       })
       return temp
+    },
+
+    updateAllowedDates: function(){
+      let left = this.getDatesInRange(this.allDates[0].split('.').reverse().join('-'), this.dateRight)
+      let right = this.getDatesInRange(this.dateLeft, this.allDates[this.allDates.length-1].split('.').reverse().join('-'))
+      this.allowedDatesLeft = this.getreverseLabels(left);
+      this.allowedDatesRight = this.getreverseLabels(right);
     }
 
   },
@@ -218,10 +221,10 @@ export default {
     this.mId = this.months[this.months.length-1].id
     this.labels = this.allDates.filter(date => date.split('.')[1]==this.mId)
 
-    this.allowedDatesLeft = this.getreverseLabels(this.labels);
-    this.allowedDatesRight = this.getreverseLabels(this.labels);
     this.dateRight = this.labels[this.labels.length-1].split('.').reverse().join('-')
     this.dateLeft = this.labels[0].split('.').reverse().join('-')
+
+    this.updateAllowedDates()
   }
 
 }
