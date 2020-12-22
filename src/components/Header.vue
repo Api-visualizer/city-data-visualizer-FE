@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-info " style="border-width: 5px !important;">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-info" style="border-width: 5px !important">
       <a class="navbar-brand" href="/">
         <img src="/images/logo_white.png" />
       </a>
@@ -23,8 +23,12 @@
             </div>
           </li>
         </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <autocomplete ref="autocomplete" @keyup.enter="SearchOnSubmit(SearchValue)" :search="search" placeholder="Search" aria-label="Search" :get-result-value="getResultValue" @submit="onSubmit"></autocomplete>
+        </form>
         <span class="my-2 my-lg-0">
           <ul class="navbar-nav">
+            <li class="nav-item">ss</li>
             <li class="nav-item">
               <a class="nav-link" href="/team">Team</a>
             </li>
@@ -41,8 +45,39 @@
 <script>
 export default {
   name: 'Header',
+
   data() {
-    return {};
+    return {
+      SearchValue: '',
+      SearchData: {},
+    };
+  },
+  methods: {
+    getResultValue(result) {
+      return result.Value;
+    },
+    onSubmit(result) {
+      this.$router.push(result.Link);      
+    },
+    SearchOnSubmit(SearchValue) {
+      this.$router.push(SearchValue.Link);      
+    },
+    search(input) {
+      this.SearchValue = input;
+      if (input.length < 1) {
+        return [];
+      }
+      return this.SearchData.filter((Element) => {
+        return Element.Value.toLowerCase().startsWith(input.toLowerCase());
+      });
+    },
+  },
+  mounted() {
+    const url = '/images/SearchTerms.json';
+    this.$http.get(url).then((Result) => {
+      this.SearchData = Result.data.SearchElements;
+      console.log(this.SearchData);
+    });
   },
 };
 </script>

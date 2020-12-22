@@ -1,0 +1,39 @@
+{
+  "SearchElements": [
+    {
+      "Value": "Covid Graphs",      
+      "Keywords": "corona, covid, covid-19, sars-cov2, pandemic, berlin, age, distribution, young, old, risk, groups",
+      "Link": "/main/covid-graphs"
+    },
+    {
+      "Value": "Hospitals",   
+      "Keywords": "corona, covid, covid-19, sars-cov2, pandemic, berlin, hospital, hospitals, hospital beds, capacity, capacities, full",
+      "Link": "/main/hospitals"
+    },
+    {
+      "Value": "Infections",   
+      "Keywords": "corona, covid, covid-19, sars-cov2, pandemic, berlin, district, local, kreuzberg, charlottenburg, friedrichshain, wedding, mitte, treptow, köpenick, moabit, marzahn",
+      "Link": "/main/infections"
+    },
+    {
+      "Value": "Accidents",   
+      "Keywords": "accident, accidents, traffic, safety, bike, car, motorbike, bicycle, pedestrian, foot, truck, danger, streets, berlin, district, local, kreuzberg, charlottenburg, friedrichshain, wedding, mitte, treptow, köpenick, moabit, marzahn",
+      "Link": "/main/accidents"
+    },
+    {
+      "Value": "Cancer",   
+      "Keywords": "berlin, cancer, distribution, cases",
+      "Link": "/main/cancer"
+    },
+    {
+      "Value": "FAQ",   
+      "Keywords": "faq, question, work, how, what, can, will, site",
+      "Link": "/faq"
+    },
+    {
+      "Value": "Team",   
+      "Keywords": "who, team, developers, product, anas, alhakim, katharina, sachs, karl, brendel, ali, alkhateeb, janine, schleicher, niklas, rupprecht, pierre, fabarius, beuth, students, project",
+      "Link": "/team"
+    }
+  ]
+}

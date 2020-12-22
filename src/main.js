@@ -24,6 +24,11 @@ import 'vuetify/dist/vuetify.min.css'
 Vue.use(Vuetify)
 Vue.prototype.bus = new Vue();
 
+import Autocomplete from '@trevoreyre/autocomplete-vue'
+import '@trevoreyre/autocomplete-vue/dist/style.css'
+
+Vue.use(Autocomplete)
+
 Vue.component('RangeSlider', RangeSlider);
 
 Vue.component('apexchart', VueApexCharts)
