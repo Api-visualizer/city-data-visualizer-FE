@@ -20,6 +20,7 @@
               <a class="dropdown-item" href="/main/infections">Infections</a>
               <a class="dropdown-item" href="/main/accidents">Accidents</a>
               <a class="dropdown-item" href="/main/hospitals">Hospitals</a>
+              <a class="dropdown-item" href="/main/cancer">Cancer</a>
             </div>
           </li>
         </ul>
