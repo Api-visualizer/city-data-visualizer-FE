@@ -116,26 +116,32 @@ export default {
     getAllMonths: function () {
       let m = []
       this.allDates.forEach(e => {
-        m.push(e.split('.')[1])
+        m.push(e.split('.')[1]+'.'+e.split('.')[2])
       });
       var unique = m.filter((v, i, a) => a.indexOf(v) === i);
-      unique.forEach(e => this.months.push(this.getMonth(e)))
+      unique.forEach(e => {
+        let temp = e.split('.')
+        let month = this.getMonth(temp[0])
+        month.name = month.name + ', ' + temp[1]
+        month.id = month.id + '.' + temp[1]
+        this.months.push(month)
+      })
       return unique
     },
 
     getMonth: function (d) {
-      return d == 1 ? {id:'1', name:'January'} :
-            d == 2 ? {id:'2', name:'February'} :
-            d == 3 ? {id:'3', name:'March'} :
-            d == 4 ? {id:'4', name:'April'} :
-            d == 5 ? {id:'5', name:'May'} :
-            d == 6 ? {id:'6', name:'June'} :
-            d == 7 ? {id:'7', name:'July'} :
-            d == 8 ? {id:'8', name:'August'} :
-            d == 9 ? {id:'9', name:'September'} :
-            d == 10 ? {id:'10', name:'October'} :
-            d == 11 ? {id:'11', name:'November'} :
-            d == 12 ? {id:'12', name:'December'} :
+      return d == '01' ? {id:'01', name:'January'} :
+            d == '02' ? {id:'02', name:'February'} :
+            d == '03' ? {id:'03', name:'March'} :
+            d == '04' ? {id:'04', name:'April'} :
+            d == '05' ? {id:'05', name:'May'} :
+            d == '06' ? {id:'06', name:'June'} :
+            d == '07' ? {id:'07', name:'July'} :
+            d == '08' ? {id:'08', name:'August'} :
+            d == '09' ? {id:'09', name:'September'} :
+            d == '10' ? {id:'10', name:'October'} :
+            d == '11' ? {id:'11', name:'November'} :
+            d == '12' ? {id:'12', name:'December'} :
             'none'
     },
 
@@ -144,16 +150,13 @@ export default {
         this.labels = this.allDates
       }
       else {
-        let m = this.allDates.filter(date => date.split('.')[1]==month)
+        let m = this.allDates.filter(date => date.split('.')[1]+'.'+date.split('.')[2]==month)
         this.labels = m
       }
       this.dateLeft = this.labels[0].split('.').reverse().join('-')
       this.dateRight = this.labels[this.labels.length-1].split('.').reverse().join('-')
 
-      let left = this.getDatesInRange(this.allDates[0].split('.').reverse().join('-'), this.dateRight)
-      this.allowedDatesLeft = this.getreverseLabels(left)
-      let right = this.getDatesInRange(this.dateLeft, this.allDates[this.allDates.length-1].split('.').reverse().join('-'))
-      this.allowedDatesRight = this.getreverseLabels(right)
+      this.updateAllowedDates()
       
       this.index = 0
       let newDate = this.labels[0]
@@ -175,10 +178,9 @@ export default {
 
     newRange: function () {
       this.labels = this.getDatesInRange(this.dateLeft, this.dateRight)
-      let left = this.getDatesInRange(this.allDates[0].split('.').reverse().join('-'), this.dateRight)
-      this.allowedDatesLeft = this.getreverseLabels(left)
-      let right = this.getDatesInRange(this.dateLeft, this.allDates[this.allDates.length-1].split('.').reverse().join('-'))
-      this.allowedDatesRight = this.getreverseLabels(right)
+
+      this.updateAllowedDates()
+
       this.index = 0
       let newDate = this.labels[0]
       this.bus.$emit(this.$props.id, newDate);
@@ -206,6 +208,13 @@ export default {
         temp.push(el.split('.').reverse().join('-'))
       })
       return temp
+    },
+
+    updateAllowedDates: function(){
+      let left = this.getDatesInRange(this.allDates[0].split('.').reverse().join('-'), this.dateRight)
+      let right = this.getDatesInRange(this.dateLeft, this.allDates[this.allDates.length-1].split('.').reverse().join('-'))
+      this.allowedDatesLeft = this.getreverseLabels(left);
+      this.allowedDatesRight = this.getreverseLabels(right);
     }
 
   },
@@ -216,12 +225,12 @@ export default {
 
     this.getAllMonths();
     this.mId = this.months[this.months.length-1].id
-    this.labels = this.allDates.filter(date => date.split('.')[1]==this.mId)
+    this.labels = this.allDates.filter(date => date.split('.')[1]+'.'+date.split('.')[2]==this.mId)
 
-    this.allowedDatesLeft = this.getreverseLabels(this.labels);
-    this.allowedDatesRight = this.getreverseLabels(this.labels);
     this.dateRight = this.labels[this.labels.length-1].split('.').reverse().join('-')
     this.dateLeft = this.labels[0].split('.').reverse().join('-')
+
+    this.updateAllowedDates()
   }
 
 }
