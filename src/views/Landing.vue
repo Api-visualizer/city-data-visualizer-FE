@@ -95,7 +95,7 @@
                 <p class="card-text">This line chart displays predictions on how case numbers will develop in the coming days based on the available data.</p>
               </div>
               <div class="card-footer">
-                <a class="btn btn-primary" href="/main/covid-graphs" role="button">Here</a>
+                <a class="btn btn-primary" href="/main/covid-predictions" role="button">Here</a>
               </div>
             </div>
           </div>
