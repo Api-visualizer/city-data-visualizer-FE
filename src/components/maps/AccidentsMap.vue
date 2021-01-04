@@ -210,8 +210,8 @@ export default {
         div.innerHTML += `
         <div class='container'>
           <div class='row'>
-            <div class='gradient' style='display:inline; width:25px; background:linear-gradient(180deg, rgba(4,99,244,1) 11%, rgba(84,209,255,1) 41%, rgba(38,234,122,1) 52%, rgba(251,255,37,1) 65%, rgba(255,197,54,1) 74%, rgba(255,11,11,1) 100%);'></div>
-            <div class='col pt-0'>
+            <div class='gradient mr-2' style='display:inline; width:25px; background:linear-gradient(180deg, rgba(4,99,244,1) 11%, rgba(84,209,255,1) 41%, rgba(38,234,122,1) 52%, rgba(251,255,37,1) 65%, rgba(255,197,54,1) 74%, rgba(255,11,11,1) 100%);'></div>
+            <div class='col pt-0 pb-0'>
               <div class='row'>
                 <div style='display:inline;'>MIN</div>
               </div>
