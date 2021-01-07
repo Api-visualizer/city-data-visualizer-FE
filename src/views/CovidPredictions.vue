@@ -14,9 +14,10 @@
     </div>
     <div class="container-fluid">
       <div class="row">
+        <div class="col-8 m-2">
+          <p>----- linechart here -----</p>
+        </div>
         <div class="col m-2">
-          <apexchart width="800" type="line" :options="options" :series="series"></apexchart>
-          <div class="col m-2">
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">COVID-19</h5>
@@ -25,7 +26,6 @@
                   <br /><br /> At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
               </div>
             </div>
-          </div>
         </div>
       </div>
     </div>
@@ -40,5 +40,31 @@ export default {
 </script>
 
 <style scoped>
+.container-fluid .col {
+  margin: 0;
+  padding: 0;
+}
+
+.headerimage {
+  max-height: 15rem;
+  object-fit: cover;
+}
+
+.title {
+  z-index: 1;
+  position: absolute;
+  left: 50%;
+  top: 7.5rem;
+  color: white;
+  transform: translate(-50%, -50%);
+}
+.display-4 {
+  font-weight: bold;
+}
+
+.info h4 {
+  margin: 0 0 5px;
+  color: #777;
+}
 
 </style>
