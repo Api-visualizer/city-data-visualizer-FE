@@ -11,19 +11,21 @@ import HospitalsMap from '@/components/maps/HospitalsMap';
 import CovidMap from '@/components/maps/CovidMap';
 import BerlinCharts from '@/views/BerlinCharts';
 import CancerCasesBarchart from '@/components/charts/CancerCasesBarchart'
+import CovidPredictions from "@/views/CovidPredictions";
 
 
 const routes = [
     { path:'*', redirect: '/'},
     { path: '/', component: Landing },
     { path: '/faq', component: Faq },
+    { path: '/team', component: Team },
     { path: '/main', component: Main },
     { path: '/main/infections', component: CovidMap },
     { path: '/main/covid-graphs', component: BerlinCharts },
     { path: '/main/accidents', component: AccidentsMap },
     { path: '/main/hospitals', component: HospitalsMap },
-    { path: '/team', component: Team },
-    { path: '/main/cancer', component: CancerCasesBarchart }
+    { path: '/main/cancer', component: CancerCasesBarchart },
+    { path: '/main/covid-predictions', component: CovidPredictions }
 ];
 
 const router = new VueRouter({
