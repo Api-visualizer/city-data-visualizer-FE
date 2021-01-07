@@ -19,7 +19,7 @@
               <a class="dropdown-item" href="/main/covid-graphs">Covid-19 Graphs</a>
               <a class="dropdown-item" href="/main/infections">Covid-19 Infections</a>
               <a class="dropdown-item" href="/main/covid-predictions">Covid-19 Predictions</a>
-              <a class="dropdown-item" href="/main/hospitals">Hospitals Capacities</a>
+              <a class="dropdown-item" href="/main/hospitals">Hospital Capacities</a>
               <a class="dropdown-item" href="/main/accidents">Traffic Accidents</a>
               <a class="dropdown-item" href="/main/cancer">Cancer Data</a>
             </div>
