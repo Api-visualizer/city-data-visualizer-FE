@@ -17,9 +17,10 @@
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Berlin</a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="/main/covid-graphs">Covid-19 Graphs</a>
-              <a class="dropdown-item" href="/main/infections">Infections</a>
-              <a class="dropdown-item" href="/main/accidents">Accidents</a>
-              <a class="dropdown-item" href="/main/hospitals">Hospitals</a>
+              <a class="dropdown-item" href="/main/infections">Covid-19 Infections</a>
+              <a class="dropdown-item" href="/main/covid-predictions">Covid-19 Predictions</a>
+              <a class="dropdown-item" href="/main/hospitals">Hospitals Capacities</a>
+              <a class="dropdown-item" href="/main/accidents">Traffic Accidents</a>
               <a class="dropdown-item" href="/main/cancer">Cancer Data</a>
             </div>
           </li>
@@ -58,10 +59,10 @@ export default {
       return result.Value;
     },
     onSubmit(result) {
-      this.$router.push(result.Link);      
+      this.$router.push(result.Link);
     },
     SearchOnSubmit(SearchValue) {
-      this.$router.push(SearchValue.Link);      
+      this.$router.push(SearchValue.Link);
     },
     search(input) {
       this.SearchValue = input;
