@@ -132,6 +132,7 @@ export default {
           chart_data.push(value)
         }
         this.data_table_data = data;
+        console.log(this.data_table_data)
         this.updateChart(chart_data)
       }
     },

@@ -30,6 +30,7 @@ export default {
       this.$http.get(GeneralClasses.GETAPIberlincovidage()).then((result) => {
         let data = result.data[0][0]['data']
         this.table_data = data
+        console.log(this.table_data);
       })
     },
   },
