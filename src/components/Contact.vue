@@ -55,6 +55,7 @@ export default {
       this.indeterminate = false
     },
     sendForm:function(e) {
+      this.sent = undefined
       this.indeterminate = true
       e.preventDefault();
       const form_data = document.forms["contact_form"];
