@@ -11,13 +11,13 @@
       </div>
     </div>
 
-    <div class="jumbotron">
+    <div class="jumbotron faq">
       <h2 class="display-4">FAQ</h2>
       <p class="lead pt-4" style="padding-bottom: 24px;">Here you can find the answers to common questions we have received. Use the contact formular on the start page if you have a specific request which is not yet answered.</p>
     </div>
 
     <div class="jumbotron">
-        <div class="mt-10">
+        <div>
         <v-expansion-panels class="w-75 mt-10 container-fluid ">
           <v-expansion-panel v-for="item in FAQ" :key="item">
             <v-expansion-panel-header class="align-center justify-start pl-5 pr-5">
@@ -34,8 +34,8 @@
       </div>
     </div>
 
-     <div class="jumbotron">
-      <h2 class="display-4">Disclaimer</h2>
+     <div class="jumbotron disclaimer">
+      <h2 class="display-4 disclaim-header">Disclaimer</h2>
       <p class="lead pt-4" style="padding-bottom: 24px;">This is a students project at the Beuth University of Applied Sciences Berlin.
         We have created this website in behalf of the bachelor's degree program Media Informatics.
         The project City Data Visualizer will end in february 2021. 
@@ -43,7 +43,7 @@
         If you have questions or want to get in touch with the team please use the contact formular on the start page.</p>
       <a class="btn btn-primary" href="/#contact" role="button">Contact</a>
       <br><br>
-      <div class="card" style="width: 60%;">
+      <div class="card">
         <p class="display-4 h2">Legal Disclosure</p>
         <div class="card-body ">
           <h5 class="card-title">Information in accordance with Section 5 TMG</h5>
@@ -55,17 +55,17 @@
           Our obligations to remove or block the use of information under generally applicable laws remain unaffected by this as per §§ 8 to 10 of the Telemedia Act (TMG).</p>
             <br>
           <h6 class="card-subtitle mb-2 text-muted">Accountability for links</h6>
-          <p class="card-text text-left">Responsibility for the content of external links (to web pages of third parties) lies solely with the operators of the linked pages. 
+          <p class="card-text text-left">Responsibility for the content of external links (to web pages of third parties) lies solely with the operators of the linked pages.
             No violations were evident to us at the time of linking. Should any legal infringement become known to us, we will remove the respective link immediately.</p>
             <br>
           <h6 class="card-subtitle mb-2 text-muted">Copyright</h6>
-          <p class="card-text text-left">Our web pages and their contents are subject to German copyright law. Unless expressly permitted by law, every form of utilizing, 
+          <p class="card-text text-left">Our web pages and their contents are subject to German copyright law. Unless expressly permitted by law, every form of utilizing,
             reproducing or processing works subject to copyright protection on our web pages requires the prior consent of the respective owner of the rights. 
             Individual reproductions of a work are only allowed for private use. The materials from these pages are copyrighted and any unauthorized use may violate copyright laws.</p>
           <!-- <a href="#" class="card-link">Card link</a>
           <a href="#" class="card-link">Another link</a> -->
         </div>
-      </div>        
+      </div>
 
     </div>
 
@@ -128,10 +128,12 @@ export default {
   padding: 0;
 }
 
-
 .headerimage{
   max-height: 15rem;
   object-fit: cover;
+}
+.disclaimer {
+  padding: 0;
 }
 
 .title {
@@ -164,9 +166,13 @@ p {
 }
 
 .card {
-  margin: 0 auto; 
-  float: none; 
-  margin-bottom: 10px; 
+  float: none;
+  padding: 2% 18% 2% 18%;
 }
-
+.disclaim-header {
+  padding-top: 2vw;
+}
+.faq {
+  padding: 2rem 2rem;
+}
 </style>
