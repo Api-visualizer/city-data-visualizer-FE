@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2 class="display-4" id="contact">Contact</h2>
+    <h2 class="display-4 mb-5" id="contact">Contact</h2>
     <form name="contact_form" class="form text-left" @submit="sendForm" method="post">
     <div class="row">
       <div class="col">
@@ -20,10 +20,7 @@
       <label for="message_field">Message</label>
       <textarea class="form-control" id="message_field" rows="3" value="Hello!" required></textarea>
     </div>
-      <div class="row">
-        <div class="col-1">
-          <button type="submit" class="btn btn-primary">Send</button>
-        </div>
+      <div class="row justify-content-end">
         <div class="col-9">
           <div class="d-inline-flex">
             <i v-if="sent === false" class="iconify fail align-content-end" data-icon="mdi:exclamation-thick" />
@@ -34,6 +31,9 @@
             <p v-if="sent === true" class="sent">Message sent!</p>
           </div>
           <v-progress-circular v-show="indeterminate" :indeterminate="indeterminate" class="spinner" color="primary" />
+        </div>
+        <div class="col-1 d-flex justify-content-end">
+          <button type="submit" class="btn btn-primary">Send</button>
         </div>
       </div>
     </form>
