@@ -33,7 +33,7 @@
         <h1 class="display-4">City Data Visualizer</h1>
         <p class="lead pt-4" style="padding-bottom: 24px;">City Data Visualizer provides helpful visualizations for complex health data. With the help of open data, we hope to give both Berlin's administration, scientists and residents a better understanding of current health risks or positive impacts that are occurring in the city.</p>
         <p class="text-center"></p>
-        
+
         <a href="#topics" class="text-dark">
           <svg href="#topics" width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-chevron-double-down border rounded-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" d="M1.646 6.646a.5.5 0 0 1 .708 0L8 12.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
@@ -175,7 +175,9 @@ export default {
   components: {Contact},
 
   data() {
-    return {};
+    return {
+      open: true
+    };
   },
 
   mounted() {},
@@ -196,6 +198,7 @@ export default {
   top: 250px;
   transform: translate(-50%, -50%);
 }
+
 
 .col-md-12 {
   padding: 0;
@@ -250,9 +253,7 @@ svg {
   animation-iteration-count: infinite;
 }
 
-svg:hover{
-  box-shadow: 0px 2px 2px 1px rgba(0,0,0,0.75);
-}
+
 
 .card-img-top {
   width: 100%;
@@ -274,5 +275,8 @@ svg:hover{
   100% {top: 0px;}
 }
 
+img {
+  max-height: 40vh;
+}
 
 </style>
