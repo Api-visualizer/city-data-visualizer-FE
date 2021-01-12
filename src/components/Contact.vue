@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="contact-form">
     <h2 class="display-4 mb-5" id="contact">Contact</h2>
     <form name="contact_form" class="form text-left" @submit="sendForm" method="post">
     <div class="row">
@@ -91,8 +91,13 @@ export default {
 
 <style scoped>
 
-.form {
-  padding: 0 20% 0 20%;
+.contact-form{
+  background: #ffffff;
+  display: inline-block;
+  width: 50%;
+  padding: 2%;
+  border: 1px lightgray solid;
+  border-radius: 1%;
 }
 
 .form .row {
