@@ -26,7 +26,7 @@ export default {
 
   data () {
     return {
-        selectedDate: new Date(Date.now()).toLocaleString().split(',')[0],
+        selectedDate: '', // new Date(Date.now()).toLocaleString().split(',')[0],
         dates: [],
         datesOfPredictableDays: [],
         dataOfPredictableDays: [],
@@ -41,7 +41,7 @@ export default {
 
   methods: {
     getCovidPredictions: function () {
-        this.$http.get(GeneralClasses.GetApiBerlinCoronaPredictions()).then((result) => {
+        this.$http.get(GeneralClasses.GetAPIBerlinCovidPredictions()).then((result) => {
             this.data = result.data.data.doc.regression
             this.extractDatesAndDataOfPredictableWeekForTable(this.data)
             this.initializeDropdown(this.data)
@@ -53,6 +53,7 @@ export default {
         this.dataOfPredictableDays = data.y.slice(data.y.length -7, data.y.length);
         this.table_data = this.getPredictedDataWithDates(this.datesOfPredictableDays, this.dataOfPredictableDays)
     },
+
     getPredictedDataWithDates: function(dates, data) {
         let dataset = []
         for(let i = 0; i < dates.length; i++) {
@@ -60,9 +61,10 @@ export default {
         }
         return dataset;
     },
+
     initializeDropdown: function(data){
         this.selectedDate = data.x[data.x.length - 7]
-        this.dates = data.x.slice(0, data.x.length - 7);
+        this.dates = data.x.slice(0, data.x.length - 7).reverse();
     },
 
     filterDataForDate: function(selectedDate) {

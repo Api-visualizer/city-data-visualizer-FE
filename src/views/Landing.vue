@@ -48,6 +48,7 @@
 
           <div class="col-sm-6 d-flex align-items-stretch">
             <div class="card">
+              <img class="card-img-top" src="/images/cards/covid_cases.png" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title">COVID-19</h5>
                 <h6 class="card-subtitle mb-2 text-muted">Case numbers per district</h6>
@@ -61,6 +62,7 @@
 
           <div class="col-sm-6 d-flex align-items-stretch">
             <div class="card">
+              <img class="card-img-top" src="/images/cards/covid_age.png" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title">COVID-19</h5>
                 <h6 class="card-subtitle mb-2 text-muted">Case numbers per age group</h6>
@@ -78,6 +80,7 @@
 
           <div class="col-sm-6 d-flex align-items-stretch">
             <div class="card">
+              <img class="card-img-top" src="/images/cards/hospitals_status.png" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title">COVID-19</h5>
                 <h6 class="card-subtitle mb-2 text-muted">Hospital Capacities</h6>
@@ -91,6 +94,21 @@
 
           <div class="col-sm-6 d-flex align-items-stretch">
             <div class="card">
+              <img class="card-img-top" src="/images/cards/covid_cases.png" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">COVID-19</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Hospital capacities predictions</h6>
+                <p class="card-text">This line chart shows predictions for hospital with critical capacities.</p>
+              </div>
+              <div class="card-footer">
+                <a class="btn btn-primary" href="/main/covid-predictions" role="button">Here</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-6 d-flex align-items-stretch">
+            <div class="card">
+              <img class="card-img-top" src="/images/cards/covid_cases.png" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title">COVID-19</h5>
                 <h6 class="card-subtitle mb-2 text-muted">Case number predictions</h6>
@@ -104,6 +122,7 @@
 
           <div class="col-sm-6 d-flex align-items-stretch">
             <div class="card">
+              <img class="card-img-top" src="/images/cards/traffic_accidents.png" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title">Traffic Safety</h5>
                 <h6 class="card-subtitle mb-2 text-muted">City-wide Accident Locations</h6>
@@ -116,6 +135,7 @@
           </div>
           <div class="col-sm-6 d-flex align-items-stretch">
             <div class="card">
+              <img class="card-img-top" src="/images/cards/cancer_cases.png" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title">Cancer </h5>
                 <h6 class="card-subtitle mb-2 text-muted">Case numbers per age group </h6>
@@ -188,7 +208,7 @@ export default {
 .jumbotron:nth-child(even) {
   
   background-color: #f7f7f7;
-  background-image: url("data:image/svg+xml,%3Csvg width='336' height='192' viewBox='0 0 84 48' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h12v6H0V0zm28 8h12v6H28V8zm14-8h12v6H42V0zm14 0h12v6H56V0zm0 8h12v6H56V8zM42 8h12v6H42V8zm0 16h12v6H42v-6zm14-8h12v6H56v-6zm14 0h12v6H70v-6zm0-16h12v6H70V0zM28 32h12v6H28v-6zM14 16h12v6H14v-6zM0 24h12v6H0v-6zm0 8h12v6H0v-6zm14 0h12v6H14v-6zm14 8h12v6H28v-6zm-14 0h12v6H14v-6zm28 0h12v6H42v-6zm14-8h12v6H56v-6zm0-8h12v6H56v-6zm14 8h12v6H70v-6zm0 8h12v6H70v-6zM14 24h12v6H14v-6zm14-8h12v6H28v-6zM14 8h12v6H14V8zM0 8h12v6H0V8z' fill='%23477fcd' fill-opacity='0.6' fill-rule='evenodd'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg width='504' height='288' viewBox='0 0 84 48' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h12v6H0V0zm28 8h12v6H28V8zm14-8h12v6H42V0zm14 0h12v6H56V0zm0 8h12v6H56V8zM42 8h12v6H42V8zm0 16h12v6H42v-6zm14-8h12v6H56v-6zm14 0h12v6H70v-6zm0-16h12v6H70V0zM28 32h12v6H28v-6zM14 16h12v6H14v-6zM0 24h12v6H0v-6zm0 8h12v6H0v-6zm14 0h12v6H14v-6zm14 8h12v6H28v-6zm-14 0h12v6H14v-6zm28 0h12v6H42v-6zm14-8h12v6H56v-6zm0-8h12v6H56v-6zm14 8h12v6H70v-6zm0 8h12v6H70v-6zM14 24h12v6H14v-6zm14-8h12v6H28v-6zM14 8h12v6H14V8zM0 8h12v6H0V8z' fill='%23477fcd' fill-opacity='0.6' fill-rule='evenodd'/%3E%3C/svg%3E");
   
   background-repeat: repeat;
 }
@@ -232,6 +252,20 @@ svg {
 
 svg:hover{
   box-shadow: 0px 2px 2px 1px rgba(0,0,0,0.75);
+}
+
+.card-img-top {
+  width: 100%;
+  height: 10vw;
+  object-fit: cover;
+}
+
+.card {
+  transition: transform .2s;
+}
+
+.card:hover {
+  transform: scale(1.01);
 }
 
 @keyframes move {
