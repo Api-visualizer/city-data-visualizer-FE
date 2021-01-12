@@ -46,6 +46,7 @@
 
           <div class="col-sm-6 d-flex align-items-stretch">
             <div class="card">
+              <img class="card-img-top" src="/images/cards/covid_cases.png" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title">COVID-19</h5>
                 <h6 class="card-subtitle mb-2 text-muted">Case numbers per district</h6>
@@ -59,6 +60,7 @@
 
           <div class="col-sm-6 d-flex align-items-stretch">
             <div class="card">
+              <img class="card-img-top" src="/images/cards/covid_age.png" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title">COVID-19</h5>
                 <h6 class="card-subtitle mb-2 text-muted">Case numbers per age group</h6>
@@ -76,6 +78,7 @@
 
           <div class="col-sm-6 d-flex align-items-stretch">
             <div class="card">
+              <img class="card-img-top" src="/images/cards/hospitals_status.png" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title">COVID-19</h5>
                 <h6 class="card-subtitle mb-2 text-muted">Hospital Capacities</h6>
@@ -89,6 +92,21 @@
 
           <div class="col-sm-6 d-flex align-items-stretch">
             <div class="card">
+              <img class="card-img-top" src="/images/cards/covid_cases.png" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">COVID-19</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Hospital capacities predictions</h6>
+                <p class="card-text">This line chart shows predictions for hospital with critical capacities.</p>
+              </div>
+              <div class="card-footer">
+                <a class="btn btn-primary" href="/main/covid-predictions" role="button">Here</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-6 d-flex align-items-stretch">
+            <div class="card">
+              <img class="card-img-top" src="/images/cards/covid_cases.png" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title">COVID-19</h5>
                 <h6 class="card-subtitle mb-2 text-muted">Case number predictions</h6>
@@ -102,6 +120,7 @@
 
           <div class="col-sm-6 d-flex align-items-stretch">
             <div class="card">
+              <img class="card-img-top" src="/images/cards/traffic_accidents.png" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title">Traffic Safety</h5>
                 <h6 class="card-subtitle mb-2 text-muted">City-wide Accident Locations</h6>
@@ -114,6 +133,7 @@
           </div>
           <div class="col-sm-6 d-flex align-items-stretch">
             <div class="card">
+              <img class="card-img-top" src="/images/cards/cancer_cases.png" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title">Cancer </h5>
                 <h6 class="card-subtitle mb-2 text-muted">Case numbers per age group </h6>
@@ -218,6 +238,20 @@ svg {
   animation-duration: 2s;
   animation-delay: 3s;
   animation-iteration-count: infinite;
+}
+
+.card-img-top {
+  width: 100%;
+  height: 10vw;
+  object-fit: cover;
+}
+
+.card {
+  transition: transform .2s;
+}
+
+.card:hover {
+  transform: scale(1.01);
 }
 
 @keyframes move {
