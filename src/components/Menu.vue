@@ -1,13 +1,13 @@
 <template>
   <div>
-  <div class="burger" @mouseover="toggleBurger()">
+  <div class="burger" @mouseover="toggleBurger()" @click="toggleBurger">
     <v-icon dark v-if="open" x-large>mdi-menu</v-icon>
     <v-icon dark v-else large>mdi-window-close</v-icon>
   </div>
   <div v-if="!open" @mouseleave="toggleBurger()">
     <div class="list">
       <p class="first-listelement"></p>
-      <div>
+      <div class="listelement-container">
         <p class="listelement"><a href="/">Home</a></p>
       </div>
 
@@ -58,14 +58,14 @@ export default {
 </script>
 <style scoped>
 .list {
-  width: 10rem;
+  width: 15rem;
   background-color: #477FCD;
   color: white;
   border-radius: 2%;
 }
 hr {
   background-color: white;
-  width: 80%;
+  width: 70%;
   box-shadow: #777777;
   margin: auto;
 }
@@ -79,7 +79,7 @@ hr {
   cursor: pointer;
 }
 p>a {
-  font-size: large;
+  font-size: x-large;
   color: white;
   text-decoration: none;
 }
