@@ -5,7 +5,6 @@ Vue.use(VueRouter);
 import Landing from '@/views/Landing';
 import Team from '@/views/Team'
 import Faq from '@/views/Faq';
-import Main from '@/views/Main';
 import AccidentsMap from '@/components/maps/AccidentsMap';
 import HospitalsMap from '@/components/maps/HospitalsMap';
 import CovidMap from '@/components/maps/CovidMap';
@@ -13,7 +12,7 @@ import BerlinCharts from '@/views/BerlinCharts';
 import CancerCasesBarchart from '@/components/charts/CancerCasesBarchart'
 import CovidPredictions from "@/views/CovidPredictions";
 import CovidPredictionTable from '@/components/tables/CovidCasesPrediction';
-
+import HospitalPredictions from "@/views/HospitalPredictions";
 
 
 const routes = [
@@ -21,16 +20,15 @@ const routes = [
     { path: '/', component: Landing },
     { path: '/faq', component: Faq },
     { path: '/team', component: Team },
-    { path: '/main', component: Main },
-    { path: '/main/infections', component: CovidMap },
-    { path: '/main/covid-graphs', component: BerlinCharts },
-    { path: '/main/accidents', component: AccidentsMap },
-    { path: '/main/hospitals', component: HospitalsMap },
-    { path: '/main/cancer', component: CancerCasesBarchart },
-    { path: '/main/covid-predictions', component: CovidPredictions },
-    { path: '/team', component: Team },
-    { path: '/main/cancer', component: CancerCasesBarchart },
-    { path: '/main/predictions', component: CovidPredictionTable }
+    { path: '/infections', component: CovidMap },
+    { path: '/covid-graphs', component: BerlinCharts },
+    { path: '/accidents', component: AccidentsMap },
+    { path: '/hospitals', component: HospitalsMap },
+    { path: '/cancer', component: CancerCasesBarchart },
+    { path: '/covid-predictions', component: CovidPredictions },
+    { path: '/predictions', component: CovidPredictionTable },
+    { path: '/hospital-predictions', component: HospitalPredictions },
+    { path: '/cancer', component: CancerCasesBarchart },
 ];
 
 const router = new VueRouter({
