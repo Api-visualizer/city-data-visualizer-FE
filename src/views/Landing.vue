@@ -51,7 +51,7 @@
               <img class="card-img-top" src="/images/cards/covid_cases.png" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title">COVID-19</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Case numbers per district</h6>
+                <h6 class="card-subtitle mb-2 text-muted">Case Numbers per District</h6>
                 <p class="card-text">This regional map lets you easily examine total and daily case numbers per district.</p>
               </div>
               <div class="card-footer">
@@ -65,7 +65,7 @@
               <img class="card-img-top" src="/images/cards/covid_age.png" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title">COVID-19</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Case numbers per age group</h6>
+                <h6 class="card-subtitle mb-2 text-muted">Case Numbers per Age Group</h6>
                 <p class="card-text">Corresponding charts and tables allow you to get a deeper understanding of the development of the COVID-19 virus in Berlin.</p>
               </div>
               <div class="card-footer">
@@ -79,7 +79,7 @@
               <img class="card-img-top" src="/images/cards/covid_cases.png" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title">COVID-19</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Case number predictions</h6>
+                <h6 class="card-subtitle mb-2 text-muted">Case Number Predictions</h6>
                 <p class="card-text">This line chart displays predictions on how case numbers will develop in the coming days based on the available data.</p>
               </div>
               <div class="card-footer">
@@ -111,7 +111,7 @@
               <img class="card-img-top" src="/images/cards/covid_cases.png" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title">COVID-19</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Hospital capacities predictions</h6>
+                <h6 class="card-subtitle mb-2 text-muted">Hospital Capacity Predictions</h6>
                 <p class="card-text">This line chart shows predictions for hospital with critical capacities.</p>
               </div>
               <div class="card-footer">
@@ -142,7 +142,7 @@
               <img class="card-img-top" src="/images/cards/cancer_cases.png" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title">Cancer </h5>
-                <h6 class="card-subtitle mb-2 text-muted">Case numbers per age group </h6>
+                <h6 class="card-subtitle mb-2 text-muted">Case Numbers per Age Group </h6>
                 <p class="card-text">Corresponding chart allows you to get a deeper understanding how the number of Cancer patients per year, age and gender differentiates in Berlin.</p>
               </div>
               <div class="card-footer">
