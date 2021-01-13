@@ -4,11 +4,8 @@
       <div class="row">
         <div class="col">
           <div class="title display-4 pl-5 pr-5 pt-2 pb-2 bg-light text-dark rounded-pill" style="opacity: 0.9">
-            <span>Berlin</span>
             <br />
-            <span><h4>Cancer</h4></span>
           </div>
-          <img src="/images/berlin4.jpg" class="w-100 headerimage" alt="Berlin" />
         </div>
       </div>
     </div>    
