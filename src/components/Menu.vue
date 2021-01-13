@@ -6,16 +6,34 @@
   </div>
   <div v-if="!open" @mouseleave="toggleBurger()">
     <div class="list">
-      <p><a href="/">Home</a></p>
+      <p class="first-listelement"></p>
+      <div>
+        <p class="listelement"><a href="/">Home</a></p>
+      </div>
+
       <hr>
-      <p><a href="/main/covid-graphs">Graphs</a></p>
-      <p><a href="/main/infections">Infections</a></p>
-      <p><a href="/main/hospitals">Hospitals</a></p>
-      <p><a href="/main/cancer">Cancer</a></p>
-      <p><a href="/main/accidents">Accidents</a></p>
+      <div class="listelement-container">
+        <p class="listelement"><a href="/main/covid-graphs">Graphs</a></p>
+      </div>
+      <div class="listelement-container">
+        <p class="listelement"><a href="/main/infections">Infections</a></p>
+      </div>
+      <div class="listelement-container">
+        <p class="listelement"><a href="/main/hospitals">Hospitals</a></p>
+      </div>
+      <div class="listelement-container">
+        <p class="listelement"><a href="/main/cancer">Cancer</a></p>
+      </div>
+      <div class="listelement-container">
+        <p class="listelement"><a href="/main/accidents">Accidents</a></p>
+      </div>
       <hr>
-      <p><a href="/faq">FAQ</a></p>
-      <p><a href="/team">Team</a></p>
+      <div class="listelement-container">
+        <p class="listelement"><a href="/faq">FAQ</a></p>
+      </div>
+      <div class="listelement-container">
+        <p class="listelement"><a href="/team">Team</a></p>
+      </div>
     </div>
   </div >
   </div>
@@ -40,14 +58,16 @@ export default {
 </script>
 <style scoped>
 .list {
-  padding: 75px 50px 20px 50px;
-  width: auto;
+  width: 10rem;
   background-color: #477FCD;
   color: white;
   border-radius: 2%;
 }
 hr {
   background-color: white;
+  width: 80%;
+  box-shadow: #777777;
+  margin: auto;
 }
 .burger {
   z-index: 9999;
@@ -61,8 +81,23 @@ hr {
 p>a {
   font-size: large;
   color: white;
+  text-decoration: none;
 }
 a:hover {
   cursor: pointer;
+}
+.listelement {
+  width: 100%;
+  height: 1.5rem;
+}
+.listelement-container:hover {
+  background-color: #629df0;
+}
+.first-listelement {
+  padding-top: 40px;
+}
+.listelement-container {
+  height: 3em;
+  line-height: 3em;
 }
 </style>

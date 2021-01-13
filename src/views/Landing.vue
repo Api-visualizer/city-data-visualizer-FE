@@ -275,8 +275,5 @@ svg {
   100% {top: 0px;}
 }
 
-img {
-  max-height: 40vh;
-}
 
 </style>
