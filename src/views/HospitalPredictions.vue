@@ -9,15 +9,16 @@
     </div>
     <div class="container-fluid">
       <div class="row">
-        <div class="col-9 mt-2">
+        <div class="col-8 mt-2">
           <apexchart width="100%" type="area" :options="options" :series="series"></apexchart>
         </div>
-        <div class="col-3 mt-5">
+        <div class="col-4 mt-2">
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">COVID-19</h5>
-              <h6 class="card-subtitle mb-2 text-muted">Predicted Case Numbers</h6>
-              <p class="card-text">The predictions are based on the history of newly cases. We chose to use the polynomial regression method to find a suitable graph that neither underfits, nor overfits the data. We can use this graph to predict future number of cases and find certain trends. Factors like restriction policies by the senate or seasonality are not taken into consideration for this method.</p>
+              <h6 class="card-subtitle mb-2 text-muted">Predicted Hospital Capacity Numbers</h6>
+              <p class="card-text">The predictions are based on the history of hospital capacities. We chose to use the polynomial regression method to find a suitable graph that neither underfits, nor overfits the data. We can use this graph to predict future number of cases and find certain trends. Factors like restriction policies by the senate or seasonality are not taken into consideration for this method.
+              <br> TODO: 3.0 denotes X, 4.0 denotes Y...</p>
             </div>
           </div>
         </div>
@@ -30,7 +31,7 @@
 import GeneralClasses from '@/assets/GeneralClasses';
 
 export default {
-  name: 'CovidPredictions',
+  name: 'HospitalPredictions',
   data() {
     return {
       options: {
@@ -69,7 +70,7 @@ export default {
       }),
           (this.series = [
             {
-              name: 'Number of Covid-19 cases',
+              name: 'Capacity Level',
               data: ArrayY,
             },
           ]);
