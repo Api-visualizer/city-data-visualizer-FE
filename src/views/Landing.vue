@@ -44,9 +44,9 @@
     </div>
 
       <div class="jumbotron" id="topics">
-        <div class="row">
+        <div class="row threeitems">
 
-          <div class="col-sm-6 d-flex align-items-stretch">
+          <div class="col-sm-4 d-flex align-items-stretch">
             <div class="card">
               <img class="card-img-top" src="/images/cards/covid_cases.png" alt="Card image cap">
               <div class="card-body">
@@ -55,12 +55,12 @@
                 <p class="card-text">This regional map lets you easily examine total and daily case numbers per district.</p>
               </div>
               <div class="card-footer">
-                <a class="btn btn-primary" href="/main/infections" role="button">Here</a>
+                <a class="btn btn-primary" href="/infections" role="button">Here</a>
               </div>
             </div>
           </div>
 
-          <div class="col-sm-6 d-flex align-items-stretch">
+          <div class="col-sm-4 d-flex align-items-stretch">
             <div class="card">
               <img class="card-img-top" src="/images/cards/covid_age.png" alt="Card image cap">
               <div class="card-body">
@@ -69,14 +69,28 @@
                 <p class="card-text">Corresponding charts and tables allow you to get a deeper understanding of the development of the COVID-19 virus in Berlin.</p>
               </div>
               <div class="card-footer">
-                <a class="btn btn-primary" href="/main/covid-graphs" role="button">Here</a>
+                <a class="btn btn-primary" href="/covid-graphs" role="button">Here</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-4 d-flex align-items-strech">
+            <div class="card">
+              <img class="card-img-top" src="/images/cards/covid_cases.png" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">COVID-19</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Case number predictions</h6>
+                <p class="card-text">This line chart displays predictions on how case numbers will develop in the coming days based on the available data.</p>
+              </div>
+              <div class="card-footer">
+                <a class="btn btn-primary" href="/covid-predictions" role="button">Here</a>
               </div>
             </div>
           </div>
 
         </div>
 
-        <div class="row">
+        <div class="row twoitems">
 
           <div class="col-sm-6 d-flex align-items-stretch">
             <div class="card">
@@ -87,7 +101,7 @@
                 <p class="card-text">This map shows hospital locations and capacities during COVID-19 in Berlin. </p>
               </div>
               <div class="card-footer">
-                <a class="btn btn-primary" href="/main/hospitals" role="button">Here</a>
+                <a class="btn btn-primary" href="/hospitals" role="button">Here</a>
               </div>
             </div>
           </div>
@@ -101,25 +115,14 @@
                 <p class="card-text">This line chart shows predictions for hospital with critical capacities.</p>
               </div>
               <div class="card-footer">
-                <a class="btn btn-primary" href="/main/covid-predictions" role="button">Here</a>
+                <a class="btn btn-primary" href="/hospital-predictions" role="button">Here</a>
               </div>
             </div>
           </div>
 
-          <div class="col-sm-6 d-flex align-items-stretch">
-            <div class="card">
-              <img class="card-img-top" src="/images/cards/covid_cases.png" alt="Card image cap">
-              <div class="card-body">
-                <h5 class="card-title">COVID-19</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Case number predictions</h6>
-                <p class="card-text">This line chart displays predictions on how case numbers will develop in the coming days based on the available data.</p>
-              </div>
-              <div class="card-footer">
-                <a class="btn btn-primary" href="/main/covid-predictions" role="button">Here</a>
-              </div>
-            </div>
-          </div>
+        </div>
 
+        <div class="row twoitems">
           <div class="col-sm-6 d-flex align-items-stretch">
             <div class="card">
               <img class="card-img-top" src="/images/cards/traffic_accidents.png" alt="Card image cap">
@@ -133,6 +136,7 @@
               </div>
             </div>
           </div>
+
           <div class="col-sm-6 d-flex align-items-stretch">
             <div class="card">
               <img class="card-img-top" src="/images/cards/cancer_cases.png" alt="Card image cap">
@@ -146,7 +150,7 @@
               </div>
             </div>
           </div>
-
+        </div>
         </div>
       </div>
 
@@ -159,9 +163,7 @@
       <div class="jumbotron">
        <Contact />
       </div>
-
     </div>
-  </div>
 </template>
 
 <script>
@@ -209,10 +211,10 @@ export default {
 }
 
 .jumbotron:nth-child(even) {
-  
+
   background-color: #f7f7f7;
   background-image: url("data:image/svg+xml,%3Csvg width='504' height='288' viewBox='0 0 84 48' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h12v6H0V0zm28 8h12v6H28V8zm14-8h12v6H42V0zm14 0h12v6H56V0zm0 8h12v6H56V8zM42 8h12v6H42V8zm0 16h12v6H42v-6zm14-8h12v6H56v-6zm14 0h12v6H70v-6zm0-16h12v6H70V0zM28 32h12v6H28v-6zM14 16h12v6H14v-6zM0 24h12v6H0v-6zm0 8h12v6H0v-6zm14 0h12v6H14v-6zm14 8h12v6H28v-6zm-14 0h12v6H14v-6zm28 0h12v6H42v-6zm14-8h12v6H56v-6zm0-8h12v6H56v-6zm14 8h12v6H70v-6zm0 8h12v6H70v-6zM14 24h12v6H14v-6zm14-8h12v6H28v-6zM14 8h12v6H14V8zM0 8h12v6H0V8z' fill='%23477fcd' fill-opacity='0.15' fill-rule='evenodd'/%3E%3C/svg%3E");
-  
+
   background-repeat: repeat;
 }
 
@@ -224,7 +226,11 @@ export default {
   padding: 0 20% 0 20%;
 }
 
-.row {
+.threeitems {
+  padding: 0 5% 0 5%;
+}
+
+.twoitems {
   padding: 0 20% 0 20%;
 }
 

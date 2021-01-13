@@ -21,6 +21,9 @@
             </div>
           </div>
         </div>
+        <div class="col-12">
+          <CovidPredictionTable/>
+        </div>
       </div>
     </div>
   </div>
@@ -28,9 +31,11 @@
 
 <script>
 import GeneralClasses from '@/assets/GeneralClasses';
+import CovidPredictionTable from "@/components/tables/CovidCasesPrediction";
 
 export default {
   name: 'CovidPredictions',
+  components: {CovidPredictionTable},
   data() {
     return {
       options: {
