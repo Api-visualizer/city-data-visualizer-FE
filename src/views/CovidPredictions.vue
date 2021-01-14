@@ -50,7 +50,7 @@ export default {
     };
   },
   mounted() {
-    this.$http.get(GeneralClasses.GetAPIBerlinHospitalPredictions()).then((Response) => {
+    this.$http.get(GeneralClasses.GetAPIBerlinCovidPredictions()).then((Response) => {
       var ArrayX = Response.data.data.doc.data.prediction.x;
       var ArrayY = Response.data.data.doc.data.prediction.y;
 

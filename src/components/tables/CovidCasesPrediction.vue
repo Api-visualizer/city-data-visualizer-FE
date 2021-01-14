@@ -1,6 +1,7 @@
 <template>
     <div>
-        <v-app>
+      <apexchart width="100%" type="area" :options="options" :series="series"></apexchart>
+      <v-app>
         <v-select
               v-model="selectedDate"
               :items="dates"
@@ -28,10 +29,24 @@ export default {
     return {
         selectedDate: '', // new Date(Date.now()).toLocaleString().split(',')[0],
         dates: [],
+        options: {
+          chart: {
+            id: 'vuechart-example',
+          },
+          xaxis: {
+            categories: this.dates,
+          },
+        },
+        series: [
+          {
+            name: 'Number of Covid-19 cases',
+            data: this.table_data,
+          },
+        ],
         datesOfPredictableDays: [],
         dataOfPredictableDays: [],
         data: {},
-		table_data: [],
+        table_data: [],
         headers: [
                 { text: 'Date', value: 'date' },
                 { text: 'Prediction', value: 'prediction' },
@@ -71,13 +86,14 @@ export default {
         this.datesOfPredictableDays = this.data.x.slice(this.data.x.indexOf(selectedDate), this.data.x.indexOf(selectedDate) +7)
         this.dataOfPredictableDays = this.data.y.slice(this.data.x.indexOf(selectedDate), this.data.x.indexOf(selectedDate) +7)
         this.table_data = this.getPredictedDataWithDates(this.datesOfPredictableDays, this.dataOfPredictableDays)
-    }
+    },
+
   },
 
   mounted() {
     this.selectedDate = new Date(Date.now()).toLocaleString().split(',')[0]
     this.getCovidPredictions();
-  },
+  }
 };
 </script>
 
