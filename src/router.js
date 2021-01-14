@@ -10,7 +10,8 @@ import AccidentsMap from '@/components/maps/AccidentsMap';
 import HospitalsMap from '@/components/maps/HospitalsMap';
 import CovidMap from '@/components/maps/CovidMap';
 import BerlinCharts from '@/views/BerlinCharts';
-import CancerCasesBarchart from '@/components/charts/CancerCasesBarchart'
+import CancerCasesBarchart from '@/components/charts/CancerCasesBarchart';
+import CovidPredictionLinechart from '@/components/charts/CovidPredictionLinechart';
 import CovidPredictions from "@/views/CovidPredictions";
 import CovidPredictionTable from '@/components/tables/CovidCasesPrediction';
 
@@ -28,6 +29,7 @@ const routes = [
     { path: '/main/hospitals', component: HospitalsMap },
     { path: '/main/cancer', component: CancerCasesBarchart },
     { path: '/main/covid-predictions', component: CovidPredictions },
+    { path: '/prediction-chart', component: CovidPredictionLinechart },
     { path: '/team', component: Team },
     { path: '/main/cancer', component: CancerCasesBarchart },
     { path: '/main/predictions', component: CovidPredictionTable }

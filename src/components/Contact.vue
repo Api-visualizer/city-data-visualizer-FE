@@ -64,7 +64,6 @@ export default {
       const user_mail = form_data['email_field'].value;
       const message = form_data['message_field'].value;
       const data_json = {subject: "NEW: City Data Visualizer", first_name, last_name, user_mail, message};
-      console.log(JSON.stringify(data_json));
 
       const XHR = new XMLHttpRequest();
       const URL = 'https://cdv-mail.api.datexis.com/mail'

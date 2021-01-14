@@ -49,7 +49,6 @@ export default {
     const url = '/images/SearchTerms.json';
     this.$http.get(url).then((Result) => {
       this.SearchData = Result.data.SearchElements;
-      console.log(this.SearchData);
     });
   },
 };

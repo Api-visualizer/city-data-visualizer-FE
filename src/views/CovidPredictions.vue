@@ -13,6 +13,8 @@
       <div class="row">
         <div class="col-12">         
           <p><apexchart width="100%" type="area" :options="options" :series="series"></apexchart></p>
+          <CovidPredictionLinechart />
+          <CovidPredictionTable />
         </div>
         <div class="col-12">
           <div class="card">
@@ -30,9 +32,14 @@
 
 <script>
 import GeneralClasses from '@/assets/GeneralClasses';
+import CovidPredictionLinechart from '@/components/charts/CovidPredictionLinechart';
+import CovidPredictionTable from '@/components/tables/CovidCasesPrediction';
+
+
 
 export default {
   name: 'CovidPredictions',
+  components: { CovidPredictionLinechart, CovidPredictionTable },
   data() {
     return {
       options: {
