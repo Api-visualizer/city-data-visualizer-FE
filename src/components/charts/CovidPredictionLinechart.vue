@@ -58,7 +58,7 @@ export default {
         let scatterData = []
         let linechartData = []
          scatterDataset.forEach(elem => {
-            scatterData.push({x: elem.date, y: elem.data})
+            scatterData.push({x: elem.date, y: Math.round(elem.data)})
         });
         linechartDataset.forEach(elem => {
             linechartData.push({x: elem.date, y: elem.data})

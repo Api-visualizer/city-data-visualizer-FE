@@ -26,7 +26,7 @@ export default {
 
   data () {
     return {
-        selectedDate: '', // new Date(Date.now()).toLocaleString().split(',')[0],
+        selectedDate: '',
         dates: [],
         datesOfPredictableDays: [],
         dataOfPredictableDays: [],
@@ -50,7 +50,7 @@ export default {
 
     extractDatesAndDataOfPredictableWeekForTable: function(data) {
         this.datesOfPredictableDays = data.x.slice(data.x.length -7 , data.x.length);
-        this.dataOfPredictableDays = data.y.slice(data.y.length -7, data.y.length);
+        this.dataOfPredictableDays = data.y.slice(data.y.length -7, data.y.length).map(elem => Math.round(elem));
         this.table_data = this.getPredictedDataWithDates(this.datesOfPredictableDays, this.dataOfPredictableDays)
     },
 
