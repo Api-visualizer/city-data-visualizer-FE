@@ -72,6 +72,9 @@ hr {
 .burger {
   z-index: 9999;
   position: absolute;
+  background-color:rgb(0, 0, 0, 0.2);
+  padding: 5px;
+  border-radius: 10px;
   top: 5px;
   right: 15px
 }
