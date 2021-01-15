@@ -49,6 +49,8 @@ export default {
   max-height: 100vh;
 }
 
+html { scroll-behavior: smooth;}
+
 .info > p {
   text-align: left;
 }
