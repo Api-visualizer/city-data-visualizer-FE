@@ -1,78 +1,24 @@
 <template>
   <div class="covidslider">
-  <v-app >
-    <v-card class="mt-10">
-      <v-card-text>
-        <v-slider
-          v-model="index"
-          :max="labels.length-1"
-          ticks="always"
-          tick-size="4"
-          thumb-label="always"
-          :thumb-size="70"
-          v-on:change="emitNewDate(index)"
-        >
-          <template v-slot:thumb-label="{ value }">
-            {{ labels[value] }}
-          </template>
-          <template v-slot:prepend>
-            <v-menu
-              v-model="menuLeft"
-              :close-on-content-click="false"
-            >
-              <template v-slot:activator="{ on, attrs }">
-                <v-text-field
-                  v-model="formatStart"
-                  readonly
-                  solo
-                  v-bind="attrs"
-                  v-on="on"
-                ></v-text-field>
-              </template>
-              <v-date-picker
-                v-model="dateLeft"
-                no-title
-                :allowed-dates="getAllowedDatesLeft"
-                @input="menu = false"
-                @change="newRange()"
-              ></v-date-picker>
-            </v-menu>
-          </template>
-          <template v-slot:append>
-            <v-menu
-              v-model="menuRight"
-              :close-on-content-click="false"
-            >
-              <template v-slot:activator="{ on, attrs }">
-                <v-text-field
-                  v-model="formatEnd"
-                  readonly
-                  solo
-                  v-bind="attrs"
-                  v-on="on"
-                ></v-text-field>
-              </template>
-              <v-date-picker
-                v-model="dateRight"
-                no-title
-                :allowed-dates="getAllowedDatesRight"
-                @input="menu = false"
-                @change="newRange()"
-              ></v-date-picker>
-            </v-menu>
-          </template>
-        </v-slider>
-        <v-select
-          v-model="mId"
-          :items="months"
-          item-text="name"
-          item-value="id"
-          label="Month"
-          v-on:change="getDatesForMonth(mId)"
-        ></v-select>
-      </v-card-text> 
-    </v-card>
-  </v-app>
+    <v-app>
+      <div class="row">
+        <div class="col-8 vslider">
+          <v-slider  v-model="index" :max="labels.length-1" ticks="always" tick-size="4"
+                    thumb-label="always"
+                    :thumb-size="70"
+                    v-on:change="emitNewDate(index)">
+            <template v-slot:thumb-label="{ value }">{{ labels[value] }}</template>
+          </v-slider>
+
+        </div>
+        <div class="col-3">
+          <v-select
+              v-model="mId" :menu-props="{ top: true, offsetY: true }" :items="months" item-text="name"  item-value="id" label="Month"
+              v-on:change="getDatesForMonth(mId)">
+          </v-select>
+        </div>
+      </div>
+    </v-app>
   </div>
 </template>
 <script>
@@ -246,7 +192,7 @@ export default {
   margin: auto;
   margin-top: 1%;
   margin-bottom: 1%;
-  max-height: 30%;
+  max-height: 20%;
 }
 
 .v-card__text{
@@ -264,5 +210,13 @@ export default {
 
 .v-select{
   flex: 0 1 15%;
+  max-width: 7rem;
+}
+.vslider {
+  z-index: 999;
+  margin-right: 6rem;
+}
+.col-4 {
+  margin-right: 5rem;
 }
 </style>
