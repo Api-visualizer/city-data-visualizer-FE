@@ -1,6 +1,6 @@
 <template>
   <div>
-     <div class="container-fluid border-bottom border-info" style="border-width: 5px !important;">
+     <div class="container-fluid">
       <div class="row">
         <div class="col">
           <div class="title display-4 pl-5 pr-5 pt-2 pb-2 bg-light text-dark rounded-pill" style="opacity: 0.9">

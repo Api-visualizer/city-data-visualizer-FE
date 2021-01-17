@@ -1,30 +1,10 @@
 <template>
   <div>
-    <div class="container-fluid border-bottom border-info" style="border-width: 5px !important;">
-      <div class="row">
-        <div class="col">
-          <div class="title display-4 pl-5 pr-5 pt-2 pb-2 bg-light text-dark rounded-pill" style="opacity: 0.9">
-            <br />
-          </div>
-        </div>
-      </div>
-    </div>    
     <div id="container">
-      <div id="hospitalMapContainer"></div>
+      <div id="hospitalMapContainer" />
+      <Textbox :content="content" class="box"/>
     </div>
     <Timeslider v-if='sliderStartIndex' :id='this.busKey' :startIndex=this.sliderStartIndex :ticksLabels=this.ticksLabels :value=value />
-    <div class="col m-2">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">COVID-19</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Hospital Capacities</h6>
-          <p class="card text p-2">
-            This map displays all hospitals in Berlin as location markers on a map divided by administrative districts. Adhering to the key on the left side, each hospital is color coded to reflect its current capacity on a daily basis. As with the COVID-19 infection map, the time slider at the bottom allows you to choose which months and days to display.
-            <br><br>As COVID-19 cases are rising and hospitals are beginning to reach the limits of their capacity, this is a valuable resource to assess our position in the current pandemic and to understand the basis of policy changes.
-          </p>
-        </div>
-      </div>
-    </div>
   </div>
 </template>
 
@@ -33,11 +13,12 @@ import GeneralClasses from "../../assets/GeneralClasses";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import Timeslider from "@/components/Timeslider";
+import Textbox from "@/components/Textbox";
 
 export default {
   name: "HospitalsMap",
 
-  components: { Timeslider },
+  components: {Textbox, Timeslider },
 
   props: {
     busId: String
@@ -45,6 +26,7 @@ export default {
 
   data() {
     return {
+      content: "This map displays all hospitals in Berlin as location markers on a map divided by administrative districts. Adhering to the key on the left side, each hospital is color coded to reflect its current capacity on a daily basis. As with the COVID-19 infection map, the time slider at the bottom allows you to choose which months and days to display. <br><br>As COVID-19 cases are rising and hospitals are beginning to reach the limits of their capacity, this is a valuable resource to assess our position in the current pandemic and to understand the basis of policy changes.",
       dataResult: [],
       value: '',
       map: {},
@@ -275,5 +257,17 @@ export default {
   height: 18px;
   float: left;
   opacity: 0.7;
+}
+#container {
+  position: relative;
+  margin: 3rem;
+}
+.box {
+  position: absolute;
+  text-align: justify;
+  top: 1rem;
+  right: 1rem;
+  z-index: 997;
+  max-width: 20rem;
 }
 </style>

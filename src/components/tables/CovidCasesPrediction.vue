@@ -1,9 +1,9 @@
 <template>
-    <div>        
-        <div id="table">
-                <v-data-table :headers=this.headers :items=this.table_data :items-per-page="7" class="elevation-1"></v-data-table>
-        </div>
-    </div>
+  <div>
+      <div id="table">
+        <v-data-table :headers=this.headers :items=this.table_data :items-per-page="7" class="elevation-1"></v-data-table>
+      </div>
+  </div>
 </template>
 
 <script>

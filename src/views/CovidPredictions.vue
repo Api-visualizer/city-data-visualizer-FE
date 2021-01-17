@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="container-fluid border-bottom border-info" style="border-width: 5px !important">
+    <div class="container-fluid">
       <div class="row">
         <div class="col">
           <div class="title display-4 pl-5 pr-5 pt-2 pb-2 bg-light text-dark rounded-pill" style="opacity: 0.9">
@@ -11,20 +11,17 @@
     </div>
     <div class="container-fluid">
       <div class="row">
-        <div class="col-12">         
-          <p><apexchart width="100%" type="area" :options="options" :series="series"></apexchart></p>
-          <CovidPredictionLinechart />
-          <CovidPredictionTable />
-        </div>
         <div class="col-12">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">COVID-19</h5>
-              <h6 class="card-subtitle mb-2 text-muted">Predicted Case Numbers</h6>
-              <p class="card-text">The predictions are based on the history of newly cases. We chose to use the polynomial regression method to find a suitable graph that neither underfits, nor overfits the data. We can use this graph to predict future number of cases and find certain trends. Factors like restriction policies by the senate or seasonality are not taken into consideration for this method.</p>
-            </div>
-          </div>
+          <CovidPredictionLinechart />
         </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+            <Textbox :content="content" title="COVID-19" subtitle="Predicted Case Numbers"/>
+          </div>
+          <div class="col-6">
+            <CovidPredictionTable />
+          </div>
       </div>
     </div>
   </div>
@@ -34,14 +31,15 @@
 import GeneralClasses from '@/assets/GeneralClasses';
 import CovidPredictionLinechart from '@/components/charts/CovidPredictionLinechart';
 import CovidPredictionTable from '@/components/tables/CovidCasesPrediction';
-
+import Textbox from "@/components/Textbox";
 
 
 export default {
   name: 'CovidPredictions',
-  components: { CovidPredictionLinechart, CovidPredictionTable },
+  components: {Textbox, CovidPredictionLinechart, CovidPredictionTable },
   data() {
     return {
+      content: "The predictions are based on the history of newly cases. We chose to use the polynomial regression method to find a suitable graph that neither underfits, nor overfits the data. We can use this graph to predict future number of cases and find certain trends. Factors like restriction policies by the senate or seasonality are not taken into consideration for this method.</p>",
       options: {
         chart: {
           id: 'vuechart-example',
@@ -88,14 +86,20 @@ export default {
 </script>
 
 <style scoped>
+.textbox {
+
+}
 .container-fluid .col {
   margin: 0;
   padding: 0;
 }
 
-.headerimage {
-  max-height: 15rem;
-  object-fit: cover;
+box {
+  position: absolute;
+  right: 1vw;
+  top: 12vh;
+  z-index: 9997;
+  width: 20rem;
 }
 
 .title {
