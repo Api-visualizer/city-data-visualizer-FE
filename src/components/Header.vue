@@ -1,18 +1,14 @@
 <template>
-  <div>
-    <nav class="navbar navbar-dark bg-dark border-bottom border-info" style="border-width: 5px !important">
+    <nav class="navbar navbar-dark bg-dark">
       <a class="navbar-brand" href="/">
         <img src="/images/logo_white.png" />
       </a>
-
       <div class="search">
         <form class="form-inline my-2 my-lg-0">
           <autocomplete ref="autocomplete" @keyup.enter="SearchOnSubmit(SearchValue)" :search="search" placeholder="Search" aria-label="Search" :get-result-value="getResultValue" @submit="onSubmit"></autocomplete>
         </form>
       </div>
-
     </nav>
-  </div>
 </template>
 
 <script>

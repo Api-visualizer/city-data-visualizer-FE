@@ -1,47 +1,34 @@
 <template>
     <div>
-      <div class="container-fluid border-bottom border-info" style="border-width: 5px !important;">
       <div class="row">
-        <div class="col">
-          <div class="title display-4 pl-5 pr-5 pt-2 pb-2 bg-light text-dark rounded-pill" style="opacity: 0.9">
-            <br />
+        <div class="col-8">
+          <div id="chart">
+            <apexchart type="bar" height="450" :options="options" :series="series"></apexchart>
           </div>
         </div>
-      </div>
-    </div>    
-    <div id="chart">
-      <apexchart type="bar" height="450" :options="options" :series="series"></apexchart>
-    </div>
-    <v-app>
-        <v-select :items="years" v-model="selectedYear" :dense="true" :menu-props="{ maxHeight: '150px' }" label="Select year" v-on:change="getDataOnChange(selectedYear)"> </v-select>
-    </v-app>
-    <div class="col m-2">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Cancer</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Case numbers per year</h6>
-          <p class="card text p-2">This chart shows you how the number of cancer patients has developed through the years 2008 until 2017.
-            The chart has many functionalities which let you be able to investigate the exact information which you may need about cancer in Berlin, 
-            for example you can see the number of patients according to their age and gendre AND see the total number of patients for each age group of people.  
-            You can filter the results (accourding to the selected year) to see the difference and the development of the number of cancer patients. 
-          </p>
+        <div class="col-3">
+          <Textbox :content="content" title="Cancer" subtitle="Case numbers per year" class="box"/>
         </div>
       </div>
-    </div>
+      <v-app class="app">
+        <v-select :items="years" v-model="selectedYear" :dense="true" :menu-props="{ maxHeight: '150px' }" label="Select year" v-on:change="getDataOnChange(selectedYear)"> </v-select>
+      </v-app>
   </div>
 </template>
 <script>
 import GeneralClasses from "@/assets/GeneralClasses";
 import "leaflet/dist/leaflet.css";
+import Textbox from "@/components/Textbox";
 
 export default {
     name: "CancerCasesBarchart",
-
-    props: {
+  components: { Textbox },
+  props: {
 
     },
     data() {
         return {
+          content: "This chart shows you how the number of cancer patients has developed through the years 2008 until 2017. The chart has many functionalities which let you be able to investigate the exact information which you may need about cancer in Berlin, for example you can see the number of patients according to their age and gendre AND see the total number of patients for each age group of people. You can filter the results (accourding to the selected year) to see the difference and the development of the number of cancer patients.",
             data: {},
             years: [],
             selectedYear: '2008',
@@ -168,22 +155,20 @@ export default {
   .container-fluid .col {
   margin: 0;
   padding: 0;
-}
+  }
+  .row {
+    margin: 3rem 3rem 2rem 3rem;
+  }
+  #chart  {
+    box-shadow: 22px 22px 8px -3px #477FCD;
+  }
+  .box {
+    margin-left: 3rem;
+    height: 100%;
+  }
+  .app {
+    width: 10rem;
+    margin-left: 4rem
+  }
 
-.headerimage {
-  max-height: 15rem;
-  object-fit: cover;
-}
-
-.title {
-  z-index: 1;
-  position: absolute;
-  left: 50%;
-  top: 7.5rem;
-  color: white;
-  transform: translate(-50%, -50%);
-}
-.display-4 {
-  font-weight: bold;
-}
 </style>

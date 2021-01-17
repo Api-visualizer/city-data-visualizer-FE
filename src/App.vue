@@ -56,7 +56,7 @@ html { scroll-behavior: smooth;}
 }
 
 .menu {
-  z-index: 9998;
+  z-index: 9997;
   position: absolute;
   top: 12px;
   right: 10px;

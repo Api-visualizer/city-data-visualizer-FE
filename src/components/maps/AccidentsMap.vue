@@ -1,19 +1,10 @@
 <template>
   <div>
-    <div class="container-fluid border-bottom border-info" style="border-width: 5px !important">
-      <div class="row">
-        <div class="col">
-          <div class="title display-4 pl-5 pr-5 pt-2 pb-2 bg-light text-dark rounded-pill" style="opacity: 0.9">
-            <br />
-          </div>
-        </div>
-      </div>
-    </div>
-    <div id="container w-100">
+    <div id="container">
       <div class="row p-5 rounded-pill">
         <div id="accidentsMapContainer"></div>
+        <Textbox :content="content" title="Traffic Safety" subtitle="City-Wide Accident Locations" class="box" />
       </div>
-
       <div class="container">
         <v-app>
         <v-row>
@@ -33,18 +24,6 @@
           </li>
         </ul>
       </div>
-      <div class="m-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Traffic Safety</h5>
-            <h6 class="card-subtitle mb-2 text-muted">City-Wide Accident Locations</h6>
-            <p class="card text p-2">
-              This heat map offers a bird’s eye view of Berlin’s accident hot spots. As indicated in the key to the left, the annual number of accidents is displayed on a smooth and continuous spectrum of color, making it accurate and easy to comprehend.
-              <br /><br />By zooming in, you can determine whether a particular street or crossing is safe to use or on the more dangerous side, which may help in choosing your daily routes, be it for runs or for commutes. Depending on your preferred mode of transportation, you can choose to only display accidents for cars, motorcycles, trucks, pedestrians or other, and even compare accident rates per year.
-            </p>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </template>
@@ -55,14 +34,21 @@ import L from 'leaflet';
 import { icon } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import 'leaflet.heat/dist/leaflet-heat';
+import Textbox from "@/components/Textbox";
 
 export default {
   name: 'AccidentsMap',
-
+  components: { Textbox },
   props: {},
 
   data() {
     return {
+      content: "This heat map offers a bird’s eye view of Berlin’s accident hot spots. As indicated in the key to the " +
+          "left, the annual number of accidents is displayed on a smooth and continuous spectrum of color, making it " +
+          "accurate and easy to comprehend.<br /><br />By zooming in, you can determine whether a particular street or " +
+          "crossing is safe to use or on the more dangerous side, which may help in choosing your daily routes, be it " +
+          "for runs or for commutes. Depending on your preferred mode of transportation, you can choose to only display " +
+          "accidents for cars, motorcycles, trucks, pedestrians or other, and even compare accident rates per year.",
       marker: icon({
         iconUrl: '/images/PIN-Gray.png',
         iconSize:     [30, 50],
@@ -270,9 +256,21 @@ export default {
 
 #container {
   justify-content: center;
-  align-items: center;
   width: 100%;
   max-height: 80%;
+}
+
+.rounded-pill {
+  position: relative;
+}
+
+.box {
+  position: absolute;
+  text-align: justify;
+  top: 4rem;
+  right: 4rem;
+  z-index: 997;
+  max-width: 20rem;
 }
 
 #accidentsMapContainer {
