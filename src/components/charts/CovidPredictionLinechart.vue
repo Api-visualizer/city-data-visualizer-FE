@@ -1,14 +1,5 @@
 <template>
-  <div>
-    <v-app>
-      <v-select
-        :items="dates"
-        item-text="name"
-        item-value="id"
-        label="Select a Date"
-      >
-      </v-select>
-    </v-app>
+  <div>    
     <div id="chart">
       <apexchart
         height="400"

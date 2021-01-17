@@ -1,15 +1,5 @@
 <template>
-    <div>
-        <v-app>
-        <v-select
-              v-model="selectedDate"
-              :items="dates"
-              item-text="name"
-              item-value="id"
-              label="Select a Day"
-              v-on:change="filterDataForDate(selectedDate)">
-        </v-select>
-      </v-app>
+    <div>        
         <div id="table">
                 <v-data-table :headers=this.headers :items=this.table_data :items-per-page="7" class="elevation-1"></v-data-table>
         </div>
@@ -25,8 +15,7 @@ export default {
   props: {},
 
   data () {
-    return {
-        selectedDate: '',
+    return {        
         dates: [],
         datesOfPredictableDays: [],
         dataOfPredictableDays: [],
@@ -60,22 +49,10 @@ export default {
             dataset.push({date: dates[i], prediction: data[i]})
         }
         return dataset;
-    },
-
-    initializeDropdown: function(data){
-        this.selectedDate = data.x[data.x.length - 7]
-        this.dates = data.x.slice(0, data.x.length - 7).reverse();
-    },
-
-    filterDataForDate: function(selectedDate) {
-        this.datesOfPredictableDays = this.data.x.slice(this.data.x.indexOf(selectedDate), this.data.x.indexOf(selectedDate) +7)
-        this.dataOfPredictableDays = this.data.y.slice(this.data.x.indexOf(selectedDate), this.data.x.indexOf(selectedDate) +7)
-        this.table_data = this.getPredictedDataWithDates(this.datesOfPredictableDays, this.dataOfPredictableDays)
-    }
+    },        
   },
 
   mounted() {
-    this.selectedDate = new Date(Date.now()).toLocaleString().split(',')[0]
     this.getCovidPredictions();
   },
 };
