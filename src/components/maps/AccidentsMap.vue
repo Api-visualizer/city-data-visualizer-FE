@@ -135,10 +135,10 @@ export default {
     },
 
     createInfoBox: function () {
-      let info = L.control();
+      let info = L.control({ position: "bottomleft" });
 
       info.onAdd = function () {
-        this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+        this._div = L.DomUtil.create('div', 'info', ); // create a div with a class "info"
         this.reset();
         return this._div;
       }

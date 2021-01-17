@@ -125,12 +125,10 @@ export default {
           dashArray: '',
           fillOpacity: 0.7
       });
-
       if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
           layer.bringToFront();
       }
     },
-
     resetHighlight: function (e) {
       this.mapLayer.resetStyle(e.target);
     },
@@ -146,7 +144,12 @@ export default {
         maxZoom: 12,
         minZoom: 10
       });
+
       let map = this.map;
+      map.removeControl(map.zoomControl);
+      L.control.zoom({
+        position: 'bottomright'
+      }).addTo(map);
 
       L.tileLayer(
         "https://{s}.basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}.png", {
@@ -159,7 +162,7 @@ export default {
         style: this.featureStyle,
       }).addTo(map);
 
-      let info = L.control();
+      let info = L.control({ position: "bottomleft" });
       info.onAdd = function () {
         this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
         this.reset();
@@ -349,4 +352,5 @@ export default {
     float: left;
     opacity: 0.7;
 }
+
 </style>
