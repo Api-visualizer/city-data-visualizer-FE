@@ -97,20 +97,6 @@
               <img class="card-img-top" src="/images/cards/covid_cases.png" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title">COVID-19</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Hospital capacities predictions</h6>
-                <p class="card-text">This line chart shows predictions for hospital with critical capacities.</p>
-              </div>
-              <div class="card-footer">
-                <a class="btn btn-primary stretched-link" href="/main/covid-predictions" role="button">Here</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-sm-6 d-flex align-items-stretch">
-            <div class="card">
-              <img class="card-img-top" src="/images/cards/covid_cases.png" alt="Card image cap">
-              <div class="card-body">
-                <h5 class="card-title">COVID-19</h5>
                 <h6 class="card-subtitle mb-2 text-muted">Case number predictions</h6>
                 <p class="card-text">This line chart displays predictions on how case numbers will develop in the coming days based on the available data.</p>
               </div>
