@@ -2,26 +2,17 @@
   <div>
     <div class="container-fluid">
       <div class="row">
-        <div class="col">
-          <div class="title display-4 pl-5 pr-5 pt-2 pb-2 bg-light text-dark rounded-pill" style="opacity: 0.9">
-            <br />
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="container-fluid">
-      <div class="row">
         <div class="col-12">
           <CovidPredictionLinechart />
         </div>
       </div>
       <div class="row">
         <div class="col-6">
-            <Textbox :content="content" title="COVID-19" subtitle="Predicted Case Numbers"/>
-          </div>
-          <div class="col-6">
-            <CovidPredictionTable />
-          </div>
+          <Textbox :content="content" title="COVID-19" subtitle="Predicted Case Numbers"/>
+        </div>
+        <div class="col-6 table">
+          <CovidPredictionTable />
+        </div>
       </div>
     </div>
   </div>
@@ -74,12 +65,12 @@ export default {
           categories: ArrayX,
         },
       }),
-        (this.series = [
-          {
-            name: 'Number of Covid-19 cases',
-            data: ArrayY,
-          },
-        ]);
+          (this.series = [
+            {
+              name: 'Number of Covid-19 cases',
+              data: ArrayY,
+            },
+          ]);
     });
   },
 };
@@ -100,6 +91,7 @@ box {
   top: 12vh;
   z-index: 9997;
   width: 20rem;
+  height: 100%
 }
 
 .title {
@@ -117,5 +109,8 @@ box {
 .info h4 {
   margin: 0 0 5px;
   color: #777;
+}
+.table {
+  box-shadow: 22px 22px 8px -3px #477FCD;
 }
 </style>
