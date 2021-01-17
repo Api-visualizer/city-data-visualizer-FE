@@ -139,7 +139,7 @@
       <div class="jumbotron">
         <h2 class="display-4">FAQ</h2>
         <p class="lead pt-4" style="padding-bottom: 24px;">We have listed frequently asked questions under the FAQ section. If you cannot find an proper answer to your question, use the form below to propose your request. We kindly ask you to refer the FAQ beforehand.</p>
-        <a class="btn btn-primary" href="/faq" role="button">Explore</a>
+        <a class="btn btn-primary" href="/faq" role="button">Here</a>
       </div>
 
       <div class="jumbotron">
