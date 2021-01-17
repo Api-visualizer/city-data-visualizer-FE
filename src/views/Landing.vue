@@ -55,7 +55,7 @@
                 <p class="card-text">This regional map lets you easily examine total and daily case numbers per district.</p>
               </div>
               <div class="card-footer">
-                <a class="btn btn-primary" href="/main/infections" role="button">Here</a>
+                <a class="btn btn-primary stretched-link" href="/main/infections" role="button">Here</a>
               </div>
             </div>
           </div>
@@ -69,7 +69,7 @@
                 <p class="card-text">Corresponding charts and tables allow you to get a deeper understanding of the development of the COVID-19 virus in Berlin.</p>
               </div>
               <div class="card-footer">
-                <a class="btn btn-primary" href="/main/covid-graphs" role="button">Here</a>
+                <a class="btn btn-primary stretched-link" href="/main/covid-graphs" role="button">Here</a>
               </div>
             </div>
           </div>
@@ -87,7 +87,7 @@
                 <p class="card-text">This map shows hospital locations and capacities during COVID-19 in Berlin. </p>
               </div>
               <div class="card-footer">
-                <a class="btn btn-primary" href="/main/hospitals" role="button">Here</a>
+                <a class="btn btn-primary stretched-link" href="/main/hospitals" role="button">Here</a>
               </div>
             </div>
           </div>
@@ -101,7 +101,7 @@
                 <p class="card-text">This line chart shows predictions for hospital with critical capacities.</p>
               </div>
               <div class="card-footer">
-                <a class="btn btn-primary" href="/main/covid-predictions" role="button">Here</a>
+                <a class="btn btn-primary stretched-link" href="/main/covid-predictions" role="button">Here</a>
               </div>
             </div>
           </div>
@@ -115,7 +115,7 @@
                 <p class="card-text">This line chart displays predictions on how case numbers will develop in the coming days based on the available data.</p>
               </div>
               <div class="card-footer">
-                <a class="btn btn-primary" href="/main/covid-predictions" role="button">Here</a>
+                <a class="btn btn-primary stretched-link" href="/main/covid-predictions" role="button">Here</a>
               </div>
             </div>
           </div>
@@ -129,7 +129,7 @@
                 <p class="card-text">This heat map gives you an overview of dangerous crossroads in Berlin. Stay safe!</p>
               </div>
               <div class="card-footer">
-                <a class="btn btn-primary" href="/main/accidents" role="button">Here</a>
+                <a class="btn btn-primary stretched-link" href="/main/accidents" role="button">Here</a>
               </div>
             </div>
           </div>
@@ -142,7 +142,7 @@
                 <p class="card-text">Corresponding chart allows you to get a deeper understanding how the number of Cancer patients per year, age and gender differentiates in Berlin.</p>
               </div>
               <div class="card-footer">
-                <a class="btn btn-primary" href="/main/cancer" role="button">Here</a>
+                <a class="btn btn-primary stretched-link" href="/main/cancer" role="button">Here</a>
               </div>
             </div>
           </div>
