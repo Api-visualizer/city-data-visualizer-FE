@@ -1,7 +1,19 @@
 <template>
-  <div id="chart">
-    <apexchart height="400" type="line" :options="options" :series="series"></apexchart>
-  </div>
+<div>
+    <v-app>
+        <v-select
+              v-model="selectedDate"
+              :items="dates"
+              item-text="name"
+              item-value="id"
+              label="Select a Date"
+              v-on:change="filterDataToDate(selectedDate)">
+        </v-select>
+    </v-app>
+    <div id="chart">
+        <apexchart height="400" type="line" :options="options" :series="series"></apexchart>
+    </div>
+</div>
 </template>
 
 <script>
@@ -13,10 +25,12 @@ export default {
   
   data () {
     return {
-      linechartDataset: [{date: '', data: 0}],
-      scatterDataset: [{date: '', data: 0}],
+      realCaseLinechartDataset: [{date: '', data: 0}],
+      predictedLinechartDataset: [{date: '', data: 0}],
       series: [],
-      options: {}
+      options: {},
+      selectedDate: '03.2020',
+      dates: [] 
     }
   },
 
@@ -25,47 +39,64 @@ export default {
       fetch(GeneralClasses.GetAPIBerlinCovidPredictions())
         .then(response => response.json())
         .then(result => {
-            let realCasesOfLatestWeek = { 
-                x: result.data.doc.cases.x.slice(result.data.doc.cases.x.length -7, result.data.doc.cases.x.length),
-                y: result.data.doc.cases.y.slice(result.data.doc.cases.y.length -7, result.data.doc.cases.y.length)
-                }
-            let predictedCasesOfLatestWeek = { 
-                x: result.data.doc.regression.x.slice(result.data.doc.regression.x.length -7, result.data.doc.regression.x.length),
-                y: result.data.doc.regression.y.slice(result.data.doc.regression.y.length -7, result.data.doc.regression.y.length)
-                }
-             this.extractDatasetForLinechart(realCasesOfLatestWeek)
-             this.extractDatasetForScatter(predictedCasesOfLatestWeek)
-             this.options = this.initializeChartOptions();
-             this.fulfillChartDatasets(this.linechartDataset, this.scatterDataset)
+             this.data = result;
+             this.initializeDataForCharts(this.data)
+             this.initializeDateLabels(this.data.data.doc.cases.x)
              }) 
     },
 
-    extractDatasetForScatter: function (data) {
-        data.x.forEach(elem => {
-            this.scatterDataset.push({date: elem, data: data.y[data.x.indexOf(elem)]})
-        })
-        this.scatterDataset.shift()
+    initializeDataForCharts: function(result) {
+        let realCasesOfLatestWeek = { 
+            x: result.data.doc.cases.x,
+            y: result.data.doc.cases.y
+            }
+        let predictedCasesOfLatestWeek = { 
+            x: result.data.doc.regression.x.slice(0, result.data.doc.regression.x.length -7),
+            y: result.data.doc.regression.y.slice(0, result.data.doc.regression.y.length -7)
+            }
+        this.extractRealCaseDataForLinechart(realCasesOfLatestWeek)
+        this.extractPredictedDataForLinechart(predictedCasesOfLatestWeek)
+        this.options = this.initializeChartOptions();
+        this.filterDataToDate(this.selectedDate)
     },
 
-    extractDatasetForLinechart: function (data) {
-        data.x.forEach(elem => {
-            this.linechartDataset.push({date: elem, data: data.y[data.x.indexOf(elem)]})
+    initializeDateLabels: function(dates) {
+        this.dates = dates.map(date => date.substring(3))
+        this.dates = this.dates.filter((item, pos) => {
+            return this.dates.indexOf(item) == pos;
         })
-        this.linechartDataset.shift()
     },
 
-    fulfillChartDatasets: function (linechartDataset, scatterDataset) {
-        let scatterData = []
-        let linechartData = []
-         scatterDataset.forEach(elem => {
-            scatterData.push({x: elem.date, y: Math.round(elem.data)})
-        });
-        linechartDataset.forEach(elem => {
-            linechartData.push({x: elem.date, y: elem.data})
-        });
+    extractPredictedDataForLinechart: function (data) {
+        data.x.forEach(elem => {
+            this.predictedLinechartDataset.push({date: elem, data: data.y[data.x.indexOf(elem)]})
+        })
+        this.predictedLinechartDataset.shift()
+    },
 
-        this.series.push({name: "Predicted case", type: "scatter", data: scatterData});
-        this.series.push({name: "Real case", type: "line", data: linechartData});
+    extractRealCaseDataForLinechart: function (data) {
+        data.x.forEach(elem => {
+            this.realCaseLinechartDataset.push({date: elem, data: data.y[data.x.indexOf(elem)]})
+        })
+        this.realCaseLinechartDataset.shift()
+    },
+
+    fulfillChartDatasets: function (realCaseLinechartDataset, predictedCaseLinechartDataset) {
+        this.series = []
+        this.series.push({name: "Predicted case", type: "line", data: predictedCaseLinechartDataset});
+        this.series.push({name: "Real case", type: "line", data: realCaseLinechartDataset});
+    },
+
+    filterDataToDate: function(date) {
+        let predictedLinechartData = []
+        let realCaseLinechartData = []
+         this.predictedLinechartDataset.filter(d => d.date.substring(3) === date).forEach(elem => {
+            predictedLinechartData.push({x: elem.date, y: Math.round(elem.data)})
+        });
+        this.realCaseLinechartDataset.filter(d => d.date.substring(3) === date).forEach(elem => {
+            realCaseLinechartData.push({x: elem.date, y: elem.data})
+        });
+        this.fulfillChartDatasets(realCaseLinechartData, predictedLinechartData)
     },
 
     initializeChartOptions: function() {
@@ -100,17 +131,15 @@ export default {
                 title: {
                     text: 'Date'
                 },
-                // min: 0,
-                // max: 12,
-                // tickAmount: 12
             },
             title: {
-                text: "Comparision between real cases (line) and predicted cases (points)",
+                text: "Comparision between real cases and predicted cases",
                 align: "left"
             },
             dataLabels: {
-                enabled: true,
+                enabled: false,
             },
+            colors: ['#f22213', '#45cf0a']
         }
     }
   },
@@ -122,4 +151,7 @@ export default {
 </script>
 
 <style scoped>
+    /deep/ .v-application--wrap {
+    min-height: 0vh !important
+    }
 </style>
