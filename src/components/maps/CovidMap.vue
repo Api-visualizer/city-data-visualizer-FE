@@ -3,7 +3,7 @@
     <div id="container">
       <div id="mapContainer"></div>
     </div>
-    <Timeslider v-if='sliderStartIndex' :id='this.busKey' :startIndex=this.sliderStartIndex :ticksLabels=this.ticksLabels :value=value />
+    <Timeslider class="tslider" v-if='sliderStartIndex' :id='this.busKey' :startIndex=this.sliderStartIndex :ticksLabels=this.ticksLabels :value=value />
     <Textbox class="textbox" :content="content" title="COVID-19" subtitle="Case numbers per district" />
   </div>
 </template>
@@ -321,7 +321,7 @@ export default {
 }
 #mapContainer {
   width: 100vw;
-  height: 70vh;
+  height: 75vh;
 }
 
 .info {
@@ -351,6 +351,11 @@ export default {
     height: 18px;
     float: left;
     opacity: 0.7;
+}
+
+.tslider {
+  z-index: 997;
+  margin: 1rem 5rem 0rem 10rem;
 }
 
 </style>

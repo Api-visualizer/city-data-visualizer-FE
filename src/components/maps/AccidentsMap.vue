@@ -5,14 +5,16 @@
         <div id="accidentsMapContainer"></div>
         <Textbox :content="content" title="Traffic Safety" subtitle="City-Wide Accident Locations" class="box" />
       </div>
+
       <div class="container">
         <v-app>
-        <v-row>
-          <v-col>
-            <v-select :items="accidentTypes" v-model="accidentType" :dense="true" :menu-props="{ maxHeight: '150px' }" label="Select an accident type" v-on:change="getDataOnChange(year, accidentType)"> </v-select>
-          </v-col>
-        </v-row>
+          <v-row>
+            <v-col class="selection">
+              <v-select :items="accidentTypes" v-model="accidentType" :dense="true" :menu-props="{ maxHeight: '150px' }" label="Select an accident type" v-on:change="getDataOnChange(year, accidentType)"> </v-select>
+            </v-col>
+          </v-row>
         </v-app>
+
         <ul id="choice">
           <li>
             <input type="radio" id="shop" name="map" value="2018" v-model="year" v-on:change="getDataOnChange(2018, accidentType)" checked />
@@ -23,6 +25,7 @@
             <label class="label" for="shop">2019</label>
           </li>
         </ul>
+
       </div>
     </div>
   </div>
@@ -258,6 +261,7 @@ export default {
   justify-content: center;
   width: 100%;
   max-height: 80%;
+  position: relative;
 }
 
 .rounded-pill {
@@ -280,8 +284,10 @@ export default {
 }
 
 #choice {
+  position: absolute;
   font-size: 1.2em;
-  margin-top: 0.7rem;
+  top: 4.5rem;
+  z-index: 997;
 }
 
 li {
@@ -296,4 +302,12 @@ li > input {
 label {
   margin-left: 0.6rem;
 }
+.selection {
+  position: absolute;
+  z-index: 997;
+  max-width: 20rem;
+  bottom: 43rem;
+  right: 5rem
+}
+
 </style>
