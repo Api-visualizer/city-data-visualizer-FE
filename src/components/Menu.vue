@@ -1,7 +1,7 @@
 <template>
   <div>
-  <div class="burger" @mouseover="toggleBurger()" @click="toggleBurger">
-    <v-icon dark v-if="open" x-large>mdi-menu</v-icon>
+  <div class="burger" @click="toggleBurger">
+    <v-icon dark v-if="open" x-large >mdi-menu</v-icon>
     <v-icon dark v-else large>mdi-window-close</v-icon>
   </div>
   <div v-if="!open" @mouseleave="toggleBurger()">
