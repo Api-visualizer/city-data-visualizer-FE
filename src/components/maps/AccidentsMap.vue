@@ -230,11 +230,6 @@ export default {
 </script>
 
 <style scoped>
-/deep/ .v-application--wrap {
-  min-height: 0vh !important;
-  width: 30%;
-  margin-top: 0rem;
-}
 .container-fluid .col {
   margin: 0;
   padding: 0;

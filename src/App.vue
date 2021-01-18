@@ -1,41 +1,43 @@
 <template>
-  <div id="app" class="p-0">
-    <Menu class="menu"></Menu>
-    <div v-if="isNotHomeView()">
-      <Header />
-    </div>
+  <v-app class="p-0">
+    <div id="app" class="p-0">
+      <Menu class="menu"></Menu>
+      <div v-if="isNotHomeView()">
+        <Header />
+      </div>
       <router-view class="content" />
       <Footer />
-  </div>
+    </div>
+  </v-app>
 </template>
 
 <script>
-import Header from './components/Header.vue';
-import Footer from './components/Footer.vue';
+import Header from "./components/Header.vue";
+import Footer from "./components/Footer.vue";
 import GeneralClasses from "./assets/GeneralClasses.js";
 import Menu from "@/components/Menu";
 
 export default {
-  name: 'App',
+  name: "App",
   components: { Header, Footer, Menu },
   data() {
     return {
-      GeneralClasses: GeneralClasses,      
+      GeneralClasses: GeneralClasses,
     };
   },
   mounted() {
     if (localStorage.getItem(this.GeneralClasses.ValueLanguage()) == null) {
-      localStorage.setItem(this.GeneralClasses.ValueLanguage(), 'DE');
+      localStorage.setItem(this.GeneralClasses.ValueLanguage(), "DE");
     }
   },
   methods: {
     isNotHomeView: function () {
-      let isHomeView = this.$route.fullPath === '/'
-      let isSubPathOfHomeView = this.$route.fullPath === '/#topics'
+      let isHomeView = this.$route.fullPath === "/";
+      let isSubPathOfHomeView = this.$route.fullPath === "/#topics";
       return !(isHomeView || isSubPathOfHomeView);
     },
-  }
- }
+  },
+};
 </script>
 
 <style >
@@ -49,7 +51,9 @@ export default {
   max-height: 100vh;
 }
 
-html { scroll-behavior: smooth;}
+html {
+  scroll-behavior: smooth;
+}
 
 .info > p {
   text-align: left;
