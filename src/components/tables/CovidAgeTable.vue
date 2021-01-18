@@ -1,6 +1,6 @@
 <template>
   <div id="table">
-		<v-data-table :headers=this.headers :items=this.table_data :items-per-page="15" class="elevation-1"></v-data-table>
+		<v-data-table disable-sort :headers=this.headers :items=this.table_data :items-per-page="15" class="elevation-1"></v-data-table>
   </div>
 </template>
 
@@ -16,7 +16,6 @@ export default {
     return {
 			table_data: [],
       headers: [
-        { align: 'start', sortable: false, value: 'data'},
         { text: 'Age Group', value: 'altersgruppe' },
         { text: 'Number of Cases', value: 'fallzahl' },
         { text: 'Difference', value: 'differenz' },

@@ -10,9 +10,9 @@
           <Textbox :content="content" title="Cancer" subtitle="Case numbers per year" class="box"/>
         </div>
       </div>
-      <v-app class="app">
+      <div class="app">
         <v-select :items="years" v-model="selectedYear" :dense="true" :menu-props="{ maxHeight: '150px' }" label="Select year" v-on:change="getDataOnChange(selectedYear)"> </v-select>
-      </v-app>
+      </div>
   </div>
 </template>
 <script>
@@ -146,12 +146,6 @@ export default {
 </script>
 
 <style scoped>
-  /deep/ .v-application--wrap {
-    min-height: 0vh !important;
-    width: 30%;
-    margin-top: 0rem;
-  }
-
   .container-fluid .col {
   margin: 0;
   padding: 0;
@@ -168,7 +162,10 @@ export default {
   }
   .app {
     width: 10rem;
-    margin-left: 4rem
+    margin-left: 4rem;
+    padding: 15px;
+    min-height: 0vh;
+    margin-top: 0rem;
   }
 
 </style>

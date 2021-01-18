@@ -30,7 +30,7 @@
 
     <div id="content">
       <div class="jumbotron">
-        <h1 class="display-4">City Data Visualizer</h1>
+        <h1 class="headline-4">City Data Visualizer</h1>
         <p class="lead pt-4" style="padding-bottom: 24px;">City Data Visualizer provides helpful visualizations for complex health data. With the help of open data, we hope to give both Berlin's administration, scientists and residents a better understanding of current health risks or positive impacts that are occurring in the city.</p>
         <p class="text-center"></p>
 
@@ -137,7 +137,7 @@
       </div>
 
       <div class="jumbotron">
-        <h2 class="display-4">FAQ</h2>
+        <h2 class="headline-4">FAQ</h2>
         <p class="lead pt-4" style="padding-bottom: 24px;">We have listed frequently asked questions under the FAQ section. If you cannot find an proper answer to your question, use the form below to propose your request. We kindly ask you to refer the FAQ beforehand.</p>
         <a class="btn btn-primary" href="/faq" role="button">Here</a>
       </div>
@@ -239,7 +239,11 @@ svg {
   animation-iteration-count: infinite;
 }
 
-
+.headline-4 {
+  font-weight: 300;
+  font-size: 3.5rem;
+  line-height: 1.2;
+}
 
 .card-img-top {
   width: 100%;
