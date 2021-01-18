@@ -31,7 +31,7 @@ export default {
       map: {},
       mapLayer: {},
       selectedDayNew: "",
-      info: {},
+      inf: {},
       ticksLabels: [],
       value: '',
       sliderStartIndex: '',
@@ -92,11 +92,11 @@ export default {
       layer.on({
         mouseover: (e) => {
           this.highlightFeature(e);
-          this.info.update(layer.feature.properties);
+          this.inf.update(layer.feature.properties);
         },
         mouseout: (e) => {
           this.resetHighlight(e);
-          this.info.reset();
+          this.inf.reset();
         },
         click: (e) => {
           this.zoomToFeature(e);
@@ -162,14 +162,14 @@ export default {
         style: this.featureStyle,
       }).addTo(map);
 
-      let info = L.control({ position: "bottomleft" });
-      info.onAdd = function () {
-        this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+      let inf = L.control({ position: "bottomleft" });
+      inf.onAdd = function () {
+        this._div = L.DomUtil.create('div', 'inf'); // create a div with a class "inf"
         this.reset();
         return this._div;
       }
 
-      info.update = function (props) {
+      inf.update = function (props) {
         this._div.innerHTML = `<p><b>${props.GEN}</b></p>` +
           `<p>Total cases: ${props.cases}</p>` +
           `<p>Total deaths: ${props.deaths}</p>` +
@@ -182,15 +182,15 @@ export default {
         this._div.innerHTML += `<br><p><small>Last updated: ${props.last_update}</small></p>`
       };
 
-      info.reset = function () {
+      inf.reset = function () {
         this._div.innerHTML = "<b>Hover over a district</b><br>" +
           "<b>to get data</b>";
       }
 
       let legend = this.customLegendControl();
       legend.addTo(map);
-      info.addTo(map);
-      this.info = info;
+      inf.addTo(map);
+      this.inf = inf;
     },
     getColor: function (d) {
       let grades = JSON.parse(localStorage.getItem('grades'))
@@ -226,7 +226,7 @@ export default {
               '#9eff4a';
         }
 
-        let div = L.DomUtil.create('div', 'info legend')
+        let div = L.DomUtil.create('div', 'inf legend white')
 
         let grades = [0]
 
@@ -307,7 +307,6 @@ export default {
   padding: 0;
 }
 
-
 .title {
   z-index: 1;
   position: absolute;
@@ -321,10 +320,10 @@ export default {
 }
 #mapContainer {
   width: 100vw;
-  height: 75vh;
+  height: 83vh;
 }
 
-.info {
+/deep/.inf {
     padding: 6px 8px;
     font: 14px/16px Arial, Helvetica, sans-serif;
     background: white;
@@ -333,7 +332,7 @@ export default {
     border-radius: 5px;
 }
 
-.info h4 {
+/deep/.inf h4 {
     margin: 0 0 5px;
     color: #777;
 }
@@ -342,7 +341,7 @@ export default {
   position: absolute;
   right: 1vw;
   top: 12vh;
-  z-index: 9997;
+  z-index: 9996;
   width: 20rem;
 }
 
@@ -354,7 +353,9 @@ export default {
 }
 
 .tslider {
-  z-index: 997;
+  position: absolute;
+  transform: translate(5%, -160%);
+  z-index: 999;
   margin: 1rem 5rem 0rem 10rem;
 }
 

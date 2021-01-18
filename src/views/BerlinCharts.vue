@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-app class="app">
+    <div class="app">
       <v-select
             v-model="selectedDate"
             :items="dates"
@@ -9,11 +9,11 @@
             label="Select a Day"
             v-on:change="filterDataForDate(selectedDate)">
       </v-select>
-    </v-app>
+    </div>
   <div class="container-fluid mr-4">
     <div class="row">
       <div class="col table">
-        <v-data-table :headers="this.headers" :items="this.data_table_data" :items-per-page="15" class="elevation-1"></v-data-table>
+        <v-data-table disable-sort :headers="this.headers" :items="this.data_table_data" :items-per-page="15" class="elevation-1"></v-data-table>
       </div>
       <div class="col">
         <apexchart width="800" type="bar" :options="options" :series="series" class="chart"></apexchart>
@@ -142,9 +142,6 @@ export default {
 </script>
 
 <style scoped>
-  /deep/ .v-application--wrap {
-  min-height: 0vh !important
-}
 
 .container-fluid .col {
   margin: 0;
@@ -197,6 +194,7 @@ a {
 }
 .app {
   max-width: 12rem;
+  margin-top: 1rem;
   margin-left: 3rem;
 }
 .table {

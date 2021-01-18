@@ -1,25 +1,17 @@
 <template>
   <div>
-     <div class="container-fluid">
-      <div class="row">
-        <div class="col">
-          <div class="title display-4 pl-5 pr-5 pt-2 pb-2 bg-light text-dark rounded-pill" style="opacity: 0.9">
-          </div>
-        </div>
-      </div>
-    </div>
 
     <div class="jumbotron faq">
-      <h2 class="display-4">FAQ</h2>
+      <h2 class="headline-4">FAQ</h2>
       <p class="lead pt-4" style="padding-bottom: 24px;">Here you can find the answers to common questions we have received. Use the contact formular on the start page if you have a specific request which is not yet answered.</p>
     </div>
 
     <div class="jumbotron">
         <div>
-        <v-expansion-panels class="w-75 mt-10 container-fluid ">
+        <v-expansion-panels class="w-75 container-fluid ">
           <v-expansion-panel v-for="item in FAQ" :key="item">
             <v-expansion-panel-header class="align-center justify-start pl-5 pr-5">
-                <p>{{ item.question }}</p>
+                <p class="text-center">{{ item.question }}</p>
             </v-expansion-panel-header>
             <v-expansion-panel-content>
               <cite>{{ item.answer }}</cite>
@@ -33,7 +25,7 @@
     </div>
 
      <div class="jumbotron disclaimer">
-      <h2 class="display-4 disclaim-header">Disclaimer</h2>
+      <h2 class="headline-4 disclaim-header">Disclaimer</h2>
       <p class="lead pt-4" style="padding-bottom: 24px;">This is a students project at the Beuth University of Applied Sciences Berlin.
         We have created this website in behalf of the bachelor's degree program Media Informatics.
         The project City Data Visualizer will end in february 2021. 
@@ -42,7 +34,7 @@
       <a class="btn btn-primary" href="/#contact" role="button">Contact</a>
       <br><br>
       <div class="card">
-        <p class="display-4 h2">Legal Disclosure</p>
+        <p class="headline-4 h2">Legal Disclosure</p>
         <div class="card-body ">
           <h5 class="card-title">Information in accordance with Section 5 TMG</h5>
             <br>
@@ -114,8 +106,11 @@ export default {
   color: white;
   transform: translate(-50%, -50%);
 }
-.display-4 {
+
+.headline-4 {
   font-weight: bold;
+  font-size: 3.5rem;
+  line-height: 1.2;
 }
 .container-fluid {
   padding: 0;
@@ -151,7 +146,7 @@ p {
   margin: 0;
 }
 
-.jumbotron:nth-child(odd) {
+.jumbotron:nth-child(even) {
   background-color: #FFF;
 }
 
