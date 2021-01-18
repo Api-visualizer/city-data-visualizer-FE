@@ -4,7 +4,7 @@
       <div id="hospitalMapContainer" />
       <Textbox :content="content" class="box"/>
     </div>
-    <Timeslider v-if='sliderStartIndex' :id='this.busKey' :startIndex=this.sliderStartIndex :ticksLabels=this.ticksLabels :value=value />
+    <Timeslider class="tslider" v-if='sliderStartIndex' :id='this.busKey' :startIndex=this.sliderStartIndex :ticksLabels=this.ticksLabels :value=value />
   </div>
 </template>
 
@@ -32,7 +32,7 @@ export default {
       map: {},
       mapLayer: {},
       selectedDayNew: "",
-      info: {},
+      inf: {},
       shapes: [],
       sliderStartIndex: '',
       ticksLabels: [],
@@ -168,7 +168,7 @@ export default {
       legend.onAdd = function () {
         let colors = ['#4fbe53', '#ff8146', '#ff4649', '#a2a2a2']
 
-        let div = L.DomUtil.create('div', 'info legend'),
+        let div = L.DomUtil.create('div', 'inf legend'),
             grades = ['Capacities',  'Limited','No capacities', 'Not specified'];
         let label = '<div class="mb-4"><strong>Capacities</strong></div>'                
         div.innerHTML += label
@@ -230,10 +230,10 @@ export default {
 }
 #hospitalMapContainer {
   width: 100vw;
-  height: 65vh;
+  height: 83vh;
 }
 
-.info {
+/deep/.inf {
   padding: 6px 8px;
   font: 14px/16px Arial, Helvetica, sans-serif;
   background: white;
@@ -242,7 +242,7 @@ export default {
   border-radius: 5px;
 }
 
-.info h4 {
+/deep/.inf h4 {
   margin: 0 0 5px;
   color: #777;
 }
@@ -260,8 +260,8 @@ export default {
 }
 #container {
   position: relative;
-  margin: 3rem;
 }
+
 .box {
   position: absolute;
   text-align: justify;
@@ -269,5 +269,11 @@ export default {
   right: 1rem;
   z-index: 997;
   max-width: 20rem;
+}
+
+.tslider {
+  position: absolute;
+  transform: translate(5%, -160%);
+  z-index: 999;
 }
 </style>
