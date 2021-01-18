@@ -7,13 +7,6 @@
       </div>
 
       <div class="container">
-        <v-app>
-          <v-row>
-            <v-col class="selection">
-              <v-select :items="accidentTypes" v-model="accidentType" :dense="true" :menu-props="{ maxHeight: '150px' }" label="Select an accident type" v-on:change="getDataOnChange(year, accidentType)"> </v-select>
-            </v-col>
-          </v-row>
-        </v-app>
 
         <ul id="choice">
           <li>
@@ -25,6 +18,22 @@
             <label class="label" for="shop">2019</label>
           </li>
         </ul>
+
+        <v-app>
+          <v-row>
+            <v-col class="selection">
+              <v-select :items="accidentTypes" v-model="accidentType" :dense="true" :menu-props="{ maxHeight: '150px' }" label="Select accident type" v-on:change="getDataOnChange(year, accidentType, accidentTime)"> </v-select>
+            </v-col>
+          </v-row>
+        </v-app>
+
+        <v-app>
+          <v-row>
+            <v-col class="selection">
+              <v-select :items="accidentTimes" v-model="accidentTime" :dense="true" :menu-props="{ maxHeight: '150px' }" label="Select accident time" v-on:change="getDataOnChange(year, accidentType, accidentTime)"> </v-select>
+            </v-col>
+          </v-row>
+        </v-app>
 
       </div>
     </div>
@@ -62,6 +71,8 @@ export default {
       year: 2018,
       accidentTypes: ['Car', 'Bike', 'Motorcycle', 'Truck', 'Pedestrian', 'Other'],
       accidentType: 'All',
+      accidentTimes: ['0','1', '2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23'],
+      accidentTime: '',
       info: {},
       weekDays: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
       months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
@@ -73,6 +84,7 @@ export default {
       const baseURL = GeneralClasses.GETAPIberlinaccidents();
       let params = `?year=${this.year}`;
       if (this.accidentType != 'All') params = params + `&type=${this.accidentType.toLowerCase()}`;
+      if (this.accidentTime != '') params = params + `&hour=${this.accidentTime}`;
       return baseURL + params;
     },
 
@@ -88,9 +100,10 @@ export default {
       }
     },
 
-    getDataOnChange: function (year, type) {
+    getDataOnChange: function (year, type, hour) {
       this.year = year;
       this.type = type;
+      this.hour = hour;
 
       // Update map data
       this.addDataToMap();
@@ -210,7 +223,7 @@ export default {
             </div>
           </div>
         </div>`;
-        
+
         return div;
       };
       return legend;
