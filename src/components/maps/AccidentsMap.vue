@@ -13,7 +13,7 @@
             </v-radio-group>
           </div>
           <div class="col type">
-            <v-select :items="accidentTypes" v-model="accidentType" :dense="true" hide-details :menu-props="{ maxHeight: '150px' }" label="Select an accident type" v-on:change="getDataOnChange(year, accidentType)"> </v-select>
+            <v-select :items="accidentTypes" v-model="accidentType" :dense="true" hide-details :menu-props="{ maxHeight: '150px' }" label="Select accident type" v-on:change="getDataOnChange(year, accidentType)"> </v-select>
           </div>
           <div class="col time">
             <v-select :items="accidentTimes" v-model="accidentTime" :dense="true" hide-details :menu-props="{ maxHeight: '150px' }" label="Select accident time" v-on:change="getDataOnChange(year, accidentType, accidentTime)"> </v-select>

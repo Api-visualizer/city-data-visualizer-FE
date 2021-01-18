@@ -30,7 +30,7 @@ export default {
   components: {Textbox, CovidPredictionLinechart, CovidPredictionTable },
   data() {
     return {
-      content: "The predictions are based on the history of newly cases. We chose to use the polynomial regression method to find a suitable graph that neither underfits, nor overfits the data. We can use this graph to predict future number of cases and find certain trends. Factors like restriction policies by the senate or seasonality are not taken into consideration for this method.</p>",
+      content: "The predictions are based on the history of new cases. We chose to use the polynomial regression method to find a suitable graph that neither underfits, nor overfits the data. We can use this graph to predict future number of cases and find certain trends. Factors like restriction policies by the senate or seasonality are not taken into consideration for this method.</p>",
       options: {
         chart: {
           id: 'vuechart-example',
