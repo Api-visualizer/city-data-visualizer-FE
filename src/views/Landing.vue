@@ -55,7 +55,7 @@
                 <p class="card-text">This regional map lets you easily examine total and daily case numbers per district.</p>
               </div>
               <div class="card-footer">
-                <a class="btn btn-primary stretched-link" href="/main/infections" role="button">Explore</a>
+                <a class="btn btn-primary stretched-link" href="/infections" role="button">Explore</a>
               </div>
             </div>
           </div>
@@ -69,7 +69,7 @@
                 <p class="card-text">Corresponding charts and tables allow you to get a deeper understanding of the development of the COVID-19 virus in Berlin.</p>
               </div>
               <div class="card-footer">
-                <a class="btn btn-primary stretched-link" href="/main/covid-graphs" role="button">Explore</a>
+                <a class="btn btn-primary stretched-link" href="/covid-graphs" role="button">Explore</a>
               </div>
             </div>
           </div>
@@ -87,7 +87,7 @@
                 <p class="card-text">This map shows hospital locations and capacities during COVID-19 in Berlin. </p>
               </div>
               <div class="card-footer">
-                <a class="btn btn-primary stretched-link" href="/main/hospitals" role="button">Explore</a>
+                <a class="btn btn-primary stretched-link" href="/hospitals" role="button">Explore</a>
               </div>
             </div>
           </div>
@@ -101,7 +101,7 @@
                 <p class="card-text">This line chart displays predictions on how case numbers will develop in the coming days based on the available data.</p>
               </div>
               <div class="card-footer">
-                <a class="btn btn-primary stretched-link" href="/main/covid-predictions" role="button">Explore</a>
+                <a class="btn btn-primary stretched-link" href="/covid-predictions" role="button">Explore</a>
               </div>
             </div>
           </div>
@@ -115,7 +115,7 @@
                 <p class="card-text">This heat map gives you an overview of dangerous crossroads in Berlin. Stay safe!</p>
               </div>
               <div class="card-footer">
-                <a class="btn btn-primary stretched-link" href="/main/accidents" role="button">Explore</a>
+                <a class="btn btn-primary stretched-link" href="/accidents" role="button">Explore</a>
               </div>
             </div>
           </div>
@@ -128,7 +128,7 @@
                 <p class="card-text">Corresponding chart allows you to get a deeper understanding how the number of Cancer patients per year, age and gender differentiates in Berlin.</p>
               </div>
               <div class="card-footer">
-                <a class="btn btn-primary stretched-link" href="/main/cancer" role="button">Explore</a>
+                <a class="btn btn-primary stretched-link" href="/cancer" role="button">Explore</a>
               </div>
             </div>
           </div>
@@ -195,10 +195,10 @@ export default {
 }
 
 .jumbotron:nth-child(even) {
-  
+
   background-color: white;
   background-image: url("data:image/svg+xml,%3Csvg width='504' height='288' viewBox='0 0 84 48' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h12v6H0V0zm28 8h12v6H28V8zm14-8h12v6H42V0zm14 0h12v6H56V0zm0 8h12v6H56V8zM42 8h12v6H42V8zm0 16h12v6H42v-6zm14-8h12v6H56v-6zm14 0h12v6H70v-6zm0-16h12v6H70V0zM28 32h12v6H28v-6zM14 16h12v6H14v-6zM0 24h12v6H0v-6zm0 8h12v6H0v-6zm14 0h12v6H14v-6zm14 8h12v6H28v-6zm-14 0h12v6H14v-6zm28 0h12v6H42v-6zm14-8h12v6H56v-6zm0-8h12v6H56v-6zm14 8h12v6H70v-6zm0 8h12v6H70v-6zM14 24h12v6H14v-6zm14-8h12v6H28v-6zM14 8h12v6H14V8zM0 8h12v6H0V8z' fill='%23477fcd' fill-opacity='0.07' fill-rule='evenodd'/%3E%3C/svg%3E");
-  
+
   background-repeat: repeat;
 }
 
