@@ -146,6 +146,13 @@
        <Contact />
       </div>
 
+      <div class="jumbotron">
+        <img src="/images/GitHub_Logo.png" alt="Github logo">
+        <p class="lead pt-4" style="padding-bottom: 24px;">As City Data Visualizer is merely based on open source data, we want to share our source code with the open source community as well. If you would like to contribute to this project, you can do so in our repositories.</p>
+        <!-- TODO: change link after renaming Github project -->
+        <a class="btn btn-primary" href="https://github.com/Api-visualizer" role="button">Contribute</a>
+      </div>
+
     </div>
   </div>
 </template>
