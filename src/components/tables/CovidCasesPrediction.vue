@@ -46,7 +46,7 @@ export default {
     getPredictedDataWithDates: function(dates, data) {
         let dataset = []
         for(let i = 0; i < dates.length; i++) {
-            dataset.push({date: dates[i], prediction: data[i]})
+            dataset.push({date: dates[i], prediction: data[i] < 0 ? 0 : data[i]})
         }
         return dataset;
     },        

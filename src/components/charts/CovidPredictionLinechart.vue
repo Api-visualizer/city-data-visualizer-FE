@@ -63,7 +63,7 @@ export default {
       data.x.forEach((elem) => {
         this.predictedLinechartDataset.push({
           date: elem,
-          data: data.y[data.x.indexOf(elem)],
+          data: data.y[data.x.indexOf(elem)] < 0 ? 0 : data.y[data.x.indexOf(elem)],
         });
       });
       this.predictedLinechartDataset.shift();
