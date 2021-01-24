@@ -1,6 +1,6 @@
 <template>
-    <div id="footer">
-        <p>City Data Visualizer</p>
+    <div class="bg-dark" id="footer">
+        <span class="align-middle">City Data Visualizer</span>
     </div>
 </template>
 
@@ -16,6 +16,7 @@ export default {
   border-top: 2px black;
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
+  color: white;
 }
 
 p{
