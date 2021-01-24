@@ -24,7 +24,7 @@
       </div>
     </div>
 
-     <div class="jumbotron disclaimer">
+    <div class="jumbotron disclaimer">
       <h2 class="headline-4 disclaim-header">Disclaimer</h2>
       <p class="lead pt-4" style="padding-bottom: 24px;">This is a students project at the Beuth University of Applied Sciences Berlin.
         We have created this website in behalf of the bachelor's degree program Media Informatics.
@@ -32,8 +32,10 @@
         After february the website may be offline or not updated with new data.
         If you have questions or want to get in touch with the team please use the contact formular on the start page.</p>
       <a class="btn btn-primary" href="/#contact" role="button">Contact</a>
-      <br><br>
-      <div class="card">
+    </div>
+
+    <div class="jumbotron">
+      <div class="card mx-auto w-75">
         <p class="headline-4 h2">Legal Disclosure</p>
         <div class="card-body ">
           <h5 class="card-title">Information in accordance with Section 5 TMG</h5>
@@ -154,7 +156,7 @@ p {
   background-repeat: repeat;
 }
 
-.jumbotron:nth-child(even) {
+.jumbotron:nth-child(odd) {
   background-color: #FFF;
 }
 
@@ -168,7 +170,6 @@ p {
 
 .card {
   float: none;
-  padding: 2% 18% 2% 18%;
 }
 .disclaim-header {
   padding-top: 2vw;
