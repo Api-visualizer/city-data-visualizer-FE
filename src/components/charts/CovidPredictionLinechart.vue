@@ -7,6 +7,10 @@
         :options="options"
         :series="series"
       ></apexchart>
+      <div class="display-dates">
+        <div class="startDate">{{startDate}}</div>
+        <div class="endDate">{{endDate}}</div>
+      </div>
     </div>
   </div>
 </template>
@@ -20,6 +24,8 @@ export default {
 
   data() {
     return {
+      startDate: "",
+      endDate: "",
       realCaseLinechartDataset: [{ date: "", data: 0 }],
       predictedLinechartDataset: [{ date: "", data: 0 }],
       series: [],
@@ -34,7 +40,7 @@ export default {
         .then((result) => {
           this.data = result;
           this.initializeDataForCharts(this.data);
-          this.initializeDateLabels(this.data.data.doc.cases.x);
+          // this.initializeDateLabels(this.data.data.doc.cases.x);
         });
     },
 
@@ -53,11 +59,11 @@ export default {
       this.prepareDataForLinechart();
     },
 
-    initializeDateLabels: function (dates) {
-      dates.filter((item, pos) => {
-        return this.dates.indexOf(item) == pos;
-      });
-    },
+    // initializeDateLabels: function (dates) {
+    //   dates.filter((item, pos) => {
+    //     return this.dates.indexOf(item) == pos;
+    //   });
+    // },
 
     extractPredictedDataForLinechart: function (data) {
       data.x.forEach((elem) => {
@@ -105,6 +111,8 @@ export default {
       this.realCaseLinechartDataset.forEach((elem) => {
         realCaseLinechartData.push({ x: elem.date, y: elem.data });
       });
+      this.startDate = realCaseLinechartData[0].x
+      this.endDate = realCaseLinechartData[realCaseLinechartData.length -1].x
       this.fulfillChartDatasets(realCaseLinechartData, predictedLinechartData);
     },
 
@@ -137,8 +145,13 @@ export default {
           },
         },
         xaxis: {
+          categories: ["01.03.2020", "hihihi"],
+          axisTicks: {
+            show: false
+          },
           labels: {
             rotate: 0,
+            show: false
           },
           title: {
             text: "Date",
@@ -168,5 +181,11 @@ export default {
 <style scoped>
 /deep/ .v-application--wrap {
   min-height: 0vh !important;
+}
+
+.display-dates {
+  display: flex;
+  justify-content: space-between;
+  margin-top: -30px;
 }
 </style>

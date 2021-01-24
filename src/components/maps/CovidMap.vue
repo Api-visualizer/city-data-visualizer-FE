@@ -139,6 +139,7 @@ export default {
 
     async setupLeafletMap () {
       this.map = L.map("mapContainer", {
+        // zoomControl: false,
         center: [52.52, 13.405],
         zoom: 11,
         maxZoom: 12,
@@ -323,6 +324,10 @@ export default {
   height: 83vh;
 }
 
+/deep/.leaflet-right {
+  margin-right: 16px;
+}
+
 /deep/.inf {
     padding: 6px 8px;
     font: 14px/16px Arial, Helvetica, sans-serif;
@@ -339,8 +344,8 @@ export default {
 
 .textbox {
   position: absolute;
-  right: 1vw;
-  top: 12vh;
+  right: 0.7vw;
+  top: 11vh;
   z-index: 9996;
   width: 20rem;
 }

@@ -142,11 +142,16 @@ export default {
 
     setupLeafletMap: function () {
       this.map = L.map("hospitalMapContainer", {
+        zoomControl: false,
         center: [52.52, 13.405],
         zoom: 11,
         maxZoom: 14,
         minZoom: 10
       });
+
+      L.control.zoom({
+        position:'bottomright'
+      }).addTo(this.map);
 
       let map = this.map;
 
@@ -247,6 +252,10 @@ export default {
   color: #777;
 }
 
+/deep/.leaflet-right {
+  margin-right: 26px;
+}
+
 .legend {
   line-height: 18px;
   color: #555;
@@ -265,7 +274,7 @@ export default {
 .box {
   position: absolute;
   text-align: justify;
-  top: 1rem;
+  top: 0.5rem;
   right: 1rem;
   z-index: 997;
   max-width: 20rem;

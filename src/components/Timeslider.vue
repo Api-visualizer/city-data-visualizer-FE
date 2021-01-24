@@ -207,6 +207,7 @@ export default {
 
 .v-select{
   flex: 0 1 15%;
+  width: 160px;
 }
 .vslider {
   z-index: 999;

@@ -1,5 +1,8 @@
 <template>
     <div>
+      <div class="app">
+        <v-select :items="years" v-model="selectedYear" :dense="true" :menu-props="{ maxHeight: '150px' }" label="Select year" v-on:change="getDataOnChange(selectedYear)"> </v-select>
+      </div>
       <div class="row">
         <div class="col-8">
           <div id="chart">
@@ -10,9 +13,7 @@
           <Textbox :content="content" title="Cancer" subtitle="Case numbers per year" class="box"/>
         </div>
       </div>
-      <div class="app">
-        <v-select :items="years" v-model="selectedYear" :dense="true" :menu-props="{ maxHeight: '150px' }" label="Select year" v-on:change="getDataOnChange(selectedYear)"> </v-select>
-      </div>
+
   </div>
 </template>
 <script>
@@ -147,8 +148,8 @@ export default {
 
 <style scoped>
   .container-fluid .col {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
   }
   .row {
     margin: 3rem 3rem 2rem 3rem;
@@ -166,6 +167,7 @@ export default {
     padding: 15px;
     min-height: 0vh;
     margin-top: 0rem;
+    height: 20px;
   }
 
 </style>

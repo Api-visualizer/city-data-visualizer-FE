@@ -94,7 +94,7 @@
 
           <div class="col-sm-6 d-flex align-items-stretch">
             <div class="card">
-              <img class="card-img-top" src="/images/cards/covid_cases.png" alt="Card image cap">
+              <img class="card-img-top" src="/images/cards/predictions.JPG" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title">COVID-19</h5>
                 <h6 class="card-subtitle mb-2 text-muted">Case number predictions</h6>

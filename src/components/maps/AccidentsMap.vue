@@ -164,11 +164,16 @@ export default {
 
     setupLeafletMap: function () {
       this.map = L.map('accidentsMapContainer', {
+        zoomControl: false,
         center: [52.52, 13.405],
         zoom: 11,
         maxZoom: 17,
         minZoom: 10,
       });
+
+      L.control.zoom({
+          position:'bottomright'
+        }).addTo(this.map);
 
       L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
@@ -229,6 +234,9 @@ export default {
 
 <style scoped>
 
+/deep/.leaflet-right {
+  margin-right: 395px;
+}
 
 .headerimage {
   max-height: 15rem;
@@ -261,8 +269,8 @@ export default {
 .box {
   position: absolute;
   text-align: justify;
-  top: 4rem;
-  right: 4rem;
+  top: 0.6rem;
+  right: 0.7rem;
   z-index: 997;
   max-width: 20rem;
 }
