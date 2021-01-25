@@ -19,6 +19,6 @@ export default {
 
 <style scoped>
 .card  {
-  box-shadow: 22px 22px 8px -3px #477FCD;
+  box-shadow: 12px 12px 4px 0px #477fcdbe;
 }
 </style>
