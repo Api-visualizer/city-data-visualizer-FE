@@ -65,7 +65,7 @@ img {
 .search {
   position: absolute;
   top: 10px;
-  right: 100px
+  right: 70px
 }
 
 </style>
