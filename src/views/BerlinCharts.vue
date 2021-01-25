@@ -1,22 +1,24 @@
 <template>
-  <div>
+  <div class="back">
     <div class="app">
       <v-select
+            class="white border rounded-lg"
             v-model="selectedDate"
             :items="dates"
+            hide-details
             item-text="name"
             item-value="id"
             label="Select a Day"
             v-on:change="filterDataForDate(selectedDate)">
       </v-select>
     </div>
-  <div class="container-fluid mr-4">
+  <div class="container-fluid mr-4 mb-4">
     <div class="row">
-      <div class="col table">
-        <v-data-table disable-sort :headers="this.headers" :items="this.data_table_data" :items-per-page="15" class="elevation-1"></v-data-table>
+      <div class="col">
+        <v-data-table disable-sort :headers="this.headers" :items="this.data_table_data" :items-per-page="15" class="age"></v-data-table>
       </div>
       <div class="col">
-        <apexchart width="800" type="bar" :options="options" :series="series" class="chart"></apexchart>
+        <apexchart width="800" type="bar" :options="options" :series="series" class="chart white"></apexchart>
           <Textbox :content="content" subtitle="Case numbers per age group" title="COVID-19" class="box" />
      </div>
     </div>
@@ -143,6 +145,13 @@ export default {
 
 <style scoped>
 
+.back{
+  background-color: white;
+  background-image: url("data:image/svg+xml,%3Csvg width='504' height='288' viewBox='0 0 84 48' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h12v6H0V0zm28 8h12v6H28V8zm14-8h12v6H42V0zm14 0h12v6H56V0zm0 8h12v6H56V8zM42 8h12v6H42V8zm0 16h12v6H42v-6zm14-8h12v6H56v-6zm14 0h12v6H70v-6zm0-16h12v6H70V0zM28 32h12v6H28v-6zM14 16h12v6H14v-6zM0 24h12v6H0v-6zm0 8h12v6H0v-6zm14 0h12v6H14v-6zm14 8h12v6H28v-6zm-14 0h12v6H14v-6zm28 0h12v6H42v-6zm14-8h12v6H56v-6zm0-8h12v6H56v-6zm14 8h12v6H70v-6zm0 8h12v6H70v-6zM14 24h12v6H14v-6zm14-8h12v6H28v-6zM14 8h12v6H14V8zM0 8h12v6H0V8z' fill='%23477fcd' fill-opacity='0.07' fill-rule='evenodd'/%3E%3C/svg%3E");
+
+  background-repeat: repeat;
+}
+
 .container-fluid .col {
   margin: 0;
   padding: 0;
@@ -186,18 +195,25 @@ a {
   margin: 2rem 3rem 0 4rem;
 }
 .chart {
-  margin: 0 3rem 0 2rem;
-  box-shadow: 22px 22px 8px -3px #477FCD;
+  border-radius: .25rem;
+  border: 1px solid rgba(0,0,0,.125);
+  margin: 0 2rem 0 1rem;
+  box-shadow: 12px 12px 4px 0px #477fcdbe;
 }
-.elevation-1 {
-  margin: 0 2rem 0 2rem;
+.age {
+  border-radius: .25rem;
+  border: 1px solid rgba(0,0,0,.125);
+  margin: 0 1rem 0 2rem;
+  box-shadow: 12px 12px 4px 0px #477fcdbe;
 }
 .app {
   max-width: 12rem;
-  margin-top: 1rem;
-  margin-left: 3rem;
+  padding-top: 1rem;
+  margin-left: 2rem;
+  margin-bottom: 1rem;
 }
-.table {
-  box-shadow: 22px 22px 8px -3px #477FCD;
+
+.v-input{
+  padding: 12px;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="contact-form">
-    <h2 class="display-4 mb-5" id="contact">Contact</h2>
+    <h4 class="headline-4 mb-5" id="contact">Contact</h4>
     <form name="contact_form" class="form text-left" @submit="sendForm" method="post">
     <div class="row">
       <div class="col">
@@ -89,6 +89,12 @@ export default {
 </script>
 
 <style scoped>
+
+.headline-4 {
+  font-weight: 300;
+  font-size: 3.5rem;
+  line-height: 1.2;
+}
 
 .contact-form{
   background: #ffffff;

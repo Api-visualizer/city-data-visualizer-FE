@@ -110,7 +110,7 @@ export default {
 }
 
 .headline-4 {
-  font-weight: bold;
+  font-weight: 300;
   font-size: 3.5rem;
   line-height: 1.2;
 }
