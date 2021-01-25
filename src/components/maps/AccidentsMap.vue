@@ -234,10 +234,6 @@ export default {
 
 <style scoped>
 
-/deep/.leaflet-right {
-  margin-right: 395px;
-}
-
 .headerimage {
   max-height: 15rem;
   object-fit: cover;
@@ -269,8 +265,8 @@ export default {
 .box {
   position: absolute;
   text-align: justify;
-  top: 0.6rem;
-  right: 0.7rem;
+  top: 15px;
+  right: 15px;
   z-index: 997;
   max-width: 20rem;
 }
@@ -278,10 +274,16 @@ export default {
 #accidentsMapContainer {
   box-shadow: 0px 0px 5px rgb(0, 0, 0, 0.3);
   width: 100%;
-  height: 83vh;
+  height: 85vh;
+}
+
+/deep/.leaflet-right .leaflet-control{
+  margin-right: 15px;
+  margin-bottom: 0;
 }
 
 /deep/.inf {
+    margin: 15px;
     padding: 6px 8px;
     font: 14px/16px Arial, Helvetica, sans-serif;
     background: white;
@@ -307,7 +309,7 @@ export default {
   left: 0;
   right: 0;
   z-index: 997;
-  transform: translateY(-150%);
+  bottom: 15px;
 }
 
 /deep/label {

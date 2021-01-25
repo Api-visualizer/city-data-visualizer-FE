@@ -1,8 +1,7 @@
 <template>
-  <div class="covidslider">
-    
-      <div class="row">
-        <div class="col-8 vslider white rounded-lg">
+      <div class="row covidslider justify-content-md-center">
+        <div class="col-2 spacer"></div>
+        <div class="col-5 vslider white rounded-lg">
           <v-slider v-model="index" :max="labels.length-1" ticks="always" tick-size="4" hide-details
                     thumb-label="always"
                     :thumb-size="70"
@@ -11,7 +10,7 @@
           </v-slider>
 
         </div>
-        <div class="col-sm-auto white rounded-lg">
+        <div class="col-2 white rounded-lg">
           <v-select
               v-model="mId" :menu-props="{ top: true, offsetY: true }" :items="months" item-text="name" item-value="id" hide-details dense
               v-on:change="getDatesForMonth(mId)">
@@ -19,7 +18,6 @@
         </div>
       </div>
     
-  </div>
 </template>
 <script>
 export default {
@@ -185,35 +183,15 @@ export default {
 <style scoped>
 
 .covidslider {
-  width: 95%;
-  margin: auto;
-  margin-top: 1%;
-  margin-bottom: 1%;
+  width: 100%;
   max-height: 20%;
 }
 
-.v-card__text{
-  display: flex;
-  justify-content: space-between;
-}
-
-.v-card__text > *{
-  padding: 1%;
-}
-
-.v-input__slider{
-  flex: 1 1 80%;
-}
-
-.v-select{
-  flex: 0 1 15%;
-  width: 160px;
-}
 .vslider {
   z-index: 999;
   margin-right: 3rem;
 }
-.col-4 {
-  margin-right: 5rem;
+.spacer {
+  margin-right: 3rem;
 }
 </style>

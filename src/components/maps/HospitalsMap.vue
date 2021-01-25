@@ -3,8 +3,9 @@
     <div id="container">
       <div id="hospitalMapContainer" />
       <Textbox :content="content" class="box"/>
+      <Timeslider class="tslider" v-if='sliderStartIndex' :id='this.busKey' :startIndex=this.sliderStartIndex :ticksLabels=this.ticksLabels :value=value />
     </div>
-    <Timeslider class="tslider" v-if='sliderStartIndex' :id='this.busKey' :startIndex=this.sliderStartIndex :ticksLabels=this.ticksLabels :value=value />
+    
   </div>
 </template>
 
@@ -234,11 +235,17 @@ export default {
   font-weight: bold;
 }
 #hospitalMapContainer {
-  width: 100vw;
-  height: 83vh;
+  width: 100%;
+  height: 85vh;
+}
+
+/deep/.leaflet-right .leaflet-control{
+  margin-right: 15px;
+  margin-bottom: 0;
 }
 
 /deep/.inf {
+  margin: 15px;
   padding: 6px 8px;
   font: 14px/16px Arial, Helvetica, sans-serif;
   background: white;
@@ -250,10 +257,6 @@ export default {
 /deep/.inf h4 {
   margin: 0 0 5px;
   color: #777;
-}
-
-/deep/.leaflet-right {
-  margin-right: 26px;
 }
 
 .legend {
@@ -274,15 +277,15 @@ export default {
 .box {
   position: absolute;
   text-align: justify;
-  top: 0.5rem;
-  right: 1rem;
+  top: 15px;
+  right: 15px;
   z-index: 997;
   max-width: 20rem;
 }
 
 .tslider {
   position: absolute;
-  transform: translate(5%, -160%);
+  bottom: 15px;
   z-index: 999;
 }
 </style>

@@ -2,9 +2,10 @@
   <div>
     <div id="container">
       <div id="mapContainer"></div>
+      <Textbox class="textbox" :content="content" title="COVID-19" subtitle="Case numbers per district" />
+      <Timeslider class="tslider" v-if='sliderStartIndex' :id='this.busKey' :startIndex=this.sliderStartIndex :ticksLabels=this.ticksLabels :value=value />
     </div>
-    <Timeslider class="tslider" v-if='sliderStartIndex' :id='this.busKey' :startIndex=this.sliderStartIndex :ticksLabels=this.ticksLabels :value=value />
-    <Textbox class="textbox" :content="content" title="COVID-19" subtitle="Case numbers per district" />
+    
   </div>
 </template>
 
@@ -165,7 +166,7 @@ export default {
 
       let inf = L.control({ position: "bottomleft" });
       inf.onAdd = function () {
-        this._div = L.DomUtil.create('div', 'inf'); // create a div with a class "inf"
+        this._div = L.DomUtil.create('div', 'inf numb'); // create a div with a class "inf"
         this.reset();
         return this._div;
       }
@@ -319,16 +320,23 @@ export default {
 .display-4 {
   font-weight: bold;
 }
-#mapContainer {
-  width: 100vw;
-  height: 83vh;
+
+#container{
+  position: relative;
 }
 
-/deep/.leaflet-right {
-  margin-right: 16px;
+#mapContainer {
+  width: 100%;
+  height: 85vh;
+}
+
+/deep/.leaflet-right .leaflet-control{
+  margin-right: 15px;
+  margin-bottom: 0;
 }
 
 /deep/.inf {
+    margin: 15px;
     padding: 6px 8px;
     font: 14px/16px Arial, Helvetica, sans-serif;
     background: white;
@@ -342,10 +350,14 @@ export default {
     color: #777;
 }
 
+/deep/.numb{
+  width: 15vw;
+}
+
 .textbox {
   position: absolute;
-  right: 0.7vw;
-  top: 11vh;
+  right: 15px;
+  top: 15px;
   z-index: 9996;
   width: 20rem;
 }
@@ -359,9 +371,8 @@ export default {
 
 .tslider {
   position: absolute;
-  transform: translate(5%, -160%);
+  bottom: 15px;
   z-index: 999;
-  margin: 1rem 5rem 0rem 10rem;
 }
 
 </style>
