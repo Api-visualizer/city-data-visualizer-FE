@@ -15,7 +15,14 @@
               </div>
             </div>
             <div class="col-3">
-              <Textbox :content="content" title="Cancer" subtitle="Case numbers per year" class="box" link="http://www.gsi-berlin.info/gsi_suchen.asp?seite=2&CBFest=Suchtext&Suchtext=tg0800373100202008%2Exls&Modus=9" />
+              <div class="card box">
+                <div class="card-body">
+                  <h5 class="card-title">Cancer</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">Case numbers per year</h6>
+                  <span>{{ this.content }}</span><br><br>
+                  <a href='http://www.gsi-berlin.info/gsi_suchen.asp?seite=2&CBFest=Suchtext&Suchtext=tg0800373100202008%2Exls&Modus=9' class="card-link">Where is this data from?</a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -26,11 +33,10 @@
 <script>
 import GeneralClasses from '@/assets/GeneralClasses';
 import 'leaflet/dist/leaflet.css';
-import Textbox from '@/components/Textbox';
 
 export default {
   name: 'CancerCasesBarchart',
-  components: { Textbox },
+  components: { },
   props: {},
   data() {
     return {
