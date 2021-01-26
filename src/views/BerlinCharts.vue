@@ -15,7 +15,14 @@
               </div>
               <div class="col">
                 <apexchart width="800" type="bar" :options="options" :series="series" class="chart white"></apexchart>
-                <Textbox :content="content" subtitle="Case numbers per age group" title="COVID-19" class="box" link="https://daten.berlin.de/datensaetze/covid-19-f%C3%A4lle-im-land-berlin-verteilung-nach-altersgruppen" />
+                <v-card>
+                <div class="card-body">
+                  <h5 class="card-title">COVID</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">Case numbers per age group</h6>
+                  <span> {{ content }}</span><br><br>
+                  <a href='https://daten.berlin.de/datensaetze/covid-19-f%C3%A4lle-im-land-berlin-verteilung-nach-altersgruppen' class="card-link">Where is this data from?</a>
+                </div>
+                </v-card>
               </div>
             </div>
           </div>
@@ -28,11 +35,10 @@
 <script>
 import GeneralClasses from '../assets/GeneralClasses';
 import 'leaflet/dist/leaflet.css';
-import Textbox from '@/components/Textbox';
 
 export default {
   name: 'BerlinCharts',
-  components: { Textbox },
+  components: { },
   props: {},
 
   data() {
