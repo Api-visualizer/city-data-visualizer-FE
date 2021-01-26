@@ -2,7 +2,7 @@
   <div>
     <div id="container">
       <div id="hospitalMapContainer" />
-      <Textbox :content="content" title="Hospital Capacities" subtitle="Current and recent capacities of hospitals in Berlin" class="box"/>
+      <Textbox :content="content" title="Hospital Capacities" subtitle="Current and recent capacities of hospitals in Berlin" class="box" :link=this.link />
       <Timeslider class="tslider" v-if='sliderStartIndex' :id='this.busKey' :startIndex=this.sliderStartIndex :ticksLabels=this.ticksLabels :value=value />
     </div>
   </div>
@@ -30,6 +30,7 @@ export default {
       dataResult: [],
       value: '',
       map: {},
+      link: "https://www.intensivregister.de/#/intensivregister",
       mapLayer: {},
       selectedDayNew: "",
       inf: {},

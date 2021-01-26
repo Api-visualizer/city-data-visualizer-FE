@@ -15,11 +15,11 @@
               </div>
             </div>
             <div class="col-3">
-              <div class="card box">
+              <div class="card cardbox">
                 <div class="card-body">
                   <h5 class="card-title">Cancer</h5>
                   <h6 class="card-subtitle mb-2 text-muted">Case numbers per year</h6>
-                  <span>{{ this.content }}</span><br><br>
+                  <span v-html="content"></span><br><br>
                   <a href='http://www.gsi-berlin.info/gsi_suchen.asp?seite=2&CBFest=Suchtext&Suchtext=tg0800373100202008%2Exls&Modus=9' class="card-link">Where is this data from?</a>
                 </div>
               </div>
@@ -175,6 +175,11 @@ h3 {
 .box {
   margin-left: 3rem;
   height: 100%;
+}
+.cardbox  {
+  margin: 0 2rem 0 2rem;
+  box-shadow: 12px 12px 4px 0px #477fcdbe;
+  height: 98%;
 }
 .app {
   background-color: white;
