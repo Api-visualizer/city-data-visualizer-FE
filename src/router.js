@@ -10,9 +10,6 @@ import HospitalsMap from '@/components/maps/HospitalsMap';
 import CovidMap from '@/components/maps/CovidMap';
 import BerlinCharts from '@/views/BerlinCharts';
 import CancerCasesBarchart from '@/components/charts/CancerCasesBarchart';
-import CovidPredictions from "@/views/CovidPredictions";
-
-
 
 const routes = [
     { path:'*', redirect: '/'},
@@ -24,7 +21,6 @@ const routes = [
     { path: '/accidents', component: AccidentsMap },
     { path: '/hospitals', component: HospitalsMap },
     { path: '/cancer', component: CancerCasesBarchart },
-    { path: '/covid-predictions', component: CovidPredictions },
 ];
 
 const router = new VueRouter({
