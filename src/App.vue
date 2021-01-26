@@ -41,6 +41,24 @@ export default {
 </script>
 
 <style >
+::-webkit-scrollbar {
+  width: 5px;
+  background: darkgrey;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px lightgray;
+}
+
+::-webkit-scrollbar-thumb {
+  background: gray;
+}
+
+.Pointer {
+  cursor: pointer;
+}
+
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

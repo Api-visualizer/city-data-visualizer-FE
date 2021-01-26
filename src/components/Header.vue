@@ -1,14 +1,21 @@
 <template>
-    <nav class="navbar navbar-dark bg-dark">
-      <a class="navbar-brand" href="/">
-        <img src="/images/logo_white.png" />
-      </a>
-      <div class="search">
-        <form class="form-inline my-2 my-lg-0">
-          <autocomplete ref="autocomplete" @keyup.enter="SearchOnSubmit(SearchValue)" :search="search" placeholder="Search" aria-label="Search" :get-result-value="getResultValue" @submit="onSubmit"></autocomplete>
-        </form>
-      </div>
-    </nav>
+  <nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">
+      <img src="/images/logo_white.png" />
+    </a>
+    <div class="search">
+      <v-form ref="titleForm" class="form-inline my-2 my-lg-0" style="z-index: 99999">
+        <v-autocomplete ref="InputSearchTitle" color="grey" background-color="white" class="subtitle-2" hide-no-data filled rounded clearable dense return-object v-model="SearchName" :search-input.sync="SearchApply" :items="AutoCompleteItems" :loading="IsLoading" prepend-inner-icon="mdi-text-search" item-text="Keywords" item-value="Keywords" label="Search">
+          <template v-slot:item="data">
+            <v-list-item-content style="width:40vw;">
+              <v-list-item-title class="text-left title bold" v-html="data.item.Value"></v-list-item-title>
+              <v-list-item-subtitle class="text-left text-wrap" v-html="data.item.Keywords"></v-list-item-subtitle>              
+            </v-list-item-content>   
+          </template>
+        </v-autocomplete>
+      </v-form>
+    </div>
+  </nav>
 </template>
 
 <script>
@@ -17,41 +24,48 @@ export default {
 
   data() {
     return {
-      SearchValue: '',
-      SearchData: {},
+      // Auto Complete
+      Limit: 5,
+      AutoCompleteData: [],
+      IsLoading: false,
+      SearchName: null,
+      SearchApply: null,
     };
   },
-  methods: {
-    getResultValue(result) {
-      return result.Value;
+  computed: {
+    AutoCompleteItems() {
+      return this.AutoCompleteData;
     },
-    onSubmit(result) {
-      this.$router.push(result.Link);
-    },
-    SearchOnSubmit(SearchValue) {
+  },
+  watch: {
+    SearchName(SearchValue) {
       this.$router.push(SearchValue.Link);
     },
-    search(input) {
-      this.SearchValue = input;
-      if (input.length < 1) {
-        return [];
-      }
-      return this.SearchData.filter((Element) => {
-        return Element.Value.toLowerCase().startsWith(input.toLowerCase());
-      });
+    SearchApply() {
+      // Items have already been loaded
+      if (this.AutoCompleteItems.length > 0) return;
+
+      if (this.IsLoading) return;
+
+      this.IsLoading = true;
+
+      fetch('/images/SearchTerms.json')
+        .then((res) => res.json())
+        .then((res) => {
+          this.AutoCompleteData = res.SearchElements;
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+        .finally(() => (this.IsLoading = false));
     },
   },
-  mounted() {
-    const url = '/images/SearchTerms.json';
-    this.$http.get(url).then((Result) => {
-      this.SearchData = Result.data.SearchElements;
-    });
-  },
+  methods: {},
+  mounted() {},
 };
 </script>
 
 <style>
-
 .navMenu[data-v-7f183654] > a {
   margin-top: 1vh;
   width: 10px;
@@ -65,7 +79,6 @@ img {
 .search {
   position: absolute;
   top: 10px;
-  right: 70px
+  right: 70px;
 }
-
 </style>
