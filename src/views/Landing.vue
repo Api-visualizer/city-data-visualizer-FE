@@ -97,11 +97,11 @@
               <img class="card-img-top" src="/images/cards/predictions.JPG" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title">COVID-19</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Case number predictions</h6>
-                <p class="card-text">This line chart displays predictions on how case numbers will develop in the coming days based on the available data.</p>
+                <h6 class="card-subtitle mb-2 text-muted">Case numbers with trendline</h6>
+                <p class="card-text">This line chart displays covid data from the beginning of the pandemic and a trendline that is based on polynomial regression.</p>
               </div>
               <div class="card-footer">
-                <a class="btn btn-primary stretched-link" href="/covid-predictions" role="button">Explore</a>
+                <a class="btn btn-primary stretched-link" href="/covid-trend" role="button">Explore</a>
               </div>
             </div>
           </div>
