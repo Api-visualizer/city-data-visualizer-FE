@@ -187,6 +187,7 @@ h3 {
 
 .box{
   background-color: white;
+  box-shadow: 12px 12px 4px 0px #477fcdbe;
 }
 
 .cont{
