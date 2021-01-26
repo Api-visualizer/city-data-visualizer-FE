@@ -17,7 +17,7 @@
 export default {
   name: "Textbox",
 
-  props: ['content', 'title', 'subtitle'],
+  props: ['content', 'title', 'subtitle', 'link'],
   data() {
     return {
       open: true
