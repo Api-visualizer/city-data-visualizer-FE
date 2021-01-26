@@ -1,21 +1,15 @@
 <template>
-  <div>
-    <h2 class="mt-4">Our Team</h2>
-    <div class="container-fluid mt-5">
-      <div class="row ml-5">
-        <p>Backend</p>
-        </div>
-      <div class="d-flex justify-content-center row m-4">
-        <div v-for="dev in names_first_row" :key="dev.name" class="col-sm-3">
+   <div class="jumbotron">
+    <h2 class="mt-2">Team</h2>
+    <div class="container-fluid">
+      <div class="row col-md-12 justify-content-center">
+        <div v-for="dev in names_first_row" :key="dev.name" class="col-sm-2">
           <Avatar :name=dev.name :filename=dev.filename />
         </div>
       </div>
       </div>
-    <div class="row ml-5">
-      <p>Frontend</p>
-    </div>
-    <div class="row">
-        <div v-for="dev in names_second_row" :key="dev.name" class="col-sm-3">
+    <div class="row col-md-12 justify-content-center">
+        <div v-for="dev in names_second_row" :key="dev.name" class="col-sm-2">
           <Avatar :name=dev.name :filename=dev.filename />
         </div>
     </div>
@@ -48,12 +42,17 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+.jumbotron {
+  margin: 0px;
+  background-color: white;
+  background-image: url("data:image/svg+xml,%3Csvg width='504' height='288' viewBox='0 0 84 48' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h12v6H0V0zm28 8h12v6H28V8zm14-8h12v6H42V0zm14 0h12v6H56V0zm0 8h12v6H56V8zM42 8h12v6H42V8zm0 16h12v6H42v-6zm14-8h12v6H56v-6zm14 0h12v6H70v-6zm0-16h12v6H70V0zM28 32h12v6H28v-6zM14 16h12v6H14v-6zM0 24h12v6H0v-6zm0 8h12v6H0v-6zm14 0h12v6H14v-6zm14 8h12v6H28v-6zm-14 0h12v6H14v-6zm28 0h12v6H42v-6zm14-8h12v6H56v-6zm0-8h12v6H56v-6zm14 8h12v6H70v-6zm0 8h12v6H70v-6zM14 24h12v6H14v-6zm14-8h12v6H28v-6zM14 8h12v6H14V8zM0 8h12v6H0V8z' fill='%23477fcd' fill-opacity='0.07' fill-rule='evenodd'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+
 img {
   border-radius: 53%;
   min-width: 40rem;
-}
-.col-sm-3 {
-  margin-top: 3vh;
 }
 p {
   font-size: large;
