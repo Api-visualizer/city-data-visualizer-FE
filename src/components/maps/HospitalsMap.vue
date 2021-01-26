@@ -2,10 +2,9 @@
   <div>
     <div id="container">
       <div id="hospitalMapContainer" />
-      <Textbox title="Covid-19" subtitle="Hospital Capacities" :content="content" class="box" link="https://www.intensivregister.de/#/intensivregister"/>
+      <Textbox :content="content" title="Hospital Capacities" subtitle="Current and recent capacities of hospitals in Berlin" class="box"/>
       <Timeslider class="tslider" v-if='sliderStartIndex' :id='this.busKey' :startIndex=this.sliderStartIndex :ticksLabels=this.ticksLabels :value=value />
     </div>
-
   </div>
 </template>
 

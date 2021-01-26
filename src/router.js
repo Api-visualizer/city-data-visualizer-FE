@@ -17,7 +17,7 @@ const routes = [
     { path: '/faq', component: Faq },
     { path: '/team', component: Team },
     { path: '/infections', component: CovidMap },
-    { path: '/covid-graphs', component: BerlinCharts },
+    { path: '/covid-age', component: BerlinCharts },
     { path: '/accidents', component: AccidentsMap },
     { path: '/hospitals', component: HospitalsMap },
     { path: '/cancer', component: CancerCasesBarchart },
