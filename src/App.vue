@@ -2,7 +2,7 @@
   <v-app class="p-0">
     <div id="app" class="p-0">
       <Menu class="menu"></Menu>
-      <div v-if="isNotHomeView()">
+      <div>
         <Header />
       </div>
       <router-view class="content" />
