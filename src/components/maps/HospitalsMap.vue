@@ -2,7 +2,7 @@
   <div>
     <div id="container">
       <div id="hospitalMapContainer" />
-      <Textbox :content="content" class="box"/>
+      <Textbox :content="content" title="Hospital Capacities" subtitle="Current and recent capacities of hospitals in Berlin" class="box"/>
     </div>
     <Timeslider v-if='sliderStartIndex' :id='this.busKey' :startIndex=this.sliderStartIndex :ticksLabels=this.ticksLabels :value=value />
   </div>

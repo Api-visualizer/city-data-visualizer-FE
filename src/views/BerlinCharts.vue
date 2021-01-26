@@ -1,5 +1,8 @@
 <template>
   <div>
+    <h2>Covid 19</h2>
+    <h3>Covid 19 per age group</h3>
+    <v-card class="card">
     <v-app class="app">
       <v-select
             v-model="selectedDate"
@@ -21,6 +24,9 @@
      </div>
     </div>
   </div>
+    </v-card>
+
+
   </div>
 </template>
 
@@ -156,6 +162,10 @@ export default {
   object-fit: cover;
 }
 
+h2 {
+  margin-top: 2rem;
+}
+h3 {margin-top: 2rem}
 .title {
   z-index: 1;
   position: absolute;
@@ -201,5 +211,8 @@ a {
 }
 .table {
   box-shadow: 22px 22px 8px -3px #477FCD;
+}
+.card {
+  margin-top: 2rem;
 }
 </style>

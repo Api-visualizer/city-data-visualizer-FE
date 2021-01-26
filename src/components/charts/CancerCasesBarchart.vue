@@ -1,6 +1,9 @@
 <template>
-    <div>
-      <div class="row">
+  <div>
+    <h2>Cancer cases</h2>
+    <h3>Yearly overview of cancer cases per age range</h3>
+     <div class="card">
+    <div class="row">
         <div class="col-8">
           <div id="chart">
             <apexchart type="bar" height="450" :options="options" :series="series"></apexchart>
@@ -13,6 +16,7 @@
       <v-app class="app">
         <v-select :items="years" v-model="selectedYear" :dense="true" :menu-props="{ maxHeight: '150px' }" label="Select year" v-on:change="getDataOnChange(selectedYear)"> </v-select>
       </v-app>
+  </div>
   </div>
 </template>
 <script>
@@ -37,10 +41,6 @@ export default {
               chart: {
                 type: 'bar',
               },
-              title: {
-                text: "Yearly overview of Cancer cases per Age range",
-                align: "left",
-                },
               plotOptions: {
                 bar: {
                   horizontal: false,
@@ -146,6 +146,13 @@ export default {
 </script>
 
 <style scoped>
+
+  h2 {
+    margin-top: 3rem;
+  }
+  h3 {
+    margin-bottom: 2rem;
+  }
   /deep/ .v-application--wrap {
     min-height: 0vh !important;
     width: 30%;

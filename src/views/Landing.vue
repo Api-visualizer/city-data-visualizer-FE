@@ -69,15 +69,13 @@
                 <p class="card-text">Corresponding charts and tables allow you to get a deeper understanding of the development of the COVID-19 virus in Berlin.</p>
               </div>
               <div class="card-footer">
-                <a class="btn btn-primary stretched-link" href="/main/covid-graphs" role="button">Explore</a>
+                <a class="btn btn-primary stretched-link" href="/main/covid-age" role="button">Explore</a>
               </div>
             </div>
           </div>
-
         </div>
 
         <div class="row">
-
           <div class="col-sm-6 d-flex align-items-stretch">
             <div class="card">
               <img class="card-img-top" src="/images/cards/hospitals_status.png" alt="Card image cap">
@@ -91,7 +89,6 @@
               </div>
             </div>
           </div>
-
           <div class="col-sm-6 d-flex align-items-stretch">
             <div class="card">
               <img class="card-img-top" src="/images/cards/covid_cases.png" alt="Card image cap">

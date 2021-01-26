@@ -13,7 +13,7 @@
 
       <hr>
       <div class="listelement-container">
-        <p class="listelement"><a href="/main/covid-graphs">Graphs</a></p>
+        <p class="listelement"><a href="/main/covid-age">Covid & age</a></p>
       </div>
       <div class="listelement-container">
         <p class="listelement"><a href="/main/infections">Infections</a></p>
@@ -53,7 +53,6 @@ export default {
       this.open = !this.open
     },
   }
-
 }
 </script>
 <style scoped>
