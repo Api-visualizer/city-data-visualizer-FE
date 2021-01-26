@@ -360,7 +360,7 @@ export default {
   right: 15px;
   top: 15px;
   z-index: 9996;
-  width: 20rem;
+  max-width: 20rem;
 }
 
 .legend i {

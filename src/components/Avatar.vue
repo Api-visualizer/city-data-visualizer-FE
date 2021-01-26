@@ -23,8 +23,8 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 img {
-  border-radius: 53%;
-  max-width: 15em;
+  border-radius: 50%;
+  max-width: 8em;
 }
 h4 {
   font-size: medium;
