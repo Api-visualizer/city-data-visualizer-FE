@@ -42,7 +42,7 @@ export default {
       dates: [],
       datasets: [],
       data_table_data: [],
-      selectedDate: '22.11.2020',
+      selectedDate: '29.11.2020',
       headers: [
         {
           align: 'start',
