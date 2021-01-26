@@ -10,7 +10,7 @@
           </div>
         </div>
         <div class="col-3">
-          <Textbox :content="content" title="Cancer" subtitle="Case numbers per year" class="box"/>
+          <Textbox :content="content" title="Cancer" subtitle="Case numbers per year" class="box" link="http://www.gsi-berlin.info/gsi_suchen.asp?seite=2&CBFest=Suchtext&Suchtext=tg0800373100202008%2Exls&Modus=9"/>
         </div>
       </div>
 
@@ -29,7 +29,7 @@ export default {
     },
     data() {
         return {
-          content: "This chart shows you how the number of cancer patients has developed through the years 2008 until 2017. The chart has many functionalities which let you be able to investigate the exact information which you may need about cancer in Berlin, for example you can see the number of patients according to their age and gendre AND see the total number of patients for each age group of people. You can filter the results (accourding to the selected year) to see the difference and the development of the number of cancer patients.",
+          content: "This chart shows you how the number of cancer patients has developed through the years 2008 until 2017. The chart has many functionalities which enable you to investigate the exact information which you may need about cancer in Berlin, for example you can see the number of patients according to their age and gender as well as the total number of patients for each age group of people. You can filter the results (according to the selected year) to see the difference and the development of the number of cancer patients.",
             data: {},
             years: [],
             selectedYear: '2008',
@@ -97,7 +97,7 @@ export default {
     initializeYears: function (data) {
       Object.entries(data).forEach(dataset => this.years.push(dataset[0]));
     },
-    
+
     initializeAgeRanges: function (data) {
       Object.entries(data)[0][1].forEach(dataset => this.ages.push(dataset.age));
       this.ages[this.ages.length -1] = "95 and older";
@@ -126,7 +126,7 @@ export default {
     getDataPerGendre: function(data, gendre) {
       let countSet = [];
       data.forEach(d => countSet.push(d[gendre]))
-      return countSet;  
+      return countSet;
     },
 
     getDataOnChange: function(selectedYear) {

@@ -2,10 +2,10 @@
   <div>
     <div id="container">
       <div id="hospitalMapContainer" />
-      <Textbox :content="content" class="box"/>
+      <Textbox title="Covid-19" subtitle="Hospital Capacities" :content="content" class="box" link="https://www.intensivregister.de/#/intensivregister"/>
       <Timeslider class="tslider" v-if='sliderStartIndex' :id='this.busKey' :startIndex=this.sliderStartIndex :ticksLabels=this.ticksLabels :value=value />
     </div>
-    
+
   </div>
 </template>
 
@@ -176,11 +176,11 @@ export default {
 
         let div = L.DomUtil.create('div', 'inf legend'),
             grades = ['Capacities',  'Limited','No capacities', 'Not specified'];
-        let label = '<div class="mb-4"><strong>Capacities</strong></div>'                
+        let label = '<div class="mb-4"><strong>Capacities</strong></div>'
         div.innerHTML += label
 
         for (let i = 0; i < grades.length; i++) {
-          div.innerHTML += "<div class='text-left mt-2 mb-2'><div class='text-left text-dark rounded p-1 mr-2' style='display:inline; opacity:0.7; background:" + colors[i] + "'>&nbsp;&nbsp;</div><div style='display:inline;'>" + grades[i] + "</div></div><hr class='p-0 m-0'>";                      
+          div.innerHTML += "<div class='text-left mt-2 mb-2'><div class='text-left text-dark rounded p-1 mr-2' style='display:inline; opacity:0.7; background:" + colors[i] + "'>&nbsp;&nbsp;</div><div style='display:inline;'>" + grades[i] + "</div></div><hr class='p-0 m-0'>";
         }
         return div;
       };

@@ -2,7 +2,7 @@
   <div>
     <div id="container">
       <div id="accidentsMapContainer"></div>
-      <Textbox :content="content" title="Traffic Safety" subtitle="City-Wide Accident Locations" class="box" />
+      <Textbox :content="content" title="Traffic Safety" subtitle="City-Wide Accident Locations" class="box" link="https://unfallatlas.statistikportal.de/"/>
 
       <div class="selection rounded-lg">
         <div class="row">

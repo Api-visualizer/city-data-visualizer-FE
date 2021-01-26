@@ -2,10 +2,10 @@
   <div>
     <div id="container">
       <div id="mapContainer"></div>
-      <Textbox class="textbox" :content="content" title="COVID-19" subtitle="Case numbers per district" />
+      <Textbox class="textbox" :content="content" title="COVID-19" subtitle="Case numbers per district" link="https://daten.berlin.de/datensaetze/covid-19-berlin-verteilung-den-bezirken-gesamt%C3%BCbersicht" />
       <Timeslider class="tslider" v-if='sliderStartIndex' :id='this.busKey' :startIndex=this.sliderStartIndex :ticksLabels=this.ticksLabels :value=value />
     </div>
-    
+
   </div>
 </template>
 

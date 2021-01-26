@@ -3,7 +3,8 @@
     <div class="card-body">
       <h5 class="card-title">{{ title }}</h5>
       <h6 class="card-subtitle mb-2 text-muted">{{ subtitle }}</h6>
-      <span v-html="content"></span>
+      <span v-html="content"></span><br><br>
+      <a :href=link class="card-link">Where is this data from?</a>
     </div>
   </div>
 </template>
@@ -12,7 +13,7 @@
 export default {
   name: "Textbox",
 
-  props: ['content', 'title', 'subtitle']
+  props: ['content', 'title', 'subtitle', 'link']
 }
 
 </script>
