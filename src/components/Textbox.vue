@@ -1,8 +1,8 @@
 <template>
   <div class="card">
     <div class="burger" @click="toggleBurger">
-      <v-icon dark v-if="open" x-large >mdi-menu</v-icon>
-      <v-icon dark v-else large>mdi-window-close</v-icon>
+      <v-icon v-if="open" >mdi-fullscreen-exit</v-icon>
+      <v-icon v-else>mdi-fullscreen</v-icon>
     </div>
     <div class="card-body" v-if="open">
       <h5 class="card-title">{{ title }}</h5>
@@ -40,6 +40,9 @@ export default {
   text-align: justify;
 }
 .burger {
-  z-index: 10000;
+  margin-top: 0.5rem;
+  z-index: 9999;
+  position: absolute;
+  right: 10px;
 }
 </style>
