@@ -3,8 +3,8 @@
     <div id="container">
       <div id="hospitalMapContainer" />
       <Textbox :content="content" title="Hospital Capacities" subtitle="Current and recent capacities of hospitals in Berlin" class="box"/>
+      <Timeslider class="tslider" v-if='sliderStartIndex' :id='this.busKey' :startIndex=this.sliderStartIndex :ticksLabels=this.ticksLabels :value=value />
     </div>
-    <Timeslider v-if='sliderStartIndex' :id='this.busKey' :startIndex=this.sliderStartIndex :ticksLabels=this.ticksLabels :value=value />
   </div>
 </template>
 
@@ -32,7 +32,7 @@ export default {
       map: {},
       mapLayer: {},
       selectedDayNew: "",
-      info: {},
+      inf: {},
       shapes: [],
       sliderStartIndex: '',
       ticksLabels: [],
@@ -142,11 +142,16 @@ export default {
 
     setupLeafletMap: function () {
       this.map = L.map("hospitalMapContainer", {
+        zoomControl: false,
         center: [52.52, 13.405],
         zoom: 11,
         maxZoom: 14,
         minZoom: 10
       });
+
+      L.control.zoom({
+        position:'bottomright'
+      }).addTo(this.map);
 
       let map = this.map;
 
@@ -168,13 +173,13 @@ export default {
       legend.onAdd = function () {
         let colors = ['#4fbe53', '#ff8146', '#ff4649', '#a2a2a2']
 
-        let div = L.DomUtil.create('div', 'info legend'),
+        let div = L.DomUtil.create('div', 'inf legend'),
             grades = ['Capacities',  'Limited','No capacities', 'Not specified'];
-        let label = '<div class="mb-4"><strong>Capacities</strong></div>'                
+        let label = '<div class="mb-4"><strong>Capacities</strong></div>'
         div.innerHTML += label
 
         for (let i = 0; i < grades.length; i++) {
-          div.innerHTML += "<div class='text-left mt-2 mb-2'><div class='text-left text-dark rounded p-1 mr-2' style='display:inline; opacity:0.7; background:" + colors[i] + "'>&nbsp;&nbsp;</div><div style='display:inline;'>" + grades[i] + "</div></div><hr class='p-0 m-0'>";                      
+          div.innerHTML += "<div class='text-left mt-2 mb-2'><div class='text-left text-dark rounded p-1 mr-2' style='display:inline; opacity:0.7; background:" + colors[i] + "'>&nbsp;&nbsp;</div><div style='display:inline;'>" + grades[i] + "</div></div><hr class='p-0 m-0'>";
         }
         return div;
       };
@@ -229,11 +234,17 @@ export default {
   font-weight: bold;
 }
 #hospitalMapContainer {
-  width: 100vw;
-  height: 65vh;
+  width: 100%;
+  height: 85vh;
 }
 
-.info {
+/deep/.leaflet-right .leaflet-control{
+  margin-right: 15px;
+  margin-bottom: 0;
+}
+
+/deep/.inf {
+  margin: 15px;
   padding: 6px 8px;
   font: 14px/16px Arial, Helvetica, sans-serif;
   background: white;
@@ -242,7 +253,7 @@ export default {
   border-radius: 5px;
 }
 
-.info h4 {
+/deep/.inf h4 {
   margin: 0 0 5px;
   color: #777;
 }
@@ -260,14 +271,20 @@ export default {
 }
 #container {
   position: relative;
-  margin: 3rem;
 }
+
 .box {
   position: absolute;
   text-align: justify;
-  top: 1rem;
-  right: 1rem;
+  top: 15px;
+  right: 15px;
   z-index: 997;
   max-width: 20rem;
+}
+
+.tslider {
+  position: absolute;
+  bottom: 15px;
+  z-index: 999;
 }
 </style>

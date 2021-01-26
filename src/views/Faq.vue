@@ -1,25 +1,17 @@
 <template>
   <div>
-     <div class="container-fluid">
-      <div class="row">
-        <div class="col">
-          <div class="title display-4 pl-5 pr-5 pt-2 pb-2 bg-light text-dark rounded-pill" style="opacity: 0.9">
-          </div>
-        </div>
-      </div>
-    </div>
 
     <div class="jumbotron faq">
-      <h2 class="display-4">FAQ</h2>
+      <h2 class="headline-4">FAQ</h2>
       <p class="lead pt-4" style="padding-bottom: 24px;">Here you can find the answers to common questions we have received. Use the contact formular on the start page if you have a specific request which is not yet answered.</p>
     </div>
 
     <div class="jumbotron">
         <div>
-        <v-expansion-panels class="w-75 mt-10 container-fluid ">
+        <v-expansion-panels class="w-75 container-fluid ">
           <v-expansion-panel v-for="item in FAQ" :key="item">
             <v-expansion-panel-header class="align-center justify-start pl-5 pr-5">
-                <p>{{ item.question }}</p>
+                <p class="text-center">{{ item.question }}</p>
             </v-expansion-panel-header>
             <v-expansion-panel-content>
               <cite>{{ item.answer }}</cite>
@@ -32,17 +24,19 @@
       </div>
     </div>
 
-     <div class="jumbotron disclaimer">
-      <h2 class="display-4 disclaim-header">Disclaimer</h2>
+    <div class="jumbotron disclaimer">
+      <h2 class="headline-4 disclaim-header">Disclaimer</h2>
       <p class="lead pt-4" style="padding-bottom: 24px;">This is a students project at the Beuth University of Applied Sciences Berlin.
         We have created this website in behalf of the bachelor's degree program Media Informatics.
         The project City Data Visualizer will end in february 2021. 
         After february the website may be offline or not updated with new data.
         If you have questions or want to get in touch with the team please use the contact formular on the start page.</p>
       <a class="btn btn-primary" href="/#contact" role="button">Contact</a>
-      <br><br>
-      <div class="card">
-        <p class="display-4 h2">Legal Disclosure</p>
+    </div>
+
+    <div class="jumbotron">
+      <div class="card mx-auto w-75">
+        <p class="headline-4 h2">Legal Disclosure</p>
         <div class="card-body ">
           <h5 class="card-title">Information in accordance with Section 5 TMG</h5>
             <br>
@@ -114,8 +108,11 @@ export default {
   color: white;
   transform: translate(-50%, -50%);
 }
-.display-4 {
-  font-weight: bold;
+
+.headline-4 {
+  font-weight: 300;
+  font-size: 3.5rem;
+  line-height: 1.2;
 }
 .container-fluid {
   padding: 0;
@@ -151,6 +148,14 @@ p {
   margin: 0;
 }
 
+.jumbotron:nth-child(even) {
+
+  background-color: white;
+  background-image: url("data:image/svg+xml,%3Csvg width='504' height='288' viewBox='0 0 84 48' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h12v6H0V0zm28 8h12v6H28V8zm14-8h12v6H42V0zm14 0h12v6H56V0zm0 8h12v6H56V8zM42 8h12v6H42V8zm0 16h12v6H42v-6zm14-8h12v6H56v-6zm14 0h12v6H70v-6zm0-16h12v6H70V0zM28 32h12v6H28v-6zM14 16h12v6H14v-6zM0 24h12v6H0v-6zm0 8h12v6H0v-6zm14 0h12v6H14v-6zm14 8h12v6H28v-6zm-14 0h12v6H14v-6zm28 0h12v6H42v-6zm14-8h12v6H56v-6zm0-8h12v6H56v-6zm14 8h12v6H70v-6zm0 8h12v6H70v-6zM14 24h12v6H14v-6zm14-8h12v6H28v-6zM14 8h12v6H14V8zM0 8h12v6H0V8z' fill='%23477fcd' fill-opacity='0.07' fill-rule='evenodd'/%3E%3C/svg%3E");
+
+  background-repeat: repeat;
+}
+
 .jumbotron:nth-child(odd) {
   background-color: #FFF;
 }
@@ -165,7 +170,6 @@ p {
 
 .card {
   float: none;
-  padding: 2% 18% 2% 18%;
 }
 .disclaim-header {
   padding-top: 2vw;

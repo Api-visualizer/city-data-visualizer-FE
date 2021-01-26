@@ -22,8 +22,8 @@ export default {
         data: {},
 		table_data: [],
         headers: [
-                { text: 'Date', value: 'date' },
-                { text: 'Prediction', value: 'prediction' },
+                { text: 'Date', value: 'date', align: 'center' },
+                { text: 'Prediction', value: 'prediction', align: 'center'},
             ],
 		}
   },
@@ -46,7 +46,7 @@ export default {
     getPredictedDataWithDates: function(dates, data) {
         let dataset = []
         for(let i = 0; i < dates.length; i++) {
-            dataset.push({date: dates[i], prediction: data[i]})
+            dataset.push({date: dates[i], prediction: data[i] < 0 ? 0 : data[i]})
         }
         return dataset;
     },        
@@ -59,7 +59,4 @@ export default {
 </script>
 
 <style scoped>
-    /deep/ .v-application--wrap {
-    min-height: 0vh !important
-    }
 </style>

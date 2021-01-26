@@ -7,7 +7,8 @@
     <div class="card-body" v-if="open">
       <h5 class="card-title">{{ title }}</h5>
       <h6 class="card-subtitle mb-2 text-muted">{{ subtitle }}</h6>
-      <span v-html="content"></span>
+      <span v-html="content"></span><br><br>
+      <a :href=link class="card-link">Where is this data from?</a>
     </div>
   </div>
 </template>
@@ -33,7 +34,7 @@ export default {
 
 <style scoped>
 .card  {
-  box-shadow: 22px 22px 8px -3px #477FCD;
+  box-shadow: 12px 12px 4px 0px #477fcdbe;
 }
 .card-body {
   text-align: justify;

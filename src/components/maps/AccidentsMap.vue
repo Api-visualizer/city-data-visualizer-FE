@@ -1,32 +1,26 @@
 <template>
   <div>
     <div id="container">
-      <div class="row p-5 rounded-pill">
-        <div id="accidentsMapContainer"></div>
-        <Textbox :content="content" title="Traffic Safety" subtitle="City-Wide Accident Locations" class="box" />
+      <div id="accidentsMapContainer"></div>
+      <Textbox :content="content" title="Traffic Safety" subtitle="City-Wide Accident Locations" class="box" link="https://unfallatlas.statistikportal.de/"/>
+
+      <div class="selection rounded-lg">
+        <div class="row">
+          <div class="col-auto year">
+            <v-radio-group row dense hide-details v-model="year" v-on:change="getDataOnChange(year, accidentType)">
+              <v-radio :label="2018" :value="2018" checked></v-radio>
+              <v-radio :label="2019" :value="2019"></v-radio>
+            </v-radio-group>
+          </div>
+          <div class="col type">
+            <v-select :items="accidentTypes" v-model="accidentType" :dense="true" hide-details :menu-props="{ maxHeight: '150px' }" label="Select accident type" v-on:change="getDataOnChange(year, accidentType)"> </v-select>
+          </div>
+          <div class="col time">
+            <v-select :items="accidentTimes" v-model="accidentTime" :dense="true" hide-details :menu-props="{ maxHeight: '150px' }" label="Select accident time" v-on:change="getDataOnChange(year, accidentType, accidentTime)"> </v-select>
+          </div>
+        </div>
       </div>
 
-      <div class="container">
-        <v-app>
-          <v-row>
-            <v-col class="selection">
-              <v-select :items="accidentTypes" v-model="accidentType" :dense="true" :menu-props="{ maxHeight: '150px' }" label="Select an accident type" v-on:change="getDataOnChange(year, accidentType)"> </v-select>
-            </v-col>
-          </v-row>
-        </v-app>
-
-        <ul id="choice">
-          <li>
-            <input type="radio" id="shop" name="map" value="2018" v-model="year" v-on:change="getDataOnChange(2018, accidentType)" checked />
-            <label class="label" for="shop">2018</label>
-          </li>
-          <li>
-            <input type="radio" id="two" name="map" value="2019" v-model="year" v-on:change="getDataOnChange(2019, accidentType)" />
-            <label class="label" for="shop">2019</label>
-          </li>
-        </ul>
-
-      </div>
     </div>
   </div>
 </template>
@@ -62,7 +56,9 @@ export default {
       year: 2018,
       accidentTypes: ['Car', 'Bike', 'Motorcycle', 'Truck', 'Pedestrian', 'Other'],
       accidentType: 'All',
-      info: {},
+      accidentTimes: ['0','1', '2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23'],
+      accidentTime: '',
+      inf: {},
       weekDays: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
       months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
     };
@@ -73,6 +69,7 @@ export default {
       const baseURL = GeneralClasses.GETAPIberlinaccidents();
       let params = `?year=${this.year}`;
       if (this.accidentType != 'All') params = params + `&type=${this.accidentType.toLowerCase()}`;
+      if (this.accidentTime != '') params = params + `&hour=${this.accidentTime}`;
       return baseURL + params;
     },
 
@@ -88,9 +85,10 @@ export default {
       }
     },
 
-    getDataOnChange: function (year, type) {
+    getDataOnChange: function (year, type, hour) {
       this.year = year;
       this.type = type;
+      this.hour = hour;
 
       // Update map data
       this.addDataToMap();
@@ -129,7 +127,7 @@ export default {
 
       // Add infobox text
       const { avgMonth, avgDay, avgHour } = this.prettifyInfoBoxStrings(months, days, hours);
-      this.info.update({ totalAccidents, avgMonth, avgHour, avgDay });
+      this.inf.update({ totalAccidents, avgMonth, avgHour, avgDay });
 
       // Add map layer
       this.filteredMapLayer.setLatLngs(LL);
@@ -138,15 +136,15 @@ export default {
     },
 
     createInfoBox: function () {
-      let info = L.control({ position: "bottomleft" });
+      let inf = L.control({ position: "bottomleft" });
 
-      info.onAdd = function () {
-        this._div = L.DomUtil.create('div', 'info', ); // create a div with a class "info"
+      inf.onAdd = function () {
+        this._div = L.DomUtil.create('div', 'inf', ); // create a div with a class "inf"
         this.reset();
         return this._div;
       }
 
-      info.update = function (stats) {
+      inf.update = function (stats) {
         this.reset();
 
         const { totalAccidents, avgMonth, avgHour, avgDay } = stats;
@@ -156,21 +154,26 @@ export default {
           `<p>Average day: ${avgDay}`
       };
 
-      info.reset = function () {
+      inf.reset = function () {
         this._div.innerHTML = '<b>Data statistics:</b>';
       }
 
-      this.info = info;
-      info.addTo(this.map);
+      this.inf = inf;
+      inf.addTo(this.map);
     },
 
     setupLeafletMap: function () {
       this.map = L.map('accidentsMapContainer', {
+        zoomControl: false,
         center: [52.52, 13.405],
         zoom: 11,
         maxZoom: 17,
         minZoom: 10,
       });
+
+      L.control.zoom({
+          position:'bottomright'
+        }).addTo(this.map);
 
       L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
@@ -189,7 +192,7 @@ export default {
       let legend = L.control({ position: 'topleft' });
       legend.onAdd = function () {
 
-        let div = L.DomUtil.create('div', 'info legend')
+        let div = L.DomUtil.create('div', 'inf legend')
         let label = '<div class="mb-4"><strong>Number<br/>of accidents</strong></div>';
         div.innerHTML += label;
 
@@ -210,7 +213,7 @@ export default {
             </div>
           </div>
         </div>`;
-        
+
         return div;
       };
       return legend;
@@ -230,15 +233,6 @@ export default {
 </script>
 
 <style scoped>
-/deep/ .v-application--wrap {
-  min-height: 0vh !important;
-  width: 30%;
-  margin-top: 0rem;
-}
-.container-fluid .col {
-  margin: 0;
-  padding: 0;
-}
 
 .headerimage {
   max-height: 15rem;
@@ -271,43 +265,59 @@ export default {
 .box {
   position: absolute;
   text-align: justify;
-  top: 4rem;
-  right: 4rem;
+  top: 15px;
+  right: 15px;
   z-index: 997;
   max-width: 20rem;
 }
 
 #accidentsMapContainer {
   box-shadow: 0px 0px 5px rgb(0, 0, 0, 0.3);
-  width: 100vw;
-  height: 75vh;
+  width: 100%;
+  height: 85vh;
 }
 
-#choice {
-  position: absolute;
-  font-size: 1.2em;
-  top: 4.5rem;
-  z-index: 997;
+/deep/.leaflet-right .leaflet-control{
+  margin-right: 15px;
+  margin-bottom: 0;
 }
 
-li {
-  display: inline;
-  margin-right: 2vw;
+/deep/.inf {
+    margin: 15px;
+    padding: 6px 8px;
+    font: 14px/16px Arial, Helvetica, sans-serif;
+    background: white;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
 }
 
-li > input {
-  width: 20px;
-  height: 20px;
+/deep/.inf h4 {
+    margin: 0 0 5px;
+    color: #777;
 }
-label {
-  margin-left: 0.6rem;
-}
+
 .selection {
+  background: white;
+  padding-left: 1%;
+  padding-right: 1%;
+  max-width: 40vw;
+  text-align: center;
   position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
   z-index: 997;
-  max-width: 20rem;
-  bottom: 43rem;
-  right: 5rem
+  bottom: 15px;
+}
+
+/deep/label {
+  margin: 0;
+}
+
+.year > .v-input {
+  margin: 0;
 }
 
 </style>

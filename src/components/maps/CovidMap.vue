@@ -2,9 +2,10 @@
   <div>
     <div id="container">
       <div id="mapContainer"></div>
+      <Textbox class="textbox" :content="content" title="COVID-19" subtitle="Case numbers per district" link="https://daten.berlin.de/datensaetze/covid-19-berlin-verteilung-den-bezirken-gesamt%C3%BCbersicht" />
+      <Timeslider class="tslider" v-if='sliderStartIndex' :id='this.busKey' :startIndex=this.sliderStartIndex :ticksLabels=this.ticksLabels :value=value />
     </div>
-    <Timeslider class="tslider" v-if='sliderStartIndex' :id='this.busKey' :startIndex=this.sliderStartIndex :ticksLabels=this.ticksLabels :value=value />
-    <Textbox class="textbox" :content="content" title="COVID-19" subtitle="Case numbers per district" />
+
   </div>
 </template>
 
@@ -31,7 +32,7 @@ export default {
       map: {},
       mapLayer: {},
       selectedDayNew: "",
-      info: {},
+      inf: {},
       ticksLabels: [],
       value: '',
       sliderStartIndex: '',
@@ -92,11 +93,11 @@ export default {
       layer.on({
         mouseover: (e) => {
           this.highlightFeature(e);
-          this.info.update(layer.feature.properties);
+          this.inf.update(layer.feature.properties);
         },
         mouseout: (e) => {
           this.resetHighlight(e);
-          this.info.reset();
+          this.inf.reset();
         },
         click: (e) => {
           this.zoomToFeature(e);
@@ -139,6 +140,7 @@ export default {
 
     async setupLeafletMap () {
       this.map = L.map("mapContainer", {
+        // zoomControl: false,
         center: [52.52, 13.405],
         zoom: 11,
         maxZoom: 12,
@@ -162,14 +164,14 @@ export default {
         style: this.featureStyle,
       }).addTo(map);
 
-      let info = L.control({ position: "bottomleft" });
-      info.onAdd = function () {
-        this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+      let inf = L.control({ position: "bottomleft" });
+      inf.onAdd = function () {
+        this._div = L.DomUtil.create('div', 'inf numb'); // create a div with a class "inf"
         this.reset();
         return this._div;
       }
 
-      info.update = function (props) {
+      inf.update = function (props) {
         this._div.innerHTML = `<p><b>${props.GEN}</b></p>` +
           `<p>Total cases: ${props.cases}</p>` +
           `<p>Total deaths: ${props.deaths}</p>` +
@@ -182,15 +184,15 @@ export default {
         this._div.innerHTML += `<br><p><small>Last updated: ${props.last_update}</small></p>`
       };
 
-      info.reset = function () {
+      inf.reset = function () {
         this._div.innerHTML = "<b>Hover over a district</b><br>" +
           "<b>to get data</b>";
       }
 
       let legend = this.customLegendControl();
       legend.addTo(map);
-      info.addTo(map);
-      this.info = info;
+      inf.addTo(map);
+      this.inf = inf;
     },
     getColor: function (d) {
       let grades = JSON.parse(localStorage.getItem('grades'))
@@ -226,7 +228,7 @@ export default {
               '#9eff4a';
         }
 
-        let div = L.DomUtil.create('div', 'info legend')
+        let div = L.DomUtil.create('div', 'inf legend white')
 
         let grades = [0]
 
@@ -307,7 +309,6 @@ export default {
   padding: 0;
 }
 
-
 .title {
   z-index: 1;
   position: absolute;
@@ -319,12 +320,23 @@ export default {
 .display-4 {
   font-weight: bold;
 }
-#mapContainer {
-  width: 100vw;
-  height: 75vh;
+
+#container{
+  position: relative;
 }
 
-.info {
+#mapContainer {
+  width: 100%;
+  height: 85vh;
+}
+
+/deep/.leaflet-right .leaflet-control{
+  margin-right: 15px;
+  margin-bottom: 0;
+}
+
+/deep/.inf {
+    margin: 15px;
     padding: 6px 8px;
     font: 14px/16px Arial, Helvetica, sans-serif;
     background: white;
@@ -333,16 +345,20 @@ export default {
     border-radius: 5px;
 }
 
-.info h4 {
+/deep/.inf h4 {
     margin: 0 0 5px;
     color: #777;
 }
 
+/deep/.numb{
+  width: 15vw;
+}
+
 .textbox {
   position: absolute;
-  right: 1vw;
-  top: 12vh;
-  z-index: 9997;
+  right: 15px;
+  top: 15px;
+  z-index: 9996;
   width: 20rem;
 }
 
@@ -354,8 +370,9 @@ export default {
 }
 
 .tslider {
-  z-index: 997;
-  margin: 1rem 5rem 0rem 10rem;
+  position: absolute;
+  bottom: 15px;
+  z-index: 999;
 }
 
 </style>

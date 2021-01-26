@@ -13,19 +13,19 @@
 
       <hr>
       <div class="listelement-container">
-        <p class="listelement"><a href="/main/covid-age">Covid & age</a></p>
+        <p class="listelement"><a href="/covid-age">Covid & age</a></p>
       </div>
       <div class="listelement-container">
-        <p class="listelement"><a href="/main/infections">Infections</a></p>
+        <p class="listelement"><a href="/infections">Infections</a></p>
       </div>
       <div class="listelement-container">
-        <p class="listelement"><a href="/main/hospitals">Hospitals</a></p>
+        <p class="listelement"><a href="/hospitals">Hospitals</a></p>
       </div>
       <div class="listelement-container">
-        <p class="listelement"><a href="/main/cancer">Cancer</a></p>
+        <p class="listelement"><a href="/cancer">Cancer</a></p>
       </div>
       <div class="listelement-container">
-        <p class="listelement"><a href="/main/accidents">Accidents</a></p>
+        <p class="listelement"><a href="/accidents">Accidents</a></p>
       </div>
       <hr>
       <div class="listelement-container">
@@ -74,7 +74,7 @@ hr {
   background-color:rgb(0, 0, 0, 0.2);
   padding: 5px;
   border-radius: 10px;
-  right: 15px
+  right: 0px
 }
 .burger:hover {
   cursor: pointer;
