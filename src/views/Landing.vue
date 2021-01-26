@@ -255,5 +255,8 @@ svg {
   100% {top: 0px;}
 }
 
+.v-application ul{
+  padding: 0;
+}
 
 </style>
