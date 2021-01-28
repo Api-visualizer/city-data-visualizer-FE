@@ -1,6 +1,10 @@
 <template>
   <div class="card">
-    <div class="card-body">
+    <div class="burger" @click="toggleBurger">
+      <v-icon v-if="open" >mdi-fullscreen-exit</v-icon>
+      <v-icon v-else>mdi-fullscreen</v-icon>
+    </div>
+    <div class="card-body" v-if="open">
       <h5 class="card-title">{{ title }}</h5>
       <h6 class="card-subtitle mb-2 text-muted">{{ subtitle }}</h6>
       <span v-html="content"></span><br><br>
@@ -13,7 +17,17 @@
 export default {
   name: "Textbox",
 
-  props: ['content', 'title', 'subtitle', 'link']
+  props: ['content', 'title', 'subtitle', 'link'],
+  data() {
+    return {
+      open: true
+    }
+  },
+  methods: {
+    toggleBurger() {
+      this.open = !this.open
+    },
+  }
 }
 
 </script>
@@ -21,5 +35,14 @@ export default {
 <style scoped>
 .card  {
   box-shadow: 12px 12px 4px 0px #477fcdbe;
+}
+.card-body {
+  text-align: justify;
+}
+.burger {
+  margin-top: 0.5rem;
+  z-index: 9999;
+  position: absolute;
+  right: 10px;
 }
 </style>

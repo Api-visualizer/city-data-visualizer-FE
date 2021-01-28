@@ -2,7 +2,7 @@
   <div>
     <div id="container">
       <div id="accidentsMapContainer"></div>
-      <Textbox :content="content" title="Traffic Safety" subtitle="City-Wide Accident Locations" class="box" link="https://unfallatlas.statistikportal.de/"/>
+      <Textbox :content="content" title="Traffic Safety" subtitle="City-Wide Accident Locations" class="box" :link=this.link />
 
       <div class="selection rounded-lg">
         <div class="row">
@@ -51,6 +51,7 @@ export default {
         iconSize:     [30, 50],
         iconAnchor:   [15, 50]
       }),
+      link: "https://unfallatlas.statistikportal.de/",
       map: {},
       filteredMapLayer: {},
       year: 2018,

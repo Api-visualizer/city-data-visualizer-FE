@@ -13,7 +13,7 @@
 
       <hr>
       <div class="listelement-container">
-        <p class="listelement"><a href="/covid-graphs">Graphs</a></p>
+        <p class="listelement"><a href="/covid-age">Covid & age</a></p>
       </div>
       <div class="listelement-container">
         <p class="listelement"><a href="/infections">Infections</a></p>
@@ -53,7 +53,6 @@ export default {
       this.open = !this.open
     },
   }
-
 }
 </script>
 <style scoped>
@@ -72,7 +71,6 @@ hr {
 .burger {
   z-index: 9998;
   position: absolute;
-  background-color:rgb(0, 0, 0, 0.2);
   padding: 5px;
   border-radius: 10px;
   right: 0px

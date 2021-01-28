@@ -9,7 +9,7 @@
           <template v-slot:item="data">
             <v-list-item-content style="width:40vw;">
               <v-list-item-title class="text-left title bold" v-html="data.item.Value"></v-list-item-title>
-              <v-list-item-subtitle class="text-left text-wrap" v-html="data.item.Keywords"></v-list-item-subtitle>              
+              <v-list-item-subtitle class="text-left text-wrap" v-html="data.item.Subtitle"></v-list-item-subtitle>              
             </v-list-item-content>   
           </template>
         </v-autocomplete>
