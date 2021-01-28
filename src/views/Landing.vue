@@ -60,6 +60,24 @@
             </div>
           </div>
 
+           <div class="col-sm-6 d-flex align-items-stretch">
+            <div class="card">
+              <img class="card-img-top" src="/images/cards/covid_average.png" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">COVID-19</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Total number of cases with rolling 7-day average</h6>
+                <p class="card-text">This regional map lets you easily examine total and daily case numbers per district.</p>
+              </div>
+              <div class="card-footer">
+                <a class="btn btn-primary stretched-link" href="/covid-average" role="button">Explore</a>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+
+        <div class="row">
+
           <div class="col-sm-6 d-flex align-items-stretch">
             <div class="card">
               <img class="card-img-top" src="/images/cards/covid_age.png" alt="Card image cap">
@@ -73,16 +91,14 @@
               </div>
             </div>
           </div>
-        </div>
 
-        <div class="row">
           <div class="col-sm-6 d-flex align-items-stretch">
             <div class="card">
               <img class="card-img-top" src="/images/cards/hospitals_status.png" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title">COVID-19</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Hospital Capacities</h6>
-                <p class="card-text">This map shows hospital locations and capacities during COVID-19 in Berlin. </p>
+                <h6 class="card-subtitle mb-2 text-muted">Hospital capacity status</h6>
+                <p class="card-text">This map shows Berlin's hospital locations and their capacity status during the COVID-19 pandemic. </p>
               </div>
               <div class="card-footer">
                 <a class="btn btn-primary stretched-link" href="/hospitals" role="button">Explore</a>
@@ -95,8 +111,8 @@
               <img class="card-img-top" src="/images/cards/traffic_accidents.png" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title">Traffic Safety</h5>
-                <h6 class="card-subtitle mb-2 text-muted">City-wide Accident Locations</h6>
-                <p class="card-text">This heat map gives you an overview of dangerous crossroads in Berlin. Stay safe!</p>
+                <h6 class="card-subtitle mb-2 text-muted">City-wide accidents</h6>
+                <p class="card-text">This heat map gives you an overview of dangerous crossroads in Berlin. Filter by year, time of the accident and type - Stay safe!</p>
               </div>
               <div class="card-footer">
                 <a class="btn btn-primary stretched-link" href="/accidents" role="button">Explore</a>
@@ -109,7 +125,7 @@
               <div class="card-body">
                 <h5 class="card-title">Cancer </h5>
                 <h6 class="card-subtitle mb-2 text-muted">Case numbers per age group </h6>
-                <p class="card-text">Corresponding chart allows you to get a deeper understanding how the number of Cancer patients per year, age and gender differentiates in Berlin.</p>
+                <p class="card-text">Our corresponding chart allows you to get a deeper understanding how the number of cancer patients per year, age and gender differentiates.</p>
               </div>
               <div class="card-footer">
                 <a class="btn btn-primary stretched-link" href="/cancer" role="button">Explore</a>
