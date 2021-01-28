@@ -26,16 +26,7 @@ export default {
   components: { Textbox, CovidCasesLinechart },
   data() {
     return {
-      content: "The number of new Covid-19 cases is summed up by all of Berlin's district cases. The moving average takes the past days, adds them up and divides by the number of weekdays. Since there's no special boundary condition, we calculate 0 into the average, if prior dates did not exist. This removes extreme changes of values and provides a more coherent overview.",
-      options: {
-        chart: {
-          id: 'vuechart-example',
-        },
-        xaxis: {
-          categories: [],
-        },
-      },
-      series: [],
+      content: "The number of new Covid-19 cases is summed up by all of Berlin's district cases. The moving average takes the past days, adds them up and divides by the number of weekdays. Since there's no special boundary condition, we calculate 0 into the average, if prior dates did not exist. This removes extreme changes of values and provides a more coherent overview.",      
     };
   },
 }  
