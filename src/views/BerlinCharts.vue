@@ -2,14 +2,14 @@
   <div class="back">
     <div class="app">
       <v-select
-            class="white border rounded-lg"
-            v-model="selectedDate"
-            :items="dates"
-            hide-details
-            item-text="name"
-            item-value="id"
-            label="Select a Day"
-            v-on:change="filterDataForDate(selectedDate)">
+        class="white border rounded-lg"
+        v-model="selectedDate"
+        :items="dates"
+        hide-details
+        item-text="name"
+        item-value="id"
+        label="Select a Day"
+        v-on:change="filterDataForDate(selectedDate)">
       </v-select>
     </div>
   <div class="container-fluid mr-4 mb-4">
