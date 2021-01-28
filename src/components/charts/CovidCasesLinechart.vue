@@ -1,81 +1,130 @@
 <template>
-  <div id="chart">
-    <apexchart type="line" :options="options" :series="series"></apexchart>
+  <div>    
+    <div id="chart">
+      <apexchart
+        height="400"
+        type="line"
+        :options="options"
+        :series="series"
+      ></apexchart>
+      <div class="display-dates">
+        <div class="startDate">{{startDate}}</div>
+        <div class="endDate">{{endDate}}</div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import GeneralClasses from "@/assets/GeneralClasses";
 import "leaflet/dist/leaflet.css";
-import Moment from 'moment';
 
 export default {
   name: "CovidCasesLinechart",
-  
-  props: {
-    width: Number,
-    height: Number,
-  },
-  
-  data () {
+
+  data() {
     return {
-      data: {},
+      startDate: "",
+      endDate: "",
+      realCaseLinechartDataset: [{ date: "", data: 0 }],
+      trendLinechartDataset: [{ date: "", data: 0 }],
+      series: [],
       options: {
         chart: {
-          width: this.$props.width,
-          height: this.$props.width,
-          type: "line",      
+          height: 400,
+          type: "line",
         },
-        xaxis: {
-          categories: [""],
+        fill: {
+          type: "solid",
+        },
+        markers: {
+          size: 0,
+        },
+        tooltip: {
+          shared: true,
+          intersect: false,
+        },
+        legend: {
+          position: "top",
+          horizontalAlign: "right",
+          floating: true,
+          offsetY: -5,
+          offsetX: -5,
+        },
+        yaxis: {
+          title: {
+            text: "Number of Cases",
+          },
+        },
+        xaxis: {          
+          axisTicks: {
+            show: false
+          },
+          labels: {
+            rotate: 0,
+            show: false
+          },
+          title: {
+            text: "Date",
+          },
         },
         title: {
-          text: "Weekly overview of Covd-19 cases per 100k",
+          text: "Comparision between new cases and rolling 7-day average",
           align: "left",
         },
-        colors: ["#b80e01", "#315174", "#97e338", "#ae8522", "#dfb6c8", "#2d488f", "#671ed1", "#e31a59", "#15276d", "#46020e", "#42087f", "#f84d09"],
+        dataLabels: {
+          enabled: false,
+        },        
+        stroke: {
+          width: 2,
+        },
+        colors: ["#45cf0a", "#f22213"],
       },
-      series: [],
-    }
+    };
   },
 
   methods: {
-    APIResult: function () {
-      fetch(GeneralClasses.GETAPIberlincoviddistrict())
-        .then(response => response.json())
-        .then(data => this.sortDataByDate(data))
-        .then(data => {          
-          this.addDatesToCategories(data);
-          this.addCasesToSeries(data);
-        })  
+    getTrendData: function () {
+      fetch(GeneralClasses.GetAPIBerlinCovidAverage())
+        .then((response) => response.json())
+        .then((result) => {
+          this.data = result.data.doc.data;
+          this.initializeDataForChart();
+        });
     },
 
-    sortDataByDate: function (data) {
-      return data[0].sort((a, b) => new Moment(a.date, "DD.MM.YYYY") - new Moment(b.date, "DD.MM.YYYY"));
-    },
-
-    addDatesToCategories: function (data) {
-      for (let item of data) this.options.xaxis.categories.push(item.date);
-      this.options.xaxis.categories.shift();
-    },
-
-    addCasesToSeries: function (data) {
-      for (let district of GeneralClasses.GETberlindistrics()) {
-        let cases = [];
-        for (let item of data) {
-          let dailyItemByDistrict = item.data.features.filter(feature => feature.properties.GEN === district)[0];        
-          cases.push(Math.round(dailyItemByDistrict.properties.cases_per_100k));
+    initializeDataForChart: function () {
+      let result = this.data;      
+      
+      this.options = {
+        series: [{
+          name: "New cases",
+          data: result.cases
+        }, {
+          name: "Rolling 7-day average",
+          data: result.moving_average.map(item => { return Number(item.toFixed(2)) })
+        }],
+        xaxis: {
+          categories: result.dates
         }
-        this.series.push({ name: district.replace("Berlin ", ""), data: cases });
       }
-    },
+    }
   },
 
   mounted() {
-    this.APIResult();
+    this.getTrendData();
   },
 };
 </script>
 
 <style scoped>
+/deep/ .v-application--wrap {
+  min-height: 0vh !important;
+}
+
+.display-dates {
+  display: flex;
+  justify-content: space-between;
+  margin-top: -30px;
+}
 </style>

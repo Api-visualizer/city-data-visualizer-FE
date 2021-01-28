@@ -89,6 +89,7 @@
               </div>
             </div>
           </div>
+          
           <div class="col-sm-6 d-flex align-items-stretch">
             <div class="card">
               <img class="card-img-top" src="/images/cards/traffic_accidents.png" alt="Card image cap">
