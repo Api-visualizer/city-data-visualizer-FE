@@ -11,6 +11,7 @@ export default {
 	GetAPIBerlinCancerCases: function () { return "https://cdv-backend.api.datexis.com/api/v1/berlin-cancer" },
 	GetAPIBerlinCovidPredictions: function () { return "https://cdv-backend.api.datexis.com/api/v1/predictions/covid-cases/latest" },
 	GetAPIBerlinHospitalPredictions: function () { return "https://cdv-backend.api.datexis.com/api/v1/predictions/hospital-capacities/latest" },
+	GetAPIBerlinCovidAverage: function () { return "https://cdv-backend.api.datexis.com/api/v1/berlin-covid-average/latest" },
 	GETberlindistrics: function () { return ["Berlin Reinickendorf", "Berlin Charlottenburg-Wilmersdorf", "Berlin Treptow-Köpenick", "Berlin Pankow", "Berlin Neukölln", "Berlin Lichtenberg", "Berlin Marzahn-Hellersdorf", "Berlin Spandau", "Berlin Steglitz-Zehlendorf", "Berlin Mitte", "Berlin Friedrichshain-Kreuzberg", "Berlin Tempelhof-Schöneberg"] },
 
 	ValueLanguage: function () { return "tduAjTngKL"; },
