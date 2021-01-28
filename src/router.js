@@ -10,8 +10,7 @@ import HospitalsMap from '@/components/maps/HospitalsMap';
 import CovidMap from '@/components/maps/CovidMap';
 import BerlinCharts from '@/views/BerlinCharts';
 import CancerCasesBarchart from '@/components/charts/CancerCasesBarchart';
-import CovidPredictions from "@/views/CovidPredictions";
-
+import CovidAverage from "@/views/CovidAverage";
 
 
 const routes = [
@@ -24,7 +23,7 @@ const routes = [
     { path: '/accidents', component: AccidentsMap },
     { path: '/hospitals', component: HospitalsMap },
     { path: '/cancer', component: CancerCasesBarchart },
-    { path: '/covid-predictions', component: CovidPredictions },
+    { path: '/covid-average', component: CovidAverage },
 ];
 
 const router = new VueRouter({
