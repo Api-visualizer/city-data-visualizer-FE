@@ -7,8 +7,15 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-6">
-          <Textbox :content="content" title="COVID-19" subtitle="Moving average and number of new cases"/>
+        <div class="col-6 mx-auto">
+          <v-card>
+            <div class="card-body">
+              <h5 class="card-title">COVID-19</h5>
+              <h6 class="card-subtitle mb-2 text-muted">Rolling average and number of new cases</h6>
+              <span v-html="content"></span><br><br>
+              <a href='https://services7.arcgis.com/mOBPykOjAyBO2ZKk/ArcGIS/rest/services/Covid19_RKI_Sums/FeatureServer' class="card-link">Where is this data from?</a>
+            </div>
+          </v-card>
         </div>
       </div>
     </div>
@@ -18,12 +25,11 @@
 <script>
 import CovidCasesLinechart from '@/components/charts/CovidCasesLinechart';
 // import CovidPredictionTable from '@/components/tables/CovidCasesPrediction';
-import Textbox from "@/components/Textbox";
 
 
 export default {
   name: 'CovidAverage',
-  components: { Textbox, CovidCasesLinechart },
+  components: { CovidCasesLinechart },
   data() {
     return {
       content: "The number of new Covid-19 cases is summed up by all of Berlin's district cases. The moving average takes the past days, adds them up and divides by the number of weekdays. Since there's no special boundary condition, we calculate 0 into the average, if prior dates did not exist. This removes extreme changes of values and provides a more coherent overview.",      
