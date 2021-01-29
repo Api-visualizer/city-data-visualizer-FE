@@ -66,7 +66,7 @@
               <div class="card-body">
                 <h5 class="card-title">COVID-19</h5>
                 <h6 class="card-subtitle mb-2 text-muted">Total number of cases with rolling 7-day average</h6>
-                <p class="card-text">This regional map lets you easily examine total and daily case numbers per district.</p>
+                <p class="card-text">Get a basic overview of the pandemic with this linechart - From the status quo all the way back to the beginning.</p>
               </div>
               <div class="card-footer">
                 <a class="btn btn-primary stretched-link" href="/covid-average" role="button">Explore</a>
