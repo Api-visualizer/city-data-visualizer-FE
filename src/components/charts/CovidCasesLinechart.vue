@@ -1,41 +1,36 @@
 <template>
-  <div>    
+  <div>
     <div id="chart">
-      <apexchart
-        height="400"
-        type="line"
-        :options="options"
-        :series="series"
-      ></apexchart>
+      <apexchart height="400" type="line" :options="options" :series="series"></apexchart>
       <div class="display-dates">
-        <div class="startDate">{{startDate}}</div>
-        <div class="endDate">{{endDate}}</div>
+        <div class="startDate">{{ startDate }}</div>
+        <div class="endDate">{{ endDate }}</div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import GeneralClasses from "@/assets/GeneralClasses";
-import "leaflet/dist/leaflet.css";
+import GeneralClasses from '@/assets/GeneralClasses';
+import 'leaflet/dist/leaflet.css';
 
 export default {
-  name: "CovidCasesLinechart",
+  name: 'CovidCasesLinechart',
 
   data() {
     return {
-      startDate: "",
-      endDate: "",
-      realCaseLinechartDataset: [{ date: "", data: 0 }],
-      trendLinechartDataset: [{ date: "", data: 0 }],
+      startDate: '',
+      endDate: '',
+      realCaseLinechartDataset: [{ date: '', data: 0 }],
+      trendLinechartDataset: [{ date: '', data: 0 }],
       series: [],
       options: {
         chart: {
           height: 400,
-          type: "line",
+          type: 'line',
         },
         fill: {
-          type: "solid",
+          type: 'solid',
         },
         markers: {
           size: 0,
@@ -45,40 +40,40 @@ export default {
           intersect: false,
         },
         legend: {
-          position: "top",
-          horizontalAlign: "right",
+          position: 'top',
+          horizontalAlign: 'right',
           floating: true,
           offsetY: -5,
           offsetX: -5,
         },
         yaxis: {
           title: {
-            text: "Number of Cases",
+            text: 'Number of Cases',
           },
         },
-        xaxis: {          
+        xaxis: {
           axisTicks: {
-            show: false
+            show: false,
           },
           labels: {
             rotate: 0,
-            show: false
+            show: false,
           },
           title: {
-            text: "Date",
+            text: 'Date',
           },
         },
         title: {
-          text: "Comparision between new cases and rolling 7-day average",
-          align: "left",
+          text: 'Comparision between new cases and rolling 7-day average',
+          align: 'left',
         },
         dataLabels: {
           enabled: false,
-        },        
+        },
         stroke: {
           width: 2,
         },
-        colors: ["#45cf0a", "#f22213"],
+        colors: ['#45cf0a', '#f22213'],
       },
     };
   },
@@ -94,21 +89,35 @@ export default {
     },
 
     initializeDataForChart: function () {
-      let result = this.data;      
-      
+      let result = this.data;
+
       this.options = {
-        series: [{
-          name: "New cases",
-          data: result.cases
-        }, {
-          name: "Rolling 7-day average",
-          data: result.moving_average.map(item => { return Number(item.toFixed(2)) })
-        }],
+        series: [
+          {
+            name: 'New cases',
+            data: result.cases,
+          },
+          {
+            name: 'Rolling 7-day average',
+            data: result.moving_average.map((item) => {
+              return Number(item.toFixed(2));
+            }),
+          },
+        ],
         xaxis: {
-          categories: result.dates
-        }
-      }
-    }
+          categories: result.dates,
+        },
+        yaxis: [
+          {
+            labels: {
+              formatter: function (val) {
+                return val.toFixed(0);
+              },
+            },
+          },
+        ],
+      };
+    },
   },
 
   mounted() {
