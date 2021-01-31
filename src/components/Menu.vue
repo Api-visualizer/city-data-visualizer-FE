@@ -13,19 +13,22 @@
 
       <hr>
       <div class="listelement-container">
-        <p class="listelement"><a href="/covid-age">Covid & age</a></p>
+        <p class="listelement"><a href="/covid-average">COVID-19 total</a></p>
       </div>
       <div class="listelement-container">
-        <p class="listelement"><a href="/infections">Infections</a></p>
+        <p class="listelement"><a href="/covid-age">COVID-19 by age</a></p>
       </div>
       <div class="listelement-container">
-        <p class="listelement"><a href="/hospitals">Hospitals</a></p>
+        <p class="listelement"><a href="/infections">COVID-19 by district</a></p>
+      </div>      
+      <div class="listelement-container">
+        <p class="listelement"><a href="/hospitals">Hospital capacities</a></p>
       </div>
       <div class="listelement-container">
-        <p class="listelement"><a href="/cancer">Cancer</a></p>
+        <p class="listelement"><a href="/cancer">Cases of cancer</a></p>
       </div>
       <div class="listelement-container">
-        <p class="listelement"><a href="/accidents">Accidents</a></p>
+        <p class="listelement"><a href="/accidents">Traffic accidents</a></p>
       </div>
       <hr>
       <div class="listelement-container">
@@ -57,14 +60,16 @@ export default {
 </script>
 <style scoped>
 .list {
-  width: 15rem;
+  width: auto;
+  display: block;
+  padding: 0 24px;
   background-color: #477FCD;
   color: white;
   border-radius: 2%;
 }
 hr {
   background-color: white;
-  width: 70%;
+  width: 98%;
   box-shadow: #777777;
   margin: auto;
 }
