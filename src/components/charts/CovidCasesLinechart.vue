@@ -85,6 +85,7 @@ export default {
         .then((result) => {
           this.data = result.data.doc.data;
           this.initializeDataForChart();
+          this.setEdgeDays();
         });
     },
 
@@ -118,6 +119,11 @@ export default {
         ],
       };
     },
+
+    setEdgeDays: function () {
+      this.startDate = this.data.dates[0];
+      this.endDate = this.data.dates[this.data.dates.length-1]
+    },
   },
 
   mounted() {
@@ -135,5 +141,6 @@ export default {
   display: flex;
   justify-content: space-between;
   margin-top: -30px;
+  font-size: 14px;
 }
 </style>
