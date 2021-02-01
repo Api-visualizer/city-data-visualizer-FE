@@ -3,7 +3,7 @@
     <div id="app" class="p-0">
       <Menu class="menu"></Menu>
       <div>
-        <Header />
+        <Header :landing="isNotHomeView()" :style="[isNotHomeView() ? {} : {'position':'absolute', 'width':'100%', 'z-index':'1000'} ]"/>
       </div>
       <router-view class="content" />
       <Footer />

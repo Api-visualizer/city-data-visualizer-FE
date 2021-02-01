@@ -1,6 +1,6 @@
 <template>
-  <nav class="navbar navbar-dark bg-dark">
-    <a class="navbar-brand" href="/">
+  <nav class="navbar navbar-dark" :style="[landing ? {'background-color':'#343a40'} : {'background-color':'none'} ]">
+    <a class="navbar-brand" href="/" :style="[landing ? {} : {'visibility':'hidden'} ]">
       <img src="/images/logo_white.png" />
     </a>
     <div class="search">
@@ -22,6 +22,7 @@
 export default {
   name: 'Header',
 
+  props: ['landing'],
   data() {
     return {
       // Auto Complete
