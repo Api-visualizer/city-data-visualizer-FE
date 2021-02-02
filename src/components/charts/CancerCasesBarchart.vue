@@ -166,11 +166,15 @@ h3 {
   padding: 0;
 }
 .row {
-  margin: 2rem 3rem 2rem 3rem;
+  margin: 1rem 3rem 2rem 3rem;
 }
 #chart {
   background-color: white;
   box-shadow: 12px 12px 4px 0px #477fcdbe;
+}
+h3 {
+  color: gray;
+  margin-bottom: 1rem;
 }
 .box {
   margin-left: 3rem;

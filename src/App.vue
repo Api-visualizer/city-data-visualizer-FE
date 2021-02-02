@@ -6,7 +6,7 @@
         <Header :landing="isNotHomeView()" :style="[isNotHomeView() ? {} : {'position':'absolute', 'width':'100%', 'z-index':'1000'} ]"/>
       </div>
       <router-view class="content" />
-      <Footer />
+      <Footer class="footer"/>
     </div>
   </v-app>
 </template>
@@ -83,4 +83,5 @@ html {
   top: 10px;
   right: 10px;
 }
+
 </style>

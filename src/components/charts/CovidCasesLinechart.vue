@@ -1,7 +1,9 @@
 <template>
   <div>
+    <h2>Covid-19</h2>
+    <h3>Comparison between new cases and rolling 7-day average</h3>
     <div id="chart">
-      <apexchart height="400" type="line" :options="options" :series="series"></apexchart>
+      <apexchart height="380" type="line" :options="options" :series="series"></apexchart>
       <div class="display-dates">
         <div class="startDate">{{ startDate }}</div>
         <div class="endDate">{{ endDate }}</div>
@@ -41,9 +43,9 @@ export default {
         },
         legend: {
           position: 'top',
-          horizontalAlign: 'right',
+          horizontalAlign: 'center',
           floating: true,
-          offsetY: -5,
+          offsetY: 0,
           offsetX: -5,
         },
         yaxis: {
@@ -62,10 +64,6 @@ export default {
           title: {
             text: 'Date',
           },
-        },
-        title: {
-          text: 'Comparision between new cases and rolling 7-day average',
-          align: 'left',
         },
         dataLabels: {
           enabled: false,
@@ -142,5 +140,12 @@ export default {
   justify-content: space-between;
   margin-top: -30px;
   font-size: 14px;
+}
+h2 {
+  margin-top: 1rem;
+}
+h3 {
+  color: gray;
+  margin-bottom: 3rem;
 }
 </style>

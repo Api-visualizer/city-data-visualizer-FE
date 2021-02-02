@@ -1,16 +1,18 @@
 <template>
   <div>
     <h2>Covid 19</h2>
-    <h3>Covid 19 per age group</h3>
+    <h3>Covid 19 cases per age group</h3>
     <v-card class="card">
       <div class="back">
-        <div class="app">
-          <v-select class="white border rounded-lg" v-model="selectedDate" :items="dates" hide-details item-text="name" item-value="id" label="Select a Day" v-on:change="filterDataForDate(selectedDate)"> </v-select>
+        <div class="row">
+          <div class="app">
+            <v-select class="white border rounded-lg" v-model="selectedDate" :items="dates" hide-details item-text="name" item-value="id" label="Select a Day" v-on:change="filterDataForDate(selectedDate)"> </v-select>
+          </div>
         </div>
         <div class="container-fluid mr-4 mb-4">
           <div class="row">
             <div class="col">
-              <apexchart width="1000" type="bar" :options="options" :series="series" class="chart white"></apexchart>
+              <apexchart width="900" type="bar" :options="options" :series="series" class="chart white"></apexchart>
             </div>
             <div class="col">
               <div class="cardboxdiv">
@@ -174,6 +176,7 @@ h2 {
 }
 h3 {
   margin-top: 0.5rem;
+  margin-bottom: 1rem;
   color: gray;
 }
 .title {
@@ -213,11 +216,9 @@ a {
 }
 .app {
   max-width: 12rem;
-  margin-bottom: 1rem;
-  position: relative;
-  left: 47rem;
-  top: 7rem;
-  z-index: 99
+  margin: 2rem 0rem 3rem 4rem;
+  z-index: 99;
+
 }
 
 .v-input {
