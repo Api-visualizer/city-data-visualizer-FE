@@ -4,8 +4,8 @@
       <img src="/images/logo_white.png" />
     </a>
     <div class="search">
-      <v-form ref="titleForm" class="form-inline my-2 my-lg-0" style="z-index: 99999">
-        <v-autocomplete ref="InputSearchTitle" color="grey" background-color="white" class="subtitle-2" hide-no-data filled rounded clearable dense return-object v-model="SearchName" :search-input.sync="SearchApply" :items="AutoCompleteItems" :loading="IsLoading" prepend-inner-icon="mdi-text-search" item-text="Keywords" item-value="Keywords" label="Search">
+      <v-form ref="titleForm" class="form-inline my-lg-0" style="z-index: 99999">
+        <v-autocomplete ref="InputSearchTitle" color="grey" background-color="white" class="subtitle-2" hide-no-data filled rounded clearable dense return-object v-model="SearchName" :search-input.sync="SearchApply" :items="AutoCompleteItems" :loading="IsLoading" item-text="Keywords" item-value="Keywords" label="Search">
           <template v-slot:item="data">
             <v-list-item-content style="width:40vw;">
               <v-list-item-title class="text-left title bold" v-html="data.item.Value"></v-list-item-title>
@@ -25,8 +25,7 @@ export default {
   props: ['landing'],
   data() {
     return {
-      // Auto Complete
-      Limit: 5,
+      // Auto Complete      
       AutoCompleteData: [],
       IsLoading: false,
       SearchName: null,
@@ -41,13 +40,16 @@ export default {
   watch: {
     SearchName(SearchValue) {
       this.$router.push(SearchValue.Link);
+      // Reset SearchName and remove focus form searchbar     
+      this.$nextTick(() => {
+        this.SearchName = ""
+        this.$refs.InputSearchTitle.blur()  
+      })       
     },
     SearchApply() {
-      // Items have already been loaded
+      // Items have already been loaded      
       if (this.AutoCompleteItems.length > 0) return;
-
       if (this.IsLoading) return;
-
       this.IsLoading = true;
 
       fetch('/images/SearchTerms.json')
