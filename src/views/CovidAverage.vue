@@ -7,7 +7,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-6 mx-auto">
+        <div class="col-8 my-2 mx-auto">
           <v-card>
             <div class="card-body">
               <h5 class="card-title">COVID-19</h5>
@@ -32,10 +32,10 @@ export default {
   components: { CovidCasesLinechart },
   data() {
     return {
-      content: "The number of new Covid-19 cases is summed up by all of Berlin's district cases. The moving average takes the past days, adds them up and divides by the number of weekdays. Since there's no special boundary condition, we calculate 0 into the average, if prior dates did not exist. This removes extreme changes of values and provides a more coherent overview.",      
+      content: "The number of new Covid-19 cases is summed up by all of Berlin's district cases. The moving average takes the past days, adds them up and divides by the number of weekdays. Since there's no special boundary condition, we calculate 0 into the average, if prior dates did not exist. This removes extreme changes of values and provides a more coherent overview.",
     };
   },
-}  
+}
 </script>
 
 <style scoped>
