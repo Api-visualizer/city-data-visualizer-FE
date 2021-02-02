@@ -50,7 +50,7 @@ export default {
 
       this.IsLoading = true;
 
-      fetch('/images/SearchTerms.json')
+      fetch('/search/SearchTerms.json')
         .then((res) => res.json())
         .then((res) => {
           this.AutoCompleteData = res.SearchElements;
