@@ -2,8 +2,8 @@
   <div>
     <div id="container">
       <div id="hospitalMapContainer" />
-      <Textbox :content="content" title="Hospital Capacities" subtitle="Availability of Intensive Care Units" class="box" :link=this.link />
-      <Timeslider class="tslider" v-if='sliderStartIndex' :id='this.busKey' :startIndex=this.sliderStartIndex :ticksLabels=this.ticksLabels :value=value />
+      <Textbox :content="content" title="Hospital Capacities" subtitle="Current and recent capacities of hospitals in Berlin" class="box" :link=this.link />
+      <!-- <Timeslider class="tslider" v-if='sliderStartIndex' :id='this.busKey' :startIndex=this.sliderStartIndex :ticksLabels=this.ticksLabels :value=value /> -->
     </div>
   </div>
 </template>
@@ -12,13 +12,11 @@
 import GeneralClasses from "../../assets/GeneralClasses";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import Timeslider from "@/components/Timeslider";
 import Textbox from "@/components/Textbox";
-
 export default {
   name: "HospitalsMap",
 
-  components: {Textbox, Timeslider },
+  components: { Textbox },
 
   props: {
     busId: String
@@ -100,30 +98,25 @@ export default {
     },
 
     getDataOfSpecificDateToDisplay: function () {
-      let dataOfSpecificDay = [];
-      dataOfSpecificDay = this.dataResult.filter((data) => data.doc.date === this.selectedDayNew);
+      let dataOfSpecificDay = [this.dataResult[0]];
       this.displayDataOfSpecificDate(dataOfSpecificDay);
     },
 
     displayDataOfSpecificDate: function(dataOfSpecificDay) {
-      this.mapLayer.clearLayers();
+      this.mapLayer.clearLayers();      
       let hospitals = dataOfSpecificDay[0].doc.features
       for(let hospital of hospitals) {
         let coordinates = hospital.geometry.coordinates
         if(hospital.properties.status.statusHighCare === 'VERFUEGBAR') {
-          this.mapLayer.addLayer(L.marker([coordinates[1], coordinates[0]],{icon: this.greenIcon}).bindPopup('<div><br><b>'+ hospital.properties.name +'</b></div><br>' +
-                  'last update: ' + hospital.properties.last_update))
+          this.mapLayer.addLayer(L.marker([coordinates[1], coordinates[0]],{icon: this.greenIcon}).bindPopup('<div><br><b>'+ hospital.properties.name +'</b></div><br>'))
         } else if (hospital.properties.status.statusHighCare === 'KEINE_ANGABE' ){
-          this.mapLayer.addLayer(L.marker([coordinates[1], coordinates[0]],{icon: this.defaultIcon}).bindPopup('<div><br><b>'+ hospital.properties.name +'</b></div><br>' +
-                  'last update: ' + hospital.properties.last_update))
+          this.mapLayer.addLayer(L.marker([coordinates[1], coordinates[0]],{icon: this.defaultIcon}).bindPopup('<div><br><b>'+ hospital.properties.name +'</b></div><br>'))
         } else if (hospital.properties.status.statusHighCare === 'BEGRENZT' ){
-          this.mapLayer.addLayer(L.marker([coordinates[1], coordinates[0]],{icon: this.orangeIcon}).bindPopup('<div><br><b>'+ hospital.properties.name +'</b></div><br>' +
-                  'last update: ' + hospital.properties.last_update))
+          this.mapLayer.addLayer(L.marker([coordinates[1], coordinates[0]],{icon: this.orangeIcon}).bindPopup('<div><br><b>'+ hospital.properties.name +'</b></div><br>'))
         } else if (hospital.properties.status.statusHighCare === 'NICHT_VERFUEGBAR' ){
           this.mapLayer.addLayer(L.marker([coordinates[1], coordinates[0]],{icon: this.redIcon}).addTo(this.map)
-              .bindPopup('<div><br><b>'+ hospital.properties.name +'</b></div><br>' +
-                  'last update: ' + hospital.properties.last_update))
-        }
+            .bindPopup('<div><br><b>'+ hospital.properties.name +'</b></div><br>'))
+        } 
         this.mapLayer.addTo(this.map)
       }
     },
