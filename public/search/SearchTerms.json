@@ -1,51 +1,51 @@
 {
   "SearchElements": [
     {
-      "Value": "COVID-19 by age",      
+      "Value": "COVID-19",
       "Keywords": "corona, covid, covid-19, sars-cov2, pandemic, berlin, age, distribution, young, old, risk, groups",
-      "Subtitle": "Case numbers by age group",
+      "Subtitle": "Case Numbers per Age Group",
       "Link": "/covid-age"
     },
     {
-      "Value": "COVID-19 total",   
+      "Value": "COVID-19",
       "Keywords": "corona, covid, covid-19, sars-cov2, pandemic, berlin, average, moving-average, 7",
-      "Subtitle": "Total number of cases with rolling 7-day average",      
+      "Subtitle": "Total Cases with Rolling Average",
       "Link": "/covid-average"
     },
     {
-      "Value": "COVID-19 by district",   
+      "Value": "COVID-19",
       "Keywords": "corona, covid, covid-19, sars-cov2, pandemic, berlin, district, local, kreuzberg, charlottenburg, friedrichshain, wedding, mitte, treptow, köpenick, moabit, marzahn",
-      "Subtitle": "Case numbers per district",      
+      "Subtitle": "Case Numbers per District",
       "Link": "/infections"
-    },    
+    },
     {
-      "Value": "Hospital capacities",   
+      "Value": "Hospital Capacities",
       "Keywords": "corona, covid, covid-19, sars-cov2, pandemic, berlin, hospital, hospitals, hospital beds, capacity, capacities, full",
-      "Subtitle": "Hospital capacity status",      
+      "Subtitle": "Availability of Intensive Care Units",
       "Link": "/hospitals"
-    },    
+    },
     {
-      "Value": "Traffic accidents",   
+      "Value": "Traffic Safety",
       "Keywords": "accident, accidents, traffic, safety, bike, car, motorbike, bicycle, pedestrian, foot, truck, danger, streets, berlin, district, local, kreuzberg, charlottenburg, friedrichshain, wedding, mitte, treptow, köpenick, moabit, marzahn",
-      "Subtitle": "City-Wide accidents",      
+      "Subtitle": "City-wide Accident Distribution",
       "Link": "/accidents"
     },
     {
-      "Value": "Cases of Cancer",   
+      "Value": "Cancer",
       "Keywords": "berlin, cancer, distribution, cases",
-      "Subtitle": "Case numbers per age group",      
+      "Subtitle": "Case Numbers per Age Group",
       "Link": "/cancer"
     },
     {
-      "Value": "FAQ",   
+      "Value": "FAQ",
       "Keywords": "faq, question, work, how, what, can, will, site",
-      "Subtitle": "Frequently Asked Questions",      
+      "Subtitle": "Frequently Asked Questions",
       "Link": "/faq"
     },
     {
-      "Value": "Team",   
+      "Value": "Team",
       "Keywords": "who, team, developers, product, anas, alhakim, katharina, sachs, karl, brendel, ali, alkhateeb, janine, schleicher, niklas, rupprecht, pierre, fabarius, beuth, students, project",
-      "Subtitle": "Our Backend & Frontend Team",      
+      "Subtitle": "Our Backend & Frontend Team",
       "Link": "/team"
     }
   ]

@@ -11,7 +11,7 @@
           <v-card>
             <div class="card-body">
               <h5 class="card-title">COVID-19</h5>
-              <h6 class="card-subtitle mb-2 text-muted">Rolling average and number of new cases</h6>
+              <h6 class="card-subtitle mb-2 text-muted">Total Cases with Rolling Average</h6>
               <span v-html="content"></span><br><br>
               <a href='https://services7.arcgis.com/mOBPykOjAyBO2ZKk/ArcGIS/rest/services/Covid19_RKI_Sums/FeatureServer' class="card-link">Where is this data from?</a>
             </div>

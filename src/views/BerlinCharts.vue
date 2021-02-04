@@ -1,7 +1,5 @@
 <template>
   <div>
-    <h2>Covid 19</h2>
-    <h3>Covid 19 cases per age group</h3>
     <v-card class="card">
       <div class="back">
         <div class="row">
