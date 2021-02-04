@@ -1,48 +1,44 @@
 <template>
   <div>
-  <div class="burger" @click="toggleBurger">
-    <v-icon dark v-if="open" x-large >mdi-menu</v-icon>
-    <v-icon dark v-else large>mdi-window-close</v-icon>
-  </div>
-  <div v-if="!open" @mouseleave="toggleBurger()">
-    <div class="list">
-      <p class="first-listelement"></p>
-      <div class="listelement-container">
-        <p class="listelement"><a href="/">Home</a></p>
-      </div>
-
-      <hr>
-      <div class="listelement-container">
-        <p class="listelement"><a href="/covid-average">COVID-19 total</a></p>
-      </div>
-      <div class="listelement-container">
-        <p class="listelement"><a href="/covid-age">COVID-19 by age</a></p>
-      </div>
-      <div class="listelement-container">
-        <p class="listelement"><a href="/infections">COVID-19 by district</a></p>
-      </div>      
-      <div class="listelement-container">
-        <p class="listelement"><a href="/hospitals">Hospital capacities</a></p>
-      </div>
-      <div class="listelement-container">
-        <p class="listelement"><a href="/cancer">Cases of cancer</a></p>
-      </div>
-      <div class="listelement-container">
-        <p class="listelement"><a href="/accidents">Traffic accidents</a></p>
-      </div>
-      <hr>
-      <div class="listelement-container">
-        <p class="listelement"><a href="/faq">FAQ</a></p>
-      </div>
-      <div class="listelement-container">
-        <p class="listelement"><a href="/team">Team</a></p>
-      </div>
+    <div class="burger" @click="toggleBurger">
+      <v-icon dark v-if="open" x-large >mdi-menu</v-icon>
+      <v-icon dark v-else large>mdi-window-close</v-icon>
     </div>
-  </div >
+    <div v-if="!open" @mouseleave="toggleBurger()">
+      <div class="list">
+        <div class="listelement-container">
+          <p class="listelement"><a href="/">Home</a></p>
+        </div>
+        <hr>
+        <div class="listelement-container dropdown">
+          <p class="dropdown-toggle" data-toggle="dropdown" role="button" href="#">COVID-19</p>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="/infections">Per District</a>
+            <a class="dropdown-item" href="/covid-age">Per Age Group</a>
+            <a class="dropdown-item" href="/covid-average">Rolling Average</a>
+          </div>
+        </div>
+        <div class="listelement-container">
+          <p class="listelement"><a href="/hospitals">Hospital Capacities</a></p>
+        </div>
+        <div class="listelement-container">
+          <p class="listelement"><a href="/cancer">Cancer Cases</a></p>
+        </div>
+        <div class="listelement-container">
+          <p class="listelement-last"><a href="/accidents">Traffic Safety</a></p>
+        </div>
+        <hr>
+        <div class="listelement-container">
+          <p class="listelement"><a href="/faq">FAQ</a></p>
+        </div>
+        <div class="listelement-container">
+          <p class="listelement"><a href="/team">Team</a></p>
+        </div>
+      </div>
+    </div >
   </div>
 </template>
 <script>
-
 export default {
   name: "Menu",
   components: {},
@@ -98,11 +94,22 @@ a:hover {
 .listelement-container:hover {
   background-color: #629df0;
 }
-.first-listelement {
-  padding-top: 40px;
-}
 .listelement-container {
   height: 3em;
   line-height: 3em;
+}
+.listelement-last {
+  width: 100%;
+  height: 1.5rem;
+  padding-bottom: 1rem;
+}
+.dropdown-toggle {
+  font-size: 1.4rem;
+  padding-top: 0.3rem;
+}
+.dropdown-menu {
+  width: 100%;
+  background-color: #EFF5FD
+;
 }
 </style>
