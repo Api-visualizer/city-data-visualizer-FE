@@ -74,10 +74,12 @@ export default {
 
   data () {
     return {
-      FAQ: [{'question': 'I want to know how many people are currently infected with COVID-19 in my district. ', 'link': '/infections', 'answer': 'You will find the answer with the help of our COVID-19 Map.'},
-        {'question': 'As a regular cyclist I am interested to know which streets are dangerous to take and should be avoided.', 'link': '/accidents', 'answer': 'On our Traffic Safety Map select the type "Bike" to see how many cyclists were involved in recent accidents.'},
-        {'question': 'As a scientist I study numbers of COVID-19 infections to find a trend. Are there any computational trends you derive from your numbers?', 'link': '', 'answer': 'We are working on algorithms to make infection trends possible. They will be soon available on this website.'},
-        {'question': 'Do you plan to visualize other public available data in the future?', 'link': '', 'answer': 'This is a students project which will end in february 2021. If the interest is hight, we may go on to continue this project and keep it regularly updated.'}]
+      FAQ: [{'question': 'I want to know how many people are currently infected with COVID-19 in my district.', 'link': '/infections', 'answer': 'You can find the answer with the help of our COVID-19 map.'},
+        {'question': 'As a regular cyclist, I am interested in knowing which streets are dangerous to take and should be avoided.', 'link': '/accidents', 'answer': 'On our Traffic Safety Map select the type "Bike" to see how many cyclists were involved in recent accidents.'},
+        {'question': 'How does the Corona virus affect different age groups? Whose risk is highest?', 'link': '/age', 'answer': 'You can check the distribution of infections by age group in a chart as well as a graph to draw your own conclusions.'},
+        {'question': 'As a scientist, I study numbers of COVID-19 infections to find a trend. Are there any computational trends you derive from your numbers?', 'link': '/covid-average', 'answer': 'We are working on algorithms to make infection trends possible, they might be soon available on this website. Meanwhile, you can check this graph of total case numbers with a rolling 7-day average.'},
+        {'question': 'I\'m worried about the state of our health system. Are hospitals overtaxed with this new virus?', 'link':'/hospitals', 'answer':'You can check daily availability of hospital beds in intensive care units on this map. That way you can make your own judgment and hopefully assuage your fears.'},
+        {'question': 'Do you plan to visualize other available public data in the future?', 'link': '', 'answer': 'This is a students\' project which will end in february 2021. If the interest is high, we may go on to continue this project and keep it regularly updated. Feel free to send us suggestions on what kind of data you would like to see visualized!'}]
     }
   },
 
@@ -93,21 +95,6 @@ export default {
   margin: 0;
   padding: 0;
 }
-
-.headerimage {
-  max-height: 15rem;
-  object-fit: cover;
-}
-
-.title {
-  z-index: 1;
-  position: absolute;
-  left: 50%;
-  top: 7.5rem;
-  color: white;
-  transform: translate(-50%, -50%);
-}
-
 .headline-4 {
   font-weight: 300;
   font-size: 3.5rem;
@@ -116,58 +103,31 @@ export default {
 .container-fluid {
   padding: 0;
 }
-
-.col {
-  margin: 0;
-  padding: 0;
-}
-
-.headerimage{
-  max-height: 15rem;
-  object-fit: cover;
-}
 .disclaimer {
   padding: 0;
 }
-
-.title {
-  z-index: 1;
-  position: absolute;
-  left: 50%;
-  top: 7.5rem;
-  color: white;
-  transform: translate(-50%, -50%);
-}
-
 p {
   font-size: large;
 }
-
 .jumbotron {
   margin: 0;
 }
-
 .jumbotron:nth-child(even) {
-
   background-color: white;
   background-image: url("data:image/svg+xml,%3Csvg width='504' height='288' viewBox='0 0 84 48' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h12v6H0V0zm28 8h12v6H28V8zm14-8h12v6H42V0zm14 0h12v6H56V0zm0 8h12v6H56V8zM42 8h12v6H42V8zm0 16h12v6H42v-6zm14-8h12v6H56v-6zm14 0h12v6H70v-6zm0-16h12v6H70V0zM28 32h12v6H28v-6zM14 16h12v6H14v-6zM0 24h12v6H0v-6zm0 8h12v6H0v-6zm14 0h12v6H14v-6zm14 8h12v6H28v-6zm-14 0h12v6H14v-6zm28 0h12v6H42v-6zm14-8h12v6H56v-6zm0-8h12v6H56v-6zm14 8h12v6H70v-6zm0 8h12v6H70v-6zM14 24h12v6H14v-6zm14-8h12v6H28v-6zM14 8h12v6H14V8zM0 8h12v6H0V8z' fill='%23477fcd' fill-opacity='0.07' fill-rule='evenodd'/%3E%3C/svg%3E");
 
   background-repeat: repeat;
 }
-
 .jumbotron:nth-child(odd) {
   background-color: #FFF;
 }
-
 .jumbotron>p {
   padding: 0 20% 0 20%;
 }
-
 .btn-primary {
   color: white;
   margin-bottom: 1.5em;
 }
-
 .card {
   float: none;
 }
