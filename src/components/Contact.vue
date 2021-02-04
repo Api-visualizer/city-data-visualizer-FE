@@ -20,17 +20,19 @@
       <label for="message_field">Message</label>
       <textarea class="form-control" id="message_field" rows="3" value="Hello!" required></textarea>
     </div>
-      <div class="row justify-content-end">
+      <div class="row justify-content-start">
         <div class="col-9">
           <div class="d-inline-flex">
-            <i v-if="sent === false" class="iconify fail align-content-end" data-icon="mdi:exclamation-thick" />
+            <i v-if="sent === false" class="iconify fail" data-icon="mdi:exclamation-thick" />
             <p v-if="sent === false" class="notsent">Oops. Something went wrong. Please contact us directly or try again.</p>
           </div>
-          <div class="d-inline-flex align-content-end">
+          <div class="d-inline-flex align-content-start">
             <i v-if="sent === true" class="iconify success" data-icon="mdi:check" />
             <p v-if="sent === true" class="sent">Message sent!</p>
           </div>
-          <v-progress-circular v-show="indeterminate" :indeterminate="indeterminate" class="spinner" color="primary" />
+        </div>
+        <div class="col-2 align-content-end">
+          <v-progress-circular class="spinner" v-show="indeterminate" :indeterminate="indeterminate" color="primary" />
         </div>
         <div class="col-1 d-flex justify-content-end">
           <button type="submit" class="btn btn-primary">Send</button>
