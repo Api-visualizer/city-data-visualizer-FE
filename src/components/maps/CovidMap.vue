@@ -2,7 +2,7 @@
   <div>
     <div id="container">
       <div id="mapContainer"></div>
-      <Textbox class="textbox" :content="content" title="COVID-19" subtitle="Case numbers per district" :link=this.link />
+      <Textbox class="textbox" :content="content" title="COVID-19" subtitle="Case Numbers per District" :link=this.link />
       <Timeslider class="tslider" v-if='sliderStartIndex' :id='this.busKey' :startIndex=this.sliderStartIndex :ticksLabels=this.ticksLabels :value=value />
     </div>
 

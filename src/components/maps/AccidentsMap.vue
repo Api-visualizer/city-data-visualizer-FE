@@ -2,7 +2,7 @@
   <div>
     <div id="container">
       <div id="accidentsMapContainer"></div>
-      <Textbox :content="content" title="Traffic Safety" subtitle="City-Wide Accident Locations" class="box" :link=this.link />
+      <Textbox :content="content" title="Traffic Safety" subtitle="City-wide Accident Distribution" class="box" :link=this.link />
 
       <div class="selection rounded-lg">
         <div class="row">
