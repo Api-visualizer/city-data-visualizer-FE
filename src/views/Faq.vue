@@ -3,7 +3,7 @@
 
     <div class="jumbotron faq">
       <h2 class="headline-4">FAQ</h2>
-      <p class="lead pt-4" style="padding-bottom: 24px;">Here you can find the answers to common questions we have received. Use the contact formular on the start page if you have a specific request which is not yet answered.</p>
+      <p class="lead pt-4" style="padding-bottom: 24px;">Here you can find answers to common questions we have received. Use the contact form on the start page if you have a specific request which is not yet answered.</p>
     </div>
 
     <div class="jumbotron">
@@ -28,22 +28,22 @@
       <h2 class="headline-4 disclaim-header">Disclaimer</h2>
       <p class="lead pt-4" style="padding-bottom: 24px;">This is a students project at the Beuth University of Applied Sciences Berlin.
         We have created this website in behalf of the bachelor's degree program Media Informatics.
-        The project City Data Visualizer will end in february 2021. 
+        The project City Data Visualizer will end in february 2021.
         After february the website may be offline or not updated with new data.
         If you have questions or want to get in touch with the team please use the contact formular on the start page.</p>
       <a class="btn btn-primary" href="/#contact" role="button">Contact</a>
     </div>
 
     <div class="jumbotron">
-      <div class="card mx-auto w-75">
+      <div class="card mx-auto p-4 w-75">
         <p class="headline-4 h2">Legal Disclosure</p>
         <div class="card-body ">
           <h5 class="card-title">Information in accordance with Section 5 TMG</h5>
             <br>
           <h6 class="card-subtitle mb-2 text-muted">Accountability for content</h6>
-          <p class="card-text text-left">The contents of our pages have been created with the utmost care. However, we cannot guarantee the contents' accuracy, completeness or topicality. 
-          According to statutory provisions, we are furthermore responsible for our own content on these web pages. 
-          In this matter, please note that we are not obliged to monitor the transmitted or saved information of third parties, or investigate circumstances pointing to illegal activity. 
+          <p class="card-text text-left">The contents of our pages have been created with the utmost care. However, we cannot guarantee the contents' accuracy, completeness or topicality.
+          According to statutory provisions, we are furthermore responsible for our own content on these web pages.
+          In this matter, please note that we are not obliged to monitor the transmitted or saved information of third parties, or investigate circumstances pointing to illegal activity.
           Our obligations to remove or block the use of information under generally applicable laws remain unaffected by this as per §§ 8 to 10 of the Telemedia Act (TMG).</p>
             <br>
           <h6 class="card-subtitle mb-2 text-muted">Accountability for links</h6>
@@ -52,7 +52,7 @@
             <br>
           <h6 class="card-subtitle mb-2 text-muted">Copyright</h6>
           <p class="card-text text-left">Our web pages and their contents are subject to German copyright law. Unless expressly permitted by law, every form of utilizing,
-            reproducing or processing works subject to copyright protection on our web pages requires the prior consent of the respective owner of the rights. 
+            reproducing or processing works subject to copyright protection on our web pages requires the prior consent of the respective owner of the rights.
             Individual reproductions of a work are only allowed for private use. The materials from these pages are copyrighted and any unauthorized use may violate copyright laws.</p>
           <!-- <a href="#" class="card-link">Card link</a>
           <a href="#" class="card-link">Another link</a> -->
@@ -60,7 +60,6 @@
       </div>
 
     </div>
-
 
   </div>
 </template>
@@ -72,7 +71,7 @@ export default {
   props: {},
 
   components: {},
-  
+
   data () {
     return {
       FAQ: [{'question': 'I want to know how many people are currently infected with COVID-19 in my district. ', 'link': '/infections', 'answer': 'You will find the answer with the help of our COVID-19 Map.'},
@@ -81,9 +80,9 @@ export default {
         {'question': 'Do you plan to visualize other public available data in the future?', 'link': '', 'answer': 'This is a students project which will end in february 2021. If the interest is hight, we may go on to continue this project and keep it regularly updated.'}]
     }
   },
-  
+
   methods: {},
-  
+
   mounted() {},
 };
 
@@ -166,6 +165,7 @@ p {
 
 .btn-primary {
   color: white;
+  margin-bottom: 1.5em;
 }
 
 .card {
