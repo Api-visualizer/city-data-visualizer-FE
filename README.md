@@ -45,14 +45,14 @@ DevOps:
 - Release backend: https://github.com/Api-visualizer/city-data-visualizer-BE/tree/main
 
 ___________________
-###### note - disclaimer
+###### Note - disclaimer
 
-###### Because of a cluster incident on Jan 4th 2020 - 18 hours before deadline - we lost some data, we've fetched daily via cronjobs. We tried to reproduce the data and the production system of the last 4 Weeks within 11 hours but it was too late. 
+###### Because of a cluster incident on Jan 4th 2020 - 18 hours before deadline - we lost some data that we fetched daily via cronjobs. We tried to reproduce the data and the production system of the last 4 weeks within 11 hours but it was too late. 
 
-###### It's like anyone wanted us to learn, that automated backups are a good idea.
+###### It's like someone wanted us to learn, that *automated backups* are a good idea!
 
-###### Lesson learned.
+###### Lessons learned.
 
-###### therefore the production system has got missing dates between 12.12.2020 and 04.02.2021. this affects the covid infection map and the barchart about covid per agegroup.
+###### Therefore the production system has got missing dates between 12.12.2020 and 04.02.2021. This affects the COVID-19 infection map and the barchart covid per agegroup.
 
 
