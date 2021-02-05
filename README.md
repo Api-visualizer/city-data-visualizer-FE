@@ -39,4 +39,4 @@ DevOps:
 
 ### Release
 - Final product: https://city-data.app.datexis.com/
-- Link to Release: https://github.com/Api-visualizer/city-data-visualizer-FE/tree/main
+- Release branch: https://github.com/Api-visualizer/city-data-visualizer-FE/tree/main
