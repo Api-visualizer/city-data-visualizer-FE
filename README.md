@@ -35,6 +35,8 @@ DevOps:
 
 ### Resources
 
+- Scrum board: https://github.com/orgs/Api-visualizer/projects/1
+
 ### Release
 - Final product: https://city-data.app.datexis.com/
 - Link to Release: https://github.com/Api-visualizer/city-data-visualizer-FE/tree/main
