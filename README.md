@@ -1,5 +1,7 @@
 ## City-Data-Visualizer
 
+![Logo](public/images/logo_color_m.png)
+
 City Data Visualizer provides helpful visualizations for complex health data. With the help of open data, we hope to give both Berlin's administration, scientists and residents a better understanding of current health risks or positive impacts that are occurring in the city.
 
 ### Architecture
