@@ -1,5 +1,10 @@
 ## City-Data-Visualizer
 
+### Local development
+
+In our project folder do:
+`npm install && npm run serve`
+
 ### Docker
 
 `docker build -t visualizer-fe:local .`
