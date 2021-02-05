@@ -43,3 +43,12 @@ DevOps:
 - Final product: https://city-data.app.datexis.com/
 - Release frontend: https://github.com/Api-visualizer/city-data-visualizer-FE/tree/main
 - Release backend: https://github.com/Api-visualizer/city-data-visualizer-BE/tree/main
+
+___________________
+###### note - disclaimer
+######Because of a cluster incident on Jan 4th 2020 - 18 hours before deadline - we lost some data, we've fetched daily via cronjobs. We tried to reproduce the data and the production system of the last 4 Weeks within 11 hours but it was too late.
+######It's like anyone wanted us to learn, that automated backups are a good idea.
+######Lesson learned.
+######therefore the production system has got missing dates between 12.12.2020 and 04.02.2021. this affects the covid infection map and the barchart about covid per agegroup.
+
+
