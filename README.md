@@ -21,7 +21,7 @@ docker run -p 8090:8090 visualizer-fe:local
 
 ### How to deploy
 
-CI/CD: By pushing on the master branch, our Github Action automatically deploys the web application.
+CI/CD: By pushing on the master branch, our Github Action automatically deploys the web application / backend service.
 
 ### Tools / Frameworks being used
 
