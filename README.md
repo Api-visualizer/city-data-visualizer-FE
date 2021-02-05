@@ -36,6 +36,7 @@ DevOps:
 ### Resources
 
 - Scrum board: https://github.com/orgs/Api-visualizer/projects/1
+- Frontend prototype: https://www.figma.com/file/akn5Z8GM9RSuhkAmzLinr0/Untitled?node-id=0%3A1
 
 ### Release
 - Final product: https://city-data.app.datexis.com/
